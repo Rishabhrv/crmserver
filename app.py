@@ -20,11 +20,11 @@ JWT_SECRET = config.JWT_SECRET
 
 # Role-based Streamlit app URLs (replace with actual Streamlit app URLs)
 ROLE_REDIRECTS = {
-    'admin': 'http://localhost:8501',
-    'writer': 'http://localhost:8501',
-    'proofreader': 'http://localhost:8501',
-    'formatter': 'http://localhost:8501',
-    'cover_designer': 'http://localhost:8501'
+    'admin': 'https://usercrm.agvolumes.com',
+    'writer': 'https://usercrm.agvolumes.com',
+    'proofreader': 'https://usercrm.agvolumes.com',
+    'formatter': 'https://usercrm.agvolumes.com',
+    'cover_designer': 'https://usercrm.agvolumes.com'
 }
 
 TOKEN_BLACKLIST = set()
