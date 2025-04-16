@@ -1,0 +1,31 @@
+name: Deploy crmserver App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to VPS
+        run: |
+          ssh -o StrictHostKeyChecking=no rishabhvyas@178.16.137.226 << 'EOF'
+          cd /home/rishabhvyas/crmserver
+          git fetch origin main
+          git reset --hard origin/main  # Ensure server matches GitHub repo
+          git clean -fd                # Remove untracked files/folders
+          source /home/rishabhvyas/crmserver/venv/bin/activate
+          pip install -r requirements.txt
+          sudo systemctl restart crmserver.service
+          EOF
