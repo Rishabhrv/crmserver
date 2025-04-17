@@ -27,6 +27,14 @@ ROLE_REDIRECTS = {
     'cover_designer': 'https://usercrm.agvolumes.com'
 }
 
+# ROLE_REDIRECTS = {
+#     'admin': 'http://localhost:8501',
+#     'writer': 'http://localhost:8501',
+#     'proofreader': 'http://localhost:8501',
+#     'formatter': 'http://localhost:8501',
+#     'cover_designer': 'http://localhost:8501'
+# }
+
 TOKEN_BLACKLIST = set()
 
 @app.route('/')
