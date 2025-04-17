@@ -31,7 +31,7 @@ TOKEN_BLACKLIST = set()
 
 @app.route('/')
 def index():
-    if 'username' in session:
+    if 'email' in session:
         role = session.get('role')
         return redirect(ROLE_REDIRECTS.get(role, '/login'))
     return redirect(url_for('login'))
@@ -39,26 +39,26 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
+        email = request.form['email']
         password = request.form['password']
         
         cur = mysql.connection.cursor()
-        cur.execute("SELECT username, password, role FROM users WHERE username = %s", (username,))
+        cur.execute("SELECT email, password, role FROM users WHERE email = %s", (email,))
         user = cur.fetchone()
         cur.close()
         
         if user and user[1] == password:
-            session['username'] = user[0]
+            session['email'] = user[0]
             session['role'] = user[2]
             token = jwt.encode({
-                'username': user[0],
+                'email': user[0],
                 'role': user[2].lower(),
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
             }, JWT_SECRET, algorithm='HS256')
             redirect_url = f"{ROLE_REDIRECTS.get(user[2], '/login')}?token={token}"
             return redirect(redirect_url)
         else:
-            flash('Invalid username or password', 'error')
+            flash('Invalid email or password', 'error')
             return redirect(url_for('login'))
     
     return render_template('login.html')
@@ -70,7 +70,7 @@ def validate_token():
         return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
     try:
         decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
-        return jsonify({'valid': True, 'username': decoded['username'], 'role': decoded['role'].lower()})
+        return jsonify({'valid': True, 'email': decoded['email'], 'role': decoded['role'].lower()})
     except jwt.ExpiredSignatureError:
         return jsonify({'valid': False, 'error': 'Token expired'}), 401
     except jwt.InvalidTokenError:
@@ -82,7 +82,7 @@ def logout():
     token = request.json.get('token')
     if token:
         TOKEN_BLACKLIST.add(token)
-    session.pop('username', None)
+    session.pop('email', None)
     session.pop('role', None)
     return jsonify({'success': True, 'redirect': url_for('login', _external=True)}), 200
 
