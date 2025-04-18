@@ -3,6 +3,7 @@ from flask_mysqldb import MySQL
 import jwt
 import datetime
 import config
+import pytz
 
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
@@ -15,33 +16,22 @@ app.config['MYSQL_DB'] = config.MYSQL_DB
 
 mysql = MySQL(app)
 
-# JWT secret key (must match in Streamlit apps)
+# JWT secret key
 JWT_SECRET = config.JWT_SECRET
 
-# Role-based Streamlit app URLs (replace with actual Streamlit app URLs)
-ROLE_REDIRECTS = {
-    'admin': 'https://usercrm.agvolumes.com',
-    'writer': 'https://usercrm.agvolumes.com',
-    'proofreader': 'https://usercrm.agvolumes.com',
-    'formatter': 'https://usercrm.agvolumes.com',
-    'cover_designer': 'https://usercrm.agvolumes.com'
+# App-based redirect URLs
+APP_REDIRECTS = {
+    'main': 'http://localhost:8502',
+    'operations': 'http://localhost:8501',
+    'admin': 'http://localhost:8502'
 }
-
-# ROLE_REDIRECTS = {
-#     'admin': 'http://localhost:8501',
-#     'writer': 'http://localhost:8501',
-#     'proofreader': 'http://localhost:8501',
-#     'formatter': 'http://localhost:8501',
-#     'cover_designer': 'http://localhost:8501'
-# }
 
 TOKEN_BLACKLIST = set()
 
 @app.route('/')
 def index():
     if 'email' in session:
-        role = session.get('role')
-        return redirect(ROLE_REDIRECTS.get(role, '/login'))
+        return redirect(url_for('login'))
     return redirect(url_for('login'))
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -51,19 +41,52 @@ def login():
         password = request.form['password']
         
         cur = mysql.connection.cursor()
-        cur.execute("SELECT email, password, role FROM users WHERE email = %s", (email,))
+        cur.execute("SELECT id, email, password FROM users WHERE email = %s", (email,))
         user = cur.fetchone()
         cur.close()
         
-        if user and user[1] == password:
-            session['email'] = user[0]
-            session['role'] = user[2]
-            token = jwt.encode({
-                'email': user[0],
-                'role': user[2].lower(),
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
-            }, JWT_SECRET, algorithm='HS256')
-            redirect_url = f"{ROLE_REDIRECTS.get(user[2], '/login')}?token={token}"
+        if user and user[2] == password:
+            session['email'] = user[1]
+            
+            # Fetch user details to determine role
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT role, app FROM users WHERE id = %s", (user[0],))
+            user_details = cur.fetchone()
+            cur.close()
+            
+            role = user_details[0].lower()
+            app = user_details[1].lower() if user_details[1] else ''
+            
+            # Time restriction for 'user' role
+            if role == 'user':
+                # Get current time in IST
+                ist = pytz.timezone('Asia/Kolkata')
+                current_time = datetime.datetime.now(ist)
+                current_hour = current_time.hour
+                
+                # Check if current time is between 9 AM and 6 PM (18:00)
+                if not (9 <= current_hour < 18):
+                    flash('Users can only log in between 9 AM and 6 PM IST', 'error')
+                    return redirect(url_for('login'))
+            
+            # Create JWT token with only user_id
+            token_payload = {
+                'user_id': user[0],
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60)
+            }
+            
+            token = jwt.encode(token_payload, JWT_SECRET, algorithm='HS256')
+            
+            # Determine redirect URL
+            if role == 'admin':
+                redirect_url = f"{APP_REDIRECTS['admin']}?token={token}"
+            else:
+                if app and app in APP_REDIRECTS:
+                    redirect_url = f"{APP_REDIRECTS[app]}?token={token}"
+                else:
+                    flash('Invalid app configuration', 'error')
+                    return redirect(url_for('login'))
+            
             return redirect(redirect_url)
         else:
             flash('Invalid email or password', 'error')
@@ -78,7 +101,50 @@ def validate_token():
         return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
     try:
         decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
-        return jsonify({'valid': True, 'email': decoded['email'], 'role': decoded['role'].lower()})
+        return jsonify({
+            'valid': True,
+            'user_id': decoded['user_id']
+        })
+    except jwt.ExpiredSignatureError:
+        return jsonify({'valid': False, 'error': 'Token expired'}), 401
+    except jwt.InvalidTokenError:
+        return jsonify({'valid': False, 'error': 'Invalid token'}), 401
+
+@app.route('/user_details', methods=['POST'])
+def user_details():
+    token = request.json.get('token')
+    if token in TOKEN_BLACKLIST:
+        return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
+    try:
+        decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
+        user_id = decoded['user_id']
+        
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT email, role, app, access, start_date, end_date FROM users WHERE id = %s", (user_id,))
+        user = cur.fetchone()
+        cur.close()
+        
+        if not user:
+            return jsonify({'valid': False, 'error': 'User not found'}), 404
+        
+        # Process access based on app
+        access_list = []
+        if user[2] == 'main':
+            access_list = [acc.strip() for acc in user[3].split(',') if acc.strip()] if user[3] else []
+        elif user[2] == 'operations':
+            access_list = [user[3]] if user[3] else []
+        
+        # Handle nullable start_date and end_date
+        start_date = user[4].isoformat() if user[4] else None
+        
+        return jsonify({
+            'valid': True,
+            'email': user[0],
+            'role': user[1].lower(),
+            'app': user[2].lower() if user[2] else '',
+            'access': access_list,
+            'start_date': start_date
+        })
     except jwt.ExpiredSignatureError:
         return jsonify({'valid': False, 'error': 'Token expired'}), 401
     except jwt.InvalidTokenError:
@@ -86,12 +152,10 @@ def validate_token():
 
 @app.route('/logout', methods=['POST'])
 def logout():
-    # Optional: Blacklist the token if provided
     token = request.json.get('token')
     if token:
         TOKEN_BLACKLIST.add(token)
     session.pop('email', None)
-    session.pop('role', None)
     return jsonify({'success': True, 'redirect': url_for('login', _external=True)}), 200
 
 if __name__ == '__main__':
