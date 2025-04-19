@@ -19,11 +19,18 @@ mysql = MySQL(app)
 # JWT secret key
 JWT_SECRET = config.JWT_SECRET
 
+# # App-based redirect URLs
+# APP_REDIRECTS = {
+#     'main': 'http://localhost:8502',
+#     'operations': 'http://localhost:8501',
+#     'admin': 'http://localhost:8502'
+# }
+
 # App-based redirect URLs
 APP_REDIRECTS = {
-    'main': 'http://localhost:8502',
-    'operations': 'http://localhost:8501',
-    'admin': 'http://localhost:8502'
+    'main': 'https://newcrm.agvolumes.com',
+    'operations': 'https://usercrm.agvolumes.com',
+    'admin': 'https://newcrm.agvolumes.com'
 }
 
 TOKEN_BLACKLIST = set()
