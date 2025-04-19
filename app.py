@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from flask_mysqldb import MySQL
+from flask_cors import CORS
 import jwt
 import datetime
 import config
@@ -16,8 +17,14 @@ app.config['MYSQL_DB'] = config.MYSQL_DB
 
 mysql = MySQL(app)
 
+
 # JWT secret key
 JWT_SECRET = config.JWT_SECRET
+
+# Enable CORS for Streamlit app domains
+CORS(app, resources={r"/validate_token": {"origins": ["https://newcrm.agvolumes.com", "https://usercrm.agvolumes.com"]},
+                     r"/user_details": {"origins": ["https://newcrm.agvolumes.com", "https://usercrm.agvolumes.com"]},
+                     r"/logout": {"origins": ["https://newcrm.agvolumes.com", "https://usercrm.agvolumes.com"]}})
 
 # # App-based redirect URLs
 # APP_REDIRECTS = {
@@ -103,7 +110,11 @@ def login():
 
 @app.route('/validate_token', methods=['POST'])
 def validate_token():
+    if not request.is_json:
+        return jsonify({'valid': False, 'error': 'Request must be JSON'}), 400
     token = request.json.get('token')
+    if not token:
+        return jsonify({'valid': False, 'error': 'Token missing'}), 400
     if token in TOKEN_BLACKLIST:
         return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
     try:
@@ -119,7 +130,11 @@ def validate_token():
 
 @app.route('/user_details', methods=['POST'])
 def user_details():
+    if not request.is_json:
+        return jsonify({'valid': False, 'error': 'Request must be JSON'}), 400
     token = request.json.get('token')
+    if not token:
+        return jsonify({'valid': False, 'error': 'Token missing'}), 400
     if token in TOKEN_BLACKLIST:
         return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
     try:
@@ -159,6 +174,8 @@ def user_details():
 
 @app.route('/logout', methods=['POST'])
 def logout():
+    if not request.is_json:
+        return jsonify({'success': False, 'error': 'Request must be JSON'}), 400
     token = request.json.get('token')
     if token:
         TOKEN_BLACKLIST.add(token)
