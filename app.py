@@ -183,4 +183,4 @@ def logout():
     return jsonify({'success': True, 'redirect': url_for('login', _external=True)}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
