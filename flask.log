@@ -1,0 +1,29 @@
+2025-04-19 15:47:07,799 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.29.235:5001
+2025-04-19 15:47:07,799 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-19 15:47:07,827 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-19 15:47:08,305 - WARNING -  * Debugger is active!
+2025-04-19 15:47:08,319 - INFO -  * Debugger PIN: 966-932-444
+2025-04-19 15:47:44,661 - INFO - Accessing root endpoint
+2025-04-19 15:47:44,662 - INFO - 127.0.0.1 - - [19/Apr/2025 15:47:44] "[32mGET / HTTP/1.1[0m" 302 -
+2025-04-19 15:47:44,667 - INFO - Login attempt: GET
+2025-04-19 15:47:44,735 - INFO - 127.0.0.1 - - [19/Apr/2025 15:47:44] "GET /login HTTP/1.1" 200 -
+2025-04-19 15:47:44,824 - INFO - 127.0.0.1 - - [19/Apr/2025 15:47:44] "GET /static/logo.png HTTP/1.1" 200 -
+2025-04-19 15:47:45,595 - INFO - 127.0.0.1 - - [19/Apr/2025 15:47:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-19 15:48:14,819 - INFO - Login attempt: POST
+2025-04-19 15:48:14,825 - DEBUG - Login attempt for email: new@gmail.com
+2025-04-19 15:48:14,839 - DEBUG - User role: user, app: main
+2025-04-19 15:48:17,628 - DEBUG - Current IST hour: 15
+2025-04-19 15:48:17,629 - INFO - Generated token for user_id: 17
+2025-04-19 15:48:17,629 - INFO - Redirecting to: https://newcrm.agvolumes.com?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNywiZXhwIjoxNzQ1MDYxNDk3fQ.B5xpiqDbYLjpptujWYggfd3fjgj6VYlWEwAS2DXEtdQ
+2025-04-19 15:48:17,631 - INFO - 127.0.0.1 - - [19/Apr/2025 15:48:17] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-19 15:50:07,866 - INFO -  * Detected change in 'C:\\ProgramData\\anaconda3\\Lib\\threading.py', reloading
+2025-04-19 15:50:07,880 - INFO - Accessing root endpoint
+2025-04-19 15:50:07,881 - INFO - 127.0.0.1 - - [19/Apr/2025 15:50:07] "[32mGET / HTTP/1.1[0m" 302 -
+2025-04-19 15:50:07,884 - INFO - Login attempt: GET
+2025-04-19 15:50:07,885 - INFO - 127.0.0.1 - - [19/Apr/2025 15:50:07] "GET /login HTTP/1.1" 200 -
+2025-04-19 15:50:08,723 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-19 15:50:09,179 - WARNING -  * Debugger is active!
+2025-04-19 15:50:09,179 - INFO -  * Debugger PIN: 966-932-444
