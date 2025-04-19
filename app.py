@@ -69,7 +69,6 @@ def login():
             if user and user[2] == password:
                 session['email'] = user[1]
                 
-                # Fetch user details to determine role
                 cur = mysql.connection.cursor()
                 cur.execute("SELECT role, app FROM users WHERE id = %s", (user[0],))
                 user_details = cur.fetchone()
@@ -79,7 +78,6 @@ def login():
                 app = user_details[1].lower() if user_details[1] else ''
                 logger.debug(f"User role: {role}, app: {app}")
                 
-                # Time restriction for 'user' role
                 if role == 'user':
                     ist = pytz.timezone('Asia/Kolkata')
                     current_time = datetime.datetime.now(ist)
@@ -91,7 +89,6 @@ def login():
                         logger.warning(f"Login denied for {email}: Outside allowed hours")
                         return redirect(url_for('login'))
                 
-                # Create JWT token
                 token_payload = {
                     'user_id': user[0],
                     'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60)
@@ -99,7 +96,6 @@ def login():
                 token = jwt.encode(token_payload, JWT_SECRET, algorithm='HS256')
                 logger.info(f"Generated token for user_id: {user[0]}")
                 
-                # Determine redirect URL
                 if role == 'admin':
                     redirect_url = f"{APP_REDIRECTS['admin']}?token={token}"
                 else:
@@ -171,7 +167,8 @@ def user_details():
         user_id = decoded['user_id']
         
         cur = mysql.connection.cursor()
-        cur.execute("SELECT email, role, app, access, start_date, FROM users WHERE id = %s", (user_id,))
+        # Escape column names and exclude end_date (not used)
+        cur.execute("SELECT `email`, `role`, `app`, `access`, `start_date` FROM `users` WHERE `id` = %s", (user_id,))
         user = cur.fetchone()
         cur.close()
         
@@ -224,4 +221,4 @@ def logout():
         return jsonify({'success': False, 'error': 'Server error'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    app.run(debug=False, host='0.0.0.0', port=5001)
