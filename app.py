@@ -47,18 +47,15 @@ TOKEN_BLACKLIST = set()
 
 @app.route('/')
 def index():
-    logger.info("Accessing root endpoint")
     if 'email' in session:
         return redirect(url_for('login'))
     return redirect(url_for('login'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    logger.info(f"Login attempt: {request.method}")
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        logger.debug(f"Login attempt for email: {email}")
         
         try:
             cur = mysql.connection.cursor()
@@ -76,13 +73,11 @@ def login():
                 
                 role = user_details[0].lower()
                 app = user_details[1].lower() if user_details[1] else ''
-                logger.debug(f"User role: {role}, app: {app}")
                 
                 if role == 'user':
                     ist = pytz.timezone('Asia/Kolkata')
                     current_time = datetime.datetime.now(ist)
                     current_hour = current_time.hour
-                    logger.debug(f"Current IST hour: {current_hour}")
                     
                     if not (9 <= current_hour < 18):
                         flash('Users can only log in between 9 AM and 6 PM IST', 'error')
@@ -94,7 +89,6 @@ def login():
                     'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60)
                 }
                 token = jwt.encode(token_payload, JWT_SECRET, algorithm='HS256')
-                logger.info(f"Generated token for user_id: {user[0]}")
                 
                 if role == 'admin':
                     redirect_url = f"{APP_REDIRECTS['admin']}?token={token}"
@@ -106,7 +100,6 @@ def login():
                         logger.error(f"Invalid app configuration for user: {email}")
                         return redirect(url_for('login'))
                 
-                logger.info(f"Redirecting to: {redirect_url}")
                 return redirect(redirect_url)
             else:
                 flash('Invalid email or password', 'error')
@@ -121,20 +114,15 @@ def login():
 
 @app.route('/validate_token', methods=['POST'])
 def validate_token():
-    logger.info("Received validate_token request")
     try:
         if not request.is_json:
-            logger.warning("Request is not JSON")
             return jsonify({'valid': False, 'error': 'Request must be JSON'}), 400
         token = request.json.get('token')
         if not token:
-            logger.warning("Token missing in request")
             return jsonify({'valid': False, 'error': 'Token missing'}), 400
         if token in TOKEN_BLACKLIST:
-            logger.warning("Token is blacklisted")
             return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
         decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
-        logger.info(f"Token validated for user_id: {decoded['user_id']}")
         return jsonify({
             'valid': True,
             'user_id': decoded['user_id']
@@ -151,24 +139,19 @@ def validate_token():
 
 @app.route('/user_details', methods=['POST'])
 def user_details():
-    logger.info("Received user_details request")
     try:
         if not request.is_json:
-            logger.warning("Request is not JSON")
             return jsonify({'valid': False, 'error': 'Request must be JSON'}), 400
         token = request.json.get('token')
         if not token:
-            logger.warning("Token missing in request")
             return jsonify({'valid': False, 'error': 'Token missing'}), 400
         if token in TOKEN_BLACKLIST:
-            logger.warning("Token is blacklisted")
             return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
         decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
         user_id = decoded['user_id']
         
         cur = mysql.connection.cursor()
-        # Escape column names and exclude end_date (not used)
-        cur.execute("SELECT `email`, `role`, `app`, `access`, `start_date` FROM `users` WHERE `id` = %s", (user_id,))
+        cur.execute("SELECT `email`, `role`, `app`, `access`, `start_date`, `username` FROM `users` WHERE `id` = %s", (user_id,))
         user = cur.fetchone()
         cur.close()
         
@@ -183,14 +166,14 @@ def user_details():
             access_list = [user[3]] if user[3] else []
         
         start_date = user[4].isoformat() if user[4] else None
-        logger.info(f"User details fetched for user_id: {user_id}")
         return jsonify({
             'valid': True,
             'email': user[0],
             'role': user[1].lower(),
             'app': user[2].lower() if user[2] else '',
             'access': access_list,
-            'start_date': start_date
+            'start_date': start_date,
+            'username': user[5]
         })
     except jwt.ExpiredSignatureError:
         logger.warning("Token expired")
@@ -204,17 +187,13 @@ def user_details():
 
 @app.route('/logout', methods=['POST'])
 def logout():
-    logger.info("Received logout request")
     try:
         if not request.is_json:
-            logger.warning("Request is not JSON")
             return jsonify({'success': False, 'error': 'Request must be JSON'}), 400
         token = request.json.get('token')
         if token:
             TOKEN_BLACKLIST.add(token)
-            logger.info("Token blacklisted")
         session.pop('email', None)
-        logger.info("User logged out")
         return jsonify({'success': True, 'redirect': url_for('login', _external=True)}), 200
     except Exception as e:
         logger.error(f"Error in logout: {str(e)}", exc_info=True)
