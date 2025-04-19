@@ -171,7 +171,7 @@ def user_details():
         user_id = decoded['user_id']
         
         cur = mysql.connection.cursor()
-        cur.execute("SELECT email, role, app, access, start_date, end_date FROM users WHERE id = %s", (user_id,))
+        cur.execute("SELECT email, role, app, access, start_date, FROM users WHERE id = %s", (user_id,))
         user = cur.fetchone()
         cur.close()
         
