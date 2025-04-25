@@ -1,6 +1,7 @@
 /app.log
-/config.py
 /logs
 /venv
 /__pycache__
 flask.log
+/flask.log
+.env
