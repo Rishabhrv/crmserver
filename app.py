@@ -54,19 +54,24 @@ EMAIL_CONFIG = {
 
 # Enable CORS for Streamlit app domains
 CORS(app, resources={
-    r"/validate_token": {"origins": ["https://newcrm.agvolumes.com", "https://newcrm.agvolumes.com/team_dashboard","https://usercrm.agvolumes.com", "http://127.0.0.1:8504"]},
-    r"/user_details": {"origins": ["https://newcrm.agvolumes.com", "https://usercrm.agvolumes.com","https://newcrm.agvolumes.com/team_dashboard","http://127.0.0.1:8504"]},
+    r"/auth/validate_and_details": {"origins": ["https://newcrm.agvolumes.com", "https://newcrm.agvolumes.com/team_dashboard","https://usercrm.agvolumes.com", "http://127.0.0.1:8504"]},
     r"/logout": {"origins": ["https://newcrm.agvolumes.com", "https://usercrm.agvolumes.com", "http://127.0.0.1:8504"]},
     r"/forgot_password": {"origins": ["*"]},
     r"/reset_password": {"origins": ["*"]}
 })
 
-# App-based redirect URLs
+#App-based redirect URLs
 APP_REDIRECTS = {
     'main': 'https://newcrm.agvolumes.com',
     'operations': 'https://newcrm.agvolumes.com/team_dashboard',
     'admin': 'https://newcrm.agvolumes.com'
 }
+
+# APP_REDIRECTS = {
+#     'main': 'http://localhost:8501',
+#     'operations': 'http://localhost:8501/team_dashboard',
+#     'admin': 'http://localhost:8501'
+# }
 
 TOKEN_BLACKLIST = set()
 PASSWORD_RESET_TOKENS = {}
@@ -171,18 +176,18 @@ def forgot_password():
                 email_body = f"""
 Dear Administrator,
 
-You have requested to reset your password for AG Publishing House CRM. Please click the link below to set a new password:
+You have requested to reset your password for AG Publishing House MIS. Please click the link below to set a new password:
 
 {reset_link}
 
-This link will expire in 1 hour for security reasons. If you did not request a password reset, please contact our support team immediately at support@agpublishing.com.
+This link will expire in 1 hour for security reasons. If you did not request a password reset, please contact our support team immediately at tech@academicguru24x7.com.
 
 Thank you,
 AG Publishing House Team
-support@agpublishing.com
+tech@academicguru24x7.com
 """
                 msg = MIMEText(email_body)
-                msg['Subject'] = 'AG Publishing House - Password Reset Request for CRM'
+                msg['Subject'] = 'AG Publishing House - Password Reset Request for MIS'
                 msg['From'] = EMAIL_CONFIG['SENDER_EMAIL']
                 msg['To'] = email
                 
@@ -280,53 +285,31 @@ def reset_password():
     
     return render_template('reset_password.html', token=token)
 
-@app.route('/validate_token', methods=['POST'])
-def validate_token():
-    logger.info("Validating token")
+@app.route('/auth/validate_and_details', methods=['POST'])
+def validate_and_details():
+    logger.info("Validating token and fetching user details")
     try:
         if not request.is_json:
             logger.warning("Invalid request: Not JSON")
             return jsonify({'valid': False, 'error': 'Request must be JSON'}), 400
+        
         token = request.json.get('token')
         if not token:
             logger.warning("Token missing in request")
             return jsonify({'valid': False, 'error': 'Token missing'}), 400
+        
         if token in TOKEN_BLACKLIST:
             logger.warning("Attempt to use blacklisted token")
             return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
-        decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
-        logger.info(f"Token validated successfully for user_id: {decoded['user_id']}")
-        return jsonify({
-            'valid': True,
-            'user_id': decoded['user_id']
-        })
-    except jwt.ExpiredSignatureError:
-        logger.warning("Token expired")
-        return jsonify({'valid': False, 'error': 'Token expired'}), 401
-    except jwt.InvalidTokenError as e:
-        logger.warning(f"Invalid token: {str(e)}")
-        return jsonify({'valid': False, 'error': 'Invalid token'}), 401
-    except Exception as e:
-        logger.error(f"Error in token validation: {str(e)}")
-        return jsonify({'valid': False, 'error': 'Server error'}), 500
-
-@app.route('/user_details', methods=['POST'])
-def user_details():
-    logger.info("Fetching user details")
-    try:
-        if not request.is_json:
-            logger.warning("Invalid request: Not JSON")
-            return jsonify({'valid': False, 'error': 'Request must be JSON'}), 400
-        token = request.json.get('token')
-        if not token:
-            logger.warning("Token missing in request")
-            return jsonify({'valid': False, 'error': 'Token missing'}), 400
-        if token in TOKEN_BLACKLIST:
-            logger.warning("Attempt to use blacklisted token")
-            return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
+        
+        # Decode JWT
         decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
         user_id = decoded['user_id']
+        if not user_id or 'exp' not in decoded:
+            logger.warning("Missing user_id or exp in token")
+            return jsonify({'valid': False, 'error': 'Invalid token'}), 401
         
+        # Fetch user details from database
         cur = mysql.connection.cursor()
         cur.execute("SELECT `email`, `role`, `app`, `access`, `start_date`, `username` FROM `users` WHERE `id` = %s", (user_id,))
         user = cur.fetchone()
@@ -336,6 +319,7 @@ def user_details():
             logger.warning(f"User not found for user_id: {user_id}")
             return jsonify({'valid': False, 'error': 'User not found'}), 404
         
+        # Process access list based on app
         access_list = []
         if user[2] == 'main':
             access_list = [acc.strip() for acc in user[3].split(',') if acc.strip()] if user[3] else []
@@ -343,24 +327,29 @@ def user_details():
             access_list = [user[3]] if user[3] else []
         
         start_date = user[4].isoformat() if user[4] else None
-        logger.info(f"Successfully retrieved details for user: {user[5]}")
+        logger.info(f"Successfully validated token and retrieved details for user: {user[5]}")
+        
         return jsonify({
             'valid': True,
-            'email': user[0],
-            'role': user[1].lower(),
-            'app': user[2].lower() if user[2] else '',
-            'access': access_list,
-            'start_date': start_date,
-            'username': user[5]
+            'user_id': user_id,
+            'user_details': {
+                'email': user[0],
+                'role': user[1].lower(),
+                'app': user[2].lower() if user[2] else '',
+                'access': access_list,
+                'start_date': start_date,
+                'username': user[5]
+            }
         })
+    
     except jwt.ExpiredSignatureError:
         logger.warning("Token expired")
         return jsonify({'valid': False, 'error': 'Token expired'}), 401
-    except jwt.InvalidTokenError:
-        logger.warning("Invalid token")
+    except jwt.InvalidTokenError as e:
+        logger.warning(f"Invalid token: {str(e)}")
         return jsonify({'valid': False, 'error': 'Invalid token'}), 401
     except Exception as e:
-        logger.error(f"Error in user details retrieval: {str(e)}")
+        logger.error(f"Error in validate_and_details: {str(e)}")
         return jsonify({'valid': False, 'error': 'Server error'}), 500
 
 @app.route('/logout', methods=['POST'])

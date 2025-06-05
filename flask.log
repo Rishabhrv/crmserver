@@ -21,3 +21,1478 @@
 25-04-2025 11:45:09 - INFO - Redirecting user okuser to dashboard
 25-04-2025 11:53:17 - INFO - Starting Flask application
 25-04-2025 11:55:28 - INFO - Starting Flask application
+25-04-2025 15:13:39 - INFO - Starting Flask application
+25-04-2025 15:14:49 - INFO - Trying to login with email: rishabhvyasji@gmail.com
+25-04-2025 15:14:49 - INFO - User rishabhvyas logged in successfully, role: admin
+25-04-2025 15:14:49 - INFO - Redirecting user rishabhvyas to dashboard
+25-04-2025 15:14:52 - INFO - Validating token
+25-04-2025 15:14:52 - INFO - Token validated successfully for user_id: 1
+25-04-2025 15:14:54 - INFO - Fetching user details
+25-04-2025 15:14:54 - INFO - Successfully retrieved details for user: rishabhvyas
+25-04-2025 15:14:58 - INFO - Validating token
+25-04-2025 15:14:58 - INFO - Token validated successfully for user_id: 1
+25-04-2025 15:15:00 - INFO - Fetching user details
+25-04-2025 15:15:00 - INFO - Successfully retrieved details for user: rishabhvyas
+25-04-2025 15:15:03 - INFO - Validating token
+25-04-2025 15:15:03 - INFO - Token validated successfully for user_id: 1
+25-04-2025 15:15:05 - INFO - Fetching user details
+25-04-2025 15:15:05 - INFO - Successfully retrieved details for user: rishabhvyas
+25-04-2025 15:15:18 - INFO - Validating token
+25-04-2025 15:15:18 - INFO - Token validated successfully for user_id: 1
+25-04-2025 15:15:19 - INFO - Validating token
+25-04-2025 15:15:19 - INFO - Token validated successfully for user_id: 1
+25-04-2025 15:15:20 - INFO - Fetching user details
+25-04-2025 15:15:20 - INFO - Successfully retrieved details for user: rishabhvyas
+25-04-2025 15:15:21 - INFO - Fetching user details
+25-04-2025 15:15:21 - INFO - Successfully retrieved details for user: rishabhvyas
+25-04-2025 15:15:31 - INFO - Trying to login with email: new@gmail.com
+25-04-2025 15:15:31 - INFO - User local logged in successfully, role: user
+25-04-2025 15:15:33 - INFO - Redirecting user local to dashboard
+25-04-2025 15:15:36 - INFO - Validating token
+25-04-2025 15:15:36 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:15:38 - INFO - Fetching user details
+25-04-2025 15:15:38 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:16:07 - INFO - Trying to login with email: new@gmail.com
+25-04-2025 15:16:07 - INFO - User local logged in successfully, role: user
+25-04-2025 15:16:07 - INFO - Redirecting user local to dashboard
+25-04-2025 15:16:10 - INFO - Validating token
+25-04-2025 15:16:10 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:16:12 - INFO - Fetching user details
+25-04-2025 15:16:12 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:16:23 - INFO - Validating token
+25-04-2025 15:16:23 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:16:25 - INFO - Fetching user details
+25-04-2025 15:16:25 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:16:43 - INFO - Validating token
+25-04-2025 15:16:43 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:16:45 - INFO - Fetching user details
+25-04-2025 15:16:45 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:17:07 - INFO - Validating token
+25-04-2025 15:17:07 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:17:09 - INFO - Fetching user details
+25-04-2025 15:17:09 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:17:18 - INFO - Validating token
+25-04-2025 15:17:18 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:17:20 - INFO - Fetching user details
+25-04-2025 15:17:20 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:17:53 - INFO - Validating token
+25-04-2025 15:17:53 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:17:55 - INFO - Fetching user details
+25-04-2025 15:17:55 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:19:30 - INFO - Validating token
+25-04-2025 15:19:30 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:19:32 - INFO - Fetching user details
+25-04-2025 15:19:32 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:19:57 - INFO - Validating token
+25-04-2025 15:19:57 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:19:59 - INFO - Fetching user details
+25-04-2025 15:19:59 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:20:10 - INFO - Validating token
+25-04-2025 15:20:10 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:20:12 - INFO - Fetching user details
+25-04-2025 15:20:12 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:20:45 - INFO - Validating token
+25-04-2025 15:20:45 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:20:47 - INFO - Fetching user details
+25-04-2025 15:20:47 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:23:58 - INFO - Trying to login with email: new@gmail.com
+25-04-2025 15:23:58 - INFO - User local logged in successfully, role: user
+25-04-2025 15:23:58 - INFO - Redirecting user local to dashboard
+25-04-2025 15:24:01 - INFO - Validating token
+25-04-2025 15:24:01 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:24:03 - INFO - Fetching user details
+25-04-2025 15:24:03 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:24:58 - INFO - Trying to login with email: new@gmail.com
+25-04-2025 15:24:58 - INFO - User local logged in successfully, role: user
+25-04-2025 15:24:58 - INFO - Redirecting user local to dashboard
+25-04-2025 15:25:00 - INFO - Validating token
+25-04-2025 15:25:00 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:25:02 - INFO - Fetching user details
+25-04-2025 15:25:02 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:25:08 - INFO - Validating token
+25-04-2025 15:25:08 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:25:10 - INFO - Fetching user details
+25-04-2025 15:25:10 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:25:12 - INFO - Validating token
+25-04-2025 15:25:12 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:25:14 - INFO - Fetching user details
+25-04-2025 15:25:14 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:25:23 - INFO - Validating token
+25-04-2025 15:25:23 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:25:25 - INFO - Fetching user details
+25-04-2025 15:25:25 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:26:34 - INFO - Validating token
+25-04-2025 15:26:34 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:26:37 - INFO - Fetching user details
+25-04-2025 15:26:37 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:26:40 - INFO - Validating token
+25-04-2025 15:26:40 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:26:42 - INFO - Fetching user details
+25-04-2025 15:26:42 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:26:44 - INFO - Validating token
+25-04-2025 15:26:44 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:26:46 - INFO - Fetching user details
+25-04-2025 15:26:46 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:29:14 - INFO - Validating token
+25-04-2025 15:29:14 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:29:16 - INFO - Fetching user details
+25-04-2025 15:29:16 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:29:19 - INFO - Validating token
+25-04-2025 15:29:19 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:29:21 - INFO - Fetching user details
+25-04-2025 15:29:21 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:29:26 - INFO - Validating token
+25-04-2025 15:29:26 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:29:28 - INFO - Fetching user details
+25-04-2025 15:29:28 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:29:34 - INFO - Validating token
+25-04-2025 15:29:34 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:29:36 - INFO - Fetching user details
+25-04-2025 15:29:36 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:30:43 - INFO - Validating token
+25-04-2025 15:30:43 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:30:45 - INFO - Fetching user details
+25-04-2025 15:30:45 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:31:10 - INFO - Validating token
+25-04-2025 15:31:10 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:31:12 - INFO - Fetching user details
+25-04-2025 15:31:12 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:31:16 - INFO - Validating token
+25-04-2025 15:31:16 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:31:19 - INFO - Fetching user details
+25-04-2025 15:31:19 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:31:21 - INFO - Validating token
+25-04-2025 15:31:21 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:31:23 - INFO - Fetching user details
+25-04-2025 15:31:23 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:45:55 - INFO - Validating token
+25-04-2025 15:45:55 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:45:57 - INFO - Fetching user details
+25-04-2025 15:45:57 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:45:59 - INFO - Validating token
+25-04-2025 15:45:59 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:46:01 - INFO - Fetching user details
+25-04-2025 15:46:01 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:46:10 - INFO - Validating token
+25-04-2025 15:46:10 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:46:12 - INFO - Fetching user details
+25-04-2025 15:46:12 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:46:15 - INFO - Validating token
+25-04-2025 15:46:15 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:46:17 - INFO - Fetching user details
+25-04-2025 15:46:17 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:46:23 - INFO - Validating token
+25-04-2025 15:46:23 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:46:24 - INFO - Validating token
+25-04-2025 15:46:24 - INFO - Token validated successfully for user_id: 17
+25-04-2025 15:46:25 - INFO - Fetching user details
+25-04-2025 15:46:25 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:46:26 - INFO - Fetching user details
+25-04-2025 15:46:26 - INFO - Successfully retrieved details for user: local
+25-04-2025 15:46:55 - INFO - Trying to login with email: og@gmail.com
+25-04-2025 15:46:55 - INFO - User test user logged in successfully, role: user
+25-04-2025 15:46:55 - INFO - Redirecting user test user to dashboard
+25-04-2025 15:46:58 - INFO - Validating token
+25-04-2025 15:46:58 - INFO - Token validated successfully for user_id: 16
+25-04-2025 15:47:00 - INFO - Fetching user details
+25-04-2025 15:47:00 - INFO - Successfully retrieved details for user: test user
+25-04-2025 15:47:27 - INFO - Validating token
+25-04-2025 15:47:27 - INFO - Token validated successfully for user_id: 16
+25-04-2025 15:47:29 - INFO - Fetching user details
+25-04-2025 15:47:29 - INFO - Successfully retrieved details for user: test user
+25-04-2025 15:47:54 - INFO - Validating token
+25-04-2025 15:47:54 - INFO - Token validated successfully for user_id: 16
+25-04-2025 15:47:56 - INFO - Fetching user details
+25-04-2025 15:47:56 - INFO - Successfully retrieved details for user: test user
+25-04-2025 15:48:12 - INFO - Validating token
+25-04-2025 15:48:12 - INFO - Token validated successfully for user_id: 16
+25-04-2025 15:48:14 - INFO - Fetching user details
+25-04-2025 15:48:14 - INFO - Successfully retrieved details for user: test user
+25-04-2025 15:48:29 - INFO - Trying to login with email: ok@gmail.com
+25-04-2025 15:48:29 - INFO - User okuser logged in successfully, role: user
+25-04-2025 15:48:29 - INFO - Redirecting user okuser to dashboard
+25-04-2025 15:48:32 - INFO - Validating token
+25-04-2025 15:48:32 - INFO - Token validated successfully for user_id: 18
+25-04-2025 15:48:34 - INFO - Fetching user details
+25-04-2025 15:48:34 - INFO - Successfully retrieved details for user: okuser
+25-04-2025 15:48:48 - INFO - Validating token
+25-04-2025 15:48:48 - INFO - Token validated successfully for user_id: 18
+25-04-2025 15:48:50 - INFO - Fetching user details
+25-04-2025 15:48:50 - INFO - Successfully retrieved details for user: okuser
+26-04-2025 10:43:39 - INFO - Starting Flask application
+26-04-2025 10:44:31 - INFO - Trying to login with email: rishabhvyasji@gmail.com
+26-04-2025 10:44:35 - ERROR - Error during login for rishabhvyasji@gmail.com: (2002, "Can't connect to server on 'localhost' (10061)")
+26-04-2025 10:45:07 - INFO - Trying to login with email: rishabhvyasji@gmail.com
+26-04-2025 10:45:07 - INFO - User rishabhvyas logged in successfully, role: admin
+26-04-2025 10:45:07 - INFO - Redirecting user rishabhvyas to dashboard
+26-04-2025 10:45:10 - INFO - Validating token
+26-04-2025 10:45:10 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:45:12 - INFO - Fetching user details
+26-04-2025 10:45:12 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:45:18 - INFO - Validating token
+26-04-2025 10:45:18 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:45:20 - INFO - Fetching user details
+26-04-2025 10:45:20 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:45:23 - INFO - Validating token
+26-04-2025 10:45:23 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:45:25 - INFO - Fetching user details
+26-04-2025 10:45:25 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:45:33 - INFO - Validating token
+26-04-2025 10:45:33 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:45:34 - INFO - Validating token
+26-04-2025 10:45:34 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:45:34 - INFO - Validating token
+26-04-2025 10:45:34 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:45:35 - INFO - Fetching user details
+26-04-2025 10:45:35 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:45:36 - INFO - Fetching user details
+26-04-2025 10:45:36 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:45:36 - INFO - Fetching user details
+26-04-2025 10:45:36 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:45:42 - INFO - Validating token
+26-04-2025 10:45:42 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:45:44 - INFO - Fetching user details
+26-04-2025 10:45:44 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:45:47 - INFO - Validating token
+26-04-2025 10:45:47 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:45:49 - INFO - Fetching user details
+26-04-2025 10:45:49 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:46:18 - INFO - Validating token
+26-04-2025 10:46:18 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:46:20 - INFO - Fetching user details
+26-04-2025 10:46:20 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:46:22 - INFO - Validating token
+26-04-2025 10:46:22 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:46:24 - INFO - Fetching user details
+26-04-2025 10:46:24 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:47:14 - INFO - Validating token
+26-04-2025 10:47:14 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:47:16 - INFO - Fetching user details
+26-04-2025 10:47:16 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:47:31 - INFO - Validating token
+26-04-2025 10:47:31 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:47:33 - INFO - Fetching user details
+26-04-2025 10:47:33 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:48:06 - INFO - Validating token
+26-04-2025 10:48:06 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:48:08 - INFO - Fetching user details
+26-04-2025 10:48:09 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:48:35 - INFO - Validating token
+26-04-2025 10:48:35 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:48:37 - INFO - Fetching user details
+26-04-2025 10:48:37 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:49:18 - INFO - Validating token
+26-04-2025 10:49:18 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:49:20 - INFO - Fetching user details
+26-04-2025 10:49:20 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:51:33 - INFO - Validating token
+26-04-2025 10:51:33 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:51:35 - INFO - Fetching user details
+26-04-2025 10:51:35 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:52:08 - INFO - Validating token
+26-04-2025 10:52:08 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:52:10 - INFO - Fetching user details
+26-04-2025 10:52:10 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:52:18 - INFO - Validating token
+26-04-2025 10:52:18 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:52:20 - INFO - Fetching user details
+26-04-2025 10:52:20 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:52:26 - INFO - Validating token
+26-04-2025 10:52:26 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:52:28 - INFO - Fetching user details
+26-04-2025 10:52:28 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:52:48 - INFO - Validating token
+26-04-2025 10:52:48 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:52:50 - INFO - Fetching user details
+26-04-2025 10:52:50 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:52:57 - INFO - Validating token
+26-04-2025 10:52:57 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:52:59 - INFO - Validating token
+26-04-2025 10:52:59 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:52:59 - INFO - Fetching user details
+26-04-2025 10:52:59 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:53:00 - INFO - Validating token
+26-04-2025 10:53:00 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:53:01 - INFO - Fetching user details
+26-04-2025 10:53:01 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:53:02 - INFO - Fetching user details
+26-04-2025 10:53:02 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:53:08 - INFO - Trying to login with email: ok@gmail.com
+26-04-2025 10:53:08 - INFO - User okuser logged in successfully, role: user
+26-04-2025 10:53:08 - INFO - Redirecting user okuser to dashboard
+26-04-2025 10:53:11 - INFO - Validating token
+26-04-2025 10:53:11 - INFO - Token validated successfully for user_id: 18
+26-04-2025 10:53:13 - INFO - Fetching user details
+26-04-2025 10:53:13 - INFO - Successfully retrieved details for user: okuser
+26-04-2025 10:53:46 - INFO - Validating token
+26-04-2025 10:53:46 - INFO - Token validated successfully for user_id: 18
+26-04-2025 10:53:48 - INFO - Fetching user details
+26-04-2025 10:53:48 - INFO - Successfully retrieved details for user: okuser
+26-04-2025 10:54:19 - INFO - Trying to login with email: rishabhvyasji@gmail.com
+26-04-2025 10:54:19 - INFO - User rishabhvyas logged in successfully, role: admin
+26-04-2025 10:54:19 - INFO - Redirecting user rishabhvyas to dashboard
+26-04-2025 10:54:22 - INFO - Validating token
+26-04-2025 10:54:22 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:54:24 - INFO - Fetching user details
+26-04-2025 10:54:24 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:54:30 - INFO - Validating token
+26-04-2025 10:54:30 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:54:32 - INFO - Fetching user details
+26-04-2025 10:54:32 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:54:34 - INFO - Validating token
+26-04-2025 10:54:34 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:54:36 - INFO - Fetching user details
+26-04-2025 10:54:36 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 10:54:59 - INFO - Validating token
+26-04-2025 10:54:59 - INFO - Token validated successfully for user_id: 1
+26-04-2025 10:55:01 - INFO - Fetching user details
+26-04-2025 10:55:01 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:30:30 - INFO - Starting Flask application
+26-04-2025 12:31:00 - INFO - Trying to login with email: rishabhvyasji@gmail.com
+26-04-2025 12:31:00 - INFO - User rishabhvyas logged in successfully, role: admin
+26-04-2025 12:31:00 - INFO - Redirecting user rishabhvyas to dashboard
+26-04-2025 12:31:03 - INFO - Validating token
+26-04-2025 12:31:03 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:31:05 - INFO - Fetching user details
+26-04-2025 12:31:05 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:31:12 - INFO - Validating token
+26-04-2025 12:31:12 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:31:14 - INFO - Fetching user details
+26-04-2025 12:31:14 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:31:17 - INFO - Validating token
+26-04-2025 12:31:17 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:31:19 - INFO - Fetching user details
+26-04-2025 12:31:19 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:31:36 - INFO - Validating token
+26-04-2025 12:31:36 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:31:38 - INFO - Fetching user details
+26-04-2025 12:31:38 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:33:21 - INFO - Validating token
+26-04-2025 12:33:21 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:33:23 - INFO - Fetching user details
+26-04-2025 12:33:23 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:40:22 - INFO - Validating token
+26-04-2025 12:40:22 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:40:24 - INFO - Fetching user details
+26-04-2025 12:40:24 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:40:30 - INFO - Validating token
+26-04-2025 12:40:30 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:40:33 - INFO - Fetching user details
+26-04-2025 12:40:33 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:40:41 - INFO - Validating token
+26-04-2025 12:40:41 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:40:43 - INFO - Fetching user details
+26-04-2025 12:40:43 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:40:47 - INFO - Validating token
+26-04-2025 12:40:47 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:40:49 - INFO - Fetching user details
+26-04-2025 12:40:49 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:41:08 - INFO - Validating token
+26-04-2025 12:41:08 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:41:10 - INFO - Fetching user details
+26-04-2025 12:41:10 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:41:14 - INFO - Validating token
+26-04-2025 12:41:14 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:41:16 - INFO - Fetching user details
+26-04-2025 12:41:16 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:41:33 - INFO - Validating token
+26-04-2025 12:41:33 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:41:35 - INFO - Fetching user details
+26-04-2025 12:41:35 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:41:49 - INFO - Validating token
+26-04-2025 12:41:49 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:41:51 - INFO - Fetching user details
+26-04-2025 12:41:51 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:42:09 - INFO - Validating token
+26-04-2025 12:42:09 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:42:11 - INFO - Fetching user details
+26-04-2025 12:42:11 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:44:47 - INFO - Validating token
+26-04-2025 12:44:47 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:44:49 - INFO - Fetching user details
+26-04-2025 12:44:49 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:46:37 - INFO - Validating token
+26-04-2025 12:46:37 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:46:39 - INFO - Fetching user details
+26-04-2025 12:46:39 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:46:42 - INFO - Validating token
+26-04-2025 12:46:42 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:46:44 - INFO - Fetching user details
+26-04-2025 12:46:44 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:47:29 - INFO - Validating token
+26-04-2025 12:47:29 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:47:31 - INFO - Fetching user details
+26-04-2025 12:47:31 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:48:58 - INFO - Validating token
+26-04-2025 12:48:58 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:49:00 - INFO - Fetching user details
+26-04-2025 12:49:00 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:49:37 - INFO - Validating token
+26-04-2025 12:49:37 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:49:39 - INFO - Fetching user details
+26-04-2025 12:49:39 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:49:47 - INFO - Validating token
+26-04-2025 12:49:47 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:49:49 - INFO - Fetching user details
+26-04-2025 12:49:49 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:50:01 - INFO - Validating token
+26-04-2025 12:50:01 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:50:03 - INFO - Fetching user details
+26-04-2025 12:50:03 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:51:52 - INFO - Validating token
+26-04-2025 12:51:52 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:51:54 - INFO - Fetching user details
+26-04-2025 12:51:54 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:52:39 - INFO - Validating token
+26-04-2025 12:52:39 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:52:41 - INFO - Fetching user details
+26-04-2025 12:52:41 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:53:01 - INFO - Validating token
+26-04-2025 12:53:01 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:53:03 - INFO - Fetching user details
+26-04-2025 12:53:03 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:53:41 - INFO - Validating token
+26-04-2025 12:53:41 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:53:43 - INFO - Fetching user details
+26-04-2025 12:53:43 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:54:24 - INFO - Validating token
+26-04-2025 12:54:24 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:54:26 - INFO - Fetching user details
+26-04-2025 12:54:26 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:54:58 - INFO - Validating token
+26-04-2025 12:54:58 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:55:00 - INFO - Fetching user details
+26-04-2025 12:55:00 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:55:27 - INFO - Validating token
+26-04-2025 12:55:27 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:55:29 - INFO - Fetching user details
+26-04-2025 12:55:29 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 12:55:36 - INFO - Validating token
+26-04-2025 12:55:36 - INFO - Token validated successfully for user_id: 1
+26-04-2025 12:55:38 - INFO - Fetching user details
+26-04-2025 12:55:38 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 13:01:28 - INFO - Validating token
+26-04-2025 13:01:28 - INFO - Token validated successfully for user_id: 1
+26-04-2025 13:01:30 - INFO - Fetching user details
+26-04-2025 13:01:30 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 13:01:37 - INFO - Validating token
+26-04-2025 13:01:37 - INFO - Token validated successfully for user_id: 1
+26-04-2025 13:01:39 - INFO - Fetching user details
+26-04-2025 13:01:39 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 13:01:45 - INFO - Validating token
+26-04-2025 13:01:45 - INFO - Token validated successfully for user_id: 1
+26-04-2025 13:01:47 - INFO - Fetching user details
+26-04-2025 13:01:47 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 13:01:51 - INFO - Validating token
+26-04-2025 13:01:51 - INFO - Token validated successfully for user_id: 1
+26-04-2025 13:01:53 - INFO - Fetching user details
+26-04-2025 13:01:53 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 13:02:05 - INFO - Validating token
+26-04-2025 13:02:05 - INFO - Token validated successfully for user_id: 1
+26-04-2025 13:02:07 - INFO - Fetching user details
+26-04-2025 13:02:07 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 13:02:13 - INFO - Validating token
+26-04-2025 13:02:13 - INFO - Token validated successfully for user_id: 1
+26-04-2025 13:02:15 - INFO - Fetching user details
+26-04-2025 13:02:15 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 13:02:19 - INFO - Validating token
+26-04-2025 13:02:19 - INFO - Token validated successfully for user_id: 1
+26-04-2025 13:02:21 - INFO - Fetching user details
+26-04-2025 13:02:21 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 13:02:23 - INFO - Validating token
+26-04-2025 13:02:23 - INFO - Token validated successfully for user_id: 1
+26-04-2025 13:02:25 - INFO - Fetching user details
+26-04-2025 13:02:25 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 13:02:48 - INFO - Trying to login with email: ok@gmail.com
+26-04-2025 13:02:48 - INFO - User okuser logged in successfully, role: user
+26-04-2025 13:02:50 - INFO - Redirecting user okuser to dashboard
+26-04-2025 13:02:54 - INFO - Validating token
+26-04-2025 13:02:54 - INFO - Token validated successfully for user_id: 18
+26-04-2025 13:02:56 - INFO - Fetching user details
+26-04-2025 13:02:56 - INFO - Successfully retrieved details for user: okuser
+26-04-2025 13:04:39 - INFO - Validating token
+26-04-2025 13:04:39 - INFO - Token validated successfully for user_id: 18
+26-04-2025 13:04:41 - INFO - Fetching user details
+26-04-2025 13:04:41 - INFO - Successfully retrieved details for user: okuser
+26-04-2025 13:06:18 - INFO - Trying to login with email: new@gmail.com
+26-04-2025 13:06:18 - INFO - User local logged in successfully, role: user
+26-04-2025 13:06:18 - INFO - Redirecting user local to dashboard
+26-04-2025 13:06:21 - INFO - Validating token
+26-04-2025 13:06:21 - INFO - Token validated successfully for user_id: 17
+26-04-2025 13:06:23 - INFO - Fetching user details
+26-04-2025 13:06:23 - INFO - Successfully retrieved details for user: local
+26-04-2025 13:06:32 - INFO - Validating token
+26-04-2025 13:06:32 - INFO - Token validated successfully for user_id: 17
+26-04-2025 13:06:34 - INFO - Fetching user details
+26-04-2025 13:06:34 - INFO - Successfully retrieved details for user: local
+26-04-2025 13:06:36 - INFO - Validating token
+26-04-2025 13:06:36 - INFO - Token validated successfully for user_id: 17
+26-04-2025 13:06:38 - INFO - Fetching user details
+26-04-2025 13:06:38 - INFO - Successfully retrieved details for user: local
+26-04-2025 13:06:48 - INFO - Validating token
+26-04-2025 13:06:48 - INFO - Token validated successfully for user_id: 17
+26-04-2025 13:06:50 - INFO - Fetching user details
+26-04-2025 13:06:50 - INFO - Successfully retrieved details for user: local
+26-04-2025 13:09:30 - INFO - Validating token
+26-04-2025 13:09:30 - INFO - Token validated successfully for user_id: 17
+26-04-2025 13:09:32 - INFO - Fetching user details
+26-04-2025 13:09:32 - INFO - Successfully retrieved details for user: local
+26-04-2025 13:09:38 - INFO - Validating token
+26-04-2025 13:09:38 - INFO - Token validated successfully for user_id: 17
+26-04-2025 13:09:40 - INFO - Fetching user details
+26-04-2025 13:09:40 - INFO - Successfully retrieved details for user: local
+26-04-2025 13:09:43 - INFO - Validating token
+26-04-2025 13:09:43 - INFO - Token validated successfully for user_id: 17
+26-04-2025 13:09:45 - INFO - Fetching user details
+26-04-2025 13:09:45 - INFO - Successfully retrieved details for user: local
+26-04-2025 13:12:05 - INFO - Validating token
+26-04-2025 13:12:05 - INFO - Token validated successfully for user_id: 17
+26-04-2025 13:12:07 - INFO - Fetching user details
+26-04-2025 13:12:07 - INFO - Successfully retrieved details for user: local
+26-04-2025 13:12:10 - INFO - Validating token
+26-04-2025 13:12:10 - INFO - Token validated successfully for user_id: 17
+26-04-2025 13:12:12 - INFO - Fetching user details
+26-04-2025 13:12:12 - INFO - Successfully retrieved details for user: local
+26-04-2025 16:49:58 - INFO - Starting Flask application
+26-04-2025 16:50:34 - INFO - Trying to login with email: rishabhvyasji@gmail.com
+26-04-2025 16:50:34 - INFO - User rishabhvyas logged in successfully, role: admin
+26-04-2025 16:50:34 - INFO - Redirecting user rishabhvyas to dashboard
+26-04-2025 16:50:36 - INFO - Validating token
+26-04-2025 16:50:36 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:50:39 - INFO - Fetching user details
+26-04-2025 16:50:39 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:50:45 - INFO - Validating token
+26-04-2025 16:50:45 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:50:47 - INFO - Fetching user details
+26-04-2025 16:50:47 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:50:57 - INFO - Validating token
+26-04-2025 16:50:57 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:50:59 - INFO - Fetching user details
+26-04-2025 16:50:59 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:51:01 - INFO - Validating token
+26-04-2025 16:51:01 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:51:03 - INFO - Fetching user details
+26-04-2025 16:51:03 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:51:19 - INFO - Validating token
+26-04-2025 16:51:19 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:51:21 - INFO - Fetching user details
+26-04-2025 16:51:21 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:51:43 - INFO - Validating token
+26-04-2025 16:51:43 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:51:45 - INFO - Fetching user details
+26-04-2025 16:51:45 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:51:47 - INFO - Validating token
+26-04-2025 16:51:47 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:51:49 - INFO - Fetching user details
+26-04-2025 16:51:49 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:52:40 - INFO - Validating token
+26-04-2025 16:52:40 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:52:42 - INFO - Fetching user details
+26-04-2025 16:52:42 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:53:02 - INFO - Validating token
+26-04-2025 16:53:02 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:53:04 - INFO - Fetching user details
+26-04-2025 16:53:04 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:53:54 - INFO - Validating token
+26-04-2025 16:53:54 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:53:56 - INFO - Fetching user details
+26-04-2025 16:53:56 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:54:30 - INFO - Validating token
+26-04-2025 16:54:30 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:54:32 - INFO - Fetching user details
+26-04-2025 16:54:32 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 16:55:23 - INFO - Validating token
+26-04-2025 16:55:23 - INFO - Token validated successfully for user_id: 1
+26-04-2025 16:55:25 - INFO - Fetching user details
+26-04-2025 16:55:25 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 17:00:10 - INFO - Validating token
+26-04-2025 17:00:10 - INFO - Token validated successfully for user_id: 1
+26-04-2025 17:00:12 - INFO - Fetching user details
+26-04-2025 17:00:12 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 17:01:20 - INFO - Validating token
+26-04-2025 17:01:20 - INFO - Token validated successfully for user_id: 1
+26-04-2025 17:01:22 - INFO - Fetching user details
+26-04-2025 17:01:22 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 17:01:28 - INFO - Validating token
+26-04-2025 17:01:28 - INFO - Token validated successfully for user_id: 1
+26-04-2025 17:01:30 - INFO - Fetching user details
+26-04-2025 17:01:30 - INFO - Successfully retrieved details for user: rishabhvyas
+26-04-2025 17:01:32 - INFO - Validating token
+26-04-2025 17:01:32 - INFO - Token validated successfully for user_id: 1
+26-04-2025 17:01:34 - INFO - Fetching user details
+26-04-2025 17:01:34 - INFO - Successfully retrieved details for user: rishabhvyas
+28-04-2025 10:38:45 - INFO - Starting Flask application
+04-06-2025 11:52:48 - INFO - Starting Flask application
+04-06-2025 11:54:00 - INFO - Trying to login with email: yogishru@gmail.com
+04-06-2025 11:54:00 - INFO - User Yogesh Sharma logged in successfully, role: admin
+04-06-2025 11:54:00 - INFO - Redirecting user Yogesh Sharma to dashboard
+04-06-2025 12:06:09 - INFO - Trying to login with email: yogishru@gmail.com
+04-06-2025 12:06:09 - INFO - User Yogesh Sharma logged in successfully, role: admin
+04-06-2025 12:06:09 - INFO - Redirecting user Yogesh Sharma to dashboard
+04-06-2025 12:41:13 - INFO - Trying to login with email: sheet@agphbooks.com
+04-06-2025 12:41:13 - INFO - User Anshi logged in successfully, role: user
+04-06-2025 12:41:15 - INFO - Redirecting user Anshi to dashboard
+04-06-2025 12:42:00 - INFO - Trying to login with email: mastersheet@agphbooks.com
+04-06-2025 12:42:00 - INFO - User Akash logged in successfully, role: user
+04-06-2025 12:42:00 - INFO - Redirecting user Akash to dashboard
+04-06-2025 12:43:24 - INFO - Trying to login with email: writing@agphbooks.com
+04-06-2025 12:43:24 - INFO - User Aman Giri logged in successfully, role: user
+04-06-2025 12:43:24 - INFO - Redirecting user Aman Giri to dashboard
+04-06-2025 12:44:17 - INFO - Trying to login with email: sheet@agphbooks.com
+04-06-2025 12:44:17 - INFO - User Anshi logged in successfully, role: user
+04-06-2025 12:44:18 - INFO - Redirecting user Anshi to dashboard
+04-06-2025 12:44:38 - INFO - Trying to login with email: formatting@agphbooks.com
+04-06-2025 12:44:38 - INFO - User Pawandeep Singh logged in successfully, role: user
+04-06-2025 12:44:38 - INFO - Redirecting user Pawandeep Singh to dashboard
+04-06-2025 12:46:13 - INFO - Trying to login with email: riv@gmail.com
+04-06-2025 12:46:13 - INFO - User rishabh logged in successfully, role: user
+04-06-2025 12:46:13 - INFO - Redirecting user rishabh to dashboard
+04-06-2025 12:46:32 - INFO - Trying to login with email: riv@gmail.com
+04-06-2025 12:46:32 - INFO - User rishabh logged in successfully, role: user
+04-06-2025 12:46:32 - INFO - Redirecting user rishabh to dashboard
+04-06-2025 12:47:34 - INFO - Starting Flask application
+04-06-2025 12:48:02 - INFO - Trying to login with email: riv@gmail.com
+04-06-2025 12:48:02 - INFO - User rishabh logged in successfully, role: user
+04-06-2025 12:48:02 - INFO - Redirecting user rishabh to dashboard
+04-06-2025 12:48:52 - INFO - Validating token
+04-06-2025 12:48:52 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:48:54 - INFO - Fetching user details
+04-06-2025 12:48:54 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:49:00 - INFO - Trying to login with email: riv@gmail.com
+04-06-2025 12:49:00 - INFO - User rishabh logged in successfully, role: user
+04-06-2025 12:49:00 - INFO - Redirecting user rishabh to dashboard
+04-06-2025 12:49:02 - INFO - Validating token
+04-06-2025 12:49:02 - INFO - Token validated successfully for user_id: 13
+04-06-2025 12:49:04 - INFO - Fetching user details
+04-06-2025 12:49:04 - INFO - Successfully retrieved details for user: rishabh
+04-06-2025 12:49:25 - INFO - Validating token
+04-06-2025 12:49:25 - INFO - Token validated successfully for user_id: 13
+04-06-2025 12:49:27 - INFO - Fetching user details
+04-06-2025 12:49:27 - INFO - Successfully retrieved details for user: rishabh
+04-06-2025 12:49:34 - INFO - Validating token
+04-06-2025 12:49:34 - INFO - Token validated successfully for user_id: 13
+04-06-2025 12:49:36 - INFO - Fetching user details
+04-06-2025 12:49:36 - INFO - Successfully retrieved details for user: rishabh
+04-06-2025 12:49:44 - INFO - Validating token
+04-06-2025 12:49:44 - INFO - Token validated successfully for user_id: 13
+04-06-2025 12:49:46 - INFO - Fetching user details
+04-06-2025 12:49:46 - INFO - Successfully retrieved details for user: rishabh
+04-06-2025 12:50:39 - INFO - Validating token
+04-06-2025 12:50:39 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:50:41 - INFO - Fetching user details
+04-06-2025 12:50:41 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:51:01 - INFO - Validating token
+04-06-2025 12:51:01 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:51:03 - INFO - Fetching user details
+04-06-2025 12:51:03 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:51:05 - INFO - Validating token
+04-06-2025 12:51:05 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:51:07 - INFO - Fetching user details
+04-06-2025 12:51:07 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:51:12 - INFO - Validating token
+04-06-2025 12:51:12 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:51:14 - INFO - Fetching user details
+04-06-2025 12:51:14 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:51:16 - INFO - Validating token
+04-06-2025 12:51:16 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:51:18 - INFO - Fetching user details
+04-06-2025 12:51:18 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:52:56 - INFO - Validating token
+04-06-2025 12:52:56 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:52:58 - INFO - Fetching user details
+04-06-2025 12:52:58 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:53:00 - INFO - Validating token
+04-06-2025 12:53:00 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:53:02 - INFO - Fetching user details
+04-06-2025 12:53:02 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:54:53 - INFO - Validating token
+04-06-2025 12:54:53 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:54:55 - INFO - Fetching user details
+04-06-2025 12:54:55 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:54:57 - INFO - Validating token
+04-06-2025 12:54:57 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:54:59 - INFO - Fetching user details
+04-06-2025 12:54:59 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:56:45 - INFO - Validating token
+04-06-2025 12:56:45 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:56:47 - INFO - Fetching user details
+04-06-2025 12:56:47 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:56:55 - INFO - Validating token
+04-06-2025 12:56:55 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:56:57 - INFO - Fetching user details
+04-06-2025 12:56:57 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:57:52 - INFO - Validating token
+04-06-2025 12:57:52 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:57:54 - INFO - Fetching user details
+04-06-2025 12:57:54 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:58:07 - INFO - Validating token
+04-06-2025 12:58:07 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:58:09 - INFO - Fetching user details
+04-06-2025 12:58:09 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:58:59 - INFO - Validating token
+04-06-2025 12:58:59 - INFO - Token validated successfully for user_id: 1
+04-06-2025 12:59:01 - INFO - Fetching user details
+04-06-2025 12:59:01 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 12:59:20 - INFO - Trying to login with email: riv@gmail.com
+04-06-2025 12:59:20 - INFO - User rishabh logged in successfully, role: user
+04-06-2025 12:59:20 - INFO - Redirecting user rishabh to dashboard
+04-06-2025 12:59:23 - INFO - Validating token
+04-06-2025 12:59:23 - INFO - Token validated successfully for user_id: 13
+04-06-2025 12:59:25 - INFO - Fetching user details
+04-06-2025 12:59:25 - INFO - Successfully retrieved details for user: rishabh
+04-06-2025 13:00:02 - INFO - Trying to login with email: writing@agphbooks.com
+04-06-2025 13:00:02 - INFO - User Aman Giri logged in successfully, role: user
+04-06-2025 13:00:02 - INFO - Redirecting user Aman Giri to dashboard
+04-06-2025 13:00:04 - INFO - Validating token
+04-06-2025 13:00:04 - INFO - Token validated successfully for user_id: 4
+04-06-2025 13:00:06 - INFO - Fetching user details
+04-06-2025 13:00:06 - INFO - Successfully retrieved details for user: Aman Giri
+04-06-2025 13:10:45 - INFO - Starting Flask application
+04-06-2025 13:11:28 - INFO - Trying to login with email: yogishru@gmail.com
+04-06-2025 13:11:28 - INFO - User Yogesh Sharma logged in successfully, role: admin
+04-06-2025 13:11:28 - INFO - Redirecting user Yogesh Sharma to dashboard
+04-06-2025 13:11:31 - INFO - Validating token
+04-06-2025 13:11:31 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:11:33 - INFO - Fetching user details
+04-06-2025 13:11:33 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:12:40 - INFO - Validating token
+04-06-2025 13:12:40 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:12:42 - INFO - Fetching user details
+04-06-2025 13:12:42 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:12:56 - INFO - Validating token
+04-06-2025 13:12:56 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:12:58 - INFO - Fetching user details
+04-06-2025 13:12:58 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:13:03 - INFO - Validating token
+04-06-2025 13:13:03 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:13:05 - INFO - Fetching user details
+04-06-2025 13:13:05 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:13:07 - INFO - Validating token
+04-06-2025 13:13:07 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:13:09 - INFO - Fetching user details
+04-06-2025 13:13:09 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:14:07 - INFO - Validating token
+04-06-2025 13:14:07 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:14:09 - INFO - Fetching user details
+04-06-2025 13:14:09 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:15:53 - INFO - Validating token
+04-06-2025 13:15:53 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:15:55 - INFO - Fetching user details
+04-06-2025 13:15:55 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:16:14 - INFO - Validating token
+04-06-2025 13:16:14 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:16:16 - INFO - Fetching user details
+04-06-2025 13:16:16 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:26:12 - INFO - Trying to login with email: yogishru@gmail.com
+04-06-2025 13:26:12 - INFO - User Yogesh Sharma logged in successfully, role: admin
+04-06-2025 13:26:12 - INFO - Redirecting user Yogesh Sharma to dashboard
+04-06-2025 13:26:51 - INFO - Trying to login with email: yogishru@gmail.com
+04-06-2025 13:26:51 - INFO - User Yogesh Sharma logged in successfully, role: admin
+04-06-2025 13:26:51 - INFO - Redirecting user Yogesh Sharma to dashboard
+04-06-2025 13:26:54 - INFO - Validating token
+04-06-2025 13:26:54 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:26:56 - INFO - Fetching user details
+04-06-2025 13:26:56 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:27:39 - INFO - Validating token
+04-06-2025 13:27:39 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:27:41 - INFO - Fetching user details
+04-06-2025 13:27:41 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:30:35 - INFO - Validating token
+04-06-2025 13:30:35 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:30:37 - INFO - Fetching user details
+04-06-2025 13:30:37 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:30:44 - INFO - Validating token
+04-06-2025 13:30:44 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:30:46 - INFO - Fetching user details
+04-06-2025 13:30:46 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:30:47 - INFO - Validating token
+04-06-2025 13:30:47 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:30:48 - INFO - Validating token
+04-06-2025 13:30:48 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:30:49 - INFO - Fetching user details
+04-06-2025 13:30:49 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:30:50 - INFO - Fetching user details
+04-06-2025 13:30:50 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:30:50 - INFO - Validating token
+04-06-2025 13:30:50 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:30:50 - INFO - Validating token
+04-06-2025 13:30:50 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:30:52 - INFO - Fetching user details
+04-06-2025 13:30:52 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:30:52 - INFO - Fetching user details
+04-06-2025 13:30:52 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 13:30:53 - INFO - Validating token
+04-06-2025 13:30:53 - INFO - Token validated successfully for user_id: 1
+04-06-2025 13:30:55 - INFO - Fetching user details
+04-06-2025 13:30:55 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 15:13:15 - INFO - Validating token
+04-06-2025 15:13:15 - INFO - Token validated successfully for user_id: 1
+04-06-2025 15:13:17 - INFO - Fetching user details
+04-06-2025 15:13:17 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 15:15:21 - INFO - Validating token
+04-06-2025 15:15:21 - INFO - Token validated successfully for user_id: 1
+04-06-2025 15:15:23 - INFO - Fetching user details
+04-06-2025 15:15:23 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 15:15:50 - INFO - Validating token
+04-06-2025 15:15:50 - INFO - Token validated successfully for user_id: 1
+04-06-2025 15:15:52 - INFO - Fetching user details
+04-06-2025 15:15:52 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 15:34:12 - INFO - Validating token
+04-06-2025 15:34:12 - INFO - Token validated successfully for user_id: 1
+04-06-2025 15:34:14 - INFO - Fetching user details
+04-06-2025 15:34:14 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 15:42:46 - INFO - Validating token
+04-06-2025 15:42:46 - INFO - Token validated successfully for user_id: 1
+04-06-2025 15:42:48 - INFO - Fetching user details
+04-06-2025 15:42:48 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 15:44:09 - INFO - Validating token
+04-06-2025 15:44:09 - INFO - Token validated successfully for user_id: 1
+04-06-2025 15:44:11 - INFO - Fetching user details
+04-06-2025 15:44:11 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 15:44:17 - INFO - Validating token
+04-06-2025 15:44:17 - INFO - Token validated successfully for user_id: 1
+04-06-2025 15:44:19 - INFO - Fetching user details
+04-06-2025 15:44:19 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 15:44:40 - INFO - Validating token
+04-06-2025 15:44:40 - INFO - Token validated successfully for user_id: 1
+04-06-2025 15:44:42 - INFO - Fetching user details
+04-06-2025 15:44:42 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 15:44:58 - INFO - Validating token
+04-06-2025 15:44:58 - INFO - Token validated successfully for user_id: 1
+04-06-2025 15:45:01 - INFO - Fetching user details
+04-06-2025 15:45:01 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 15:48:02 - INFO - Validating token
+04-06-2025 15:48:02 - INFO - Token validated successfully for user_id: 1
+04-06-2025 15:48:04 - INFO - Fetching user details
+04-06-2025 15:48:04 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:16:56 - INFO - Validating token
+04-06-2025 17:16:56 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:16:58 - INFO - Fetching user details
+04-06-2025 17:16:58 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:17:07 - INFO - Validating token
+04-06-2025 17:17:07 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:17:09 - INFO - Fetching user details
+04-06-2025 17:17:09 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:17:12 - INFO - Validating token
+04-06-2025 17:17:12 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:17:14 - INFO - Fetching user details
+04-06-2025 17:17:14 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:17:27 - INFO - Validating token
+04-06-2025 17:17:27 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:17:29 - INFO - Fetching user details
+04-06-2025 17:17:29 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:17:31 - INFO - Validating token
+04-06-2025 17:17:31 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:17:33 - INFO - Fetching user details
+04-06-2025 17:17:33 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:17:42 - INFO - Validating token
+04-06-2025 17:17:42 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:17:44 - INFO - Fetching user details
+04-06-2025 17:17:44 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:18:07 - INFO - Validating token
+04-06-2025 17:18:07 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:18:09 - INFO - Fetching user details
+04-06-2025 17:18:09 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:18:13 - INFO - Validating token
+04-06-2025 17:18:13 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:18:15 - INFO - Fetching user details
+04-06-2025 17:18:15 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:18:35 - INFO - Validating token
+04-06-2025 17:18:35 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:18:37 - INFO - Fetching user details
+04-06-2025 17:18:37 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:18:41 - INFO - Validating token
+04-06-2025 17:18:41 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:18:43 - INFO - Fetching user details
+04-06-2025 17:18:43 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:19:43 - INFO - Validating token
+04-06-2025 17:19:43 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:19:45 - INFO - Fetching user details
+04-06-2025 17:19:45 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:19:49 - INFO - Validating token
+04-06-2025 17:19:49 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:19:51 - INFO - Fetching user details
+04-06-2025 17:19:51 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:19:59 - INFO - Validating token
+04-06-2025 17:19:59 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:20:01 - INFO - Fetching user details
+04-06-2025 17:20:01 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:20:05 - INFO - Validating token
+04-06-2025 17:20:05 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:20:07 - INFO - Fetching user details
+04-06-2025 17:20:07 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:20:15 - INFO - Validating token
+04-06-2025 17:20:15 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:20:17 - INFO - Fetching user details
+04-06-2025 17:20:17 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:20:26 - INFO - Validating token
+04-06-2025 17:20:26 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:20:28 - INFO - Fetching user details
+04-06-2025 17:20:28 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:20:36 - INFO - Validating token
+04-06-2025 17:20:36 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:20:38 - INFO - Fetching user details
+04-06-2025 17:20:38 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:20:52 - INFO - Validating token
+04-06-2025 17:20:52 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:20:54 - INFO - Fetching user details
+04-06-2025 17:20:54 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:20:58 - INFO - Validating token
+04-06-2025 17:20:58 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:21:00 - INFO - Fetching user details
+04-06-2025 17:21:00 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:21:23 - INFO - Validating token
+04-06-2025 17:21:23 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:21:26 - INFO - Fetching user details
+04-06-2025 17:21:26 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:21:33 - INFO - Validating token
+04-06-2025 17:21:33 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:21:35 - INFO - Fetching user details
+04-06-2025 17:21:35 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:21:57 - INFO - Validating token
+04-06-2025 17:21:57 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:21:59 - INFO - Fetching user details
+04-06-2025 17:21:59 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:22:07 - INFO - Validating token
+04-06-2025 17:22:07 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:22:09 - INFO - Fetching user details
+04-06-2025 17:22:09 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:23:38 - INFO - Validating token
+04-06-2025 17:23:38 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:23:40 - INFO - Fetching user details
+04-06-2025 17:23:40 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:27:03 - INFO - Trying to login with email: yogishru@gmail.com
+04-06-2025 17:27:03 - INFO - User Yogesh Sharma logged in successfully, role: admin
+04-06-2025 17:27:03 - INFO - Redirecting user Yogesh Sharma to dashboard
+04-06-2025 17:27:06 - INFO - Validating token
+04-06-2025 17:27:06 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:27:08 - INFO - Fetching user details
+04-06-2025 17:27:08 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:27:30 - INFO - Validating token
+04-06-2025 17:27:30 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:27:32 - INFO - Fetching user details
+04-06-2025 17:27:32 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:27:38 - INFO - Validating token
+04-06-2025 17:27:38 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:27:40 - INFO - Fetching user details
+04-06-2025 17:27:40 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:27:42 - INFO - Validating token
+04-06-2025 17:27:42 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:27:44 - INFO - Fetching user details
+04-06-2025 17:27:44 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:30:05 - INFO - Validating token
+04-06-2025 17:30:05 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:30:07 - INFO - Fetching user details
+04-06-2025 17:30:07 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:30:10 - INFO - Validating token
+04-06-2025 17:30:10 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:30:12 - INFO - Fetching user details
+04-06-2025 17:30:12 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:33:06 - INFO - Validating token
+04-06-2025 17:33:06 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:33:08 - INFO - Fetching user details
+04-06-2025 17:33:08 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:33:11 - INFO - Validating token
+04-06-2025 17:33:11 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:33:13 - INFO - Fetching user details
+04-06-2025 17:33:13 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:45:35 - INFO - Trying to login with email: yogishru@gmail.com
+04-06-2025 17:45:35 - INFO - User Yogesh Sharma logged in successfully, role: admin
+04-06-2025 17:45:35 - INFO - Redirecting user Yogesh Sharma to dashboard
+04-06-2025 17:45:38 - INFO - Validating token
+04-06-2025 17:45:38 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:45:40 - INFO - Fetching user details
+04-06-2025 17:45:40 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:47:14 - INFO - Validating token
+04-06-2025 17:47:14 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:47:16 - INFO - Fetching user details
+04-06-2025 17:47:16 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:47:24 - INFO - Validating token
+04-06-2025 17:47:24 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:47:26 - INFO - Fetching user details
+04-06-2025 17:47:26 - INFO - Successfully retrieved details for user: Yogesh Sharma
+04-06-2025 17:48:30 - INFO - Validating token
+04-06-2025 17:48:30 - INFO - Token validated successfully for user_id: 1
+04-06-2025 17:48:32 - INFO - Fetching user details
+04-06-2025 17:48:32 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:16:06 - INFO - Starting Flask application
+05-06-2025 11:18:11 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 11:18:15 - ERROR - Error during login for yogishru@gmail.com: (2002, "Can't connect to server on 'localhost' (10061)")
+05-06-2025 11:18:17 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 11:18:21 - ERROR - Error during login for yogishru@gmail.com: (2002, "Can't connect to server on 'localhost' (10061)")
+05-06-2025 11:18:52 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 11:18:56 - ERROR - Error during login for yogishru@gmail.com: (2002, "Can't connect to server on 'localhost' (10061)")
+05-06-2025 11:19:22 - INFO - Starting Flask application
+05-06-2025 11:19:26 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 11:19:26 - INFO - User Yogesh Sharma logged in successfully, role: admin
+05-06-2025 11:19:26 - INFO - Redirecting user Yogesh Sharma to dashboard
+05-06-2025 11:19:34 - INFO - Validating token
+05-06-2025 11:19:34 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:19:36 - INFO - Fetching user details
+05-06-2025 11:19:36 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:19:59 - INFO - Validating token
+05-06-2025 11:19:59 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:20:01 - INFO - Fetching user details
+05-06-2025 11:20:01 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:20:42 - INFO - Validating token
+05-06-2025 11:20:42 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:20:44 - INFO - Fetching user details
+05-06-2025 11:20:44 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:20:51 - INFO - Validating token
+05-06-2025 11:20:51 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:20:53 - INFO - Fetching user details
+05-06-2025 11:20:53 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:26:35 - INFO - Validating token
+05-06-2025 11:26:35 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:26:37 - INFO - Fetching user details
+05-06-2025 11:26:37 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:26:42 - INFO - Validating token
+05-06-2025 11:26:42 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:26:44 - INFO - Fetching user details
+05-06-2025 11:26:44 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:33:37 - INFO - Validating token
+05-06-2025 11:33:37 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:33:39 - INFO - Fetching user details
+05-06-2025 11:33:39 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:34:00 - INFO - Validating token
+05-06-2025 11:34:00 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:34:02 - INFO - Fetching user details
+05-06-2025 11:34:02 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:34:07 - INFO - Validating token
+05-06-2025 11:34:07 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:34:09 - INFO - Fetching user details
+05-06-2025 11:34:09 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:34:30 - INFO - Validating token
+05-06-2025 11:34:30 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:34:32 - INFO - Fetching user details
+05-06-2025 11:34:32 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:34:56 - INFO - Validating token
+05-06-2025 11:34:56 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:34:58 - INFO - Fetching user details
+05-06-2025 11:34:58 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:35:06 - INFO - Validating token
+05-06-2025 11:35:06 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:35:08 - INFO - Fetching user details
+05-06-2025 11:35:08 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:56:29 - INFO - Validating token
+05-06-2025 11:56:29 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:56:31 - INFO - Fetching user details
+05-06-2025 11:56:31 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:56:57 - INFO - Validating token
+05-06-2025 11:56:57 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:56:59 - INFO - Fetching user details
+05-06-2025 11:56:59 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:57:38 - INFO - Validating token
+05-06-2025 11:57:38 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:57:40 - INFO - Fetching user details
+05-06-2025 11:57:40 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:57:48 - INFO - Validating token
+05-06-2025 11:57:48 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:57:50 - INFO - Fetching user details
+05-06-2025 11:57:50 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:58:05 - INFO - Validating token
+05-06-2025 11:58:05 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:58:07 - INFO - Fetching user details
+05-06-2025 11:58:07 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:58:15 - INFO - Validating token
+05-06-2025 11:58:15 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:58:17 - INFO - Fetching user details
+05-06-2025 11:58:17 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 11:58:44 - INFO - Validating token
+05-06-2025 11:58:44 - INFO - Token validated successfully for user_id: 1
+05-06-2025 11:58:46 - INFO - Fetching user details
+05-06-2025 11:58:46 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:05:38 - INFO - Validating token
+05-06-2025 12:05:38 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:05:40 - INFO - Fetching user details
+05-06-2025 12:05:40 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:05:45 - INFO - Validating token
+05-06-2025 12:05:45 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:05:47 - INFO - Fetching user details
+05-06-2025 12:05:47 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:06:01 - INFO - Validating token
+05-06-2025 12:06:01 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:06:03 - INFO - Fetching user details
+05-06-2025 12:06:03 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:06:16 - INFO - Validating token
+05-06-2025 12:06:16 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:06:18 - INFO - Fetching user details
+05-06-2025 12:06:18 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:11:24 - INFO - Validating token
+05-06-2025 12:11:24 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:11:26 - INFO - Fetching user details
+05-06-2025 12:11:26 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:11:54 - INFO - Validating token
+05-06-2025 12:11:54 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:11:56 - INFO - Fetching user details
+05-06-2025 12:11:56 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:12:30 - INFO - Validating token
+05-06-2025 12:12:30 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:12:32 - INFO - Fetching user details
+05-06-2025 12:12:32 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:14:22 - INFO - Validating token
+05-06-2025 12:14:22 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:14:24 - INFO - Fetching user details
+05-06-2025 12:14:24 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:14:37 - INFO - Validating token
+05-06-2025 12:14:37 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:14:39 - INFO - Fetching user details
+05-06-2025 12:14:39 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:14:56 - INFO - Validating token
+05-06-2025 12:14:56 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:14:58 - INFO - Fetching user details
+05-06-2025 12:14:58 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:15:04 - INFO - Validating token
+05-06-2025 12:15:04 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:15:06 - INFO - Fetching user details
+05-06-2025 12:15:06 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:16:53 - INFO - Validating token
+05-06-2025 12:16:53 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:16:55 - INFO - Fetching user details
+05-06-2025 12:16:55 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:17:45 - INFO - Validating token
+05-06-2025 12:17:45 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:17:47 - INFO - Fetching user details
+05-06-2025 12:17:47 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:18:10 - INFO - Validating token
+05-06-2025 12:18:10 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:18:12 - INFO - Fetching user details
+05-06-2025 12:18:12 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:18:26 - INFO - Validating token
+05-06-2025 12:18:26 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:18:28 - INFO - Fetching user details
+05-06-2025 12:18:28 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:20:44 - INFO - Validating token
+05-06-2025 12:20:44 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:20:46 - INFO - Fetching user details
+05-06-2025 12:20:46 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:20:49 - INFO - Validating token
+05-06-2025 12:20:49 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:20:51 - INFO - Fetching user details
+05-06-2025 12:20:51 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:21:00 - INFO - Validating token
+05-06-2025 12:21:00 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:21:02 - INFO - Fetching user details
+05-06-2025 12:21:02 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:21:08 - INFO - Validating token
+05-06-2025 12:21:08 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:21:10 - INFO - Fetching user details
+05-06-2025 12:21:10 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:22:46 - INFO - Validating token
+05-06-2025 12:22:46 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:22:48 - INFO - Fetching user details
+05-06-2025 12:22:48 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:22:53 - INFO - Validating token
+05-06-2025 12:22:53 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:22:55 - INFO - Fetching user details
+05-06-2025 12:22:55 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:23:41 - INFO - Validating token
+05-06-2025 12:23:41 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:23:43 - INFO - Fetching user details
+05-06-2025 12:23:43 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:23:57 - INFO - Validating token
+05-06-2025 12:23:57 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:23:59 - INFO - Fetching user details
+05-06-2025 12:23:59 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:24:16 - INFO - Validating token
+05-06-2025 12:24:16 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:24:18 - INFO - Fetching user details
+05-06-2025 12:24:18 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:32:49 - INFO - Validating token
+05-06-2025 12:32:49 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:32:51 - INFO - Fetching user details
+05-06-2025 12:32:51 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:33:13 - INFO - Validating token
+05-06-2025 12:33:13 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:33:15 - INFO - Fetching user details
+05-06-2025 12:33:15 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:54:33 - INFO - Validating token
+05-06-2025 12:54:33 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:54:35 - INFO - Fetching user details
+05-06-2025 12:54:35 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:54:41 - INFO - Validating token
+05-06-2025 12:54:41 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:54:43 - INFO - Fetching user details
+05-06-2025 12:54:43 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 12:54:57 - INFO - Validating token
+05-06-2025 12:54:57 - INFO - Token validated successfully for user_id: 1
+05-06-2025 12:54:59 - INFO - Fetching user details
+05-06-2025 12:54:59 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:00:28 - INFO - Validating token
+05-06-2025 13:00:28 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:00:30 - INFO - Fetching user details
+05-06-2025 13:00:30 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:00:47 - INFO - Validating token
+05-06-2025 13:00:47 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:00:50 - INFO - Fetching user details
+05-06-2025 13:00:50 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:03:26 - INFO - Validating token
+05-06-2025 13:03:26 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:03:28 - INFO - Fetching user details
+05-06-2025 13:03:28 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:04:13 - INFO - Validating token
+05-06-2025 13:04:13 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:04:15 - INFO - Fetching user details
+05-06-2025 13:04:15 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:08:36 - INFO - Validating token
+05-06-2025 13:08:36 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:08:38 - INFO - Fetching user details
+05-06-2025 13:08:38 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:08:46 - INFO - Validating token
+05-06-2025 13:08:46 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:08:48 - INFO - Fetching user details
+05-06-2025 13:08:48 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:09:30 - INFO - Validating token
+05-06-2025 13:09:30 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:09:32 - INFO - Fetching user details
+05-06-2025 13:09:32 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:11:07 - INFO - Validating token
+05-06-2025 13:11:07 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:11:09 - INFO - Fetching user details
+05-06-2025 13:11:09 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:11:34 - INFO - Validating token
+05-06-2025 13:11:34 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:11:36 - INFO - Fetching user details
+05-06-2025 13:11:36 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:13:13 - INFO - Validating token
+05-06-2025 13:13:13 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:13:15 - INFO - Fetching user details
+05-06-2025 13:13:15 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:20:15 - INFO - Validating token
+05-06-2025 13:20:15 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:20:17 - INFO - Fetching user details
+05-06-2025 13:20:17 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:21:10 - INFO - Validating token
+05-06-2025 13:21:10 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:21:12 - INFO - Fetching user details
+05-06-2025 13:21:12 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:22:55 - INFO - Validating token
+05-06-2025 13:22:55 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:22:57 - INFO - Fetching user details
+05-06-2025 13:22:57 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:23:38 - INFO - Validating token
+05-06-2025 13:23:38 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:23:40 - INFO - Fetching user details
+05-06-2025 13:23:40 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:24:09 - INFO - Validating token
+05-06-2025 13:24:09 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:24:11 - INFO - Fetching user details
+05-06-2025 13:24:11 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:24:36 - INFO - Validating token
+05-06-2025 13:24:36 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:24:38 - INFO - Fetching user details
+05-06-2025 13:24:38 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:24:56 - INFO - Validating token
+05-06-2025 13:24:56 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:24:58 - INFO - Fetching user details
+05-06-2025 13:24:58 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:25:18 - INFO - Validating token
+05-06-2025 13:25:18 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:25:21 - INFO - Fetching user details
+05-06-2025 13:25:21 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:25:56 - INFO - Validating token
+05-06-2025 13:25:56 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:25:58 - INFO - Fetching user details
+05-06-2025 13:25:58 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:26:29 - INFO - Validating token
+05-06-2025 13:26:29 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:26:31 - INFO - Fetching user details
+05-06-2025 13:26:31 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:26:45 - INFO - Validating token
+05-06-2025 13:26:45 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:26:47 - INFO - Fetching user details
+05-06-2025 13:26:47 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:27:09 - INFO - Validating token
+05-06-2025 13:27:09 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:27:11 - INFO - Fetching user details
+05-06-2025 13:27:11 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:27:26 - INFO - Validating token
+05-06-2025 13:27:26 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:27:28 - INFO - Fetching user details
+05-06-2025 13:27:28 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:27:41 - INFO - Validating token
+05-06-2025 13:27:41 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:27:43 - INFO - Fetching user details
+05-06-2025 13:27:43 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:27:59 - INFO - Validating token
+05-06-2025 13:27:59 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:28:01 - INFO - Fetching user details
+05-06-2025 13:28:01 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:28:23 - INFO - Validating token
+05-06-2025 13:28:23 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:28:25 - INFO - Fetching user details
+05-06-2025 13:28:25 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:28:45 - INFO - Validating token
+05-06-2025 13:28:45 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:28:47 - INFO - Fetching user details
+05-06-2025 13:28:47 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:29:01 - INFO - Validating token
+05-06-2025 13:29:01 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:29:03 - INFO - Fetching user details
+05-06-2025 13:29:03 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:29:17 - INFO - Validating token
+05-06-2025 13:29:17 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:29:20 - INFO - Fetching user details
+05-06-2025 13:29:20 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:29:42 - INFO - Validating token
+05-06-2025 13:29:42 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:29:44 - INFO - Fetching user details
+05-06-2025 13:29:44 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 13:29:57 - INFO - Validating token
+05-06-2025 13:29:57 - INFO - Token validated successfully for user_id: 1
+05-06-2025 13:29:59 - INFO - Fetching user details
+05-06-2025 13:29:59 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:11:14 - INFO - Validating token
+05-06-2025 14:11:14 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:11:16 - INFO - Fetching user details
+05-06-2025 14:11:16 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:11:30 - INFO - Validating token
+05-06-2025 14:11:30 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:11:32 - INFO - Fetching user details
+05-06-2025 14:11:32 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:14:07 - INFO - Validating token
+05-06-2025 14:14:07 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:14:09 - INFO - Fetching user details
+05-06-2025 14:14:09 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:14:34 - INFO - Validating token
+05-06-2025 14:14:34 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:14:36 - INFO - Fetching user details
+05-06-2025 14:14:36 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:20:25 - INFO - Validating token
+05-06-2025 14:20:25 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:20:27 - INFO - Fetching user details
+05-06-2025 14:20:27 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:21:22 - INFO - Validating token
+05-06-2025 14:21:22 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:21:24 - INFO - Fetching user details
+05-06-2025 14:21:24 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:25:52 - INFO - Validating token
+05-06-2025 14:25:52 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:25:54 - INFO - Fetching user details
+05-06-2025 14:25:54 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:26:00 - INFO - Validating token
+05-06-2025 14:26:00 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:26:02 - INFO - Fetching user details
+05-06-2025 14:26:02 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:26:13 - INFO - Validating token
+05-06-2025 14:26:13 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:26:15 - INFO - Fetching user details
+05-06-2025 14:26:15 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:26:28 - INFO - Validating token
+05-06-2025 14:26:28 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:26:30 - INFO - Fetching user details
+05-06-2025 14:26:30 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:26:56 - INFO - Validating token
+05-06-2025 14:26:56 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:26:58 - INFO - Fetching user details
+05-06-2025 14:26:58 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:37:08 - INFO - Validating token
+05-06-2025 14:37:08 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:37:10 - INFO - Fetching user details
+05-06-2025 14:37:10 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:39:22 - INFO - Validating token
+05-06-2025 14:39:22 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:39:24 - INFO - Fetching user details
+05-06-2025 14:39:24 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:39:32 - INFO - Validating token
+05-06-2025 14:39:32 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:39:34 - INFO - Fetching user details
+05-06-2025 14:39:34 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:39:56 - INFO - Validating token
+05-06-2025 14:39:56 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:39:58 - INFO - Fetching user details
+05-06-2025 14:39:58 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:46:15 - INFO - Validating token
+05-06-2025 14:46:15 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:46:17 - INFO - Fetching user details
+05-06-2025 14:46:17 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:46:51 - INFO - Validating token
+05-06-2025 14:46:51 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:46:53 - INFO - Fetching user details
+05-06-2025 14:46:53 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:47:25 - INFO - Validating token
+05-06-2025 14:47:25 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:47:27 - INFO - Fetching user details
+05-06-2025 14:47:27 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:52:55 - INFO - Validating token
+05-06-2025 14:52:55 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:52:57 - INFO - Fetching user details
+05-06-2025 14:52:57 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:55:03 - INFO - Validating token
+05-06-2025 14:55:03 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:55:05 - INFO - Fetching user details
+05-06-2025 14:55:05 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 14:55:42 - INFO - Validating token
+05-06-2025 14:55:42 - INFO - Token validated successfully for user_id: 1
+05-06-2025 14:55:44 - INFO - Fetching user details
+05-06-2025 14:55:44 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 15:02:44 - INFO - Validating token
+05-06-2025 15:02:44 - INFO - Token validated successfully for user_id: 1
+05-06-2025 15:02:46 - INFO - Fetching user details
+05-06-2025 15:02:46 - INFO - Successfully retrieved details for user: Yogesh Sharma
+05-06-2025 15:10:05 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 15:10:05 - INFO - User Yogesh Sharma logged in successfully, role: admin
+05-06-2025 15:10:05 - INFO - Redirecting user Yogesh Sharma to dashboard
+05-06-2025 15:10:35 - INFO - Starting Flask application
+05-06-2025 15:10:40 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 15:10:40 - INFO - User Yogesh Sharma logged in successfully, role: admin
+05-06-2025 15:10:40 - INFO - Redirecting user Yogesh Sharma to dashboard
+05-06-2025 15:13:30 - INFO - Validating token and fetching user details
+05-06-2025 15:13:30 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-06-2025 15:13:53 - INFO - Validating token and fetching user details
+05-06-2025 15:13:53 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-06-2025 15:14:01 - INFO - Validating token and fetching user details
+05-06-2025 15:14:01 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-06-2025 15:14:09 - INFO - Validating token and fetching user details
+05-06-2025 15:14:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-06-2025 15:15:11 - INFO - Validating token and fetching user details
+05-06-2025 15:15:11 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-06-2025 15:15:33 - INFO - Validating token and fetching user details
+05-06-2025 15:15:33 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-06-2025 15:21:05 - INFO - Validating token and fetching user details
+05-06-2025 15:21:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-06-2025 15:22:50 - INFO - Trying to login with email: mastersheet@agphbooks.com
+05-06-2025 15:22:50 - INFO - User Akash logged in successfully, role: user
+05-06-2025 15:22:53 - INFO - Redirecting user Akash to dashboard
+05-06-2025 15:22:56 - INFO - Validating token and fetching user details
+05-06-2025 15:22:56 - INFO - Successfully validated token and retrieved details for user: Akash
+05-06-2025 15:24:55 - INFO - Trying to login with email: formatting@agphbooks.com
+05-06-2025 15:24:55 - INFO - User Pawandeep Singh logged in successfully, role: user
+05-06-2025 15:24:55 - INFO - Redirecting user Pawandeep Singh to dashboard
+05-06-2025 15:24:59 - INFO - Validating token and fetching user details
+05-06-2025 15:24:59 - INFO - Successfully validated token and retrieved details for user: Pawandeep Singh
+05-06-2025 15:25:37 - INFO - Trying to login with email: riv@gmail.com
+05-06-2025 15:25:38 - INFO - User rishabh logged in successfully, role: user
+05-06-2025 15:25:38 - INFO - Redirecting user rishabh to dashboard
+05-06-2025 15:25:40 - INFO - Validating token and fetching user details
+05-06-2025 15:25:40 - INFO - Successfully validated token and retrieved details for user: rishabh
+05-06-2025 15:26:13 - INFO - Trying to login with email: reading@agphbooks.com
+05-06-2025 15:26:13 - INFO - User Umer Khan logged in successfully, role: user
+05-06-2025 15:26:13 - INFO - Redirecting user Umer Khan to dashboard
+05-06-2025 15:26:17 - INFO - Validating token and fetching user details
+05-06-2025 15:26:17 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+05-06-2025 15:27:34 - INFO - Starting Flask application
+05-06-2025 15:27:48 - INFO - Password reset requested for email: yogishru@gmail.com
+05-06-2025 15:27:54 - INFO - Password reset email sent to admin user: Yogesh Sharma
+05-06-2025 15:28:10 - INFO - Password reset requested for email: rishabhvyasji@gmail.com
+05-06-2025 15:28:10 - WARNING - Password reset attempt for non-existent email: rishabhvyasji@gmail.com
+05-06-2025 15:28:14 - INFO - Password reset requested for email: testuser@gmail.com
+05-06-2025 15:28:14 - WARNING - Password reset attempt for non-existent email: testuser@gmail.com
+05-06-2025 15:33:06 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 15:33:06 - INFO - User Yogesh Sharma logged in successfully, role: admin
+05-06-2025 15:33:06 - INFO - Redirecting user Yogesh Sharma to dashboard
+05-06-2025 15:33:50 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 15:33:50 - INFO - User Yogesh Sharma logged in successfully, role: admin
+05-06-2025 15:33:50 - INFO - Redirecting user Yogesh Sharma to dashboard
+05-06-2025 15:34:59 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 15:34:59 - INFO - User Yogesh Sharma logged in successfully, role: admin
+05-06-2025 15:34:59 - INFO - Redirecting user Yogesh Sharma to dashboard
+05-06-2025 15:35:23 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 15:35:23 - INFO - User Yogesh Sharma logged in successfully, role: admin
+05-06-2025 15:35:23 - INFO - Redirecting user Yogesh Sharma to dashboard
+05-06-2025 15:35:33 - INFO - Starting Flask application
+05-06-2025 15:35:50 - INFO - Trying to login with email: yogishru@gmail.com
+05-06-2025 15:35:50 - INFO - User Yogesh Sharma logged in successfully, role: admin
+05-06-2025 15:35:50 - INFO - Redirecting user Yogesh Sharma to dashboard
+05-06-2025 15:35:55 - INFO - Validating token and fetching user details
+05-06-2025 15:35:55 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
