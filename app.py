@@ -11,7 +11,6 @@ import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime, timedelta, timezone
 import config
-from config import APP_REDIRECTS
 
 # Custom filter to suppress Werkzeug HTTP request logs
 class NoWerkzeugFilter(logging.Filter):
@@ -66,6 +65,12 @@ CORS(app, resources={
     r"/forgot_password": {"origins": ["*"]},
     r"/reset_password": {"origins": ["*"]}
 })
+
+# App-based redirect URLs
+APP_REDIRECTS={"main": "https://mis.agkit.in", 
+               "operations": "https://mis.agkit.in/team_dashboard", 
+               "admin": "https://mis.agkit.in", 
+               "ijisem": "https://mis.agkit.in/ijisem"}
 
 TOKEN_BLACKLIST = set()
 PASSWORD_RESET_TOKENS = {}
