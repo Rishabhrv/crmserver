@@ -11,6 +11,7 @@ import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime, timedelta, timezone
 import config
+from config import APP_REDIRECTS
 
 # Custom filter to suppress Werkzeug HTTP request logs
 class NoWerkzeugFilter(logging.Filter):
@@ -54,26 +55,17 @@ EMAIL_CONFIG = {
 
 # Enable CORS for Streamlit app domains
 CORS(app, resources={
-    r"/auth/validate_and_details": {"origins": ["https://newcrm.agvolumes.com", "https://newcrm.agvolumes.com/team_dashboard","https://newcrm.agvolumes.com/ijisem","https://usercrm.agvolumes.com", "http://127.0.0.1:8504"]},
-    r"/logout": {"origins": ["https://newcrm.agvolumes.com", "https://usercrm.agvolumes.com", "http://127.0.0.1:8504"]},
+    r"/auth/validate_and_details": {"origins": ["https://mis.agkit.in", 
+    "https://mis.agkit.in/team_dashboard",
+    "https://mis.agkit.in/ijisem"
+    "http://127.0.0.1:8504"]},
+
+    r"/logout": {"origins": ["https://mis.agkit.in",
+                              "http://127.0.0.1:8504"]},
+                              
     r"/forgot_password": {"origins": ["*"]},
     r"/reset_password": {"origins": ["*"]}
 })
-
-# #App-based redirect URLs
-APP_REDIRECTS = {
-    'main': 'https://newcrm.agvolumes.com',
-    'operations': 'https://newcrm.agvolumes.com/team_dashboard',
-    'admin': 'https://newcrm.agvolumes.com',
-   'ijisem': 'https://newcrm.agvolumes.com/ijisem'
-}
-
-# APP_REDIRECTS = {
-#     'main': 'http://localhost:8501',
-#     'operations': 'http://localhost:8501/team_dashboard',
-#     'admin': 'http://localhost:8501',
-#     'ijisem': 'http://localhost:8501/ijisem'
-# }
 
 TOKEN_BLACKLIST = set()
 PASSWORD_RESET_TOKENS = {}

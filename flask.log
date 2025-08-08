@@ -1750,3 +1750,1003 @@
 20-06-2025 12:51:26 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
 20-06-2025 12:51:32 - INFO - Validating token and fetching user details
 20-06-2025 12:51:32 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 14:15:27 - INFO - Starting Flask application
+20-06-2025 14:15:34 - INFO - Trying to login with email: yogishru@gmail.com
+20-06-2025 14:15:34 - INFO - User Yogesh Sharma logged in successfully, role: admin
+20-06-2025 14:15:34 - INFO - Redirecting user Yogesh Sharma to dashboard
+20-06-2025 14:15:37 - INFO - Validating token and fetching user details
+20-06-2025 14:15:37 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 14:43:08 - INFO - Validating token and fetching user details
+20-06-2025 14:43:08 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 17:19:20 - INFO - Validating token and fetching user details
+20-06-2025 17:19:20 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 17:19:37 - INFO - Validating token and fetching user details
+20-06-2025 17:19:37 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 17:20:35 - INFO - Validating token and fetching user details
+20-06-2025 17:20:35 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 17:21:43 - INFO - Validating token and fetching user details
+20-06-2025 17:21:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 17:22:42 - INFO - Validating token and fetching user details
+20-06-2025 17:22:42 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 17:29:36 - INFO - Validating token and fetching user details
+20-06-2025 17:29:36 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 17:39:33 - INFO - Validating token and fetching user details
+20-06-2025 17:39:33 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 17:40:00 - INFO - Validating token and fetching user details
+20-06-2025 17:40:00 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+20-06-2025 17:40:07 - INFO - Validating token and fetching user details
+20-06-2025 17:40:07 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 09:46:13 - INFO - Starting Flask application
+21-06-2025 09:47:20 - INFO - Trying to login with email: yogishru@gmail.com
+21-06-2025 09:47:20 - INFO - User Yogesh Sharma logged in successfully, role: admin
+21-06-2025 09:47:20 - INFO - Redirecting user Yogesh Sharma to dashboard
+21-06-2025 09:47:23 - INFO - Validating token and fetching user details
+21-06-2025 09:47:23 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 09:47:38 - INFO - Validating token and fetching user details
+21-06-2025 09:47:38 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:07:24 - INFO - Validating token and fetching user details
+21-06-2025 10:07:25 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:08:31 - INFO - Validating token and fetching user details
+21-06-2025 10:08:31 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:45:56 - INFO - Validating token and fetching user details
+21-06-2025 10:45:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:45:57 - INFO - Validating token and fetching user details
+21-06-2025 10:45:57 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:46:05 - INFO - Validating token and fetching user details
+21-06-2025 10:46:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:46:07 - INFO - Validating token and fetching user details
+21-06-2025 10:46:07 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:46:09 - INFO - Validating token and fetching user details
+21-06-2025 10:46:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:46:09 - INFO - Validating token and fetching user details
+21-06-2025 10:46:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:46:11 - INFO - Validating token and fetching user details
+21-06-2025 10:46:11 - INFO - Validating token and fetching user details
+21-06-2025 10:46:11 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:46:11 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 10:46:13 - INFO - Validating token and fetching user details
+21-06-2025 10:46:13 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 11:38:25 - INFO - Validating token and fetching user details
+21-06-2025 11:38:25 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 12:12:01 - INFO - Validating token and fetching user details
+21-06-2025 12:12:01 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 12:19:13 - INFO - Validating token and fetching user details
+21-06-2025 12:19:13 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 12:21:53 - INFO - Validating token and fetching user details
+21-06-2025 12:21:53 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 12:27:27 - INFO - Validating token and fetching user details
+21-06-2025 12:27:27 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 13:06:03 - INFO - Validating token and fetching user details
+21-06-2025 13:06:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 13:20:47 - INFO - Validating token and fetching user details
+21-06-2025 13:20:47 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 14:35:39 - INFO - Trying to login with email: yogishru@gmail.com
+21-06-2025 14:35:39 - INFO - User Yogesh Sharma logged in successfully, role: admin
+21-06-2025 14:35:39 - INFO - Redirecting user Yogesh Sharma to dashboard
+21-06-2025 14:35:42 - INFO - Validating token and fetching user details
+21-06-2025 14:35:42 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 14:45:02 - INFO - Validating token and fetching user details
+21-06-2025 14:45:02 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 15:17:58 - INFO - Validating token and fetching user details
+21-06-2025 15:17:58 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 16:14:03 - INFO - Validating token and fetching user details
+21-06-2025 16:14:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 17:35:43 - INFO - Trying to login with email: yogishru@gmail.com
+21-06-2025 17:35:43 - INFO - User Yogesh Sharma logged in successfully, role: admin
+21-06-2025 17:35:43 - INFO - Redirecting user Yogesh Sharma to dashboard
+21-06-2025 17:37:48 - INFO - Trying to login with email: yogishru@gmail.com
+21-06-2025 17:37:48 - INFO - User Yogesh Sharma logged in successfully, role: admin
+21-06-2025 17:37:48 - INFO - Redirecting user Yogesh Sharma to dashboard
+21-06-2025 17:37:51 - INFO - Validating token and fetching user details
+21-06-2025 17:37:51 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 17:37:59 - INFO - Validating token and fetching user details
+21-06-2025 17:37:59 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 17:38:39 - INFO - Validating token and fetching user details
+21-06-2025 17:38:39 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 17:39:10 - INFO - Trying to login with email: yogishru@gmail.com
+21-06-2025 17:39:10 - INFO - User Yogesh Sharma logged in successfully, role: admin
+21-06-2025 17:39:10 - INFO - Redirecting user Yogesh Sharma to dashboard
+21-06-2025 17:39:16 - INFO - Validating token and fetching user details
+21-06-2025 17:39:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-06-2025 17:39:27 - INFO - Validating token and fetching user details
+21-06-2025 17:39:27 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-06-2025 10:53:33 - INFO - Starting Flask application
+23-06-2025 11:05:18 - INFO - Trying to login with email: yogishru@gmail.com
+23-06-2025 11:05:18 - INFO - User Yogesh Sharma logged in successfully, role: admin
+23-06-2025 11:05:18 - INFO - Redirecting user Yogesh Sharma to dashboard
+23-06-2025 11:05:21 - INFO - Validating token and fetching user details
+23-06-2025 11:05:21 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-06-2025 11:05:41 - INFO - Validating token and fetching user details
+23-06-2025 11:05:41 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-06-2025 11:46:55 - INFO - Trying to login with email: yogishru@gmail.com
+23-06-2025 11:46:55 - INFO - User Yogesh Sharma logged in successfully, role: admin
+23-06-2025 11:46:55 - INFO - Redirecting user Yogesh Sharma to dashboard
+23-06-2025 11:46:58 - INFO - Validating token and fetching user details
+23-06-2025 11:46:58 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-06-2025 11:47:25 - INFO - Validating token and fetching user details
+23-06-2025 11:47:25 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-06-2025 11:52:36 - INFO - Validating token and fetching user details
+23-06-2025 11:52:36 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-06-2025 11:55:00 - INFO - Trying to login with email: yogishru@gmail.com
+23-06-2025 11:55:00 - INFO - User Yogesh Sharma logged in successfully, role: admin
+23-06-2025 11:55:00 - INFO - Redirecting user Yogesh Sharma to dashboard
+23-06-2025 11:55:03 - INFO - Validating token and fetching user details
+23-06-2025 11:55:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-06-2025 11:55:09 - INFO - Validating token and fetching user details
+23-06-2025 11:55:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-06-2025 16:38:06 - INFO - Trying to login with email: yogishru@gmail.com
+23-06-2025 16:38:06 - INFO - User Yogesh Sharma logged in successfully, role: admin
+23-06-2025 16:38:06 - INFO - Redirecting user Yogesh Sharma to dashboard
+23-06-2025 16:38:09 - INFO - Validating token and fetching user details
+23-06-2025 16:38:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-06-2025 16:38:17 - INFO - Validating token and fetching user details
+23-06-2025 16:38:17 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 09:42:26 - INFO - Starting Flask application
+24-06-2025 10:07:06 - INFO - Trying to login with email: yogishru@gmail.com
+24-06-2025 10:07:06 - INFO - User Yogesh Sharma logged in successfully, role: admin
+24-06-2025 10:07:06 - INFO - Redirecting user Yogesh Sharma to dashboard
+24-06-2025 10:07:09 - INFO - Validating token and fetching user details
+24-06-2025 10:07:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 10:07:35 - INFO - Validating token and fetching user details
+24-06-2025 10:07:35 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 10:24:45 - INFO - Validating token and fetching user details
+24-06-2025 10:24:45 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 11:17:35 - INFO - Starting Flask application
+24-06-2025 11:18:05 - INFO - Validating token and fetching user details
+24-06-2025 11:18:09 - ERROR - Error in validate_and_details: (2002, "Can't connect to server on 'localhost' (10061)")
+24-06-2025 11:18:17 - INFO - Validating token and fetching user details
+24-06-2025 11:18:21 - ERROR - Error in validate_and_details: (2002, "Can't connect to server on 'localhost' (10061)")
+24-06-2025 11:18:46 - INFO - Trying to login with email: yogishru@gmail.com
+24-06-2025 11:18:46 - INFO - User Yogesh Sharma logged in successfully, role: admin
+24-06-2025 11:18:46 - INFO - Redirecting user Yogesh Sharma to dashboard
+24-06-2025 11:18:49 - INFO - Validating token and fetching user details
+24-06-2025 11:18:49 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 11:18:56 - INFO - Validating token and fetching user details
+24-06-2025 11:18:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 11:35:29 - INFO - Validating token and fetching user details
+24-06-2025 11:35:29 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 12:15:12 - INFO - Validating token and fetching user details
+24-06-2025 12:15:12 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 12:15:19 - INFO - Validating token and fetching user details
+24-06-2025 12:15:19 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 12:28:59 - INFO - Trying to login with email: yogishru@gmail.com
+24-06-2025 12:28:59 - INFO - User Yogesh Sharma logged in successfully, role: admin
+24-06-2025 12:28:59 - INFO - Redirecting user Yogesh Sharma to dashboard
+24-06-2025 12:29:02 - INFO - Validating token and fetching user details
+24-06-2025 12:29:02 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 12:29:09 - INFO - Validating token and fetching user details
+24-06-2025 12:29:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 16:17:47 - INFO - Starting Flask application
+24-06-2025 16:18:08 - INFO - Validating token and fetching user details
+24-06-2025 16:18:12 - ERROR - Error in validate_and_details: (2002, "Can't connect to server on 'localhost' (10061)")
+24-06-2025 16:18:45 - INFO - Trying to login with email: yogishru@gmail.com
+24-06-2025 16:18:50 - ERROR - Error during login for yogishru@gmail.com: (2002, "Can't connect to server on 'localhost' (10061)")
+24-06-2025 16:18:57 - INFO - Trying to login with email: yogishru@gmail.com
+24-06-2025 16:19:01 - ERROR - Error during login for yogishru@gmail.com: (2002, "Can't connect to server on 'localhost' (10061)")
+24-06-2025 16:20:40 - INFO - Trying to login with email: yogishru@gmail.com
+24-06-2025 16:20:44 - ERROR - Error during login for yogishru@gmail.com: (2002, "Can't connect to server on 'localhost' (10061)")
+24-06-2025 16:20:49 - INFO - Trying to login with email: yogishru@gmail.com
+24-06-2025 16:20:49 - INFO - User Yogesh Sharma logged in successfully, role: admin
+24-06-2025 16:20:49 - INFO - Redirecting user Yogesh Sharma to dashboard
+24-06-2025 16:20:52 - INFO - Validating token and fetching user details
+24-06-2025 16:20:52 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 16:22:19 - INFO - Validating token and fetching user details
+24-06-2025 16:22:19 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-06-2025 17:36:24 - INFO - Validating token and fetching user details
+24-06-2025 17:36:24 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+25-06-2025 09:43:28 - INFO - Starting Flask application
+25-06-2025 09:43:28 - WARNING - python-dotenv could not parse statement starting at line 21
+25-06-2025 09:43:28 - WARNING - python-dotenv could not parse statement starting at line 22
+25-06-2025 09:43:28 - WARNING - python-dotenv could not parse statement starting at line 23
+25-06-2025 09:43:28 - WARNING - python-dotenv could not parse statement starting at line 24
+25-06-2025 09:49:42 - INFO - Trying to login with email: yogishru@gmail.com
+25-06-2025 09:49:42 - INFO - User Yogesh Sharma logged in successfully, role: admin
+25-06-2025 09:49:42 - ERROR - Error during login for yogishru@gmail.com: string indices must be integers, not 'str'
+25-06-2025 09:49:44 - INFO - Trying to login with email: yogishru@gmail.com
+25-06-2025 09:49:44 - INFO - User Yogesh Sharma logged in successfully, role: admin
+25-06-2025 09:49:44 - ERROR - Error during login for yogishru@gmail.com: string indices must be integers, not 'str'
+25-06-2025 09:50:21 - INFO - Starting Flask application
+25-06-2025 09:50:21 - WARNING - python-dotenv could not parse statement starting at line 21
+25-06-2025 09:50:21 - WARNING - python-dotenv could not parse statement starting at line 22
+25-06-2025 09:50:21 - WARNING - python-dotenv could not parse statement starting at line 23
+25-06-2025 09:50:21 - WARNING - python-dotenv could not parse statement starting at line 24
+25-06-2025 09:50:22 - INFO - Starting Flask application
+25-06-2025 09:50:22 - WARNING - python-dotenv could not parse statement starting at line 21
+25-06-2025 09:50:22 - WARNING - python-dotenv could not parse statement starting at line 22
+25-06-2025 09:50:22 - WARNING - python-dotenv could not parse statement starting at line 23
+25-06-2025 09:50:22 - WARNING - python-dotenv could not parse statement starting at line 24
+25-06-2025 09:51:48 - INFO - Starting Flask application
+25-06-2025 09:51:50 - INFO - Starting Flask application
+25-06-2025 09:51:56 - INFO - Starting Flask application
+25-06-2025 09:52:13 - INFO - Starting Flask application
+25-06-2025 09:52:17 - INFO - Trying to login with email: yogishru@gmail.com
+25-06-2025 09:52:17 - INFO - User Yogesh Sharma logged in successfully, role: admin
+25-06-2025 09:52:17 - INFO - Redirecting user Yogesh Sharma to dashboard
+25-06-2025 09:52:21 - INFO - Validating token and fetching user details
+25-06-2025 09:52:21 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+25-06-2025 09:52:31 - INFO - Validating token and fetching user details
+25-06-2025 09:52:31 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+25-06-2025 11:58:44 - INFO - Trying to login with email: yogishru@gmail.com
+25-06-2025 11:58:44 - INFO - User Yogesh Sharma logged in successfully, role: admin
+25-06-2025 11:58:44 - INFO - Redirecting user Yogesh Sharma to dashboard
+25-06-2025 11:58:47 - INFO - Validating token and fetching user details
+25-06-2025 11:58:47 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+25-06-2025 11:58:52 - INFO - Validating token and fetching user details
+25-06-2025 11:58:52 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+25-06-2025 14:10:50 - INFO - Starting Flask application
+25-06-2025 14:21:32 - INFO - Trying to login with email: yogishru@gmail.com
+25-06-2025 14:21:32 - INFO - User Yogesh Sharma logged in successfully, role: admin
+25-06-2025 14:21:32 - INFO - Redirecting user Yogesh Sharma to dashboard
+25-06-2025 14:21:36 - INFO - Validating token and fetching user details
+25-06-2025 14:21:36 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+25-06-2025 14:21:42 - INFO - Validating token and fetching user details
+25-06-2025 14:21:42 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+25-06-2025 14:38:10 - INFO - Trying to login with email: yogishru@gmail.com
+25-06-2025 14:38:10 - INFO - User Yogesh Sharma logged in successfully, role: admin
+25-06-2025 14:38:10 - INFO - Redirecting user Yogesh Sharma to dashboard
+25-06-2025 14:38:13 - INFO - Validating token and fetching user details
+25-06-2025 14:38:13 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+25-06-2025 16:47:28 - INFO - Validating token and fetching user details
+25-06-2025 16:47:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+25-06-2025 17:17:36 - INFO - Trying to login with email: yogishru@gmail.com
+25-06-2025 17:17:36 - INFO - User Yogesh Sharma logged in successfully, role: admin
+25-06-2025 17:17:36 - INFO - Redirecting user Yogesh Sharma to dashboard
+25-06-2025 17:17:39 - INFO - Validating token and fetching user details
+25-06-2025 17:17:39 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+26-06-2025 14:17:28 - INFO - Starting Flask application
+26-06-2025 14:17:31 - INFO - Trying to login with email: yogishru@gmail.com
+26-06-2025 14:17:31 - INFO - User Yogesh Sharma logged in successfully, role: admin
+26-06-2025 14:17:31 - INFO - Redirecting user Yogesh Sharma to dashboard
+26-06-2025 14:17:35 - INFO - Validating token and fetching user details
+26-06-2025 14:17:35 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+26-06-2025 14:17:44 - INFO - Validating token and fetching user details
+26-06-2025 14:17:44 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+26-06-2025 14:24:13 - INFO - Starting Flask application
+26-06-2025 14:24:39 - INFO - Trying to login with email: yogishru@gmail.com
+26-06-2025 14:24:39 - INFO - User Yogesh Sharma logged in successfully, role: admin
+26-06-2025 14:24:39 - INFO - Redirecting user Yogesh Sharma to dashboard
+26-06-2025 14:24:42 - INFO - Validating token and fetching user details
+26-06-2025 14:24:42 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+26-06-2025 16:18:26 - INFO - Trying to login with email: yogishru@gmail.com
+26-06-2025 16:18:26 - INFO - User Yogesh Sharma logged in successfully, role: admin
+26-06-2025 16:18:26 - INFO - Redirecting user Yogesh Sharma to dashboard
+26-06-2025 16:18:29 - INFO - Validating token and fetching user details
+26-06-2025 16:18:29 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+26-06-2025 16:19:30 - INFO - Trying to login with email: yogishru@gmail.com
+26-06-2025 16:19:30 - INFO - User Yogesh Sharma logged in successfully, role: admin
+26-06-2025 16:19:30 - INFO - Redirecting user Yogesh Sharma to dashboard
+26-06-2025 16:19:33 - INFO - Validating token and fetching user details
+26-06-2025 16:19:33 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+26-06-2025 16:55:08 - INFO - Validating token and fetching user details
+26-06-2025 16:55:08 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+26-06-2025 17:07:43 - INFO - Validating token and fetching user details
+26-06-2025 17:07:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-06-2025 09:44:05 - INFO - Starting Flask application
+27-06-2025 10:29:56 - INFO - Trying to login with email: yogishru@gmail.com
+27-06-2025 10:29:56 - INFO - User Yogesh Sharma logged in successfully, role: admin
+27-06-2025 10:29:56 - INFO - Redirecting user Yogesh Sharma to dashboard
+27-06-2025 10:29:59 - INFO - Validating token and fetching user details
+27-06-2025 10:29:59 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-06-2025 11:42:19 - INFO - Validating token and fetching user details
+27-06-2025 11:42:19 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-06-2025 12:17:50 - INFO - Validating token and fetching user details
+27-06-2025 12:17:50 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-06-2025 15:05:10 - INFO - Trying to login with email: yogishru@gmail.com
+27-06-2025 15:05:10 - INFO - User Yogesh Sharma logged in successfully, role: admin
+27-06-2025 15:05:10 - INFO - Redirecting user Yogesh Sharma to dashboard
+27-06-2025 15:05:13 - INFO - Validating token and fetching user details
+27-06-2025 15:05:13 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-06-2025 15:51:47 - INFO - Validating token and fetching user details
+27-06-2025 15:51:47 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 09:53:43 - INFO - Starting Flask application
+28-06-2025 09:54:19 - INFO - Trying to login with email: yogishru@gmail.com
+28-06-2025 09:54:23 - ERROR - Error during login for yogishru@gmail.com: (2002, "Can't connect to server on 'localhost' (10061)")
+28-06-2025 09:54:40 - INFO - Trying to login with email: yogishru@gmail.com
+28-06-2025 09:54:40 - INFO - User Yogesh Sharma logged in successfully, role: admin
+28-06-2025 09:54:40 - INFO - Redirecting user Yogesh Sharma to dashboard
+28-06-2025 09:54:43 - INFO - Validating token and fetching user details
+28-06-2025 09:54:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 10:25:05 - INFO - Validating token and fetching user details
+28-06-2025 10:25:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 11:25:15 - INFO - Validating token and fetching user details
+28-06-2025 11:25:15 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 11:25:22 - INFO - Validating token and fetching user details
+28-06-2025 11:25:22 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 12:29:40 - INFO - Trying to login with email: yogishru@gmail.com
+28-06-2025 12:29:40 - INFO - User Yogesh Sharma logged in successfully, role: admin
+28-06-2025 12:29:40 - INFO - Redirecting user Yogesh Sharma to dashboard
+28-06-2025 12:29:45 - INFO - Validating token and fetching user details
+28-06-2025 12:29:45 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 14:40:54 - INFO - Trying to login with email: yogishru@gmail.com
+28-06-2025 14:40:54 - INFO - User Yogesh Sharma logged in successfully, role: admin
+28-06-2025 14:40:54 - INFO - Redirecting user Yogesh Sharma to dashboard
+28-06-2025 14:40:58 - INFO - Validating token and fetching user details
+28-06-2025 14:40:58 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 14:46:22 - INFO - Validating token and fetching user details
+28-06-2025 14:46:22 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 14:58:17 - INFO - Validating token and fetching user details
+28-06-2025 14:58:17 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 15:25:08 - INFO - Validating token and fetching user details
+28-06-2025 15:25:08 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 16:31:13 - INFO - Validating token and fetching user details
+28-06-2025 16:31:13 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 16:31:26 - INFO - Validating token and fetching user details
+28-06-2025 16:31:26 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+28-06-2025 17:57:56 - INFO - Validating token and fetching user details
+28-06-2025 17:57:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 10:08:15 - INFO - Starting Flask application
+30-06-2025 10:22:32 - INFO - Trying to login with email: yogishru@gmail.com
+30-06-2025 10:22:32 - INFO - User Yogesh Sharma logged in successfully, role: admin
+30-06-2025 10:22:32 - INFO - Redirecting user Yogesh Sharma to dashboard
+30-06-2025 10:22:35 - INFO - Validating token and fetching user details
+30-06-2025 10:22:35 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 11:32:58 - INFO - Validating token and fetching user details
+30-06-2025 11:32:58 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 11:33:52 - INFO - Validating token and fetching user details
+30-06-2025 11:33:52 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 11:44:36 - INFO - Validating token and fetching user details
+30-06-2025 11:44:36 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 11:44:46 - INFO - Validating token and fetching user details
+30-06-2025 11:44:46 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 11:44:52 - INFO - Validating token and fetching user details
+30-06-2025 11:44:52 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 11:45:05 - INFO - Validating token and fetching user details
+30-06-2025 11:45:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 11:45:07 - INFO - Validating token and fetching user details
+30-06-2025 11:45:07 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 11:45:10 - INFO - Validating token and fetching user details
+30-06-2025 11:45:10 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 11:45:12 - INFO - Validating token and fetching user details
+30-06-2025 11:45:12 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 11:45:54 - INFO - Validating token and fetching user details
+30-06-2025 11:45:54 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 12:05:28 - INFO - Validating token and fetching user details
+30-06-2025 12:05:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 12:18:43 - INFO - Validating token and fetching user details
+30-06-2025 12:18:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 12:32:14 - INFO - Validating token and fetching user details
+30-06-2025 12:32:14 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 12:37:28 - INFO - Validating token and fetching user details
+30-06-2025 12:37:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 12:47:31 - INFO - Validating token and fetching user details
+30-06-2025 12:47:31 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 12:50:00 - INFO - Validating token and fetching user details
+30-06-2025 12:50:00 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 12:52:25 - INFO - Validating token and fetching user details
+30-06-2025 12:52:25 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 12:52:55 - INFO - Validating token and fetching user details
+30-06-2025 12:52:55 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 13:17:19 - INFO - Starting Flask application
+30-06-2025 13:17:46 - INFO - Trying to login with email: yogishru@gmail.com
+30-06-2025 13:17:46 - INFO - User Yogesh Sharma logged in successfully, role: admin
+30-06-2025 13:17:46 - INFO - Redirecting user Yogesh Sharma to dashboard
+30-06-2025 13:17:55 - INFO - Validating token and fetching user details
+30-06-2025 13:17:55 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 13:18:16 - INFO - Validating token and fetching user details
+30-06-2025 13:18:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 13:25:02 - INFO - Trying to login with email: mastersheet@agphbooks.com
+30-06-2025 13:25:02 - INFO - User Akash logged in successfully, role: user
+30-06-2025 13:25:05 - INFO - Redirecting user Akash to dashboard
+30-06-2025 13:25:08 - INFO - Validating token and fetching user details
+30-06-2025 13:25:08 - INFO - Successfully validated token and retrieved details for user: Akash
+30-06-2025 13:25:28 - INFO - Validating token and fetching user details
+30-06-2025 13:25:28 - INFO - Successfully validated token and retrieved details for user: Akash
+30-06-2025 13:27:17 - INFO - Validating token and fetching user details
+30-06-2025 13:27:17 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:31:56 - INFO - Validating token and fetching user details
+30-06-2025 14:31:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:32:10 - INFO - Validating token and fetching user details
+30-06-2025 14:32:10 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:38:12 - INFO - Validating token and fetching user details
+30-06-2025 14:38:12 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:39:23 - INFO - Validating token and fetching user details
+30-06-2025 14:39:23 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:39:32 - INFO - Validating token and fetching user details
+30-06-2025 14:39:32 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:46:17 - INFO - Validating token and fetching user details
+30-06-2025 14:46:17 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:46:22 - INFO - Validating token and fetching user details
+30-06-2025 14:46:22 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:46:27 - INFO - Validating token and fetching user details
+30-06-2025 14:46:27 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:46:27 - INFO - Validating token and fetching user details
+30-06-2025 14:46:27 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:46:28 - INFO - Validating token and fetching user details
+30-06-2025 14:46:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:46:28 - INFO - Validating token and fetching user details
+30-06-2025 14:46:28 - INFO - Validating token and fetching user details
+30-06-2025 14:46:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:46:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:46:29 - INFO - Validating token and fetching user details
+30-06-2025 14:46:29 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:49:56 - INFO - Validating token and fetching user details
+30-06-2025 14:49:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:50:00 - INFO - Validating token and fetching user details
+30-06-2025 14:50:00 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:50:01 - INFO - Validating token and fetching user details
+30-06-2025 14:50:01 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:50:02 - INFO - Validating token and fetching user details
+30-06-2025 14:50:02 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:50:06 - INFO - Validating token and fetching user details
+30-06-2025 14:50:06 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:50:08 - INFO - Validating token and fetching user details
+30-06-2025 14:50:08 - INFO - Validating token and fetching user details
+30-06-2025 14:50:08 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:50:08 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:50:08 - INFO - Validating token and fetching user details
+30-06-2025 14:50:08 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:52:14 - INFO - Validating token and fetching user details
+30-06-2025 14:52:14 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:53:48 - INFO - Validating token and fetching user details
+30-06-2025 14:53:48 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:54:03 - INFO - Validating token and fetching user details
+30-06-2025 14:54:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:54:39 - INFO - Validating token and fetching user details
+30-06-2025 14:54:39 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:57:10 - INFO - Validating token and fetching user details
+30-06-2025 14:57:10 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:57:25 - INFO - Validating token and fetching user details
+30-06-2025 14:57:25 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:57:40 - INFO - Validating token and fetching user details
+30-06-2025 14:57:40 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:57:58 - INFO - Validating token and fetching user details
+30-06-2025 14:57:58 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:58:10 - INFO - Validating token and fetching user details
+30-06-2025 14:58:10 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:58:42 - INFO - Validating token and fetching user details
+30-06-2025 14:58:42 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 14:58:51 - INFO - Validating token and fetching user details
+30-06-2025 14:58:51 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 16:28:03 - INFO - Validating token and fetching user details
+30-06-2025 16:28:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 16:28:47 - INFO - Trying to login with email: test@gmail.com
+30-06-2025 16:28:47 - INFO - User Test User logged in successfully, role: user
+30-06-2025 16:28:47 - INFO - Redirecting user Test User to dashboard
+30-06-2025 16:28:51 - INFO - Validating token and fetching user details
+30-06-2025 16:28:51 - INFO - Successfully validated token and retrieved details for user: Test User
+30-06-2025 16:38:18 - INFO - Trying to login with email: test@gmail.com
+30-06-2025 16:38:18 - INFO - User Test User logged in successfully, role: user
+30-06-2025 16:38:18 - INFO - Redirecting user Test User to dashboard
+30-06-2025 16:38:22 - INFO - Validating token and fetching user details
+30-06-2025 16:38:22 - INFO - Successfully validated token and retrieved details for user: Test User
+30-06-2025 16:38:43 - INFO - Validating token and fetching user details
+30-06-2025 16:38:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 16:42:16 - INFO - Validating token and fetching user details
+30-06-2025 16:42:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 16:43:00 - INFO - Trying to login with email: formatting@agphbooks.com
+30-06-2025 16:43:00 - INFO - User Pawandeep Singh logged in successfully, role: user
+30-06-2025 16:43:00 - INFO - Redirecting user Pawandeep Singh to dashboard
+30-06-2025 16:43:03 - INFO - Validating token and fetching user details
+30-06-2025 16:43:03 - INFO - Successfully validated token and retrieved details for user: Pawandeep Singh
+30-06-2025 16:44:58 - INFO - Trying to login with email: formatting@agphbooks.com
+30-06-2025 16:44:58 - INFO - User Pawandeep Singh logged in successfully, role: user
+30-06-2025 16:44:58 - INFO - Redirecting user Pawandeep Singh to dashboard
+30-06-2025 16:45:02 - INFO - Validating token and fetching user details
+30-06-2025 16:45:02 - INFO - Successfully validated token and retrieved details for user: Pawandeep Singh
+30-06-2025 16:45:35 - INFO - Trying to login with email: formatting@agphbooks.com
+30-06-2025 16:45:35 - INFO - User Pawandeep Singh logged in successfully, role: user
+30-06-2025 16:45:35 - INFO - Redirecting user Pawandeep Singh to dashboard
+30-06-2025 16:45:39 - INFO - Validating token and fetching user details
+30-06-2025 16:45:39 - INFO - Successfully validated token and retrieved details for user: Pawandeep Singh
+30-06-2025 17:25:25 - INFO - Trying to login with email: yogishru@gmail.com
+30-06-2025 17:25:25 - INFO - User Yogesh Sharma logged in successfully, role: admin
+30-06-2025 17:25:25 - INFO - Redirecting user Yogesh Sharma to dashboard
+30-06-2025 17:25:28 - INFO - Validating token and fetching user details
+30-06-2025 17:25:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 17:25:43 - INFO - Validating token and fetching user details
+30-06-2025 17:25:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 17:26:16 - INFO - Validating token and fetching user details
+30-06-2025 17:26:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 17:27:03 - INFO - Trying to login with email: formatting@agphbooks.com
+30-06-2025 17:27:03 - INFO - User Pawandeep Singh logged in successfully, role: user
+30-06-2025 17:27:03 - INFO - Redirecting user Pawandeep Singh to dashboard
+30-06-2025 17:27:07 - INFO - Validating token and fetching user details
+30-06-2025 17:27:07 - INFO - Successfully validated token and retrieved details for user: Pawandeep Singh
+30-06-2025 17:34:26 - INFO - Validating token and fetching user details
+30-06-2025 17:34:26 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 17:34:41 - INFO - Validating token and fetching user details
+30-06-2025 17:34:41 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 17:35:20 - INFO - Trying to login with email: formatting@agphbooks.com
+30-06-2025 17:35:20 - INFO - User Pawandeep Singh logged in successfully, role: user
+30-06-2025 17:35:20 - INFO - Redirecting user Pawandeep Singh to dashboard
+30-06-2025 17:35:24 - INFO - Validating token and fetching user details
+30-06-2025 17:35:24 - INFO - Successfully validated token and retrieved details for user: Pawandeep Singh
+30-06-2025 17:35:45 - INFO - Validating token and fetching user details
+30-06-2025 17:35:45 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+30-06-2025 17:46:36 - INFO - Trying to login with email: reading@agphbooks.com
+30-06-2025 17:46:36 - INFO - User Umer Khan logged in successfully, role: user
+30-06-2025 17:46:36 - INFO - Redirecting user Umer Khan to dashboard
+30-06-2025 17:46:40 - INFO - Validating token and fetching user details
+30-06-2025 17:46:40 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+30-06-2025 17:49:17 - INFO - Validating token and fetching user details
+30-06-2025 17:49:17 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 09:42:11 - INFO - Starting Flask application
+01-07-2025 09:57:27 - INFO - Trying to login with email: yogishru@gmail.com
+01-07-2025 09:57:27 - INFO - User Yogesh Sharma logged in successfully, role: admin
+01-07-2025 09:57:27 - INFO - Redirecting user Yogesh Sharma to dashboard
+01-07-2025 09:58:04 - INFO - Validating token and fetching user details
+01-07-2025 09:58:04 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 11:21:20 - INFO - Validating token and fetching user details
+01-07-2025 11:21:20 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 11:55:06 - INFO - Validating token and fetching user details
+01-07-2025 11:55:06 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 11:59:44 - INFO - Validating token and fetching user details
+01-07-2025 11:59:44 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 12:06:55 - INFO - Validating token and fetching user details
+01-07-2025 12:06:55 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 12:07:05 - INFO - Validating token and fetching user details
+01-07-2025 12:07:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 12:25:18 - INFO - Validating token and fetching user details
+01-07-2025 12:25:18 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 12:46:28 - INFO - Validating token and fetching user details
+01-07-2025 12:46:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 12:47:07 - INFO - Validating token and fetching user details
+01-07-2025 12:47:07 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 12:47:51 - INFO - Validating token and fetching user details
+01-07-2025 12:47:51 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 12:51:06 - INFO - Validating token and fetching user details
+01-07-2025 12:51:06 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 12:53:59 - INFO - Trying to login with email: yogishru@gmail.com
+01-07-2025 12:53:59 - INFO - User Yogesh Sharma logged in successfully, role: admin
+01-07-2025 12:53:59 - INFO - Redirecting user Yogesh Sharma to dashboard
+01-07-2025 12:54:03 - INFO - Validating token and fetching user details
+01-07-2025 12:54:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 13:02:30 - INFO - Validating token and fetching user details
+01-07-2025 13:02:30 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 13:04:19 - INFO - Trying to login with email: writing@agphbooks.com
+01-07-2025 13:04:19 - INFO - User Aman Giri logged in successfully, role: user
+01-07-2025 13:04:22 - INFO - Redirecting user Aman Giri to dashboard
+01-07-2025 13:04:25 - INFO - Validating token and fetching user details
+01-07-2025 13:04:25 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+01-07-2025 13:04:43 - INFO - Validating token and fetching user details
+01-07-2025 13:04:43 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+01-07-2025 13:05:14 - INFO - Validating token and fetching user details
+01-07-2025 13:05:14 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+01-07-2025 13:07:18 - INFO - Trying to login with email: mastersheet@agphbooks.com
+01-07-2025 13:07:18 - INFO - User Akash logged in successfully, role: user
+01-07-2025 13:07:18 - INFO - Redirecting user Akash to dashboard
+01-07-2025 13:07:20 - INFO - Validating token and fetching user details
+01-07-2025 13:07:20 - INFO - Successfully validated token and retrieved details for user: Akash
+01-07-2025 13:08:03 - INFO - Validating token and fetching user details
+01-07-2025 13:08:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 14:10:32 - INFO - Starting Flask application
+01-07-2025 14:12:53 - INFO - Trying to login with email: yogishru@gmail.com
+01-07-2025 14:12:53 - INFO - User Yogesh Sharma logged in successfully, role: admin
+01-07-2025 14:12:53 - INFO - Redirecting user Yogesh Sharma to dashboard
+01-07-2025 14:12:56 - INFO - Validating token and fetching user details
+01-07-2025 14:12:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 14:23:14 - INFO - Validating token and fetching user details
+01-07-2025 14:23:14 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 15:00:11 - INFO - Validating token and fetching user details
+01-07-2025 15:00:11 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 15:36:26 - INFO - Trying to login with email: yogishru@gmail.com
+01-07-2025 15:36:26 - INFO - User Yogesh Sharma logged in successfully, role: admin
+01-07-2025 15:36:26 - INFO - Redirecting user Yogesh Sharma to dashboard
+01-07-2025 15:36:30 - INFO - Validating token and fetching user details
+01-07-2025 15:36:30 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 15:36:37 - INFO - Validating token and fetching user details
+01-07-2025 15:36:37 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 15:37:02 - INFO - Validating token and fetching user details
+01-07-2025 15:37:02 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 16:57:43 - INFO - Validating token and fetching user details
+01-07-2025 16:57:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 17:35:20 - INFO - Validating token and fetching user details
+01-07-2025 17:35:20 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-07-2025 17:35:33 - INFO - Trying to login with email: mastersheet@agphbooks.com
+01-07-2025 17:35:33 - INFO - User Akash logged in successfully, role: user
+01-07-2025 17:35:34 - INFO - Redirecting user Akash to dashboard
+01-07-2025 17:35:37 - INFO - Validating token and fetching user details
+01-07-2025 17:35:37 - INFO - Successfully validated token and retrieved details for user: Akash
+01-07-2025 17:36:58 - INFO - Validating token and fetching user details
+01-07-2025 17:36:58 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+02-07-2025 09:42:08 - INFO - Starting Flask application
+02-07-2025 09:48:43 - INFO - Trying to login with email: yogishru@gmail.com
+02-07-2025 09:48:43 - INFO - User Yogesh Sharma logged in successfully, role: admin
+02-07-2025 09:48:43 - INFO - Redirecting user Yogesh Sharma to dashboard
+02-07-2025 09:48:46 - INFO - Validating token and fetching user details
+02-07-2025 09:48:46 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+02-07-2025 09:51:53 - INFO - Validating token and fetching user details
+02-07-2025 09:51:53 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+02-07-2025 14:13:51 - INFO - Trying to login with email: yogishru@gmail.com
+02-07-2025 14:13:51 - INFO - User Yogesh Sharma logged in successfully, role: admin
+02-07-2025 14:13:51 - INFO - Redirecting user Yogesh Sharma to dashboard
+02-07-2025 14:13:54 - INFO - Validating token and fetching user details
+02-07-2025 14:13:54 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+02-07-2025 14:14:00 - INFO - Validating token and fetching user details
+02-07-2025 14:14:00 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+02-07-2025 14:41:34 - INFO - Trying to login with email: yogishru@gmail.com
+02-07-2025 14:41:34 - INFO - User Yogesh Sharma logged in successfully, role: admin
+02-07-2025 14:41:34 - INFO - Redirecting user Yogesh Sharma to dashboard
+02-07-2025 14:41:37 - INFO - Validating token and fetching user details
+02-07-2025 14:41:37 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+02-07-2025 14:41:50 - INFO - Validating token and fetching user details
+02-07-2025 14:41:50 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+02-07-2025 15:44:12 - INFO - Starting Flask application
+02-07-2025 15:44:29 - INFO - Trying to login with email: yogishru@gmail.com
+02-07-2025 15:44:30 - INFO - User Yogesh Sharma logged in successfully, role: admin
+02-07-2025 15:44:30 - INFO - Redirecting user Yogesh Sharma to dashboard
+02-07-2025 15:44:37 - INFO - Validating token and fetching user details
+02-07-2025 15:44:37 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+02-07-2025 15:44:47 - INFO - Validating token and fetching user details
+02-07-2025 15:44:47 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+02-07-2025 15:59:42 - INFO - Trying to login with email: yogishru@gmail.com
+02-07-2025 15:59:42 - INFO - User Yogesh Sharma logged in successfully, role: admin
+02-07-2025 15:59:42 - INFO - Redirecting user Yogesh Sharma to dashboard
+02-07-2025 15:59:45 - INFO - Validating token and fetching user details
+02-07-2025 15:59:45 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+02-07-2025 17:29:58 - INFO - Starting Flask application
+02-07-2025 17:33:50 - INFO - Starting Flask application
+02-07-2025 17:35:22 - INFO - Validating token and fetching user details
+02-07-2025 17:35:22 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+03-07-2025 16:43:33 - INFO - Starting Flask application
+03-07-2025 16:45:45 - INFO - Trying to login with email: yogishru@gmail.com
+03-07-2025 16:45:45 - INFO - User Yogesh Sharma logged in successfully, role: admin
+03-07-2025 16:45:45 - INFO - Redirecting user Yogesh Sharma to dashboard
+03-07-2025 16:45:48 - INFO - Validating token and fetching user details
+03-07-2025 16:45:48 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+03-07-2025 16:45:58 - INFO - Validating token and fetching user details
+03-07-2025 16:45:58 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+03-07-2025 16:48:00 - INFO - Validating token and fetching user details
+03-07-2025 16:48:00 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+03-07-2025 16:55:09 - INFO - Validating token and fetching user details
+03-07-2025 16:55:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+03-07-2025 16:55:16 - INFO - Validating token and fetching user details
+03-07-2025 16:55:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-07-2025 16:55:05 - INFO - Starting Flask application
+05-07-2025 16:56:03 - INFO - Trying to login with email: yogishru@gmail.com
+05-07-2025 16:56:04 - INFO - User Yogesh Sharma logged in successfully, role: admin
+05-07-2025 16:56:04 - INFO - Redirecting user Yogesh Sharma to dashboard
+05-07-2025 16:56:07 - INFO - Validating token and fetching user details
+05-07-2025 16:56:07 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-07-2025 16:56:57 - INFO - Validating token and fetching user details
+05-07-2025 16:56:57 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-07-2025 16:57:11 - INFO - Validating token and fetching user details
+05-07-2025 16:57:11 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+05-07-2025 16:58:35 - INFO - Validating token and fetching user details
+05-07-2025 16:58:35 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 09:35:04 - INFO - Starting Flask application
+07-07-2025 09:38:22 - INFO - Trying to login with email: yogishru@gmail.com
+07-07-2025 09:38:22 - INFO - User Yogesh Sharma logged in successfully, role: admin
+07-07-2025 09:38:22 - INFO - Redirecting user Yogesh Sharma to dashboard
+07-07-2025 09:38:26 - INFO - Validating token and fetching user details
+07-07-2025 09:38:26 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 09:38:38 - INFO - Validating token and fetching user details
+07-07-2025 09:38:38 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 11:38:55 - INFO - Starting Flask application
+07-07-2025 11:42:40 - INFO - Validating token and fetching user details
+07-07-2025 11:42:40 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 12:13:18 - INFO - Starting Flask application
+07-07-2025 12:13:48 - INFO - Validating token and fetching user details
+07-07-2025 12:13:49 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 12:38:02 - INFO - Validating token and fetching user details
+07-07-2025 12:38:02 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 14:53:15 - INFO - Trying to login with email: yogishru@gmail.com
+07-07-2025 14:53:15 - INFO - User Yogesh Sharma logged in successfully, role: admin
+07-07-2025 14:53:15 - INFO - Redirecting user Yogesh Sharma to dashboard
+07-07-2025 14:53:18 - INFO - Validating token and fetching user details
+07-07-2025 14:53:18 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 14:54:46 - INFO - Validating token and fetching user details
+07-07-2025 14:54:46 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 16:33:09 - INFO - Validating token and fetching user details
+07-07-2025 16:33:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 16:54:26 - INFO - Validating token and fetching user details
+07-07-2025 16:54:26 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 16:59:46 - INFO - Validating token and fetching user details
+07-07-2025 16:59:46 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 17:00:12 - INFO - Trying to login with email: rvvyas@gmail.com
+07-07-2025 17:00:12 - INFO - User Rishabh Vyas logged in successfully, role: admin
+07-07-2025 17:00:12 - INFO - Redirecting user Rishabh Vyas to dashboard
+07-07-2025 17:00:16 - INFO - Validating token and fetching user details
+07-07-2025 17:00:16 - INFO - Successfully validated token and retrieved details for user: Rishabh Vyas
+07-07-2025 17:00:31 - INFO - Validating token and fetching user details
+07-07-2025 17:00:31 - INFO - Successfully validated token and retrieved details for user: Rishabh Vyas
+07-07-2025 17:04:52 - INFO - Validating token and fetching user details
+07-07-2025 17:04:52 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 17:20:11 - INFO - Validating token and fetching user details
+07-07-2025 17:20:11 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+07-07-2025 17:20:37 - INFO - Trying to login with email: formatting@agphbooks.com
+07-07-2025 17:20:37 - INFO - User Pawandeep Singh logged in successfully, role: user
+07-07-2025 17:20:38 - INFO - Redirecting user Pawandeep Singh to dashboard
+07-07-2025 17:20:42 - INFO - Validating token and fetching user details
+07-07-2025 17:20:42 - INFO - Successfully validated token and retrieved details for user: Pawandeep Singh
+08-07-2025 12:28:04 - INFO - Starting Flask application
+08-07-2025 12:28:46 - INFO - Trying to login with email: yogishru@gmail.com
+08-07-2025 12:28:46 - INFO - User Yogesh Sharma logged in successfully, role: admin
+08-07-2025 12:28:46 - INFO - Redirecting user Yogesh Sharma to dashboard
+08-07-2025 12:28:49 - INFO - Validating token and fetching user details
+08-07-2025 12:28:49 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+08-07-2025 12:29:08 - INFO - Validating token and fetching user details
+08-07-2025 12:29:08 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+08-07-2025 16:25:48 - INFO - Validating token and fetching user details
+08-07-2025 16:25:48 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+08-07-2025 16:26:29 - INFO - Validating token and fetching user details
+08-07-2025 16:26:29 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+08-07-2025 16:27:05 - INFO - Validating token and fetching user details
+08-07-2025 16:27:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+08-07-2025 16:27:34 - INFO - Validating token and fetching user details
+08-07-2025 16:27:34 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+08-07-2025 16:28:58 - INFO - Trying to login with email: yogishru@gmail.com
+08-07-2025 16:28:58 - INFO - User Yogesh Sharma logged in successfully, role: admin
+08-07-2025 16:28:58 - INFO - Redirecting user Yogesh Sharma to dashboard
+08-07-2025 16:29:01 - INFO - Validating token and fetching user details
+08-07-2025 16:29:01 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+08-07-2025 16:29:08 - INFO - Validating token and fetching user details
+08-07-2025 16:29:08 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+08-07-2025 17:37:16 - INFO - Validating token and fetching user details
+08-07-2025 17:37:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+09-07-2025 09:44:01 - INFO - Starting Flask application
+10-07-2025 15:49:35 - INFO - Starting Flask application
+10-07-2025 15:52:17 - INFO - Trying to login with email: yogishru@gmail.com
+10-07-2025 15:52:17 - INFO - User Yogesh Sharma logged in successfully, role: admin
+10-07-2025 15:52:17 - INFO - Redirecting user Yogesh Sharma to dashboard
+10-07-2025 15:52:20 - INFO - Validating token and fetching user details
+10-07-2025 15:52:20 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+10-07-2025 15:53:20 - INFO - Validating token and fetching user details
+10-07-2025 15:53:20 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+11-07-2025 11:45:59 - INFO - Starting Flask application
+11-07-2025 11:47:11 - INFO - Trying to login with email: yogishru@gmail.com
+11-07-2025 11:47:11 - INFO - User Yogesh Sharma logged in successfully, role: admin
+11-07-2025 11:47:11 - INFO - Redirecting user Yogesh Sharma to dashboard
+11-07-2025 11:47:14 - INFO - Validating token and fetching user details
+11-07-2025 11:47:14 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+11-07-2025 11:47:28 - INFO - Validating token and fetching user details
+11-07-2025 11:47:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+11-07-2025 15:02:06 - INFO - Validating token and fetching user details
+11-07-2025 15:02:06 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+11-07-2025 15:02:15 - INFO - Validating token and fetching user details
+11-07-2025 15:02:15 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+11-07-2025 15:18:00 - INFO - Trying to login with email: yogishru@gmail.com
+11-07-2025 15:18:00 - INFO - User Yogesh Sharma logged in successfully, role: admin
+11-07-2025 15:18:00 - INFO - Redirecting user Yogesh Sharma to dashboard
+11-07-2025 15:18:03 - INFO - Validating token and fetching user details
+11-07-2025 15:18:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+11-07-2025 15:18:09 - INFO - Validating token and fetching user details
+11-07-2025 15:18:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+11-07-2025 15:33:16 - INFO - Validating token and fetching user details
+11-07-2025 15:33:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+11-07-2025 16:55:46 - INFO - Trying to login with email: yogishru@gmail.com
+11-07-2025 16:55:46 - INFO - User Yogesh Sharma logged in successfully, role: admin
+11-07-2025 16:55:46 - INFO - Redirecting user Yogesh Sharma to dashboard
+11-07-2025 16:55:49 - INFO - Validating token and fetching user details
+11-07-2025 16:55:49 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+11-07-2025 16:56:00 - INFO - Validating token and fetching user details
+11-07-2025 16:56:00 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+12-07-2025 13:14:29 - INFO - Starting Flask application
+12-07-2025 13:14:38 - INFO - Trying to login with email: yogishru@gmail.com
+12-07-2025 13:14:38 - INFO - User Yogesh Sharma logged in successfully, role: admin
+12-07-2025 13:14:38 - INFO - Redirecting user Yogesh Sharma to dashboard
+12-07-2025 13:14:41 - INFO - Validating token and fetching user details
+12-07-2025 13:14:41 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+12-07-2025 13:14:56 - INFO - Validating token and fetching user details
+12-07-2025 13:14:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+12-07-2025 13:21:04 - INFO - Validating token and fetching user details
+12-07-2025 13:21:04 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+12-07-2025 17:29:12 - INFO - Trying to login with email: yogishru@gmail.com
+12-07-2025 17:29:12 - INFO - User Yogesh Sharma logged in successfully, role: admin
+12-07-2025 17:29:12 - INFO - Redirecting user Yogesh Sharma to dashboard
+12-07-2025 17:29:15 - INFO - Validating token and fetching user details
+12-07-2025 17:29:15 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+12-07-2025 17:29:23 - INFO - Validating token and fetching user details
+12-07-2025 17:29:23 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+12-07-2025 17:34:19 - INFO - Validating token and fetching user details
+12-07-2025 17:34:19 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+12-07-2025 17:38:58 - INFO - Validating token and fetching user details
+12-07-2025 17:38:58 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+15-07-2025 15:02:50 - INFO - Starting Flask application
+15-07-2025 15:03:20 - INFO - Trying to login with email: yogishru@gmail.com
+15-07-2025 15:03:20 - INFO - User Yogesh Sharma logged in successfully, role: admin
+15-07-2025 15:03:20 - INFO - Redirecting user Yogesh Sharma to dashboard
+15-07-2025 15:03:23 - INFO - Validating token and fetching user details
+15-07-2025 15:03:23 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+15-07-2025 15:09:48 - INFO - Trying to login with email: yogishru@gmail.com
+15-07-2025 15:09:48 - INFO - User Yogesh Sharma logged in successfully, role: admin
+15-07-2025 15:09:48 - INFO - Redirecting user Yogesh Sharma to dashboard
+15-07-2025 15:09:51 - INFO - Validating token and fetching user details
+15-07-2025 15:09:51 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+15-07-2025 15:12:40 - INFO - Validating token and fetching user details
+15-07-2025 15:12:40 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+15-07-2025 15:16:38 - INFO - Validating token and fetching user details
+15-07-2025 15:16:38 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+15-07-2025 15:17:12 - INFO - Validating token and fetching user details
+15-07-2025 15:17:12 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+15-07-2025 15:19:57 - INFO - Validating token and fetching user details
+15-07-2025 15:19:57 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+15-07-2025 15:28:28 - INFO - Validating token and fetching user details
+15-07-2025 15:28:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 14:38:54 - INFO - Starting Flask application
+17-07-2025 14:39:41 - INFO - Trying to login with email: yogishru@gmail.com
+17-07-2025 14:39:45 - ERROR - Error during login for yogishru@gmail.com: (2002, "Can't connect to server on 'localhost' (10061)")
+17-07-2025 14:40:33 - INFO - Trying to login with email: yogishru@gmail.com
+17-07-2025 14:40:33 - INFO - User Yogesh Sharma logged in successfully, role: admin
+17-07-2025 14:40:33 - INFO - Redirecting user Yogesh Sharma to dashboard
+17-07-2025 14:40:36 - INFO - Validating token and fetching user details
+17-07-2025 14:40:36 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 14:50:26 - INFO - Validating token and fetching user details
+17-07-2025 14:50:26 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:01:26 - INFO - Validating token and fetching user details
+17-07-2025 17:01:26 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:11:41 - INFO - Validating token and fetching user details
+17-07-2025 17:11:41 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:16:25 - INFO - Validating token and fetching user details
+17-07-2025 17:16:25 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:18:32 - INFO - Validating token and fetching user details
+17-07-2025 17:18:32 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:19:04 - INFO - Validating token and fetching user details
+17-07-2025 17:19:04 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:21:01 - INFO - Trying to login with email: yogishru@gmail.com
+17-07-2025 17:21:01 - INFO - User Yogesh Sharma logged in successfully, role: admin
+17-07-2025 17:21:01 - INFO - Redirecting user Yogesh Sharma to dashboard
+17-07-2025 17:21:04 - INFO - Validating token and fetching user details
+17-07-2025 17:21:04 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:21:10 - INFO - Validating token and fetching user details
+17-07-2025 17:21:10 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:22:17 - INFO - Validating token and fetching user details
+17-07-2025 17:22:17 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:26:58 - INFO - Validating token and fetching user details
+17-07-2025 17:26:58 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:37:16 - INFO - Validating token and fetching user details
+17-07-2025 17:37:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+17-07-2025 17:47:57 - INFO - Validating token and fetching user details
+17-07-2025 17:47:57 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+18-07-2025 09:43:26 - INFO - Starting Flask application
+18-07-2025 09:45:06 - INFO - Trying to login with email: yogishru@gmail.com
+18-07-2025 09:45:06 - INFO - User Yogesh Sharma logged in successfully, role: admin
+18-07-2025 09:45:06 - INFO - Redirecting user Yogesh Sharma to dashboard
+18-07-2025 09:45:08 - INFO - Validating token and fetching user details
+18-07-2025 09:45:08 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+18-07-2025 10:58:53 - INFO - Trying to login with email: yogishru@gmail.com
+18-07-2025 10:58:53 - INFO - User Yogesh Sharma logged in successfully, role: admin
+18-07-2025 10:58:53 - INFO - Redirecting user Yogesh Sharma to dashboard
+18-07-2025 10:58:56 - INFO - Validating token and fetching user details
+18-07-2025 10:58:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+18-07-2025 11:01:03 - INFO - Validating token and fetching user details
+18-07-2025 11:01:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+18-07-2025 11:03:52 - INFO - Validating token and fetching user details
+18-07-2025 11:03:52 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+18-07-2025 11:06:43 - INFO - Validating token and fetching user details
+18-07-2025 11:06:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+18-07-2025 11:38:09 - INFO - Validating token and fetching user details
+18-07-2025 11:38:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+18-07-2025 13:04:39 - INFO - Starting Flask application
+18-07-2025 13:07:32 - INFO - Validating token and fetching user details
+18-07-2025 13:07:32 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+18-07-2025 13:08:51 - INFO - Validating token and fetching user details
+18-07-2025 13:08:51 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+18-07-2025 13:16:27 - INFO - Validating token and fetching user details
+18-07-2025 13:16:27 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+18-07-2025 13:25:30 - INFO - Trying to login with email: yogishru@gmail.com
+18-07-2025 13:25:30 - INFO - User Yogesh Sharma logged in successfully, role: admin
+18-07-2025 13:25:30 - INFO - Redirecting user Yogesh Sharma to dashboard
+18-07-2025 13:25:35 - INFO - Validating token and fetching user details
+18-07-2025 13:25:35 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+19-07-2025 12:14:57 - INFO - Starting Flask application
+19-07-2025 12:16:56 - INFO - Trying to login with email: yogishru@gmail.com
+19-07-2025 12:16:56 - INFO - User Yogesh Sharma logged in successfully, role: admin
+19-07-2025 12:16:56 - INFO - Redirecting user Yogesh Sharma to dashboard
+19-07-2025 12:19:08 - INFO - Validating token and fetching user details
+19-07-2025 12:19:08 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+19-07-2025 12:20:33 - INFO - Trying to login with email: yogishru@gmail.com
+19-07-2025 12:20:33 - INFO - User Yogesh Sharma logged in successfully, role: admin
+19-07-2025 12:20:33 - INFO - Redirecting user Yogesh Sharma to dashboard
+19-07-2025 12:20:36 - INFO - Validating token and fetching user details
+19-07-2025 12:20:36 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+19-07-2025 12:22:39 - INFO - Validating token and fetching user details
+19-07-2025 12:22:39 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+19-07-2025 12:22:46 - INFO - Validating token and fetching user details
+19-07-2025 12:22:46 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-07-2025 17:17:18 - INFO - Starting Flask application
+21-07-2025 17:18:04 - INFO - Trying to login with email: yogishru@gmail.com
+21-07-2025 17:18:04 - INFO - User Yogesh Sharma logged in successfully, role: admin
+21-07-2025 17:18:04 - INFO - Redirecting user Yogesh Sharma to dashboard
+21-07-2025 17:18:12 - INFO - Validating token and fetching user details
+21-07-2025 17:18:12 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-07-2025 17:18:25 - INFO - Validating token and fetching user details
+21-07-2025 17:18:25 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-07-2025 17:44:03 - INFO - Starting Flask application
+21-07-2025 17:49:30 - INFO - Trying to login with email: yogishru@gmail.com
+21-07-2025 17:49:30 - INFO - User Yogesh Sharma logged in successfully, role: admin
+21-07-2025 17:49:30 - INFO - Redirecting user Yogesh Sharma to dashboard
+21-07-2025 17:49:38 - INFO - Validating token and fetching user details
+21-07-2025 17:49:38 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+21-07-2025 17:55:28 - INFO - Validating token and fetching user details
+21-07-2025 17:55:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+22-07-2025 09:36:55 - INFO - Starting Flask application
+22-07-2025 09:51:37 - INFO - Trying to login with email: yogishru@gmail.com
+22-07-2025 09:51:38 - INFO - User Yogesh Sharma logged in successfully, role: admin
+22-07-2025 09:51:38 - INFO - Redirecting user Yogesh Sharma to dashboard
+22-07-2025 09:51:46 - INFO - Validating token and fetching user details
+22-07-2025 09:51:46 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+22-07-2025 09:52:10 - INFO - Validating token and fetching user details
+22-07-2025 09:52:10 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+22-07-2025 09:52:48 - INFO - Validating token and fetching user details
+22-07-2025 09:52:48 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+22-07-2025 10:00:48 - INFO - Validating token and fetching user details
+22-07-2025 10:00:48 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+22-07-2025 10:00:56 - INFO - Validating token and fetching user details
+22-07-2025 10:00:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+22-07-2025 10:27:26 - INFO - Validating token and fetching user details
+22-07-2025 10:27:26 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 15:09:53 - INFO - Starting Flask application
+23-07-2025 15:10:23 - INFO - Trying to login with email: yogishru@gmail.com
+23-07-2025 15:10:27 - ERROR - Error during login for yogishru@gmail.com: (2002, "Can't connect to server on 'localhost' (10061)")
+23-07-2025 15:10:34 - INFO - Trying to login with email: yogishru@gmail.com
+23-07-2025 15:10:34 - INFO - User Yogesh Sharma logged in successfully, role: admin
+23-07-2025 15:10:34 - INFO - Redirecting user Yogesh Sharma to dashboard
+23-07-2025 15:10:43 - INFO - Validating token and fetching user details
+23-07-2025 15:10:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 15:10:59 - INFO - Validating token and fetching user details
+23-07-2025 15:10:59 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 15:50:12 - INFO - Validating token and fetching user details
+23-07-2025 15:50:12 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 15:53:18 - INFO - Validating token and fetching user details
+23-07-2025 15:53:18 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 15:54:09 - INFO - Validating token and fetching user details
+23-07-2025 15:54:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 15:58:52 - INFO - Trying to login with email: yogishru@gmail.com
+23-07-2025 15:58:52 - INFO - User Yogesh Sharma logged in successfully, role: admin
+23-07-2025 15:58:52 - INFO - Redirecting user Yogesh Sharma to dashboard
+23-07-2025 15:58:55 - INFO - Validating token and fetching user details
+23-07-2025 15:58:55 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 15:59:04 - INFO - Validating token and fetching user details
+23-07-2025 15:59:04 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 16:03:04 - INFO - Validating token and fetching user details
+23-07-2025 16:03:04 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 16:31:21 - INFO - Validating token and fetching user details
+23-07-2025 16:31:21 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 16:33:22 - INFO - Validating token and fetching user details
+23-07-2025 16:33:22 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 16:47:34 - INFO - Starting Flask application
+23-07-2025 16:51:19 - INFO - Trying to login with email: yogishru@gmail.com
+23-07-2025 16:51:19 - INFO - User Yogesh Sharma logged in successfully, role: admin
+23-07-2025 16:51:19 - INFO - Redirecting user Yogesh Sharma to dashboard
+23-07-2025 16:51:27 - INFO - Validating token and fetching user details
+23-07-2025 16:51:27 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 16:51:38 - INFO - Validating token and fetching user details
+23-07-2025 16:51:38 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 17:16:30 - INFO - Trying to login with email: yogishru@gmail.com
+23-07-2025 17:16:30 - INFO - User Yogesh Sharma logged in successfully, role: admin
+23-07-2025 17:16:30 - INFO - Redirecting user Yogesh Sharma to dashboard
+23-07-2025 17:16:33 - INFO - Validating token and fetching user details
+23-07-2025 17:16:33 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+23-07-2025 17:16:41 - INFO - Validating token and fetching user details
+23-07-2025 17:16:41 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-07-2025 10:08:35 - INFO - Starting Flask application
+24-07-2025 10:33:52 - INFO - Trying to login with email: yogishru@gmail.com
+24-07-2025 10:33:52 - INFO - User Yogesh Sharma logged in successfully, role: admin
+24-07-2025 10:33:52 - INFO - Redirecting user Yogesh Sharma to dashboard
+24-07-2025 10:33:55 - INFO - Validating token and fetching user details
+24-07-2025 10:33:55 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-07-2025 10:34:06 - INFO - Validating token and fetching user details
+24-07-2025 10:34:06 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-07-2025 11:30:07 - INFO - Validating token and fetching user details
+24-07-2025 11:30:07 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-07-2025 11:50:21 - INFO - Trying to login with email: yogishru@gmail.com
+24-07-2025 11:50:21 - INFO - User Yogesh Sharma logged in successfully, role: admin
+24-07-2025 11:50:21 - INFO - Redirecting user Yogesh Sharma to dashboard
+24-07-2025 11:50:24 - INFO - Validating token and fetching user details
+24-07-2025 11:50:24 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+24-07-2025 11:51:45 - INFO - Validating token and fetching user details
+24-07-2025 11:51:45 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+31-07-2025 17:18:23 - INFO - Starting Flask application
+31-07-2025 17:18:39 - INFO - Trying to login with email: yogishru@gmail.com
+31-07-2025 17:18:39 - INFO - User Yogesh Sharma logged in successfully, role: admin
+31-07-2025 17:18:39 - INFO - Redirecting user Yogesh Sharma to dashboard
+31-07-2025 17:18:48 - INFO - Validating token and fetching user details
+31-07-2025 17:18:48 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+31-07-2025 17:36:12 - INFO - Validating token and fetching user details
+31-07-2025 17:36:12 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+31-07-2025 17:36:30 - INFO - Trying to login with email: yogishru@gmail.com
+31-07-2025 17:36:30 - INFO - User Yogesh Sharma logged in successfully, role: admin
+31-07-2025 17:36:30 - INFO - Redirecting user Yogesh Sharma to dashboard
+31-07-2025 17:36:33 - INFO - Validating token and fetching user details
+31-07-2025 17:36:33 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+31-07-2025 17:36:44 - INFO - Validating token and fetching user details
+31-07-2025 17:36:44 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+31-07-2025 17:37:10 - INFO - Validating token and fetching user details
+31-07-2025 17:37:10 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+01-08-2025 09:47:58 - INFO - Starting Flask application
+01-08-2025 09:49:02 - INFO - Trying to login with email: yogishru@gmail.com
+01-08-2025 09:49:02 - INFO - User Yogesh Sharma logged in successfully, role: admin
+01-08-2025 09:49:02 - INFO - Redirecting user Yogesh Sharma to dashboard
+01-08-2025 09:49:47 - INFO - Validating token and fetching user details
+01-08-2025 09:49:47 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
