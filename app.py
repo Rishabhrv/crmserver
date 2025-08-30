@@ -72,6 +72,12 @@ APP_REDIRECTS={"main": "https://mis.agkit.in",
                "admin": "https://mis.agkit.in", 
                "ijisem": "https://mis.agkit.in/ijisem"}
 
+# APP_REDIRECTS={"main": "http://localhost:8501", 
+#                 "operations": "http://localhost:8501/team_dashboard", 
+#                 "admin": "http://localhost:8501", 
+#                 "ijisem": "http://localhost:8501/ijisem"}
+
+
 TOKEN_BLACKLIST = set()
 PASSWORD_RESET_TOKENS = {}
 

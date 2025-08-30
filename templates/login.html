@@ -1,65 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/png" href="static\favicon_black.ico" />
-    <title>Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="static/favicon_black.ico" />
+  <title>Streamlit Creative Login</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: -50% -50% -50% -50%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,75,75,0.14), transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(75,192,200,0.14), transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(150,75,255,0.14), transparent 40%);
+      animation: moveBackground 20s infinite linear;
+      z-index: 0;
+    }
+
+    @keyframes moveBackground {
+      from { transform: translate(0,0); }
+      to { transform: translate(-20%, -18%); }
+    }
+
+    .login-container {
+      width: min(440px, 94vw);
+      padding: 2.5rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 700ms ease;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      height: 64px;
+      width: auto;
+      max-width: 120px;
+      object-fit: contain;
+    }
+
+    .login-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #1f1f27;
+      letter-spacing: -0.3px;
+      text-align: center;
+    }
+
+    .login-sub {
+      color: #5a5c66;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    .divider { height: 1px; background: rgba(0,0,0,0.08); margin: 14px 0 20px; }
+
+    form.login-form { display: flex; flex-direction: column; gap: 20px; }
+
+    .form-group { position: relative; }
+
+    .form-group input {
+      width: 100%;
+      padding: 15px 15px 15px 46px;
+      border: 1px solid #d0d4db;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      background: #ffffff;
+      transition: border-color 200ms, box-shadow 200ms, background 200ms;
+    }
+
+    .form-group input::placeholder { color: transparent; }
+
+    .form-group input:focus,
+    .form-group input.autofilled {
+      border-color: #dfb1b1;
+      box-shadow: 0 0 0 2px rgba(255, 75, 75, 0.05);
+      outline: none;
+      background: #ffffff;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 50%;
+      left: 46px;
+      transform: translateY(-50%);
+      color: #eeeff0;
+      font-size: 0.95rem;
+      pointer-events: none;
+      transition: 160ms ease;
+      background: transparent;
+      padding: 0 5px;
+      font-weight: 500;
+    }
+
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group input.autofilled + label {
+      top: -10px;
+      left: 12px;
+      font-size: 0.78rem;
+      color: #ff4b4b;
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 6px;
+    }
+
+    .form-group::before {
+      content: "";
+      position: absolute;
+      left: 15px; top: 50%; transform: translateY(-50%);
+      width: 20px; height: 20px;
+      opacity: 0.75;
+      background-repeat: no-repeat; background-position: center; background-size: 20px 20px;
+    }
+    .form-group.user::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21a8 8 0 0 0-16 0'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+    }
+    .form-group.pass::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
+    }
+
+    .links {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    .links a {
+      color: #ff4b4b;
+      text-decoration: none;
+      transition: color 160ms;
+    }
+
+    .links a:hover {
+      color: #e03333;
+      text-decoration: underline;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 13px 15px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(90deg, #ff4b4b, #ff7878);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 140ms ease, box-shadow 200ms ease, filter 200ms ease, background 200ms ease;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(255,75,75,0.4);
+      background: linear-gradient(90deg, #ff3333, #ff6666);
+    }
+    .login-button:active {
+      transform: translateY(0);
+      filter: saturate(0.9);
+    }
+
+    .flash-message {
+      display: flex;
+      align-items: center;
+      padding: 14px;
+      margin-bottom: 22px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .flash-message.error {
+      background: rgba(255, 75, 75, 0.95);
+    }
+    .flash-message.success {
+      background: rgba(75, 192, 75, 0.95);
+    }
+    .flash-message svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      stroke: #fff;
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-100 to-purple-200 min-h-screen flex items-center justify-center font-sans">
-    <div class="bg-white shadow-2xl rounded-2xl px-10 py-8 w-full max-w-md space-y-6">
-        <!-- Logo -->
-        <div class="flex justify-center">
-            <img src="/static/logo.png" alt="Logo" class="h-16 w-auto" />
-        </div>
-        <!-- Heading -->
-        <h2 class="text-2xl font-bold text-center text-gray-800">AG Publishing House</h2>
-        <p class="text-center text-gray-500 text-sm">Please login to continue</p>
-
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="flex items-center p-4 text-sm rounded-md {% if category == 'error' %}bg-red-100 text-red-800{% else %}bg-green-100 text-green-800{% endif %}">
-                        {% if category == 'error' %}
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        {% else %}
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        {% endif %}
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-
-        <!-- Form -->
-        <form method="POST" action="{{ url_for('login') }}" class="space-y-4">
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-                <input type="email" id="email" name="email" required
-                       class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition">
-            </div>
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
-                <input type="password" id="password" name="password" required
-                       class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition">
-            </div>
-            <div class="text-right">
-                <a href="{{ url_for('forgot_password') }}" class="text-sm text-indigo-600 hover:text-indigo-800">Forgot Password?</a>
-            </div>
-            <button type="submit"
-                    class="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded-lg font-medium transition duration-200">
-                Sign In
-            </button>
-        </form>
-
-        <!-- Footer -->
-        <p class="text-center text-sm text-gray-500">Don't have an account? <br><span class="font-medium text-indigo-600">Contact the administrator</span>.</p>
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <img src="/static/logo.png" alt="Logo" class="logo" />
+      <div class="login-title">AG Publishing House</div>
     </div>
+    <div class="login-sub">Welcome back. Please enter your credentials.</div>
+    <div class="divider"></div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message {{ category }}">
+            {% if category == 'error' %}
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            {% else %}
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            {% endif %}
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form class="login-form" method="POST" action="{{ url_for('login') }}" autocomplete="on">
+      <div class="form-group user">
+        <input type="email" id="email" name="email" placeholder=" " required>
+        <label for="email">Email</label>
+      </div>
+      <div class="form-group pass">
+        <input type="password" id="password" name="password" placeholder=" " required>
+        <label for="password">Password</label>
+      </div>
+
+      <button type="submit" class="login-button">Sign In</button>
+    </form>
+
+    <div class="links">
+      <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+    </div>
+  </div>
+
+  <script>
+    // Handle autofill detection
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputs = document.querySelectorAll('.form-group input');
+      inputs.forEach(input => {
+        // Check if input is autofilled on load
+        if (input.value) {
+          input.classList.add('autofilled');
+        }
+        // Monitor for autofill changes
+        input.addEventListener('animationstart', (e) => {
+          if (e.animationName === 'onAutoFillStart') {
+            input.classList.add('autofilled');
+          } else if (e.animationName === 'onAutoFillCancel') {
+            input.classList.remove('autofilled');
+          }
+        });
+      });
+    });
+
+    // CSS to detect autofill
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes onAutoFillStart { from {} }
+      @keyframes onAutoFillCancel { from {} }
+      input:-webkit-autofill {
+        animation-name: onAutoFillStart;
+      }
+      input:not(:-webkit-autofill) {
+        animation-name: onAutoFillCancel;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
