@@ -3580,3 +3580,71 @@
 27-09-2025 15:45:19 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
 27-09-2025 15:45:27 - INFO - Validating token and fetching user details
 27-09-2025 15:45:27 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-09-2025 16:31:51 - INFO - Starting Flask application
+27-09-2025 16:32:33 - INFO - User accessed root endpoint, session email: yogishru@gmail.com
+27-09-2025 16:32:39 - INFO - Trying to login with email: yogishru@gmail.com
+27-09-2025 16:32:39 - INFO - User Yogesh Sharma logged in successfully, role: admin
+27-09-2025 16:32:39 - INFO - Redirecting user Yogesh Sharma to dashboard
+27-09-2025 16:33:10 - INFO - Validating token and fetching user details
+27-09-2025 16:33:10 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-09-2025 16:48:43 - INFO - Starting Flask application
+27-09-2025 16:48:55 - INFO - Trying to login with email: yogishru@gmail.com
+27-09-2025 16:48:55 - INFO - User Yogesh Sharma logged in successfully, role: admin
+27-09-2025 16:48:55 - INFO - Redirecting user Yogesh Sharma to dashboard
+27-09-2025 16:49:01 - INFO - Validating token and fetching user details
+27-09-2025 16:49:01 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-09-2025 16:52:08 - INFO - Trying to login with email: mastersheet@agphbooks.com
+27-09-2025 16:52:08 - INFO - User Akash logged in successfully, role: user
+27-09-2025 16:52:11 - INFO - Redirecting user Akash to dashboard
+27-09-2025 16:52:15 - INFO - Validating token and fetching user details
+27-09-2025 16:52:15 - INFO - Successfully validated token and retrieved details for user: Akash
+27-09-2025 16:55:36 - INFO - Trying to login with email: yogishru@gmail.com
+27-09-2025 16:55:36 - INFO - User Yogesh Sharma logged in successfully, role: admin
+27-09-2025 16:55:36 - INFO - Redirecting user Yogesh Sharma to dashboard
+27-09-2025 16:55:40 - INFO - Validating token and fetching user details
+27-09-2025 16:55:40 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-09-2025 16:56:04 - INFO - Trying to login with email: writing@agphbooks.com
+27-09-2025 16:56:04 - INFO - User Aman Giri logged in successfully, role: user
+27-09-2025 16:56:04 - INFO - Redirecting user Aman Giri to dashboard
+27-09-2025 16:56:08 - INFO - Validating token and fetching user details
+27-09-2025 16:56:08 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+27-09-2025 16:57:20 - INFO - Validating token and fetching user details
+27-09-2025 16:57:20 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+27-09-2025 16:57:46 - INFO - Trying to login with email: writing@agphbooks.com
+27-09-2025 16:57:46 - INFO - User Aman Giri logged in successfully, role: user
+27-09-2025 16:57:46 - INFO - Redirecting user Aman Giri to dashboard
+27-09-2025 16:57:49 - INFO - Validating token and fetching user details
+27-09-2025 16:57:49 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+27-09-2025 16:59:04 - INFO - Starting Flask application
+27-09-2025 16:59:07 - INFO - User accessed root endpoint, session email: writing@agphbooks.com
+27-09-2025 16:59:28 - INFO - Trying to login with email: writing@agphbooks.com
+27-09-2025 16:59:28 - INFO - User Aman Giri logged in successfully, role: user
+27-09-2025 16:59:28 - INFO - Redirecting user Aman Giri to dashboard
+27-09-2025 16:59:32 - INFO - Validating token and fetching user details
+27-09-2025 16:59:32 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+27-09-2025 17:15:04 - INFO - Validating token and fetching user details
+27-09-2025 17:15:04 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+27-09-2025 17:37:07 - INFO - Starting Flask application
+27-09-2025 17:37:15 - INFO - User accessed root endpoint, session email: writing@agphbooks.com
+27-09-2025 17:37:18 - INFO - Trying to login with email: yogishru@gmail.com
+27-09-2025 17:37:18 - INFO - User Yogesh Sharma logged in successfully, role: admin
+27-09-2025 17:37:18 - INFO - Redirecting user Yogesh Sharma to dashboard
+27-09-2025 17:37:25 - INFO - Validating token and fetching user details
+27-09-2025 17:37:25 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-09-2025 17:40:17 - INFO - Trying to login with email: writing@agphbooks.com
+27-09-2025 17:40:17 - INFO - User Aman Giri logged in successfully, role: user
+27-09-2025 17:40:17 - INFO - Redirecting user Aman Giri to dashboard
+27-09-2025 17:40:21 - INFO - Validating token and fetching user details
+27-09-2025 17:40:21 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+27-09-2025 17:41:18 - INFO - Trying to login with email: yogishru@gmail.com
+27-09-2025 17:41:18 - INFO - User Yogesh Sharma logged in successfully, role: admin
+27-09-2025 17:41:18 - INFO - Redirecting user Yogesh Sharma to dashboard
+27-09-2025 17:41:22 - INFO - Validating token and fetching user details
+27-09-2025 17:41:22 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+27-09-2025 17:41:25 - INFO - Trying to login with email: writing@agphbooks.com
+27-09-2025 17:41:25 - INFO - User Aman Giri logged in successfully, role: user
+27-09-2025 17:41:25 - INFO - Redirecting user Aman Giri to dashboard
+27-09-2025 17:41:28 - INFO - Validating token and fetching user details
+27-09-2025 17:41:28 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+27-09-2025 17:42:51 - INFO - Validating token and fetching user details
+27-09-2025 17:42:51 - INFO - Successfully validated token and retrieved details for user: Aman Giri

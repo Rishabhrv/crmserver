@@ -66,16 +66,17 @@ CORS(app, resources={
     r"/reset_password": {"origins": ["*"]}
 })
 
-# App-based redirect URLs
-APP_REDIRECTS={"main": "https://mis.agkit.in", 
-               "operations": "https://mis.agkit.in/team_dashboard", 
-               "admin": "https://mis.agkit.in", 
-               "ijisem": "https://mis.agkit.in/ijisem"}
+# # App-based redirect URLs
+# APP_REDIRECTS={"main": "https://mis.agkit.in", 
+#                "operations": "https://mis.agkit.in/team_dashboard", 
+#                "admin": "https://mis.agkit.in", 
+#                "ijisem": "https://mis.agkit.in/ijisem"}
 
-# APP_REDIRECTS={"main": "http://localhost:8501", 
-#                 "operations": "http://localhost:8501/team_dashboard", 
-#                 "admin": "http://localhost:8501", 
-#                 "ijisem": "http://localhost:8501/ijisem"}
+APP_REDIRECTS={"main": "http://localhost:8501", 
+                "operations": "http://localhost:8501/team_dashboard", 
+                "admin": "http://localhost:8501", 
+                "tasks": "http://localhost:8501/tasks",
+                "ijisem": "http://localhost:8501/ijisem"}
 
 
 TOKEN_BLACKLIST = set()
@@ -97,22 +98,27 @@ def login():
         
         try:
             cur = mysql.connection.cursor()
-            cur.execute("SELECT id, email, password, username, role FROM users WHERE email = %s", (email,))
+            cur.execute("SELECT id, email, password, username, role FROM userss WHERE email = %s", (email,))
             user = cur.fetchone()
             cur.close()
             
-            if user and user[2] == password:
+            if user and user[2] == password:  # Note: In production, use proper password hashing
                 session['email'] = user[1]
-                session['login_time'] = datetime.now(timezone.utc).isoformat()  # Updated to timezone-aware
+                session['login_time'] = datetime.now(timezone.utc).isoformat()
                 logger.info(f"User {user[3]} logged in successfully, role: {user[4]}")
                 
                 cur = mysql.connection.cursor()
-                cur.execute("SELECT role, app FROM users WHERE id = %s", (user[0],))
-                user_details = cur.fetchone()
+                cur.execute("""
+                    SELECT u.role, uaa.app, uaa.access_type, uaa.level, uaa.start_date, uaa.report_to
+                    FROM userss u
+                    LEFT JOIN user_app_access uaa ON u.id = uaa.user_id
+                    WHERE u.id = %s
+                """, (user[0],))
+                user_details = cur.fetchall()
                 cur.close()
                 
-                role = user_details[0].lower()
-                app = user_details[1].lower() if user_details[1] else ''
+                role = user[4].lower()
+                app = user_details[0][1].lower() if user_details[0][1] else ''
                 
                 if role == 'user':
                     ist = pytz.timezone('Asia/Kolkata')
@@ -125,7 +131,7 @@ def login():
                 
                 token_payload = {
                     'user_id': user[0],
-                    'exp': datetime.now(timezone.utc) + timedelta(minutes=60 * 4)  # Updated to timezone-aware
+                    'exp': datetime.now(timezone.utc) + timedelta(minutes=60 * 4)
                 }
                 token = jwt.encode(token_payload, JWT_SECRET, algorithm='HS256')
                 
@@ -160,7 +166,7 @@ def forgot_password():
         
         try:
             cur = mysql.connection.cursor()
-            cur.execute("SELECT id, email, role, username FROM users WHERE email = %s", (email,))
+            cur.execute("SELECT id, email, role, username FROM userss WHERE email = %s", (email,))
             user = cur.fetchone()
             cur.close()
             
@@ -171,7 +177,7 @@ def forgot_password():
                     return redirect(url_for('forgot_password'))
                 
                 reset_token = str(uuid.uuid4())
-                expiration = datetime.now(timezone.utc) + timedelta(hours=1)  # Updated to timezone-aware
+                expiration = datetime.now(timezone.utc) + timedelta(hours=1)
                 PASSWORD_RESET_TOKENS[reset_token] = {
                     'user_id': user[0],
                     'expires': expiration
@@ -231,7 +237,7 @@ def reset_password():
                 return redirect(url_for('forgot_password'))
             
             reset_info = PASSWORD_RESET_TOKENS[token]
-            if reset_info['expires'] < datetime.now(timezone.utc):  # Updated to timezone-aware
+            if reset_info['expires'] < datetime.now(timezone.utc):
                 logger.warning(f"Expired reset token")
                 flash('Reset token has expired', 'error')
                 del PASSWORD_RESET_TOKENS[token]
@@ -240,7 +246,7 @@ def reset_password():
             user_id = reset_info['user_id']
             
             cur = mysql.connection.cursor()
-            cur.execute("SELECT role, username FROM users WHERE id = %s", (user_id,))
+            cur.execute("SELECT role, username FROM userss WHERE id = %s", (user_id,))
             user = cur.fetchone()
             cur.close()
             
@@ -251,7 +257,7 @@ def reset_password():
                 return redirect(url_for('forgot_password'))
             
             cur = mysql.connection.cursor()
-            cur.execute("UPDATE users SET password = %s WHERE id = %s", (new_password, user_id))
+            cur.execute("UPDATE userss SET password = %s WHERE id = %s", (new_password, user_id))
             mysql.connection.commit()
             cur.close()
             
@@ -264,7 +270,7 @@ def reset_password():
             flash('An error occurred while resetting your password', 'error')
             return redirect(url_for('forgot_password'))
     
-    if token not in PASSWORD_RESET_TOKENS or PASSWORD_RESET_TOKENS[token]['expires'] < datetime.now(timezone.utc):  # Updated to timezone-aware
+    if token not in PASSWORD_RESET_TOKENS or PASSWORD_RESET_TOKENS[token]['expires'] < datetime.now(timezone.utc):
         logger.warning(f"Invalid or expired reset token access")
         flash('Invalid or expired reset token', 'error')
         return redirect(url_for('forgot_password'))
@@ -274,7 +280,7 @@ def reset_password():
         user_id = reset_info['user_id']
         
         cur = mysql.connection.cursor()
-        cur.execute("SELECT role, username FROM users WHERE id = %s", (user_id,))
+        cur.execute("SELECT role, username FROM userss WHERE id = %s", (user_id,))
         user = cur.fetchone()
         cur.close()
         
@@ -316,34 +322,48 @@ def validate_and_details():
         
         # Fetch user details from database
         cur = mysql.connection.cursor()
-        cur.execute("SELECT `email`, `role`, `app`, `access`, `start_date`, `username` FROM `users` WHERE `id` = %s", (user_id,))
-        user = cur.fetchone()
+        cur.execute("""
+            SELECT u.id, u.username, u.email, u.role, u.associate_id, u.designation,
+                   uaa.app, uaa.access_type, uaa.level, uaa.start_date, uaa.report_to
+            FROM userss u
+            LEFT JOIN user_app_access uaa ON u.id = uaa.user_id
+            WHERE u.id = %s
+        """, (user_id,))
+        user_data = cur.fetchall()
         cur.close()
         
-        if not user:
+        if not user_data:
             logger.warning(f"User not found for user_id: {user_id}")
             return jsonify({'valid': False, 'error': 'User not found'}), 404
         
-        # Process access list based on app
+        # Process user details
+        user = user_data[0]
         access_list = []
-        if user[2] == 'main':
-            access_list = [acc.strip() for acc in user[3].split(',') if acc.strip()] if user[3] else []
-        elif user[2] in ('operations', 'ijisem'):
-            access_list = [user[3]] if user[3] else []
+        app = user[6].lower() if user[6] else ''
+        access_type = user[7] if user[7] else ''
         
-        start_date = user[4].isoformat() if user[4] else None
-        logger.info(f"Successfully validated token and retrieved details for user: {user[5]}")
+        if app == 'main':
+            access_list = [acc.strip() for acc in access_type.split(',') if acc.strip()] if access_type else []
+        elif app in ('operations', 'ijisem'):
+            access_list = [access_type] if access_type else []
+        
+        start_date = user[9].isoformat() if user[9] else None
+        logger.info(f"Successfully validated token and retrieved details for user: {user[1]}")
         
         return jsonify({
             'valid': True,
             'user_id': user_id,
             'user_details': {
-                'email': user[0],
-                'role': user[1].lower(),
-                'app': user[2].lower() if user[2] else '',
+                'username': user[1],
+                'email': user[2],
+                'role': user[3].lower(),
+                'app': app,
                 'access': access_list,
+                'level': user[8] if user[8] else None,
                 'start_date': start_date,
-                'username': user[5]
+                'report_to': user[10] if user[10] else None,
+                'associate_id': user[4] if user[4] else None,
+                'designation': user[5] if user[5] else None
             }
         })
     
@@ -356,37 +376,6 @@ def validate_and_details():
     except Exception as e:
         logger.error(f"Error in validate_and_details: {str(e)}")
         return jsonify({'valid': False, 'error': 'Server error'}), 500
-
-@app.route('/logout', methods=['POST'])
-def logout():
-    logger.info("Processing logout request")
-    try:
-        if not request.is_json:
-            logger.warning("Invalid logout request: Not JSON")
-            return jsonify({'success': False, 'error': 'Request must be JSON'}), 400
-        token = request.json.get('token')
-        if token:
-            TOKEN_BLACKLIST.add(token)
-            logger.info("Token blacklisted successfully")
-        
-        email = session.get('email', 'Unknown')
-        login_time_str = session.get('login_time')
-        session_duration = 0
-        if login_time_str:
-            login_time = datetime.datetime.fromisoformat(login_time_str)
-            session_duration = int((datetime.datetime.utcnow() - login_time).total_seconds())
-            minutes, seconds = divmod(session_duration, 60)
-            duration_str = f"{minutes} min {seconds} sec"
-        else:
-            duration_str = "Unknown"
-        
-        session.pop('email', None)
-        session.pop('login_time', None)
-        logger.info(f"User {email} logged out. Session duration: {duration_str}")
-        return jsonify({'success': True, 'redirect': url_for('login', _external=True)}), 200
-    except Exception as e:
-        logger.error(f"Error in logout: {str(e)}")
-        return jsonify({'success': False, 'error': 'Server error'}), 500
 
 if __name__ == '__main__':
     logger.info("Starting Flask application")
