@@ -344,7 +344,7 @@ def validate_and_details():
         
         if app == 'main':
             access_list = [acc.strip() for acc in access_type.split(',') if acc.strip()] if access_type else []
-        elif app in ('operations', 'ijisem'):
+        elif app in ('operations', 'ijisem', 'tasks'):
             access_list = [access_type] if access_type else []
         
         start_date = user[9].isoformat() if user[9] else None

@@ -3648,3 +3648,621 @@
 27-09-2025 17:41:28 - INFO - Successfully validated token and retrieved details for user: Aman Giri
 27-09-2025 17:42:51 - INFO - Validating token and fetching user details
 27-09-2025 17:42:51 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+29-09-2025 09:46:25 - INFO - Starting Flask application
+29-09-2025 09:46:53 - INFO - Trying to login with email: yogishru@gmail.com
+29-09-2025 09:46:54 - INFO - User Yogesh Sharma logged in successfully, role: admin
+29-09-2025 09:46:54 - INFO - Redirecting user Yogesh Sharma to dashboard
+29-09-2025 09:46:59 - INFO - Validating token and fetching user details
+29-09-2025 09:46:59 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 09:47:18 - INFO - User accessed root endpoint, session email: yogishru@gmail.com
+29-09-2025 09:47:52 - INFO - Validating token and fetching user details
+29-09-2025 09:47:52 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 09:59:40 - INFO - Trying to login with email: abhi@agphbooks.com
+29-09-2025 09:59:40 - INFO - User abhi logged in successfully, role: user
+29-09-2025 09:59:45 - INFO - Redirecting user abhi to dashboard
+29-09-2025 09:59:48 - INFO - Validating token and fetching user details
+29-09-2025 09:59:48 - INFO - Successfully validated token and retrieved details for user: abhi
+29-09-2025 10:01:23 - INFO - Trying to login with email: abhi@agphbooks.com
+29-09-2025 10:01:23 - INFO - User abhi logged in successfully, role: user
+29-09-2025 10:01:23 - INFO - Redirecting user abhi to dashboard
+29-09-2025 10:01:26 - INFO - Validating token and fetching user details
+29-09-2025 10:01:26 - INFO - Successfully validated token and retrieved details for user: abhi
+29-09-2025 10:02:40 - INFO - Trying to login with email: mastersheet@agphbooks.com
+29-09-2025 10:02:40 - INFO - User Akash logged in successfully, role: user
+29-09-2025 10:02:40 - INFO - Redirecting user Akash to dashboard
+29-09-2025 10:02:43 - INFO - Validating token and fetching user details
+29-09-2025 10:02:43 - INFO - Successfully validated token and retrieved details for user: Akash
+29-09-2025 10:17:39 - INFO - Validating token and fetching user details
+29-09-2025 10:17:39 - ERROR - Error in validate_and_details: (1054, "Unknown column 'uaa.start_date' in 'field list'")
+29-09-2025 10:17:57 - INFO - Trying to login with email: mastersheet@agphbooks.com
+29-09-2025 10:17:57 - INFO - User Akash logged in successfully, role: user
+29-09-2025 10:17:57 - ERROR - Error during login for mastersheet@agphbooks.com: (1054, "Unknown column 'uaa.start_date' in 'field list'")
+29-09-2025 10:18:20 - INFO - Trying to login with email: yogishru@gmail.com
+29-09-2025 10:18:20 - INFO - User Yogesh Sharma logged in successfully, role: admin
+29-09-2025 10:18:20 - ERROR - Error during login for yogishru@gmail.com: (1054, "Unknown column 'uaa.start_date' in 'field list'")
+29-09-2025 10:19:17 - INFO - Trying to login with email: yogishru@gmail.com
+29-09-2025 10:19:17 - INFO - User Yogesh Sharma logged in successfully, role: admin
+29-09-2025 10:19:17 - ERROR - Error during login for yogishru@gmail.com: (1054, "Unknown column 'uaa.start_date' in 'field list'")
+29-09-2025 10:20:55 - INFO - Trying to login with email: yogishru@gmail.com
+29-09-2025 10:20:55 - INFO - User Yogesh Sharma logged in successfully, role: admin
+29-09-2025 10:20:55 - ERROR - Error during login for yogishru@gmail.com: (1146, "Table 'booktracker.user_app_access' doesn't exist")
+29-09-2025 10:33:23 - INFO - Trying to login with email: yogishru@gmail.com
+29-09-2025 10:33:23 - INFO - User Yogesh Sharma logged in successfully, role: admin
+29-09-2025 10:33:23 - ERROR - Error during login for yogishru@gmail.com: (1054, "Unknown column 'uaa.start_date' in 'field list'")
+29-09-2025 10:35:54 - INFO - Starting Flask application
+29-09-2025 10:36:02 - INFO - Trying to login with email: yogishru@gmail.com
+29-09-2025 10:36:02 - INFO - User Yogesh Sharma logged in successfully, role: admin
+29-09-2025 10:36:02 - INFO - Redirecting user Yogesh Sharma to dashboard
+29-09-2025 10:36:05 - INFO - Validating token and fetching user details
+29-09-2025 10:36:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 10:36:19 - INFO - Trying to login with email: abhi@agphbooks.com
+29-09-2025 10:36:19 - INFO - User abhi logged in successfully, role: user
+29-09-2025 10:36:19 - INFO - Redirecting user abhi to dashboard
+29-09-2025 10:36:22 - INFO - Validating token and fetching user details
+29-09-2025 10:36:22 - INFO - Successfully validated token and retrieved details for user: abhi
+29-09-2025 10:36:39 - INFO - Trying to login with email: mastersheet@agphbooks.com
+29-09-2025 10:36:39 - INFO - User Akash logged in successfully, role: user
+29-09-2025 10:36:39 - INFO - Redirecting user Akash to dashboard
+29-09-2025 10:36:42 - INFO - Validating token and fetching user details
+29-09-2025 10:36:42 - INFO - Successfully validated token and retrieved details for user: Akash
+29-09-2025 10:37:00 - INFO - Trying to login with email: writing@agphbooks.com
+29-09-2025 10:37:00 - INFO - User Aman Giri logged in successfully, role: user
+29-09-2025 10:37:00 - INFO - Redirecting user Aman Giri to dashboard
+29-09-2025 10:37:03 - INFO - Validating token and fetching user details
+29-09-2025 10:37:03 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+29-09-2025 10:37:26 - INFO - Trying to login with email: muskan@agphbooks.com
+29-09-2025 10:37:26 - INFO - User Muskan logged in successfully, role: user
+29-09-2025 10:37:26 - INFO - Redirecting user Muskan to dashboard
+29-09-2025 10:37:30 - INFO - Validating token and fetching user details
+29-09-2025 10:37:30 - INFO - Successfully validated token and retrieved details for user: Muskan
+29-09-2025 10:37:49 - INFO - Trying to login with email: pawan@agphbooks.com
+29-09-2025 10:37:49 - INFO - User pawan logged in successfully, role: user
+29-09-2025 10:37:49 - INFO - Redirecting user pawan to dashboard
+29-09-2025 10:37:52 - INFO - Validating token and fetching user details
+29-09-2025 10:37:52 - INFO - Successfully validated token and retrieved details for user: pawan
+29-09-2025 10:38:27 - INFO - Trying to login with email: formatting@agphbooks.com
+29-09-2025 10:38:27 - INFO - User Pawandeep Singh logged in successfully, role: user
+29-09-2025 10:38:27 - INFO - Redirecting user Pawandeep Singh to dashboard
+29-09-2025 10:38:30 - INFO - Validating token and fetching user details
+29-09-2025 10:38:30 - INFO - Successfully validated token and retrieved details for user: Pawandeep Singh
+29-09-2025 10:38:44 - INFO - Trying to login with email: coverpage@agphbooks.com
+29-09-2025 10:38:44 - INFO - User Rakesh Sisodia logged in successfully, role: user
+29-09-2025 10:38:44 - INFO - Redirecting user Rakesh Sisodia to dashboard
+29-09-2025 10:38:47 - INFO - Validating token and fetching user details
+29-09-2025 10:38:47 - INFO - Successfully validated token and retrieved details for user: Rakesh Sisodia
+29-09-2025 10:39:01 - INFO - Trying to login with email: reading@agphbooks.com
+29-09-2025 10:39:01 - INFO - User Umer Khan logged in successfully, role: user
+29-09-2025 10:39:02 - INFO - Redirecting user Umer Khan to dashboard
+29-09-2025 10:39:04 - INFO - Validating token and fetching user details
+29-09-2025 10:39:04 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:39:13 - INFO - Validating token and fetching user details
+29-09-2025 10:39:13 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 10:39:29 - INFO - Validating token and fetching user details
+29-09-2025 10:39:29 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 10:40:47 - INFO - User accessed root endpoint, session email: reading@agphbooks.com
+29-09-2025 10:41:05 - INFO - Validating token and fetching user details
+29-09-2025 10:41:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 10:41:22 - INFO - Trying to login with email: reading@agphbooks.com
+29-09-2025 10:41:22 - INFO - User Umer Khan logged in successfully, role: user
+29-09-2025 10:41:22 - INFO - Redirecting user Umer Khan to dashboard
+29-09-2025 10:41:23 - INFO - Trying to login with email: reading@agphbooks.com
+29-09-2025 10:41:23 - INFO - User Umer Khan logged in successfully, role: user
+29-09-2025 10:41:23 - INFO - Redirecting user Umer Khan to dashboard
+29-09-2025 10:41:26 - INFO - Validating token and fetching user details
+29-09-2025 10:41:26 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:41:40 - INFO - Validating token and fetching user details
+29-09-2025 10:41:40 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:41:50 - INFO - Validating token and fetching user details
+29-09-2025 10:41:50 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:42:31 - INFO - Validating token and fetching user details
+29-09-2025 10:42:31 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 10:42:43 - INFO - Validating token and fetching user details
+29-09-2025 10:42:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 10:44:36 - INFO - Validating token and fetching user details
+29-09-2025 10:44:36 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 10:44:36 - INFO - Validating token and fetching user details
+29-09-2025 10:44:36 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 10:44:53 - INFO - Trying to login with email: reading@agphbooks.com
+29-09-2025 10:44:53 - INFO - User Umer Khan logged in successfully, role: user
+29-09-2025 10:44:53 - INFO - Redirecting user Umer Khan to dashboard
+29-09-2025 10:44:57 - INFO - Validating token and fetching user details
+29-09-2025 10:44:57 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:45:09 - INFO - Validating token and fetching user details
+29-09-2025 10:45:09 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:45:21 - INFO - Validating token and fetching user details
+29-09-2025 10:45:21 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:45:43 - INFO - Validating token and fetching user details
+29-09-2025 10:45:43 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:45:46 - INFO - Validating token and fetching user details
+29-09-2025 10:45:46 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:46:40 - INFO - Validating token and fetching user details
+29-09-2025 10:46:40 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:47:06 - INFO - Validating token and fetching user details
+29-09-2025 10:47:06 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:47:06 - INFO - Validating token and fetching user details
+29-09-2025 10:47:06 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:47:23 - INFO - Validating token and fetching user details
+29-09-2025 10:47:23 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 10:47:23 - INFO - Validating token and fetching user details
+29-09-2025 10:47:23 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 11:06:49 - INFO - Validating token and fetching user details
+29-09-2025 11:06:49 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:06:56 - INFO - Validating token and fetching user details
+29-09-2025 11:06:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:06:56 - INFO - Validating token and fetching user details
+29-09-2025 11:06:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:07:17 - INFO - Validating token and fetching user details
+29-09-2025 11:07:17 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:08:51 - INFO - Validating token and fetching user details
+29-09-2025 11:08:51 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:10:27 - INFO - Validating token and fetching user details
+29-09-2025 11:10:27 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:11:41 - INFO - Validating token and fetching user details
+29-09-2025 11:11:41 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:11:57 - INFO - Validating token and fetching user details
+29-09-2025 11:11:57 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:12:01 - INFO - Validating token and fetching user details
+29-09-2025 11:12:01 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:12:06 - INFO - Validating token and fetching user details
+29-09-2025 11:12:06 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:14:12 - INFO - Validating token and fetching user details
+29-09-2025 11:14:12 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:15:46 - INFO - Validating token and fetching user details
+29-09-2025 11:15:46 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:15:46 - INFO - Validating token and fetching user details
+29-09-2025 11:15:46 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:32:43 - INFO - Validating token and fetching user details
+29-09-2025 11:32:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:32:48 - INFO - Validating token and fetching user details
+29-09-2025 11:32:48 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:33:35 - INFO - Validating token and fetching user details
+29-09-2025 11:33:35 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:42:59 - INFO - Validating token and fetching user details
+29-09-2025 11:42:59 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:49:26 - INFO - Validating token and fetching user details
+29-09-2025 11:49:26 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:49:29 - INFO - Validating token and fetching user details
+29-09-2025 11:49:29 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:53:30 - INFO - Validating token and fetching user details
+29-09-2025 11:53:30 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:53:34 - INFO - Validating token and fetching user details
+29-09-2025 11:53:34 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:56:15 - INFO - Validating token and fetching user details
+29-09-2025 11:56:15 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 11:56:22 - INFO - Validating token and fetching user details
+29-09-2025 11:56:22 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:01:03 - INFO - Validating token and fetching user details
+29-09-2025 12:01:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:01:07 - INFO - Validating token and fetching user details
+29-09-2025 12:01:07 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:12:53 - INFO - Validating token and fetching user details
+29-09-2025 12:12:53 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:13:01 - INFO - Validating token and fetching user details
+29-09-2025 12:13:01 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:13:06 - INFO - Validating token and fetching user details
+29-09-2025 12:13:06 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:13:20 - INFO - Validating token and fetching user details
+29-09-2025 12:13:20 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:14:40 - INFO - Validating token and fetching user details
+29-09-2025 12:14:40 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:14:46 - INFO - Validating token and fetching user details
+29-09-2025 12:14:46 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:16:50 - INFO - Validating token and fetching user details
+29-09-2025 12:16:50 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:16:56 - INFO - Validating token and fetching user details
+29-09-2025 12:16:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:17:16 - INFO - Validating token and fetching user details
+29-09-2025 12:17:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:22:26 - INFO - Validating token and fetching user details
+29-09-2025 12:22:26 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:22:33 - INFO - Validating token and fetching user details
+29-09-2025 12:22:33 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:23:22 - INFO - Validating token and fetching user details
+29-09-2025 12:23:22 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:23:27 - INFO - Validating token and fetching user details
+29-09-2025 12:23:27 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:26:38 - INFO - Validating token and fetching user details
+29-09-2025 12:26:38 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:26:43 - INFO - Validating token and fetching user details
+29-09-2025 12:26:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:29:31 - INFO - Validating token and fetching user details
+29-09-2025 12:29:31 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:29:36 - INFO - Validating token and fetching user details
+29-09-2025 12:29:36 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:32:38 - INFO - Validating token and fetching user details
+29-09-2025 12:32:38 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:37:01 - INFO - Validating token and fetching user details
+29-09-2025 12:37:01 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:37:59 - INFO - Validating token and fetching user details
+29-09-2025 12:37:59 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:38:03 - INFO - Validating token and fetching user details
+29-09-2025 12:38:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:43:45 - INFO - Validating token and fetching user details
+29-09-2025 12:43:45 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:45:13 - INFO - Validating token and fetching user details
+29-09-2025 12:45:13 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:55:44 - INFO - Validating token and fetching user details
+29-09-2025 12:55:44 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 12:55:50 - INFO - Validating token and fetching user details
+29-09-2025 12:55:50 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:05:55 - INFO - Validating token and fetching user details
+29-09-2025 13:05:55 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:06:00 - INFO - Validating token and fetching user details
+29-09-2025 13:06:00 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:06:02 - INFO - Validating token and fetching user details
+29-09-2025 13:06:02 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:06:40 - INFO - Validating token and fetching user details
+29-09-2025 13:06:40 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:06:45 - INFO - Validating token and fetching user details
+29-09-2025 13:06:45 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:08:00 - INFO - Validating token and fetching user details
+29-09-2025 13:08:00 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:08:05 - INFO - Validating token and fetching user details
+29-09-2025 13:08:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:10:43 - INFO - Validating token and fetching user details
+29-09-2025 13:10:43 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:11:24 - INFO - Validating token and fetching user details
+29-09-2025 13:11:24 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:14:02 - INFO - Validating token and fetching user details
+29-09-2025 13:14:02 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:14:06 - INFO - Validating token and fetching user details
+29-09-2025 13:14:06 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:14:49 - INFO - Validating token and fetching user details
+29-09-2025 13:14:49 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:14:51 - INFO - Validating token and fetching user details
+29-09-2025 13:14:51 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:15:27 - INFO - Validating token and fetching user details
+29-09-2025 13:15:27 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:21:41 - INFO - Validating token and fetching user details
+29-09-2025 13:21:41 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:29:04 - INFO - Validating token and fetching user details
+29-09-2025 13:29:04 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 13:29:07 - INFO - Validating token and fetching user details
+29-09-2025 13:29:07 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:06:48 - INFO - User accessed root endpoint, session email: reading@agphbooks.com
+29-09-2025 14:07:03 - INFO - Trying to login with email: rishabhvyas@gmail.com
+29-09-2025 14:07:03 - INFO - User Rishabh logged in successfully, role: user
+29-09-2025 14:07:03 - INFO - Redirecting user Rishabh to dashboard
+29-09-2025 14:07:07 - INFO - Validating token and fetching user details
+29-09-2025 14:07:07 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:08:10 - INFO - Trying to login with email: rishabhvyas@gmail.com
+29-09-2025 14:08:10 - INFO - User Rishabh logged in successfully, role: user
+29-09-2025 14:08:10 - INFO - Redirecting user Rishabh to dashboard
+29-09-2025 14:08:16 - INFO - Validating token and fetching user details
+29-09-2025 14:08:16 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:12:59 - INFO - Validating token and fetching user details
+29-09-2025 14:12:59 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:13:36 - INFO - Validating token and fetching user details
+29-09-2025 14:13:36 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:14:23 - INFO - Validating token and fetching user details
+29-09-2025 14:14:23 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:14:26 - INFO - Trying to login with email: yogishru@gmail.com
+29-09-2025 14:14:26 - INFO - User Yogesh Sharma logged in successfully, role: admin
+29-09-2025 14:14:26 - INFO - Redirecting user Yogesh Sharma to dashboard
+29-09-2025 14:14:29 - INFO - Validating token and fetching user details
+29-09-2025 14:14:29 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:14:35 - INFO - Validating token and fetching user details
+29-09-2025 14:14:35 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:14:56 - INFO - Validating token and fetching user details
+29-09-2025 14:14:56 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:15:17 - INFO - Validating token and fetching user details
+29-09-2025 14:15:17 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:15:23 - INFO - Validating token and fetching user details
+29-09-2025 14:15:23 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:15:32 - INFO - Validating token and fetching user details
+29-09-2025 14:15:32 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:15:37 - INFO - Validating token and fetching user details
+29-09-2025 14:15:37 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:17:03 - INFO - Validating token and fetching user details
+29-09-2025 14:17:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:22:51 - INFO - Validating token and fetching user details
+29-09-2025 14:22:51 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:22:51 - INFO - Validating token and fetching user details
+29-09-2025 14:22:51 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:24:28 - INFO - Validating token and fetching user details
+29-09-2025 14:24:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:24:28 - INFO - Validating token and fetching user details
+29-09-2025 14:24:28 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:25:38 - INFO - Validating token and fetching user details
+29-09-2025 14:25:38 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:26:32 - INFO - Validating token and fetching user details
+29-09-2025 14:26:32 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:27:21 - INFO - Validating token and fetching user details
+29-09-2025 14:27:21 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:28:19 - INFO - Validating token and fetching user details
+29-09-2025 14:28:19 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:28:22 - INFO - User accessed root endpoint, session email: yogishru@gmail.com
+29-09-2025 14:28:41 - INFO - Trying to login with email: rishabhvyas472@gmail.com
+29-09-2025 14:28:41 - INFO - User Rishabh logged in successfully, role: user
+29-09-2025 14:28:41 - INFO - Redirecting user Rishabh to dashboard
+29-09-2025 14:28:45 - INFO - Validating token and fetching user details
+29-09-2025 14:28:45 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:32:03 - INFO - Validating token and fetching user details
+29-09-2025 14:32:03 - INFO - Validating token and fetching user details
+29-09-2025 14:32:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:32:03 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:33:39 - INFO - Validating token and fetching user details
+29-09-2025 14:33:39 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:34:04 - INFO - Validating token and fetching user details
+29-09-2025 14:34:04 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:34:28 - INFO - Trying to login with email: mastersheet@agphbooks.com
+29-09-2025 14:34:28 - INFO - User Akash logged in successfully, role: user
+29-09-2025 14:34:28 - INFO - Redirecting user Akash to dashboard
+29-09-2025 14:34:31 - INFO - Validating token and fetching user details
+29-09-2025 14:34:31 - INFO - Successfully validated token and retrieved details for user: Akash
+29-09-2025 14:36:22 - INFO - Trying to login with email: rishabhvyas472@gmail.com
+29-09-2025 14:36:22 - INFO - User Rishabh logged in successfully, role: user
+29-09-2025 14:36:22 - INFO - Redirecting user Rishabh to dashboard
+29-09-2025 14:36:25 - INFO - Validating token and fetching user details
+29-09-2025 14:36:25 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:38:01 - INFO - Validating token and fetching user details
+29-09-2025 14:38:01 - INFO - Validating token and fetching user details
+29-09-2025 14:38:01 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:38:01 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:38:38 - INFO - Validating token and fetching user details
+29-09-2025 14:38:38 - INFO - Validating token and fetching user details
+29-09-2025 14:38:38 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:38:38 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:39:55 - INFO - Starting Flask application
+29-09-2025 14:40:23 - INFO - Validating token and fetching user details
+29-09-2025 14:40:23 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:40:33 - INFO - Validating token and fetching user details
+29-09-2025 14:40:33 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:40:42 - INFO - Trying to login with email: rishabhvyas472@gmail.com
+29-09-2025 14:40:42 - INFO - User Rishabh logged in successfully, role: user
+29-09-2025 14:40:44 - INFO - Redirecting user Rishabh to dashboard
+29-09-2025 14:40:47 - INFO - Validating token and fetching user details
+29-09-2025 14:40:47 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:42:15 - INFO - Validating token and fetching user details
+29-09-2025 14:42:15 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:42:22 - INFO - Validating token and fetching user details
+29-09-2025 14:42:22 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:43:07 - INFO - Validating token and fetching user details
+29-09-2025 14:43:07 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:43:07 - INFO - Validating token and fetching user details
+29-09-2025 14:43:07 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:44:05 - INFO - Validating token and fetching user details
+29-09-2025 14:44:05 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:44:05 - INFO - Validating token and fetching user details
+29-09-2025 14:44:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:46:39 - INFO - Validating token and fetching user details
+29-09-2025 14:46:39 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 14:46:39 - INFO - Validating token and fetching user details
+29-09-2025 14:46:39 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 14:48:40 - INFO - Validating token and fetching user details
+29-09-2025 14:48:40 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:01:29 - INFO - Validating token and fetching user details
+29-09-2025 15:01:29 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:01:29 - INFO - Validating token and fetching user details
+29-09-2025 15:01:29 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:01:44 - INFO - Validating token and fetching user details
+29-09-2025 15:01:44 - WARNING - User not found for user_id: 23
+29-09-2025 15:02:03 - INFO - Validating token and fetching user details
+29-09-2025 15:02:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:02:03 - INFO - Validating token and fetching user details
+29-09-2025 15:02:03 - WARNING - User not found for user_id: 23
+29-09-2025 15:02:09 - INFO - Validating token and fetching user details
+29-09-2025 15:02:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:02:09 - INFO - Validating token and fetching user details
+29-09-2025 15:02:09 - WARNING - User not found for user_id: 23
+29-09-2025 15:02:21 - INFO - Validating token and fetching user details
+29-09-2025 15:02:21 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:03:21 - INFO - Trying to login with email: rishabhvyas472@gmail.com
+29-09-2025 15:03:21 - WARNING - Failed login attempt for email: rishabhvyas472@gmail.com - Invalid credentials
+29-09-2025 15:03:37 - INFO - Trying to login with email: rishabhvyas@gmail.com
+29-09-2025 15:03:37 - INFO - User Rishabh logged in successfully, role: user
+29-09-2025 15:03:37 - INFO - Redirecting user Rishabh to dashboard
+29-09-2025 15:03:40 - INFO - Validating token and fetching user details
+29-09-2025 15:03:40 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:04:01 - INFO - Validating token and fetching user details
+29-09-2025 15:04:01 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:04:10 - INFO - Validating token and fetching user details
+29-09-2025 15:04:10 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:04:13 - INFO - Validating token and fetching user details
+29-09-2025 15:04:13 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:04:19 - INFO - Validating token and fetching user details
+29-09-2025 15:04:19 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:04:28 - INFO - Validating token and fetching user details
+29-09-2025 15:04:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:04:30 - INFO - Validating token and fetching user details
+29-09-2025 15:04:30 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:04:55 - INFO - Validating token and fetching user details
+29-09-2025 15:04:55 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:04:58 - INFO - Validating token and fetching user details
+29-09-2025 15:04:58 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:06:58 - INFO - Starting Flask application
+29-09-2025 15:07:16 - INFO - Validating token and fetching user details
+29-09-2025 15:07:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:07:16 - INFO - Validating token and fetching user details
+29-09-2025 15:07:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:08:06 - INFO - User accessed root endpoint, session email: rishabhvyas@gmail.com
+29-09-2025 15:08:29 - INFO - Trying to login with email: pryanshu@gmail.com
+29-09-2025 15:08:29 - INFO - User Pryanshu logged in successfully, role: user
+29-09-2025 15:08:30 - INFO - Redirecting user Pryanshu to dashboard
+29-09-2025 15:08:33 - INFO - Validating token and fetching user details
+29-09-2025 15:08:33 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 15:08:51 - INFO - User accessed root endpoint, session email: pryanshu@gmail.com
+29-09-2025 15:09:00 - INFO - Trying to login with email: rishabhvyas@gmail.com
+29-09-2025 15:09:00 - INFO - User Rishabh logged in successfully, role: user
+29-09-2025 15:09:00 - INFO - Redirecting user Rishabh to dashboard
+29-09-2025 15:09:03 - INFO - Validating token and fetching user details
+29-09-2025 15:09:03 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:09:10 - INFO - Validating token and fetching user details
+29-09-2025 15:09:10 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:09:16 - INFO - Validating token and fetching user details
+29-09-2025 15:09:16 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:09:23 - INFO - Validating token and fetching user details
+29-09-2025 15:09:23 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:09:30 - INFO - Validating token and fetching user details
+29-09-2025 15:09:30 - INFO - Successfully validated token and retrieved details for user: Rishabh
+29-09-2025 15:10:05 - INFO - Validating token and fetching user details
+29-09-2025 15:10:05 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:10:09 - INFO - Validating token and fetching user details
+29-09-2025 15:10:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:11:46 - INFO - User accessed root endpoint, session email: rishabhvyas@gmail.com
+29-09-2025 15:11:59 - INFO - Trying to login with email: mastersheet@agphbooks.com
+29-09-2025 15:11:59 - INFO - User Akash logged in successfully, role: user
+29-09-2025 15:11:59 - INFO - Redirecting user Akash to dashboard
+29-09-2025 15:12:02 - INFO - Validating token and fetching user details
+29-09-2025 15:12:02 - INFO - Successfully validated token and retrieved details for user: Akash
+29-09-2025 15:12:51 - INFO - Trying to login with email: formatting@agphbooks.com
+29-09-2025 15:12:51 - INFO - User Pawandeep Singh logged in successfully, role: user
+29-09-2025 15:12:51 - INFO - Redirecting user Pawandeep Singh to dashboard
+29-09-2025 15:12:55 - INFO - Validating token and fetching user details
+29-09-2025 15:12:55 - INFO - Successfully validated token and retrieved details for user: Pawandeep Singh
+29-09-2025 15:13:03 - INFO - Validating token and fetching user details
+29-09-2025 15:13:03 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:13:57 - INFO - Validating token and fetching user details
+29-09-2025 15:13:57 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:15:12 - INFO - Validating token and fetching user details
+29-09-2025 15:15:12 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:15:15 - INFO - Validating token and fetching user details
+29-09-2025 15:15:15 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:15:44 - INFO - Validating token and fetching user details
+29-09-2025 15:15:44 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:16:33 - INFO - Validating token and fetching user details
+29-09-2025 15:16:33 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:16:37 - INFO - Validating token and fetching user details
+29-09-2025 15:16:37 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:28:23 - INFO - Validating token and fetching user details
+29-09-2025 15:28:23 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:28:28 - INFO - Validating token and fetching user details
+29-09-2025 15:28:28 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:28:35 - INFO - Validating token and fetching user details
+29-09-2025 15:28:35 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:28:36 - INFO - User accessed root endpoint, session email: formatting@agphbooks.com
+29-09-2025 15:28:54 - INFO - Trying to login with email: reading@agphbooks.com
+29-09-2025 15:28:54 - INFO - User Umer Khan logged in successfully, role: user
+29-09-2025 15:28:54 - INFO - Redirecting user Umer Khan to dashboard
+29-09-2025 15:28:58 - INFO - Validating token and fetching user details
+29-09-2025 15:28:58 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:31:31 - INFO - Validating token and fetching user details
+29-09-2025 15:31:31 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:31:40 - INFO - Validating token and fetching user details
+29-09-2025 15:31:40 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:32:30 - INFO - Validating token and fetching user details
+29-09-2025 15:32:30 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:34:16 - INFO - Validating token and fetching user details
+29-09-2025 15:34:16 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:35:06 - INFO - Validating token and fetching user details
+29-09-2025 15:35:06 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:35:25 - INFO - Validating token and fetching user details
+29-09-2025 15:35:25 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:35:38 - INFO - Validating token and fetching user details
+29-09-2025 15:35:38 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:36:04 - INFO - Validating token and fetching user details
+29-09-2025 15:36:04 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:36:20 - INFO - Validating token and fetching user details
+29-09-2025 15:36:20 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:36:30 - INFO - Validating token and fetching user details
+29-09-2025 15:36:30 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:36:50 - INFO - Validating token and fetching user details
+29-09-2025 15:36:50 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:36:58 - INFO - Validating token and fetching user details
+29-09-2025 15:36:58 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:40:58 - INFO - Validating token and fetching user details
+29-09-2025 15:40:58 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:41:38 - INFO - Validating token and fetching user details
+29-09-2025 15:41:38 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:46:26 - INFO - Validating token and fetching user details
+29-09-2025 15:46:26 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:46:53 - INFO - Validating token and fetching user details
+29-09-2025 15:46:53 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:47:10 - INFO - Validating token and fetching user details
+29-09-2025 15:47:10 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:47:16 - INFO - Validating token and fetching user details
+29-09-2025 15:47:16 - INFO - Successfully validated token and retrieved details for user: Umer Khan
+29-09-2025 15:47:39 - INFO - Trying to login with email: yogishru@gmail.com
+29-09-2025 15:47:39 - INFO - User Yogesh Sharma logged in successfully, role: admin
+29-09-2025 15:47:39 - INFO - Redirecting user Yogesh Sharma to dashboard
+29-09-2025 15:47:41 - INFO - User accessed root endpoint, session email: yogishru@gmail.com
+29-09-2025 15:47:44 - INFO - Validating token and fetching user details
+29-09-2025 15:47:44 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:47:49 - INFO - Validating token and fetching user details
+29-09-2025 15:47:49 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:48:08 - INFO - Trying to login with email: muskan@agphbooks.com
+29-09-2025 15:48:08 - INFO - User Muskan logged in successfully, role: user
+29-09-2025 15:48:09 - INFO - Redirecting user Muskan to dashboard
+29-09-2025 15:48:12 - INFO - Validating token and fetching user details
+29-09-2025 15:48:12 - INFO - Successfully validated token and retrieved details for user: Muskan
+29-09-2025 15:48:17 - INFO - Validating token and fetching user details
+29-09-2025 15:48:17 - INFO - Successfully validated token and retrieved details for user: Muskan
+29-09-2025 15:50:21 - INFO - Validating token and fetching user details
+29-09-2025 15:50:21 - INFO - Successfully validated token and retrieved details for user: Muskan
+29-09-2025 15:52:16 - INFO - Validating token and fetching user details
+29-09-2025 15:52:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:52:29 - INFO - Validating token and fetching user details
+29-09-2025 15:52:29 - INFO - Successfully validated token and retrieved details for user: Muskan
+29-09-2025 15:53:05 - INFO - User accessed root endpoint, session email: muskan@agphbooks.com
+29-09-2025 15:53:06 - INFO - Trying to login with email: yogishru@gmail.com
+29-09-2025 15:53:06 - INFO - User Yogesh Sharma logged in successfully, role: admin
+29-09-2025 15:53:06 - INFO - Redirecting user Yogesh Sharma to dashboard
+29-09-2025 15:53:08 - INFO - User accessed root endpoint, session email: yogishru@gmail.com
+29-09-2025 15:53:11 - INFO - Validating token and fetching user details
+29-09-2025 15:53:11 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:53:16 - INFO - Validating token and fetching user details
+29-09-2025 15:53:16 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:53:37 - INFO - Trying to login with email: pryanshu@gmail.com
+29-09-2025 15:53:37 - INFO - User Pryanshu logged in successfully, role: user
+29-09-2025 15:53:37 - INFO - Redirecting user Pryanshu to dashboard
+29-09-2025 15:53:40 - INFO - Validating token and fetching user details
+29-09-2025 15:53:40 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 15:53:53 - INFO - Validating token and fetching user details
+29-09-2025 15:53:53 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:54:22 - INFO - Validating token and fetching user details
+29-09-2025 15:54:22 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:54:40 - INFO - Validating token and fetching user details
+29-09-2025 15:54:40 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:58:52 - INFO - Validating token and fetching user details
+29-09-2025 15:58:52 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:59:01 - INFO - Validating token and fetching user details
+29-09-2025 15:59:01 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:59:09 - INFO - Validating token and fetching user details
+29-09-2025 15:59:09 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 15:59:18 - INFO - Validating token and fetching user details
+29-09-2025 15:59:18 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 16:00:02 - INFO - User accessed root endpoint, session email: pryanshu@gmail.com
+29-09-2025 16:00:05 - INFO - Trying to login with email: writing@agphbooks.com
+29-09-2025 16:00:05 - INFO - User Aman Giri logged in successfully, role: user
+29-09-2025 16:00:05 - INFO - Redirecting user Aman Giri to dashboard
+29-09-2025 16:00:08 - INFO - Validating token and fetching user details
+29-09-2025 16:00:08 - INFO - Successfully validated token and retrieved details for user: Aman Giri
+29-09-2025 16:00:17 - INFO - Validating token and fetching user details
+29-09-2025 16:00:17 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 16:00:20 - INFO - Validating token and fetching user details
+29-09-2025 16:00:20 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 16:00:47 - INFO - Trying to login with email: pryanshu@gmail.com
+29-09-2025 16:00:47 - INFO - User Pryanshu logged in successfully, role: user
+29-09-2025 16:00:47 - INFO - Redirecting user Pryanshu to dashboard
+29-09-2025 16:00:50 - INFO - Validating token and fetching user details
+29-09-2025 16:00:50 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:02:09 - INFO - Validating token and fetching user details
+29-09-2025 16:02:09 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:02:43 - INFO - Validating token and fetching user details
+29-09-2025 16:02:43 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:02:48 - INFO - Validating token and fetching user details
+29-09-2025 16:02:48 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:11:24 - INFO - Validating token and fetching user details
+29-09-2025 16:11:24 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:11:30 - INFO - Validating token and fetching user details
+29-09-2025 16:11:30 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:20:16 - INFO - Validating token and fetching user details
+29-09-2025 16:20:16 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:21:41 - INFO - Validating token and fetching user details
+29-09-2025 16:21:41 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:27:51 - INFO - Validating token and fetching user details
+29-09-2025 16:27:51 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:28:02 - INFO - Validating token and fetching user details
+29-09-2025 16:28:02 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:31:55 - INFO - Validating token and fetching user details
+29-09-2025 16:31:55 - INFO - Successfully validated token and retrieved details for user: Pryanshu
+29-09-2025 16:40:31 - INFO - Validating token and fetching user details
+29-09-2025 16:40:31 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 16:44:47 - INFO - Validating token and fetching user details
+29-09-2025 16:44:47 - INFO - Successfully validated token and retrieved details for user: Yogesh Sharma
+29-09-2025 16:44:49 - INFO - User accessed root endpoint, session email: pryanshu@gmail.com
+29-09-2025 16:45:36 - INFO - Trying to login with email: pawan@gmail.com
+29-09-2025 16:45:36 - INFO - User Pwan logged in successfully, role: user
+29-09-2025 16:45:36 - INFO - Redirecting user Pwan to dashboard
+29-09-2025 16:45:39 - INFO - Validating token and fetching user details
+29-09-2025 16:45:39 - INFO - Successfully validated token and retrieved details for user: Pwan
