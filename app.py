@@ -66,20 +66,20 @@ CORS(app, resources={
     r"/reset_password": {"origins": ["*"]}
 })
 
-# App-based redirect URLs
-APP_REDIRECTS={"main": "https://mis.agkit.in", 
-               "operations": "https://mis.agkit.in/team_dashboard", 
-               "admin": "https://mis.agkit.in", 
-               "tasks": "https://mis.agkit.in/tasks",
-               "ijisem": "https://mis.agkit.in/ijisem",
-                "sales": "https://mis.agkit.in/sales"}
+# # App-based redirect URLs
+# APP_REDIRECTS={"main": "https://mis.agkit.in", 
+#                "operations": "https://mis.agkit.in/team_dashboard", 
+#                "admin": "https://mis.agkit.in", 
+#                "tasks": "https://mis.agkit.in/tasks",
+#                "ijisem": "https://mis.agkit.in/ijisem",
+#                 "sales": "https://mis.agkit.in/sales"}
 
-# APP_REDIRECTS={"main": "http://localhost:8501", 
-#                 "operations": "http://localhost:8501/team_dashboard", 
-#                 "admin": "http://localhost:8501", 
-#                 "tasks": "http://localhost:8501/tasks",
-#                 "ijisem": "http://localhost:8501/ijisem",
-#                 "sales":"http://localhost:8501/sales"}
+APP_REDIRECTS={"main": "http://localhost:8501", 
+                "operations": "http://localhost:8501/team_dashboard", 
+                "admin": "http://localhost:8501", 
+                "tasks": "http://localhost:8501/tasks",
+                "ijisem": "http://localhost:8501/ijisem",
+                "sales":"http://localhost:8501/sales"}
 
 
 TOKEN_BLACKLIST = set()
