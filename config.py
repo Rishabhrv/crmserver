@@ -4,12 +4,17 @@ import json
 
 load_dotenv()
 
-
-# MySQL Configuration
+# MySQL Configuration for booktracker database
 MYSQL_HOST = os.getenv("MYSQL_HOST")
 MYSQL_USER = os.getenv("MYSQL_USER")
 MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
 MYSQL_DB = os.getenv("MYSQL_DB")
+
+# MySQL Configuration for ict database
+MYSQL_ICT_HOST = os.getenv("MYSQL_ICT_HOST")
+MYSQL_ICT_USER = os.getenv("MYSQL_ICT_USER")
+MYSQL_ICT_PASSWORD = os.getenv("MYSQL_ICT_PASSWORD")
+MYSQL_ICT_DB = os.getenv("MYSQL_ICT_DB")
 
 
 # Flask Secret Key
