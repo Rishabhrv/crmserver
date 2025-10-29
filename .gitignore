@@ -7,10 +7,13 @@ flask.log
 .env
 flask.log
 
+<<<<<<< HEAD
 
 # Created by https://www.toptal.com/developers/gitignore/api/react
 # Edit at https://www.toptal.com/developers/gitignore?templates=react
 
+=======
+>>>>>>> 009d2f6b4625422a35c7096497ac884c9964c035
 ### react ###
 .DS_*
 *.log
@@ -25,6 +28,10 @@ bower_components
 
 psd
 thumb
+<<<<<<< HEAD
 sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/react
+=======
+sketch
+>>>>>>> 009d2f6b4625422a35c7096497ac884c9964c035

@@ -28,6 +28,7 @@
   color: #61dafb;
 }
 
+<<<<<<< HEAD
 /* Hide scrollbar but keep scrolling */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
@@ -38,6 +39,8 @@
   scrollbar-width: none;     /* for Firefox */
 }
 
+=======
+>>>>>>> 009d2f6b4625422a35c7096497ac884c9964c035
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

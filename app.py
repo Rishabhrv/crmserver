@@ -18,7 +18,6 @@ from mysql.connector import pooling
 import os
 from werkzeug.utils import secure_filename
 
-#changes are made
 
 # Custom filter to suppress Werkzeug HTTP request logs
 class NoWerkzeugFilter(logging.Filter):
