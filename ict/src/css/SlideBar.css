@@ -1,0 +1,8 @@
+.SliderBar .icon:hover::before {
+  transform: scale(1.1);
+}
+
+.SliderBar .icon:hover {
+  color: #818181;
+  text-shadow: 0 0 5px #777777;
+} 
