@@ -10792,3 +10792,105 @@
 28-10-2025 10:51:55 - INFO - User Muskan logged in, role: user
 28-10-2025 10:52:03 - INFO - Validating token and fetching user details
 28-10-2025 10:53:10 - INFO - Validating token and fetching user details
+28-10-2025 12:27:15 - INFO - ICT MySQL pool created
+28-10-2025 12:27:15 - INFO - Booktracker MySQL pool created
+28-10-2025 12:27:15 - INFO - Starting Flask-SocketIO application
+28-10-2025 12:53:33 - INFO - User accessed root endpoint, session email: muskan@agphbooks.com
+28-10-2025 15:53:32 - INFO - ICT MySQL pool created
+28-10-2025 15:53:32 - INFO - Booktracker MySQL pool created
+28-10-2025 15:53:32 - INFO - Starting Flask-SocketIO application
+28-10-2025 15:53:33 - INFO - ICT MySQL pool created
+28-10-2025 15:53:33 - INFO - Booktracker MySQL pool created
+28-10-2025 15:53:33 - INFO - Starting Flask-SocketIO application
+28-10-2025 15:55:07 - INFO - User accessed root endpoint, session email: muskan@agphbooks.com
+28-10-2025 15:55:57 - INFO - Trying to login with email: yogishru@gmail.com
+28-10-2025 15:55:57 - INFO - User Yogesh Sharma logged in, role: admin
+28-10-2025 15:55:59 - INFO - Trying to login with email: yogishru@gmail.com
+28-10-2025 15:55:59 - INFO - User Yogesh Sharma logged in, role: admin
+28-10-2025 15:56:30 - INFO - Validating token and fetching user details
+28-10-2025 15:56:39 - INFO - Validating token and fetching user details
+28-10-2025 15:57:13 - INFO - Validating token and fetching user details
+28-10-2025 15:58:17 - INFO - User accessed root endpoint, session email: yogishru@gmail.com
+28-10-2025 15:58:20 - INFO - Trying to login with email: rishabhvyas@agphbooks.com
+28-10-2025 15:58:20 - INFO - User Rishabh logged in, role: user
+28-10-2025 15:58:22 - INFO - Validating token and fetching user details
+28-10-2025 15:58:22 - INFO - Validating token and fetching user details
+28-10-2025 15:59:08 - INFO - Validating token and fetching user details
+28-10-2025 15:59:08 - INFO - Validating token and fetching user details
+29-10-2025 10:28:10 - INFO - ICT MySQL pool created
+29-10-2025 10:28:10 - INFO - Booktracker MySQL pool created
+29-10-2025 10:28:10 - INFO - Starting Flask-SocketIO application
+29-10-2025 10:28:11 - INFO - ICT MySQL pool created
+29-10-2025 10:28:11 - INFO - Booktracker MySQL pool created
+29-10-2025 10:28:11 - INFO - Starting Flask-SocketIO application
+29-10-2025 10:28:41 - INFO - User accessed root endpoint, session email: rishabhvyas@agphbooks.com
+29-10-2025 10:28:44 - INFO - Trying to login with email: rishabhvyas@agphbooks.com
+29-10-2025 10:28:44 - INFO - User Rishabh logged in, role: user
+29-10-2025 10:30:26 - INFO - ICT MySQL pool created
+29-10-2025 10:30:26 - INFO - Booktracker MySQL pool created
+29-10-2025 10:30:26 - INFO - Starting Flask-SocketIO application
+29-10-2025 10:31:15 - INFO - Trying to login with email: yogishru@gmail.com
+29-10-2025 10:31:15 - INFO - User Yogesh Sharma logged in, role: admin
+29-10-2025 10:31:25 - INFO - Validating token and fetching user details
+29-10-2025 10:31:30 - INFO - User accessed root endpoint, session email: yogishru@gmail.com
+29-10-2025 10:31:33 - INFO - Trying to login with email: muskan@agphbooks.com
+29-10-2025 10:31:33 - INFO - User Muskan logged in, role: user
+29-10-2025 10:31:39 - INFO - Validating token and fetching user details
+29-10-2025 10:31:49 - INFO - Validating token and fetching user details
+29-10-2025 10:31:57 - INFO - Validating token and fetching user details
+29-10-2025 10:35:20 - INFO - Validating token and fetching user details
+29-10-2025 10:43:29 - INFO - Validating token and fetching user details
+29-10-2025 13:27:23 - INFO - ICT MySQL pool created
+29-10-2025 13:27:23 - INFO - Booktracker MySQL pool created
+29-10-2025 13:27:23 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:06:31 - INFO - ICT MySQL pool created
+29-10-2025 14:06:31 - INFO - Booktracker MySQL pool created
+29-10-2025 14:06:31 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:06:31 - INFO - ICT MySQL pool created
+29-10-2025 14:06:31 - INFO - Booktracker MySQL pool created
+29-10-2025 14:06:31 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:14:03 - INFO - ICT MySQL pool created
+29-10-2025 14:14:03 - INFO - Booktracker MySQL pool created
+29-10-2025 14:14:03 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:14:20 - INFO - ICT MySQL pool created
+29-10-2025 14:14:20 - INFO - Booktracker MySQL pool created
+29-10-2025 14:14:20 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:22:55 - INFO - ICT MySQL pool created
+29-10-2025 14:22:55 - INFO - Booktracker MySQL pool created
+29-10-2025 14:22:55 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:22:56 - INFO - ICT MySQL pool created
+29-10-2025 14:22:56 - INFO - Booktracker MySQL pool created
+29-10-2025 14:22:56 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:24:03 - INFO - User accessed root endpoint, session email: muskan@agphbooks.com
+29-10-2025 14:25:19 - INFO - ICT MySQL pool created
+29-10-2025 14:25:19 - INFO - Booktracker MySQL pool created
+29-10-2025 14:25:19 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:25:20 - INFO - ICT MySQL pool created
+29-10-2025 14:25:20 - INFO - Booktracker MySQL pool created
+29-10-2025 14:25:20 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:30:14 - INFO - Validating token and fetching user details
+29-10-2025 14:30:14 - INFO - Validating token and fetching user details
+29-10-2025 14:30:58 - INFO - Validating token and fetching user details
+29-10-2025 14:30:59 - INFO - Validating token and fetching user details
+29-10-2025 14:31:10 - INFO - Validating token and fetching user details
+29-10-2025 14:31:10 - INFO - Validating token and fetching user details
+29-10-2025 14:31:31 - INFO - Validating token and fetching user details
+29-10-2025 14:31:31 - INFO - Validating token and fetching user details
+29-10-2025 14:31:47 - INFO - User accessed root endpoint, session email: muskan@agphbooks.com
+29-10-2025 14:31:49 - INFO - Trying to login with email: muskan@agphbooks.com
+29-10-2025 14:31:49 - INFO - User Muskan logged in, role: user
+29-10-2025 14:31:56 - INFO - Validating token and fetching user details
+29-10-2025 14:32:15 - INFO - Validating token and fetching user details
+29-10-2025 14:32:17 - INFO - Validating token and fetching user details
+29-10-2025 14:32:18 - INFO - Validating token and fetching user details
+29-10-2025 14:32:31 - INFO - Validating token and fetching user details
+29-10-2025 14:32:31 - INFO - Validating token and fetching user details
+29-10-2025 14:32:38 - INFO - Trying to login with email: muskan@agphbooks.com
+29-10-2025 14:32:38 - INFO - User Muskan logged in, role: user
+29-10-2025 14:32:44 - INFO - Validating token and fetching user details
+29-10-2025 14:32:44 - INFO - Validating token and fetching user details
+29-10-2025 14:32:50 - INFO - Validating token and fetching user details
+29-10-2025 14:32:50 - INFO - Validating token and fetching user details
+29-10-2025 14:34:06 - INFO - Validating token and fetching user details
+29-10-2025 14:37:41 - INFO - Validating token and fetching user details
+29-10-2025 14:37:41 - INFO - Validating token and fetching user details

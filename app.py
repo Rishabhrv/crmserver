@@ -13,8 +13,9 @@ import config
 from flask_socketio import SocketIO, join_room, emit
 from datetime import datetime, timedelta
 from functools import wraps
-import mysql.connector  # <-- NEW: Use mysql-connector-python
 from mysql.connector import pooling
+import os
+from werkzeug.utils import secure_filename
 
 
 # Custom filter to suppress Werkzeug HTTP request logs
@@ -38,7 +39,7 @@ for handler in logging.getLogger().handlers:
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins="*")
-CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "https://mis.agkit.in"]}})
+CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "https://mis.agkit.in","http://localhost:3000"]}})
 
 try:
     # Pool for 'ict' database (chat)
@@ -95,7 +96,8 @@ APP_REDIRECTS={"main": "http://localhost:8501",
                 "admin": "http://localhost:8501", 
                 "tasks": "http://localhost:8501/tasks",
                 "ijisem": "http://localhost:8501/ijisem",
-                "sales":"http://localhost:8501/sales"}
+                "sales": "http://localhost:8501/sales"}
+
 
 
 TOKEN_BLACKLIST = set()
@@ -122,14 +124,15 @@ def token_required(f):
             return jsonify({"error": "Token missing"}), 401
         try:
             token = auth.split(" ")[1]
-            payload = jwt.decode(token, app.secret_key, algorithms=["HS256"])
-            request.user_id = payload["id"]
+            payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+            request.user_id = payload["user_id"]
         except jwt.ExpiredSignatureError:
             return jsonify({"error": "Token expired"}), 401
         except jwt.InvalidTokenError:
             return jsonify({"error": "Invalid token"}), 401
         return f(*args, **kwargs)
     return wrapper
+
 
 @app.route('/')
 def index():
@@ -403,9 +406,12 @@ def validate_and_details():
 @token_required
 def get_conversations():
     uid = request.user_id
-    conn, cur = get_ict_cursor()
+    ict_conn, ict_cur = get_ict_cursor()   # For messages & conversations
+    book_conn, book_cur = get_book_cursor()  # For user info
+
     try:
-        cur.execute("""
+        # Fetch conversations and last message
+        ict_cur.execute("""
             SELECT c.id,
                    CASE WHEN c.user1_id = %s THEN c.user2_id ELSE c.user1_id END AS other_user_id,
                    m.message AS last_message,
@@ -418,20 +424,23 @@ def get_conversations():
             WHERE c.user1_id = %s OR c.user2_id = %s
             ORDER BY m.timestamp DESC
         """, (uid, uid, uid))
-        rows = cur.fetchall()
+        rows = ict_cur.fetchall()
 
         convos = []
         for r in rows:
             other_id = r["other_user_id"]
-            cur2 = conn.cursor(dictionary=True)
-            cur2.execute("SELECT username FROM users WHERE id=%s", (other_id,))
-            other = cur2.fetchone() or {}
-            cur2.execute(
-                "SELECT COUNT(*) AS unread FROM messages WHERE conversation_id=%s AND sender_id!=%s AND seen=0",
-                (r["id"], uid)
-            )
-            unread = cur2.fetchone()["unread"]
-            cur2.close()
+
+            # Get user info from book database
+            book_cur.execute("SELECT username FROM userss WHERE id=%s", (other_id,))
+            other = book_cur.fetchone() or {}
+
+            # Get unread count from messages table
+            ict_cur.execute("""
+                SELECT COUNT(*) AS unread
+                FROM messages
+                WHERE conversation_id=%s AND sender_id!=%s AND seen=0
+            """, (r["id"], uid))
+            unread = ict_cur.fetchone()["unread"]
 
             convos.append({
                 "id": r["id"],
@@ -441,10 +450,15 @@ def get_conversations():
                 "last_time": r["last_time"],
                 "unread": unread
             })
+
         return jsonify(convos)
+
     finally:
-        cur.close()
-        conn.close() 
+        ict_cur.close()
+        book_cur.close()
+        ict_conn.close()
+        book_conn.close()
+
 
 @app.route("/messages/<int:conversation_id>", methods=["GET"])
 @token_required
@@ -470,10 +484,10 @@ def get_messages(conversation_id):
 @app.route('/users')
 def search_users():
     term = request.args.get('search', '')
-    conn, cur = get_ict_cursor()
+    conn, cur = get_book_cursor()   # ✅ Correct: connect to 'book' DB
     try:
         cur.execute(
-            "SELECT id, username FROM users WHERE username LIKE %s LIMIT 10",
+            "SELECT id, username FROM userss WHERE username LIKE %s LIMIT 10",
             (f"%{term}%",)
         )
         users = cur.fetchall()
@@ -481,6 +495,65 @@ def search_users():
     finally:
         cur.close()
         conn.close()
+
+
+#--------------------Create New Conversations-----------------
+
+@app.route("/createConversation", methods=["POST"])
+@token_required
+def create_conversation():
+    try:
+        data = request.get_json() or {}
+        user1_id = data.get("user1_id")
+        user2_id = data.get("user2_id")
+
+        if not user1_id or not user2_id:
+            return jsonify({"success": False, "error": "Both user IDs required"}), 400
+
+        conn, cur = get_ict_cursor()  # ✅ FIXED
+
+        # ✅ Check if conversation already exists
+        cur.execute("""
+            SELECT id FROM conversations
+            WHERE (user1_id = %s AND user2_id = %s)
+               OR (user1_id = %s AND user2_id = %s)
+        """, (user1_id, user2_id, user2_id, user1_id))
+        convo = cur.fetchone()
+
+        if convo:
+            convo_id = convo["id"]
+            cur.execute("SELECT * FROM conversations WHERE id=%s", (convo_id,))
+            existing_convo = cur.fetchone()
+            conn.close()
+            return jsonify({
+                "success": True,
+                "message": "Conversation already exists",
+                "conversation": existing_convo
+            }), 200
+
+        # ✅ Create new conversation
+        cur.execute("""
+            INSERT INTO conversations (user1_id, user2_id, created_at)
+            VALUES (%s, %s, NOW())
+        """, (user1_id, user2_id))
+        conn.commit()
+
+        convo_id = cur.lastrowid
+        cur.execute("SELECT * FROM conversations WHERE id=%s", (convo_id,))
+        new_convo = cur.fetchone()
+
+        conn.close()
+        return jsonify({
+            "success": True,
+            "message": "New conversation created",
+            "conversation": new_convo
+        }), 201
+
+    except Exception as e:
+        print("Error creating conversation:", str(e))
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
 
 # -------------------- SocketIO --------------------
 @socketio.on("join")
@@ -492,8 +565,8 @@ def socket_join(data):
         return
 
     try:
-        payload = jwt.decode(token, app.secret_key, algorithms=["HS256"])
-        user_id = payload["id"]
+        payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+        user_id = payload["user_id"]
     except:
         emit("error", {"error": "invalid token"})
         return
@@ -505,37 +578,118 @@ def socket_join(data):
 def socket_send_message(data):
     token = data.get("token")
     conv_id = data.get("conversation_id")
-    text = data.get("message")
-    if not all([token, conv_id, text]):
+    message_text = data.get("message")
+    message_type = data.get("message_type", "text")  # ✅ default type
+
+    if not token or not conv_id or not message_text:
         emit("error", {"error": "missing fields"})
         return
 
+    # 🔐 Decode JWT using consistent key and payload structure
     try:
-        payload = jwt.decode(token, app.secret_key, algorithms=["HS256"])
-        sender_id = payload["id"]
-    except:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+        sender_id = payload["user_id"]
+    except jwt.ExpiredSignatureError:
+        emit("error", {"error": "token expired"})
+        return
+    except jwt.InvalidTokenError:
         emit("error", {"error": "invalid token"})
         return
 
-    ts = now_ist().strftime("%Y-%m-%d %H:%M:%S")
-    conn, cur = get_ict_cursor()
+    # 🕒 Use IST time (assuming you have now_ist() helper)
+    current_time = now_ist()
+    formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
     try:
+        # ✅ Connect to ICT DB (where messages table exists)
+        conn, cur = get_ict_cursor()
         cur.execute(
-            "INSERT INTO messages (conversation_id, sender_id, message, timestamp) VALUES (%s, %s, %s, %s)",
-            (conv_id, sender_id, text, ts)
+            """
+            INSERT INTO messages (conversation_id, sender_id, message, message_type, timestamp)
+            VALUES (%s, %s, %s, %s, %s)
+            """,
+            (conv_id, sender_id, message_text, message_type, formatted_time)
         )
-        msg_id = cur.lastrowid
-        msg = {
-            "id": msg_id,
-            "conversation_id": conv_id,
-            "sender_id": sender_id,
-            "message": text,
-            "timestamp": ts
-        }
-        emit("new_message", msg, room=f"conv_{conv_id}")
+        conn.commit()
+        message_id = cur.lastrowid
+    except Exception as e:
+        emit("error", {"error": f"DB error: {str(e)}"})
+        return
     finally:
         cur.close()
         conn.close()
+
+    # 🧩 Get sender username from book DB
+    try:
+        book_conn, book_cur = get_book_cursor()
+        book_cur.execute("SELECT username FROM userss WHERE id = %s", (sender_id,))
+        sender_name = (book_cur.fetchone() or {}).get("username", "Unknown")
+    except Exception as e:
+        sender_name = "Unknown"
+    finally:
+        book_cur.close()
+        book_conn.close()
+
+    # 📦 Build message payload
+    payload_msg = {
+        "id": message_id,
+        "conversation_id": conv_id,
+        "sender_id": sender_id,
+        "sender_name": sender_name,
+        "message": message_text,
+        "message_type": message_type,
+        "timestamp": formatted_time
+    }
+
+    # 📡 Broadcast to all users in this conversation room
+    emit("new_message", payload_msg, room=f"conv_{conv_id}")
+
+    # 📨 Acknowledge the sender (optional but good UX)
+    emit("message_sent", payload_msg, room=request.sid)
+
+
+
+# -------------------- File Upload Handling --------------------
+app.static_folder = "uploads"
+
+# Serve uploaded files publicly
+app.add_url_rule(
+    "/uploads/<path:filename>",
+    endpoint="uploads",
+    view_func=app.send_static_file
+)
+
+# Configure upload directory
+UPLOAD_FOLDER = "uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "mp4", "mp3", "zip"}
+
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route("/upload_file", methods=["POST"])
+def upload_file():
+    if "file" not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
+
+    file = request.files["file"]
+    if file.filename == "":
+        return jsonify({"error": "Empty filename"}), 400
+
+    if not allowed_file(file.filename):
+        return jsonify({"error": "File type not allowed"}), 400
+
+    filename = secure_filename(file.filename)
+    filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+    file.save(filepath)
+
+    # ✅ Return public file URL (accessible at /uploads/<filename>)
+    file_url = f"{request.host_url}uploads/{filename}"
+    return jsonify({"url": file_url}), 200
+
+
 
 
 if __name__ == '__main__':
