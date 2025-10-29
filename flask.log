@@ -10894,3 +10894,33 @@
 29-10-2025 14:34:06 - INFO - Validating token and fetching user details
 29-10-2025 14:37:41 - INFO - Validating token and fetching user details
 29-10-2025 14:37:41 - INFO - Validating token and fetching user details
+29-10-2025 14:56:41 - INFO - ICT MySQL pool created
+29-10-2025 14:56:41 - INFO - Booktracker MySQL pool created
+29-10-2025 14:56:41 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:56:42 - INFO - ICT MySQL pool created
+29-10-2025 14:56:42 - INFO - Booktracker MySQL pool created
+29-10-2025 14:56:42 - INFO - Starting Flask-SocketIO application
+29-10-2025 14:57:54 - INFO - Validating token and fetching user details
+29-10-2025 14:58:14 - INFO - Validating token and fetching user details
+29-10-2025 15:02:58 - INFO - ICT MySQL pool created
+29-10-2025 15:02:58 - INFO - Booktracker MySQL pool created
+29-10-2025 15:02:58 - INFO - Starting Flask-SocketIO application
+29-10-2025 15:08:30 - INFO - ICT MySQL pool created
+29-10-2025 15:08:30 - INFO - Booktracker MySQL pool created
+29-10-2025 15:08:30 - INFO - Starting Flask-SocketIO application
+29-10-2025 16:59:38 - INFO - User accessed root endpoint, session email: muskan@agphbooks.com
+29-10-2025 16:59:41 - INFO - Validating token and fetching user details
+29-10-2025 16:59:41 - INFO - Validating token and fetching user details
+29-10-2025 17:00:34 - INFO - User accessed root endpoint, session email: muskan@agphbooks.com
+29-10-2025 17:00:59 - INFO - ICT MySQL pool created
+29-10-2025 17:00:59 - INFO - Booktracker MySQL pool created
+29-10-2025 17:00:59 - INFO - Starting Flask-SocketIO application
+29-10-2025 17:01:00 - INFO - ICT MySQL pool created
+29-10-2025 17:01:00 - INFO - Booktracker MySQL pool created
+29-10-2025 17:01:00 - INFO - Starting Flask-SocketIO application
+29-10-2025 17:01:04 - INFO - User accessed root endpoint, session email: muskan@agphbooks.com
+29-10-2025 17:01:09 - INFO - Trying to login with email: muskan@agphbooks.com
+29-10-2025 17:01:09 - INFO - User Muskan logged in, role: user
+29-10-2025 17:01:37 - INFO - Validating token and fetching user details
+29-10-2025 17:01:41 - INFO - Validating token and fetching user details
+29-10-2025 17:01:42 - INFO - Validating token and fetching user details
