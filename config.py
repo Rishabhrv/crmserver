@@ -29,3 +29,4 @@ SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
 APP_REDIRECTS = json.loads(os.getenv("APP_REDIRECTS", "{}"))
 
+UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER")

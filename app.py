@@ -16,6 +16,8 @@ from functools import wraps
 from mysql.connector import pooling
 import os
 from werkzeug.utils import secure_filename
+from flask import send_from_directory
+
 
 
 # Custom filter to suppress Werkzeug HTTP request logs
@@ -82,6 +84,15 @@ EMAIL_CONFIG = {
     'SENDER_PASSWORD': config.SENDER_PASSWORD
 }
 
+UPLOAD_FOLDER = config.UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+IS_PRODUCTION = os.getenv('FLASK_ENV') == 'production'
+
+# File restrictions
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "zip"}
+MAX_FILE_SIZE = 25 * 1024 * 1024  # 10 MB in bytes
+MAX_FILES_PER_REQUEST = 5
 
 # # App-based redirect URLs
 # APP_REDIRECTS={"main": "https://mis.agkit.in", 
@@ -114,6 +125,40 @@ def get_ict_cursor():
 def get_book_cursor():
     conn = book_pool.get_connection()
     return conn, conn.cursor(dictionary=True)
+
+def allowed_file(filename):
+    """Check if file extension is allowed"""
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def get_file_size(file):
+    """Get file size by seeking to end"""
+    file.seek(0, os.SEEK_END)
+    size = file.tell()
+    file.seek(0)  # Reset pointer to beginning
+    return size
+
+def generate_unique_filename(original_filename):
+    """Generate unique filename to prevent overwrites"""
+    # Get file extension
+    ext = original_filename.rsplit(".", 1)[1].lower() if "." in original_filename else ""
+    # Create unique name: timestamp_uuid.ext
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    unique_id = str(uuid.uuid4())[:8]
+    return f"{timestamp}_{unique_id}.{ext}"
+
+def get_user_folder(user_id):
+    """Organize files by user (creates folder if doesn't exist)"""
+    user_folder = os.path.join(app.config["UPLOAD_FOLDER"], str(user_id))
+    
+    # Create user folder if it doesn't exist
+    try:
+        os.makedirs(user_folder, exist_ok=True)
+    except Exception as e:
+        print(f"Error creating user folder: {e}")
+        # Fallback to main upload folder if user folder can't be created
+        return app.config["UPLOAD_FOLDER"]
+    
+    return user_folder
 
 # -------------------- Auth decorator --------------------
 def token_required(f):
@@ -650,46 +695,141 @@ def socket_send_message(data):
 
 
 # -------------------- File Upload Handling --------------------
-app.static_folder = "uploads"
-
-# Serve uploaded files publicly
-app.add_url_rule(
-    "/uploads/<path:filename>",
-    endpoint="uploads",
-    view_func=app.send_static_file
-)
-
-# Configure upload directory
-UPLOAD_FOLDER = "uploads"
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "mp4", "mp3", "zip"}
-
-def allowed_file(filename):
-    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 @app.route("/upload_file", methods=["POST"])
 def upload_file():
+    """Handle file upload with security checks"""
+    
+    # Check if file is in request
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
-
+    
     file = request.files["file"]
+    
+    # Check if filename is empty
     if file.filename == "":
         return jsonify({"error": "Empty filename"}), 400
-
+    
+    # Check file extension
     if not allowed_file(file.filename):
-        return jsonify({"error": "File type not allowed"}), 400
+        return jsonify({
+            "error": f"File type not allowed. Allowed types: {', '.join(ALLOWED_EXTENSIONS)}"
+        }), 400
+    
+    # Check file size
+    file_size = get_file_size(file)
+    if file_size > MAX_FILE_SIZE:
+        return jsonify({
+            "error": f"File too large. Maximum size: {MAX_FILE_SIZE / (1024*1024):.0f} MB"
+        }), 400
+    
+    if file_size == 0:
+        return jsonify({"error": "Empty file"}), 400
+    
+    # Sanitize and generate unique filename
+    original_filename = secure_filename(file.filename)
+    unique_filename = generate_unique_filename(original_filename)
+    
+    # Get user_id from request (adjust based on your authentication)
+    user_id = request.form.get("user_id") or "general"
+    
+    # Get or create user folder
+    save_folder = get_user_folder(user_id)
+    filepath = os.path.join(save_folder, unique_filename)
+    
+    try:
+        file.save(filepath)
+    except Exception as e:
+        return jsonify({"error": f"Failed to save file: {str(e)}"}), 500
+    
+    # Generate public URL (with user_id in path)
+    file_url = f"{request.host_url}uploads/{user_id}/{unique_filename}"
+    
+    return jsonify({
+        "url": file_url,
+        "filename": unique_filename,
+        "original_name": original_filename,
+        "size": file_size
+    }), 200
 
-    filename = secure_filename(file.filename)
-    filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-    file.save(filepath)
 
-    # ✅ Return public file URL (accessible at /uploads/<filename>)
-    file_url = f"{request.host_url}uploads/{filename}"
-    return jsonify({"url": file_url}), 200
+# Only serve files through Flask in development (local)
+if not IS_PRODUCTION:
+    @app.route("/uploads/<user_id>/<filename>")
+    def serve_user_file(user_id, filename):
+        """Serve user-specific uploaded files (DEV ONLY)"""
+        user_folder = os.path.join(app.config["UPLOAD_FOLDER"], user_id)
+        return send_from_directory(user_folder, filename)
 
+# Optional: Endpoint to handle multiple files
+@app.route("/upload_files", methods=["POST"])
+def upload_files():
+    """Handle multiple file uploads"""
+    
+    files = request.files.getlist("files")
+    
+    if not files or len(files) == 0:
+        return jsonify({"error": "No files uploaded"}), 400
+    
+    if len(files) > MAX_FILES_PER_REQUEST:
+        return jsonify({
+            "error": f"Too many files. Maximum {MAX_FILES_PER_REQUEST} files per request"
+        }), 400
+    
+    uploaded_files = []
+    errors = []
+    
+    for file in files:
+        if file.filename == "":
+            continue
+        
+        if not allowed_file(file.filename):
+            errors.append(f"{file.filename}: File type not allowed")
+            continue
+        
+        file_size = get_file_size(file)
+        if file_size > MAX_FILE_SIZE:
+            errors.append(f"{file.filename}: File too large")
+            continue
+        
+        original_filename = secure_filename(file.filename)
+        unique_filename = generate_unique_filename(original_filename)
+        filepath = os.path.join(app.config["UPLOAD_FOLDER"], unique_filename)
+        
+        try:
+            file.save(filepath)
+            file_url = f"{request.host_url}uploads/{unique_filename}"
+            uploaded_files.append({
+                "url": file_url,
+                "filename": unique_filename,
+                "original_name": original_filename,
+                "size": file_size
+            })
+        except Exception as e:
+            errors.append(f"{file.filename}: Failed to save")
+    
+    return jsonify({
+        "uploaded": uploaded_files,
+        "errors": errors,
+        "count": len(uploaded_files)
+    }), 200
 
+# Optional: Cleanup old files (run periodically)
+def cleanup_old_files(days=30):
+    """Delete files older than specified days"""
+    import time
+    current_time = time.time()
+    deleted_count = 0
+    
+    for filename in os.listdir(app.config["UPLOAD_FOLDER"]):
+        filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+        if os.path.isfile(filepath):
+            file_age = current_time - os.path.getmtime(filepath)
+            if file_age > (days * 86400):  # Convert days to seconds
+                os.remove(filepath)
+                deleted_count += 1
+    
+    return deleted_count
 
 
 if __name__ == '__main__':
