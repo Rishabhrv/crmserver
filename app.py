@@ -13,11 +13,10 @@ import config
 from flask_socketio import SocketIO, join_room, emit
 from datetime import datetime, timedelta
 from functools import wraps
+import mysql.connector  # <-- NEW: Use mysql-connector-python
 from mysql.connector import pooling
 import os
 from werkzeug.utils import secure_filename
-from flask import send_from_directory
-
 
 
 # Custom filter to suppress Werkzeug HTTP request logs
@@ -94,20 +93,25 @@ ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx",
 MAX_FILE_SIZE = 25 * 1024 * 1024  # 10 MB in bytes
 MAX_FILES_PER_REQUEST = 5
 
-# # App-based redirect URLs
-# APP_REDIRECTS={"main": "https://mis.agkit.in", 
-#                "operations": "https://mis.agkit.in/team_dashboard", 
-#                "admin": "https://mis.agkit.in", 
-#                "tasks": "https://mis.agkit.in/tasks",
-#                "ijisem": "https://mis.agkit.in/ijisem",
-#                 "sales": "https://mis.agkit.in/sales"}
 
-APP_REDIRECTS={"main": "http://localhost:8501", 
-                "operations": "http://localhost:8501/team_dashboard", 
-                "admin": "http://localhost:8501", 
-                "tasks": "http://localhost:8501/tasks",
-                "ijisem": "http://localhost:8501/ijisem",
-                "sales": "http://localhost:8501/sales"}
+
+# App-based redirect URLs
+APP_REDIRECTS={"main": "https://mis.agkit.in", 
+               "operations": "https://mis.agkit.in/team_dashboard", 
+               "admin": "https://mis.agkit.in", 
+               "tasks": "https://mis.agkit.in/tasks",
+               "ijisem": "https://mis.agkit.in/ijisem",
+                "sales": "https://mis.agkit.in/sales"}
+
+# APP_REDIRECTS={"main": "http://localhost:8501", 
+#                 "operations": "http://localhost:8501/team_dashboard", 
+#                 "admin": "http://localhost:8501", 
+#                 "tasks": "http://localhost:8501/tasks",
+#                 "ijisem": "http://localhost:8501/ijisem",
+#                 "sales": "http://localhost:8501/sales",
+#                 "clone": "http://localhost:3000/clone",
+#                 "ict": "http://localhost:3000/chat"
+#                 }
 
 
 
@@ -125,40 +129,6 @@ def get_ict_cursor():
 def get_book_cursor():
     conn = book_pool.get_connection()
     return conn, conn.cursor(dictionary=True)
-
-def allowed_file(filename):
-    """Check if file extension is allowed"""
-    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-
-def get_file_size(file):
-    """Get file size by seeking to end"""
-    file.seek(0, os.SEEK_END)
-    size = file.tell()
-    file.seek(0)  # Reset pointer to beginning
-    return size
-
-def generate_unique_filename(original_filename):
-    """Generate unique filename to prevent overwrites"""
-    # Get file extension
-    ext = original_filename.rsplit(".", 1)[1].lower() if "." in original_filename else ""
-    # Create unique name: timestamp_uuid.ext
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    unique_id = str(uuid.uuid4())[:8]
-    return f"{timestamp}_{unique_id}.{ext}"
-
-def get_user_folder(user_id):
-    """Organize files by user (creates folder if doesn't exist)"""
-    user_folder = os.path.join(app.config["UPLOAD_FOLDER"], str(user_id))
-    
-    # Create user folder if it doesn't exist
-    try:
-        os.makedirs(user_folder, exist_ok=True)
-    except Exception as e:
-        print(f"Error creating user folder: {e}")
-        # Fallback to main upload folder if user folder can't be created
-        return app.config["UPLOAD_FOLDER"]
-    
-    return user_folder
 
 # -------------------- Auth decorator --------------------
 def token_required(f):
@@ -455,31 +425,40 @@ def get_conversations():
     book_conn, book_cur = get_book_cursor()  # For user info
 
     try:
-        # Fetch conversations and last message
+        # 🔹 Fetch conversations + last message + message_type
         ict_cur.execute("""
-            SELECT c.id,
-                   CASE WHEN c.user1_id = %s THEN c.user2_id ELSE c.user1_id END AS other_user_id,
-                   m.message AS last_message,
-                   m.timestamp AS last_time
+            SELECT 
+                c.id,
+                CASE 
+                    WHEN c.user1_id = %s THEN c.user2_id 
+                    ELSE c.user1_id 
+                END AS other_user_id,
+                m.message AS last_message,
+                m.message_type AS last_message_type,
+                m.timestamp AS last_time
             FROM conversations c
             LEFT JOIN messages m ON m.id = (
-                SELECT id FROM messages WHERE conversation_id = c.id
-                ORDER BY timestamp DESC LIMIT 1
+                SELECT id 
+                FROM messages 
+                WHERE conversation_id = c.id
+                ORDER BY timestamp DESC 
+                LIMIT 1
             )
             WHERE c.user1_id = %s OR c.user2_id = %s
             ORDER BY m.timestamp DESC
         """, (uid, uid, uid))
-        rows = ict_cur.fetchall()
 
+        rows = ict_cur.fetchall()
         convos = []
+
         for r in rows:
             other_id = r["other_user_id"]
 
-            # Get user info from book database
+            # 🔹 Get user info from book database
             book_cur.execute("SELECT username FROM userss WHERE id=%s", (other_id,))
             other = book_cur.fetchone() or {}
 
-            # Get unread count from messages table
+            # 🔹 Count unread messages
             ict_cur.execute("""
                 SELECT COUNT(*) AS unread
                 FROM messages
@@ -492,6 +471,7 @@ def get_conversations():
                 "other_user_id": other_id,
                 "other_username": other.get("username", "Unknown"),
                 "last_message": r["last_message"],
+                "last_message_type": r.get("last_message_type"),  
                 "last_time": r["last_time"],
                 "unread": unread
             })
@@ -503,6 +483,7 @@ def get_conversations():
         book_cur.close()
         ict_conn.close()
         book_conn.close()
+
 
 
 @app.route("/messages/<int:conversation_id>", methods=["GET"])
@@ -597,6 +578,79 @@ def create_conversation():
     except Exception as e:
         print("Error creating conversation:", str(e))
         return jsonify({"success": False, "error": str(e)}), 500
+    
+
+
+#-------------------- Msg Delete-----------------------------
+
+@app.route("/delete_message/<int:msg_id>", methods=["DELETE"])
+@token_required
+def delete_message(msg_id):
+    user_id = request.user_id
+    ict_conn, ict_cur = get_ict_cursor()
+
+    try:
+        # 🔹 Check if the message exists and belongs to this user
+        ict_cur.execute(
+            "SELECT sender_id, conversation_id FROM messages WHERE id = %s",
+            (msg_id,),
+        )
+        msg = ict_cur.fetchone()
+        if not msg:
+            return jsonify({"error": "Message not found"}), 404
+
+        if msg["sender_id"] != user_id:
+            return jsonify({"error": "You can only delete your own messages"}), 403
+
+        # 🔹 Delete message from DB
+        ict_cur.execute("DELETE FROM messages WHERE id = %s", (msg_id,))
+        ict_conn.commit()
+
+        # 🔹 Notify all clients in that conversation (via socket.io)
+        socketio.emit(
+            "delete_message",
+            {"id": msg_id, "conversation_id": msg["conversation_id"]},
+            room=str(msg["conversation_id"]),
+        )
+
+        return jsonify({"success": True, "message": "Message deleted successfully"})
+    except Exception as e:
+        ict_conn.rollback()
+        logger.error(f"Delete message error: {e}")
+        return jsonify({"error": "Internal server error"}), 500
+    finally:
+        ict_cur.close()
+        ict_conn.close()
+
+
+
+        
+
+@app.route('/all_users', methods=['GET'])
+@token_required
+def get_all_users():
+    ict_conn, ict_cur = get_book_cursor()
+
+    try:
+        # 🔹 Fetch all users (no exclusions)
+        ict_cur.execute("""
+            SELECT id, username 
+            FROM userss
+        """)
+        users = ict_cur.fetchall()
+
+        return jsonify(users)
+
+    except Exception as e:
+        logger.error(f"Error fetching all users: {e}")
+        return jsonify({"error": "Internal server error"}), 500
+
+    finally:
+        ict_cur.close()
+        ict_conn.close()
+
+
+        
 
 
 
@@ -695,141 +749,64 @@ def socket_send_message(data):
 
 
 # -------------------- File Upload Handling --------------------
+app.static_folder = "uploads"
+
+# Serve uploaded files publicly
+app.add_url_rule(
+    "/uploads/<path:filename>",
+    endpoint="uploads",
+    view_func=app.send_static_file
+)
+
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @app.route("/upload_file", methods=["POST"])
 def upload_file():
-    """Handle file upload with security checks"""
-    
-    # Check if file is in request
     if "file" not in request.files:
-        return jsonify({"error": "No file uploaded"}), 400
-    
-    file = request.files["file"]
-    
-    # Check if filename is empty
-    if file.filename == "":
-        return jsonify({"error": "Empty filename"}), 400
-    
-    # Check file extension
-    if not allowed_file(file.filename):
-        return jsonify({
-            "error": f"File type not allowed. Allowed types: {', '.join(ALLOWED_EXTENSIONS)}"
-        }), 400
-    
-    # Check file size
-    file_size = get_file_size(file)
-    if file_size > MAX_FILE_SIZE:
-        return jsonify({
-            "error": f"File too large. Maximum size: {MAX_FILE_SIZE / (1024*1024):.0f} MB"
-        }), 400
-    
-    if file_size == 0:
-        return jsonify({"error": "Empty file"}), 400
-    
-    # Sanitize and generate unique filename
-    original_filename = secure_filename(file.filename)
-    unique_filename = generate_unique_filename(original_filename)
-    
-    # Get user_id from request (adjust based on your authentication)
-    user_id = request.form.get("user_id") or "general"
-    
-    # Get or create user folder
-    save_folder = get_user_folder(user_id)
-    filepath = os.path.join(save_folder, unique_filename)
-    
-    try:
-        file.save(filepath)
-    except Exception as e:
-        return jsonify({"error": f"Failed to save file: {str(e)}"}), 500
-    
-    # Generate public URL (with user_id in path)
-    file_url = f"{request.host_url}uploads/{user_id}/{unique_filename}"
-    
-    return jsonify({
-        "url": file_url,
-        "filename": unique_filename,
-        "original_name": original_filename,
-        "size": file_size
-    }), 200
-
-
-# Only serve files through Flask in development (local)
-if not IS_PRODUCTION:
-    @app.route("/uploads/<user_id>/<filename>")
-    def serve_user_file(user_id, filename):
-        """Serve user-specific uploaded files (DEV ONLY)"""
-        user_folder = os.path.join(app.config["UPLOAD_FOLDER"], user_id)
-        return send_from_directory(user_folder, filename)
-
-# Optional: Endpoint to handle multiple files
-@app.route("/upload_files", methods=["POST"])
-def upload_files():
-    """Handle multiple file uploads"""
-    
-    files = request.files.getlist("files")
-    
-    if not files or len(files) == 0:
         return jsonify({"error": "No files uploaded"}), 400
-    
+
+    files = request.files.getlist("file")
+
+    # ✅ Restrict number of files
     if len(files) > MAX_FILES_PER_REQUEST:
-        return jsonify({
-            "error": f"Too many files. Maximum {MAX_FILES_PER_REQUEST} files per request"
-        }), 400
-    
-    uploaded_files = []
-    errors = []
-    
+        return jsonify({"error": f"Too many files. Max {MAX_FILES_PER_REQUEST} allowed."}), 400
+
+    username = request.form.get("username", "guest").strip()
+    user_folder = os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(username))
+    os.makedirs(user_folder, exist_ok=True)
+
+    uploaded_urls = []
+
     for file in files:
         if file.filename == "":
             continue
-        
-        if not allowed_file(file.filename):
-            errors.append(f"{file.filename}: File type not allowed")
-            continue
-        
-        file_size = get_file_size(file)
-        if file_size > MAX_FILE_SIZE:
-            errors.append(f"{file.filename}: File too large")
-            continue
-        
-        original_filename = secure_filename(file.filename)
-        unique_filename = generate_unique_filename(original_filename)
-        filepath = os.path.join(app.config["UPLOAD_FOLDER"], unique_filename)
-        
-        try:
-            file.save(filepath)
-            file_url = f"{request.host_url}uploads/{unique_filename}"
-            uploaded_files.append({
-                "url": file_url,
-                "filename": unique_filename,
-                "original_name": original_filename,
-                "size": file_size
-            })
-        except Exception as e:
-            errors.append(f"{file.filename}: Failed to save")
-    
-    return jsonify({
-        "uploaded": uploaded_files,
-        "errors": errors,
-        "count": len(uploaded_files)
-    }), 200
 
-# Optional: Cleanup old files (run periodically)
-def cleanup_old_files(days=30):
-    """Delete files older than specified days"""
-    import time
-    current_time = time.time()
-    deleted_count = 0
-    
-    for filename in os.listdir(app.config["UPLOAD_FOLDER"]):
-        filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-        if os.path.isfile(filepath):
-            file_age = current_time - os.path.getmtime(filepath)
-            if file_age > (days * 86400):  # Convert days to seconds
-                os.remove(filepath)
-                deleted_count += 1
-    
-    return deleted_count
+        # ✅ Check file type
+        if not allowed_file(file.filename):
+            return jsonify({"error": f"File type not allowed: {file.filename}"}), 400
+
+        # ✅ Check file size
+        file.seek(0, os.SEEK_END)
+        file_size = file.tell()
+        file.seek(0)
+        if file_size > MAX_FILE_SIZE:
+            return jsonify({"error": f"{file.filename} exceeds 25MB limit."}), 400
+
+        # ✅ Save the file
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(user_folder, filename)
+        file.save(filepath)
+
+        file_url = f"{request.host_url}uploads/{username}/{filename}"
+        uploaded_urls.append(file_url)
+
+    if not uploaded_urls:
+        return jsonify({"error": "No valid files uploaded"}), 400
+
+    return jsonify({"urls": uploaded_urls}), 200
+
 
 
 if __name__ == '__main__':
