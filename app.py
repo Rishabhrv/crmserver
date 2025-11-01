@@ -39,7 +39,7 @@ for handler in logging.getLogger().handlers:
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins="*")
-#CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
+# CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
 CORS(app, resources={r"/*": {"origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"]}})
 
 try:
@@ -96,7 +96,7 @@ ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx",
 MAX_FILE_SIZE = 25 * 1024 * 1024  # 10 MB in bytes
 MAX_FILES_PER_REQUEST = 5
 
-
+app.static_folder = UPLOAD_FOLDER
 
 # App-based redirect URLs
 APP_REDIRECTS={"main": "https://mis.agkit.in", 

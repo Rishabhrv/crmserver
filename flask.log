@@ -11638,3 +11638,32 @@
 01-11-2025 14:34:01 - INFO - ICT MySQL pool created
 01-11-2025 14:34:01 - INFO - Booktracker MySQL pool created
 01-11-2025 14:34:01 - INFO - Starting Flask-SocketIO application
+01-11-2025 15:00:27 - INFO - ICT MySQL pool created
+01-11-2025 15:00:27 - INFO - Booktracker MySQL pool created
+01-11-2025 15:00:27 - INFO - Starting Flask-SocketIO application
+01-11-2025 15:00:27 - INFO - ICT MySQL pool created
+01-11-2025 15:00:27 - INFO - Booktracker MySQL pool created
+01-11-2025 15:00:27 - INFO - Starting Flask-SocketIO application
+01-11-2025 15:01:03 - INFO - ICT MySQL pool created
+01-11-2025 15:01:03 - INFO - Booktracker MySQL pool created
+01-11-2025 15:01:03 - INFO - Starting Flask-SocketIO application
+01-11-2025 15:01:06 - INFO - ICT MySQL pool created
+01-11-2025 15:01:06 - INFO - Booktracker MySQL pool created
+01-11-2025 15:01:06 - INFO - Starting Flask-SocketIO application
+01-11-2025 15:01:09 - INFO - ICT MySQL pool created
+01-11-2025 15:01:09 - INFO - Booktracker MySQL pool created
+01-11-2025 15:01:09 - INFO - Starting Flask-SocketIO application
+01-11-2025 15:01:10 - INFO - ICT MySQL pool created
+01-11-2025 15:01:10 - INFO - Booktracker MySQL pool created
+01-11-2025 15:01:10 - INFO - Starting Flask-SocketIO application
+01-11-2025 15:01:50 - INFO - Trying to login with email: rishabhvyas@agphbooks.com
+01-11-2025 15:01:50 - INFO - User Rishabh logged in, role: user
+01-11-2025 15:01:56 - INFO - Validating token and fetching user details
+01-11-2025 15:03:19 - INFO - ICT MySQL pool created
+01-11-2025 15:03:19 - INFO - Booktracker MySQL pool created
+01-11-2025 15:03:19 - INFO - Starting Flask-SocketIO application
+01-11-2025 15:03:20 - INFO - ICT MySQL pool created
+01-11-2025 15:03:20 - INFO - Booktracker MySQL pool created
+01-11-2025 15:03:20 - INFO - Starting Flask-SocketIO application
+01-11-2025 15:03:25 - INFO - Validating token and fetching user details
+01-11-2025 15:03:25 - INFO - Validating token and fetching user details
