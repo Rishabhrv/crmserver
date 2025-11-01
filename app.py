@@ -16,6 +16,7 @@ from functools import wraps
 from mysql.connector import pooling
 import os
 from werkzeug.utils import secure_filename
+from flask import Flask, send_from_directory
 
 
 # Custom filter to suppress Werkzeug HTTP request logs
@@ -92,11 +93,11 @@ GROUP_UPLOAD_FOLDER = config.GROUP_UPLOAD_FOLDER
 os.makedirs(GROUP_UPLOAD_FOLDER, exist_ok=True)
 
 # File restrictions
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "zip"}
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "csv", "zip"}
 MAX_FILE_SIZE = 25 * 1024 * 1024  # 10 MB in bytes
 MAX_FILES_PER_REQUEST = 5
 
-app.static_folder = UPLOAD_FOLDER
+#app.static_folder = UPLOAD_FOLDER
 
 # App-based redirect URLs
 APP_REDIRECTS={"main": "https://mis.agkit.in", 
@@ -809,61 +810,63 @@ def handle_group_message(data):
 
 # -------------------- File Upload Handling --------------------
 
-# Serve uploaded files publicly
-app.add_url_rule(
-    "/uploads/<path:filename>",
-    endpoint="uploads",
-    view_func=app.send_static_file
-)
+@app.route('/uploads/<path:filename>', methods=['GET', 'OPTIONS'])
+def serve_uploaded_file(filename):
+    if request.method == 'OPTIONS':
+        return '', 200
+    try:
+        return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
+    except FileNotFoundError:
+        logger.error(f'File not found: {filename}')
+        return jsonify({'error': 'File not found'}), 404
+    except Exception as e:
+        logger.error(f'Error serving file {filename}: {e}')
+        return jsonify({'error': 'Failed to serve file'}), 500
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route("/upload_file", methods=["POST"])
+@app.route('/upload_file', methods=['POST', 'OPTIONS'])
 def upload_file():
-    if "file" not in request.files:
-        return jsonify({"error": "No files uploaded"}), 400
-
-    files = request.files.getlist("file")
-
-    # ✅ Restrict number of files
+    if request.method == 'OPTIONS':
+        return '', 200  # Handle preflight request
+    if 'file' not in request.files:
+        return jsonify({'error': 'No files uploaded'}), 400
+    files = request.files.getlist('file')
     if len(files) > MAX_FILES_PER_REQUEST:
-        return jsonify({"error": f"Too many files. Max {MAX_FILES_PER_REQUEST} allowed."}), 400
+        return jsonify({'error': f'Too many files. Max {MAX_FILES_PER_REQUEST} allowed.'}), 400
 
-    username = request.form.get("username", "guest").strip()
-    user_folder = os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(username))
+    username = request.form.get('username', 'guest').strip()
+    if not username:
+        return jsonify({'error': 'Username required'}), 400
+    user_folder = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(username))
     os.makedirs(user_folder, exist_ok=True)
 
     uploaded_urls = []
-
     for file in files:
-        if file.filename == "":
+        if file.filename == '':
             continue
-
-        # ✅ Check file type
         if not allowed_file(file.filename):
-            return jsonify({"error": f"File type not allowed: {file.filename}"}), 400
-
-        # ✅ Check file size
+            return jsonify({'error': f'File type not allowed: {file.filename}'}), 400
         file.seek(0, os.SEEK_END)
         file_size = file.tell()
         file.seek(0)
         if file_size > MAX_FILE_SIZE:
-            return jsonify({"error": f"{file.filename} exceeds 25MB limit."}), 400
-
-        # ✅ Save the file
+            return jsonify({'error': f'{file.filename} exceeds 25MB limit.'}), 400
         filename = secure_filename(file.filename)
         filepath = os.path.join(user_folder, filename)
-        file.save(filepath)
-
-        file_url = f"{request.host_url}uploads/{username}/{filename}"
-        uploaded_urls.append(file_url)
+        try:
+            file.save(filepath)
+            file_url = f'{request.host_url}uploads/{username}/{filename}'
+            uploaded_urls.append(file_url)
+        except Exception as e:
+            logger.error(f'File save error for {filename}: {e}')
+            return jsonify({'error': f'Failed to save {filename}'}), 500
 
     if not uploaded_urls:
-        return jsonify({"error": "No valid files uploaded"}), 400
-
-    return jsonify({"urls": uploaded_urls}), 200
+        return jsonify({'error': 'No valid files uploaded'}), 400
+    return jsonify({'urls': uploaded_urls}), 200
 
 
 #---------------------------- Group Section ----------------------------
