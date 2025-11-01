@@ -38,7 +38,7 @@ for handler in logging.getLogger().handlers:
 
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins=["https://chat.mis.agkit.in", "https://mis.agkit.in"])
 # CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
 CORS(app, resources={r"/*": {"origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"]}})
 

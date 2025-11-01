@@ -6,4 +6,5 @@ python-dotenv==1.1.0
 pytz==2025.2
 flask-socketio==5.3.6
 mysql-connector-python==8.3.0
+eventlet
 gunicorn
