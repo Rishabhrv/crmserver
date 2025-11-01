@@ -88,6 +88,9 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 IS_PRODUCTION = os.getenv('FLASK_ENV') == 'production'
 
+GROUP_UPLOAD_FOLDER = config.GROUP_UPLOAD_FOLDER
+os.makedirs(GROUP_UPLOAD_FOLDER, exist_ok=True)
+
 # File restrictions
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "zip"}
 MAX_FILE_SIZE = 25 * 1024 * 1024  # 10 MB in bytes
@@ -625,9 +628,6 @@ def delete_message(msg_id):
         ict_conn.close()
 
 
-
-        
-
 @app.route('/all_users', methods=['GET'])
 @token_required
 def get_all_users():
@@ -650,10 +650,6 @@ def get_all_users():
     finally:
         ict_cur.close()
         ict_conn.close()
-
-
-        
-
 
 
 # -------------------- SocketIO --------------------
@@ -750,8 +746,68 @@ def socket_send_message(data):
 
 
 
+
+#---Group---
+
+@socketio.on("join_group")
+def handle_join_group(data):
+    token = data.get("token")
+    group_id = data.get("group_id")
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+        user_id = payload["user_id"]
+        join_room(f"group_{group_id}")
+        emit("system", {"msg": f"User {user_id} joined group {group_id}"}, room=f"group_{group_id}")
+    except jwt.InvalidTokenError:
+        emit("error", {"error": "Invalid token"})
+
+
+@socketio.on("send_group_message")
+def handle_group_message(data):
+    token = data.get("token")
+    group_id = data.get("group_id")
+    message = data.get("message")
+    message_type = data.get("message_type", "text")
+
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+        sender_id = payload["user_id"]
+    except Exception as e:
+        emit("error", {"error": f"Invalid token: {str(e)}"})
+        return
+
+    # ✅ Get sender_name from userss
+    conn, cur = get_book_cursor()
+    cur.execute("SELECT username FROM userss WHERE id = %s", (sender_id,))
+    user_row = cur.fetchone()
+    sender_name = user_row["username"] if user_row else "Unknown User"
+    cur.close()
+    conn.close()
+
+    # ✅ Save message
+    conn, cur = get_ict_cursor()
+    cur.execute(
+        "INSERT INTO group_messages (group_id, sender_id, message, message_type, timestamp) VALUES (%s,%s,%s,%s,NOW())",
+        (group_id, sender_id, message, message_type)
+    )
+    conn.commit()
+    message_id = cur.lastrowid
+    cur.close()
+    conn.close()
+
+    # ✅ Include sender_name when emitting
+    emit("new_group_message", {
+        "id": message_id,
+        "group_id": group_id,
+        "sender_id": sender_id,
+        "sender_name": sender_name,
+        "message": message,
+        "message_type": message_type,
+        "timestamp": datetime.now().isoformat()
+    }, room=f"group_{group_id}")
+
+
 # -------------------- File Upload Handling --------------------
-app.static_folder = "uploads"
 
 # Serve uploaded files publicly
 app.add_url_rule(
@@ -808,6 +864,165 @@ def upload_file():
         return jsonify({"error": "No valid files uploaded"}), 400
 
     return jsonify({"urls": uploaded_urls}), 200
+
+
+#---------------------------- Group Section ----------------------------
+
+
+@app.route("/create_group", methods=["POST"])
+@token_required
+def create_group():
+    created_by = request.user_id
+
+    # ✅ Case 1: JSON (no image)
+    if request.is_json:
+        data = request.get_json()
+        group_name = data.get("group_name")
+        members = data.get("members", [])
+        group_image = None
+
+    # ✅ Case 2: FormData (with image)
+    else:
+        group_name = request.form.get("group_name")
+        members = request.form.get("members", "[]")
+        import json
+        members = json.loads(members)
+        image = request.files.get("group_image")
+        group_image = None
+
+        if not group_name:
+            return jsonify({"error": "Group name required"}), 400
+
+        # ✅ Create a folder for this group (use safe folder name)
+        safe_group_name = secure_filename(group_name)
+        group_folder = os.path.join(UPLOAD_FOLDER, safe_group_name)
+        os.makedirs(group_folder, exist_ok=True)
+
+        # ✅ If image is uploaded, save it inside this group's folder
+        if image:
+            filename = secure_filename(image.filename)
+            filepath = os.path.join(group_folder, filename)
+            image.save(filepath)
+            group_image = f"/{group_folder}/{filename}"  # relative path for frontend
+
+    if not group_name:
+        return jsonify({"error": "Group name required"}), 400
+
+    conn, cur = get_ict_cursor()
+    try:
+        # ✅ Insert group (with optional image)
+        cur.execute(
+            "INSERT INTO groups (group_name, created_by, group_image) VALUES (%s, %s, %s)",
+            (group_name, created_by, group_image),
+        )
+        group_id = cur.lastrowid
+
+        # Add creator as admin
+        cur.execute(
+            "INSERT INTO group_members (group_id, user_id, role) VALUES (%s, %s, 'admin')",
+            (group_id, created_by),
+        )
+
+        # Add members
+        for uid in members:
+            cur.execute(
+                "INSERT INTO group_members (group_id, user_id, role) VALUES (%s, %s, 'member')",
+                (group_id, uid),
+            )
+
+        conn.commit()
+        return jsonify({
+            "success": True,
+            "group_id": group_id,
+            "group_image": group_image,
+            "folder": f"/{group_folder}"
+        })
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.route("/groups", methods=["GET"])
+@token_required
+def get_groups():
+    user_id = request.user_id  # from token
+    conn, cur = get_ict_cursor()
+    try:
+        cur.execute("""
+            SELECT g.id, g.group_name, g.group_image, g.created_by, g.created_at
+            FROM groups g
+            JOIN group_members gm ON g.id = gm.group_id
+            WHERE gm.user_id = %s
+            ORDER BY g.created_at DESC
+        """, (user_id,))
+        groups = cur.fetchall()
+
+        result = []
+        for g in groups:
+            result.append({
+                "id": g["id"],
+                "group_name": g["group_name"],
+                "group_image": g["group_image"],
+                "created_by": g["created_by"],
+                "created_at": g["created_at"].strftime("%Y-%m-%d %H:%M:%S") if g["created_at"] else None,
+            })
+
+        return jsonify(result)
+    except Exception as e:
+        print("🔥 /groups error:", e)
+        return jsonify({"error": str(e)}), 500
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.route("/group_messages/<int:group_id>", methods=["GET"])
+@token_required
+def get_group_messages(group_id):
+    conn, cur = get_ict_cursor()
+    try:
+        cur.execute("""
+            SELECT gm.id, gm.sender_id, u.username AS sender_name, gm.message, gm.message_type, gm.timestamp
+            FROM group_messages gm
+            JOIN booktracker.userss u ON gm.sender_id = u.id
+            WHERE gm.group_id = %s
+            ORDER BY gm.timestamp ASC
+        """, (group_id,))
+        messages = cur.fetchall()
+        return jsonify(messages)
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.route("/send_group_message", methods=["POST"])
+@token_required
+def send_group_message():
+    data = request.get_json()
+    group_id = data.get("group_id")
+    message = data.get("message")
+    message_type = data.get("message_type", "text")
+    sender_id = request.user_id
+
+    if not group_id or not message:
+        return jsonify({"error": "Missing fields"}), 400
+
+    conn, cur = get_ict_cursor()
+    try:
+        cur.execute("""
+            INSERT INTO group_messages (group_id, sender_id, message, message_type)
+            VALUES (%s, %s, %s, %s)
+        """, (group_id, sender_id, message, message_type))
+        conn.commit()
+        msg_id = cur.lastrowid
+        return jsonify({"success": True, "message_id": msg_id})
+    finally:
+        cur.close()
+        conn.close()
 
 
 
