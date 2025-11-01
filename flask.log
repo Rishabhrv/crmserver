@@ -11592,3 +11592,41 @@
 31-10-2025 15:12:24 - INFO - Validating token and fetching user details
 31-10-2025 15:21:03 - INFO - Validating token and fetching user details
 31-10-2025 15:21:05 - INFO - Validating token and fetching user details
+01-11-2025 09:52:01 - INFO - ICT MySQL pool created
+01-11-2025 09:52:01 - INFO - Booktracker MySQL pool created
+01-11-2025 09:52:01 - INFO - Starting Flask-SocketIO application
+01-11-2025 09:52:01 - INFO - ICT MySQL pool created
+01-11-2025 09:52:01 - INFO - Booktracker MySQL pool created
+01-11-2025 09:52:01 - INFO - Starting Flask-SocketIO application
+01-11-2025 09:55:09 - INFO - ICT MySQL pool created
+01-11-2025 09:55:09 - INFO - Booktracker MySQL pool created
+01-11-2025 09:55:09 - INFO - Starting Flask-SocketIO application
+01-11-2025 10:08:02 - INFO - User accessed root endpoint, session email: rishabhvyas@agphbooks.com
+01-11-2025 10:08:06 - INFO - Trying to login with email: rishabhvyas@agphbooks.com
+01-11-2025 10:08:06 - INFO - User Rishabh logged in, role: user
+01-11-2025 10:08:42 - INFO - Validating token and fetching user details
+01-11-2025 10:08:46 - INFO - Validating token and fetching user details
+01-11-2025 10:08:46 - INFO - Validating token and fetching user details
+01-11-2025 12:11:20 - INFO - Trying to login with email: rishabhvyas@agphbooks.com
+01-11-2025 12:11:20 - INFO - User Rishabh logged in, role: user
+01-11-2025 12:11:24 - INFO - Validating token and fetching user details
+01-11-2025 12:11:29 - INFO - Validating token and fetching user details
+01-11-2025 12:11:53 - INFO - Validating token and fetching user details
+01-11-2025 12:11:59 - INFO - Validating token and fetching user details
+01-11-2025 12:12:41 - INFO - Validating token and fetching user details
+01-11-2025 12:12:41 - INFO - Validating token and fetching user details
+01-11-2025 12:14:10 - INFO - Validating token and fetching user details
+01-11-2025 12:15:43 - INFO - Validating token and fetching user details
+01-11-2025 12:15:52 - INFO - Validating token and fetching user details
+01-11-2025 12:15:55 - INFO - Validating token and fetching user details
+01-11-2025 12:15:55 - INFO - Validating token and fetching user details
+01-11-2025 12:17:32 - INFO - Validating token and fetching user details
+01-11-2025 12:17:33 - INFO - Validating token and fetching user details
+01-11-2025 12:19:10 - INFO - Validating token and fetching user details
+01-11-2025 12:19:10 - INFO - Validating token and fetching user details
+01-11-2025 12:19:50 - INFO - Validating token and fetching user details
+01-11-2025 12:19:54 - INFO - Validating token and fetching user details
+01-11-2025 12:19:54 - INFO - Validating token and fetching user details
+01-11-2025 12:26:17 - INFO - ICT MySQL pool created
+01-11-2025 12:26:17 - INFO - Booktracker MySQL pool created
+01-11-2025 12:26:17 - INFO - Starting Flask-SocketIO application

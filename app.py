@@ -13,7 +13,6 @@ import config
 from flask_socketio import SocketIO, join_room, emit
 from datetime import datetime, timedelta
 from functools import wraps
-import mysql.connector  # <-- NEW: Use mysql-connector-python
 from mysql.connector import pooling
 import os
 from werkzeug.utils import secure_filename
@@ -40,7 +39,8 @@ for handler in logging.getLogger().handlers:
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins="*")
-CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "https://mis.agkit.in","http://localhost:3000"]}})
+#CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
+CORS(app, resources={r"/*": {"origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"]}})
 
 try:
     # Pool for 'ict' database (chat)
@@ -237,6 +237,84 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/auth/validate_and_details', methods=['POST'])
+def validate_and_details():
+    logger.info("Validating token and fetching user details")
+    
+    if not request.is_json:
+        return jsonify({'valid': False, 'error': 'Request must be JSON'}), 400
+
+    token = request.json.get('token')
+    if not token:
+        return jsonify({'valid': False, 'error': 'Token missing'}), 400
+
+    if token in TOKEN_BLACKLIST:
+        return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
+
+    # --- Decode JWT ---
+    try:
+        decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
+        user_id = decoded['user_id']
+    except jwt.ExpiredSignatureError:
+        return jsonify({'valid': False, 'error': 'Token expired'}), 401
+    except jwt.InvalidTokenError:
+        return jsonify({'valid': False, 'error': 'Invalid token'}), 401
+
+    # --- Fetch user from DB ---
+    conn, cur = get_book_cursor()
+    try:
+        cur.execute("""
+            SELECT 
+                u.id, u.username, u.email, u.role, u.associate_id, u.designation,
+                uaa.app, uaa.access_type, uaa.level, uaa.start_date, uaa.report_to
+            FROM userss u
+            LEFT JOIN user_app_access uaa ON u.id = uaa.user_id
+            WHERE u.id = %s
+        """, (user_id,))
+        rows = cur.fetchall()
+    finally:
+        cur.close()
+        conn.close()
+
+    if not rows:
+        return jsonify({'valid': False, 'error': 'User not found'}), 404
+
+    # --- Use dictionary keys (NOT numbers!) ---
+    user = rows[0]
+
+    app_name = (user['app'] or '').lower()
+    access_type = user['access_type'] or ''
+
+    # --- Build access list ---
+    if app_name == 'main':
+        access_list = [a.strip() for a in access_type.split(',') if a.strip()]
+    elif app_name in ('operations', 'ijisem', 'tasks', 'sales'):
+        access_list = [access_type] if access_type else []
+    else:
+        access_list = []
+
+    # --- Format dates ---
+    start_date = user['start_date'].isoformat() if user['start_date'] else None
+
+    # --- Return clean response ---
+    return jsonify({
+        'valid': True,
+        'user_id': user_id,
+        'user_details': {
+            'username': user['username'],
+            'email': user['email'],
+            'role': user['role'].lower(),
+            'app': app_name,
+            'access': access_list,
+            'level': user['level'],
+            'start_date': start_date,
+            'report_to': user['report_to'],
+            'associate_id': user['associate_id'],
+            'designation': user['designation']
+        }
+    })
+
+
 @app.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
@@ -340,82 +418,6 @@ def reset_password():
     return render_template('reset_password.html', token=token)
 
 
-@app.route('/auth/validate_and_details', methods=['POST'])
-def validate_and_details():
-    logger.info("Validating token and fetching user details")
-    
-    if not request.is_json:
-        return jsonify({'valid': False, 'error': 'Request must be JSON'}), 400
-
-    token = request.json.get('token')
-    if not token:
-        return jsonify({'valid': False, 'error': 'Token missing'}), 400
-
-    if token in TOKEN_BLACKLIST:
-        return jsonify({'valid': False, 'error': 'Token invalidated'}), 401
-
-    # --- Decode JWT ---
-    try:
-        decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
-        user_id = decoded['user_id']
-    except jwt.ExpiredSignatureError:
-        return jsonify({'valid': False, 'error': 'Token expired'}), 401
-    except jwt.InvalidTokenError:
-        return jsonify({'valid': False, 'error': 'Invalid token'}), 401
-
-    # --- Fetch user from DB ---
-    conn, cur = get_book_cursor()
-    try:
-        cur.execute("""
-            SELECT 
-                u.id, u.username, u.email, u.role, u.associate_id, u.designation,
-                uaa.app, uaa.access_type, uaa.level, uaa.start_date, uaa.report_to
-            FROM userss u
-            LEFT JOIN user_app_access uaa ON u.id = uaa.user_id
-            WHERE u.id = %s
-        """, (user_id,))
-        rows = cur.fetchall()
-    finally:
-        cur.close()
-        conn.close()
-
-    if not rows:
-        return jsonify({'valid': False, 'error': 'User not found'}), 404
-
-    # --- Use dictionary keys (NOT numbers!) ---
-    user = rows[0]
-
-    app_name = (user['app'] or '').lower()
-    access_type = user['access_type'] or ''
-
-    # --- Build access list ---
-    if app_name == 'main':
-        access_list = [a.strip() for a in access_type.split(',') if a.strip()]
-    elif app_name in ('operations', 'ijisem', 'tasks', 'sales'):
-        access_list = [access_type] if access_type else []
-    else:
-        access_list = []
-
-    # --- Format dates ---
-    start_date = user['start_date'].isoformat() if user['start_date'] else None
-
-    # --- Return clean response ---
-    return jsonify({
-        'valid': True,
-        'user_id': user_id,
-        'user_details': {
-            'username': user['username'],
-            'email': user['email'],
-            'role': user['role'].lower(),
-            'app': app_name,
-            'access': access_list,
-            'level': user['level'],
-            'start_date': start_date,
-            'report_to': user['report_to'],
-            'associate_id': user['associate_id'],
-            'designation': user['designation']
-        }
-    })
 
 @app.route("/conversations", methods=["GET"])
 @token_required
