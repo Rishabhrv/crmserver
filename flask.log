@@ -11667,3 +11667,18 @@
 01-11-2025 15:03:20 - INFO - Starting Flask-SocketIO application
 01-11-2025 15:03:25 - INFO - Validating token and fetching user details
 01-11-2025 15:03:25 - INFO - Validating token and fetching user details
+03-11-2025 09:37:24 - INFO - ICT MySQL pool created
+03-11-2025 09:37:24 - INFO - Booktracker MySQL pool created
+03-11-2025 09:37:24 - INFO - Starting Flask-SocketIO application
+03-11-2025 09:37:24 - INFO - ICT MySQL pool created
+03-11-2025 09:37:24 - INFO - Booktracker MySQL pool created
+03-11-2025 09:37:24 - INFO - Starting Flask-SocketIO application
+03-11-2025 10:24:33 - INFO - ICT MySQL pool created
+03-11-2025 10:24:33 - INFO - Booktracker MySQL pool created
+03-11-2025 10:24:33 - INFO - Starting Flask-SocketIO application
+03-11-2025 10:25:24 - INFO - ICT MySQL pool created
+03-11-2025 10:25:24 - INFO - Booktracker MySQL pool created
+03-11-2025 10:25:24 - INFO - Starting Flask-SocketIO application
+03-11-2025 10:33:32 - INFO - ICT MySQL pool created
+03-11-2025 10:33:32 - INFO - Booktracker MySQL pool created
+03-11-2025 10:33:32 - INFO - Starting Flask-SocketIO application
