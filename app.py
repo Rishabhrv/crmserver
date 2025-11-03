@@ -44,13 +44,13 @@ socketio = SocketIO(app, cors_allowed_origins=["https://chat.mis.agkit.in", "htt
 #CORS(app, resources={r"/*": {"origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"]}})
 
 # Configure CORS with explicit headers
-CORS(app, resources={
-    r"/upload_file": {
-        "origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"]
-    }
-})
+# CORS(app, resources={
+#     r"/upload_file": {
+#         "origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"],
+#         "methods": ["GET", "POST", "OPTIONS"],
+#         "allow_headers": ["Content-Type", "Authorization"]
+#     }
+# })
 
 try:
     # Pool for 'ict' database (chat)
@@ -836,10 +836,9 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/upload_file', methods=['POST', 'OPTIONS'])
+@app.route('/upload_file', methods=['POST'])  # Only POST now
 def upload_file():
-    if request.method == 'OPTIONS':
-        return '', 200  # Handle preflight request
+    
     if 'file' not in request.files:
         return jsonify({'error': 'No files uploaded'}), 400
     files = request.files.getlist('file')
