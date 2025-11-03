@@ -41,15 +41,7 @@ app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins=["https://chat.mis.agkit.in", "https://mis.agkit.in"])
 # CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
-# CORS(app, resources={r"/*": {"origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"]}})
-# Configure CORS with explicit headers
-CORS(app, resources={
-    r"/upload_file": {
-        "origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"]
-    }
-})
+CORS(app, resources={r"/*": {"origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"]}})
 
 try:
     # Pool for 'ict' database (chat)
@@ -102,7 +94,7 @@ os.makedirs(GROUP_UPLOAD_FOLDER, exist_ok=True)
 
 # File restrictions
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "csv", "zip"}
-MAX_FILE_SIZE = 25 * 1024 * 1024 
+MAX_FILE_SIZE = 25 * 1024 * 1024  # 10 MB in bytes
 MAX_FILES_PER_REQUEST = 5
 
 #app.static_folder = UPLOAD_FOLDER
@@ -835,43 +827,12 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-from flask import Flask, jsonify, request
-from flask_cors import CORS
-from flask_socketio import SocketIO
-import os
-from werkzeug.utils import secure_filename
-
-app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins=["https://chat.mis.agkit.in", "https://mis.agkit.in"])
-
-# Configure CORS with explicit headers
-CORS(app, resources={
-    r"/upload_file": {
-        "origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"]
-    }
-})
-
-app.config['UPLOAD_FOLDER'] = 'uploads'
-MAX_FILES_PER_REQUEST = 5
-MAX_FILE_SIZE = 25 * 1024 * 1024  # 25MB in bytes
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg', 'gif', 'pdf', 'txt'}
-
 @app.route('/upload_file', methods=['POST', 'OPTIONS'])
 def upload_file():
     if request.method == 'OPTIONS':
-        response = jsonify({})
-        response.headers.add('Access-Control-Allow-Origin', 'https://chat.mis.agkit.in')
-        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-        return response, 200
-
+        return '', 200  # Handle preflight request
     if 'file' not in request.files:
         return jsonify({'error': 'No files uploaded'}), 400
-
     files = request.files.getlist('file')
     if len(files) > MAX_FILES_PER_REQUEST:
         return jsonify({'error': f'Too many files. Max {MAX_FILES_PER_REQUEST} allowed.'}), 400
@@ -879,7 +840,6 @@ def upload_file():
     username = request.form.get('username', 'guest').strip()
     if not username:
         return jsonify({'error': 'Username required'}), 400
-
     user_folder = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(username))
     os.makedirs(user_folder, exist_ok=True)
 
@@ -901,13 +861,12 @@ def upload_file():
             file_url = f'{request.host_url}uploads/{username}/{filename}'
             uploaded_urls.append(file_url)
         except Exception as e:
+            logger.error(f'File save error for {filename}: {e}')
             return jsonify({'error': f'Failed to save {filename}'}), 500
 
     if not uploaded_urls:
         return jsonify({'error': 'No valid files uploaded'}), 400
-    response = jsonify({'urls': uploaded_urls})
-    response.headers.add('Access-Control-Allow-Origin', 'https://chat.mis.agkit.in')
-    return response, 200
+    return jsonify({'urls': uploaded_urls}), 200
 
 
 #---------------------------- Group Section ----------------------------
