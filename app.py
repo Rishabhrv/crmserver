@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
-from flask_cors import CORS
 import jwt
 import datetime
 import config
@@ -17,8 +16,6 @@ from mysql.connector import pooling
 import os
 from werkzeug.utils import secure_filename
 from flask import Flask, send_from_directory
-from urllib.parse import unquote
-from flask import send_file
 
 
 # Custom filter to suppress Werkzeug HTTP request logs
@@ -42,8 +39,10 @@ for handler in logging.getLogger().handlers:
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins=["https://chat.mis.agkit.in", "https://mis.agkit.in"])
+
+# socketio = SocketIO(app, cors_allowed_origins=["http://localhost:8501", "http://localhost:3000", "http://localhost:5001"])
 # CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
-#CORS(app, resources={r"/*": {"origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"]}})
+
 
 # Configure CORS with explicit headers
 # CORS(app, resources={
@@ -108,9 +107,9 @@ ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx",
 MAX_FILE_SIZE = 25 * 1024 * 1024  # 10 MB in bytes
 MAX_FILES_PER_REQUEST = 5
 
-#app.static_folder = UPLOAD_FOLDER
+app.static_folder = UPLOAD_FOLDER
 
-# App-based redirect URLs
+#App-based redirect URLs
 APP_REDIRECTS={"main": "https://mis.agkit.in", 
                "operations": "https://mis.agkit.in/team_dashboard", 
                "admin": "https://mis.agkit.in", 
@@ -638,7 +637,7 @@ def delete_message(msg_id):
     finally:
         ict_cur.close()
         ict_conn.close()
-
+    
 
 @app.route('/all_users', methods=['GET'])
 @token_required
@@ -757,6 +756,30 @@ def socket_send_message(data):
     emit("message_sent", payload_msg, room=request.sid)
 
 
+@app.route("/get_conversation_media", methods=["GET"])
+def get_conversation_media():
+    conversation_id = request.args.get("conversation_id")
+
+    if not conversation_id:
+        return jsonify({"error": "conversation_id required"}), 400
+
+    conn, cur = get_ict_cursor()
+    try:
+        cur.execute("""
+            SELECT id AS message_id, message_type, message AS file_url
+            FROM messages
+            WHERE conversation_id = %s AND message_type IN ('image', 'file')
+            ORDER BY id DESC
+        """, (conversation_id,))
+        data = cur.fetchall()
+    except Exception as e:
+        print("Error fetching media:", e)
+        return jsonify({"error": "Database error"}), 500
+    finally:
+        cur.close()
+        conn.close()
+
+    return jsonify(data)
 
 
 #---Group---
@@ -819,84 +842,96 @@ def handle_group_message(data):
     }, room=f"group_{group_id}")
 
 
-# -------------------- File Upload Handling --------------------
-
-@app.route('/uploads/<path:filename>', methods=['GET', 'OPTIONS'])
-def serve_uploaded_file(filename):
-    if request.method == 'OPTIONS':
-        return '', 200
-    try:
-        # Decode URL-encoded characters (e.g., %20 -> space)
-        from urllib.parse import unquote
-        decoded_filename = unquote(filename)
-        
-        # Construct the full file path
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], decoded_filename)
-        
-        # Security check: ensure the path is within UPLOAD_FOLDER
-        if not os.path.abspath(file_path).startswith(os.path.abspath(app.config['UPLOAD_FOLDER'])):
-            logger.error(f'Path traversal attempt: {filename}')
-            return jsonify({'error': 'Invalid file path'}), 403
-        
-        # Check if file exists
-        if not os.path.exists(file_path):
-            logger.error(f'File not found: {decoded_filename}')
-            return jsonify({'error': 'File not found'}), 404
-        
-        # Serve the file without forcing download (removes as_attachment=True)
-        # This allows browsers to display PDFs/images inline
-        return send_file(file_path)
-        
-    except Exception as e:
-        logger.error(f'Error serving file {filename}: {e}')
-        return jsonify({'error': 'Failed to serve file'}), 500
-
+# -------------------- Helpers --------------------
 def allowed_file(filename):
+    """Check if the file extension is allowed."""
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/upload_file', methods=['POST'])  # Only POST now
-def upload_file():
-    
-    if 'file' not in request.files:
-        return jsonify({'error': 'No files uploaded'}), 400
-    files = request.files.getlist('file')
-    if len(files) > MAX_FILES_PER_REQUEST:
-        return jsonify({'error': f'Too many files. Max {MAX_FILES_PER_REQUEST} allowed.'}), 400
+def get_unique_filename(folder, original_filename):
+    """Ensure unique filenames like filename(1).doc, filename(2).doc, etc."""
+    safe_name = secure_filename(original_filename)
+    name, ext = os.path.splitext(safe_name)
+    counter = 1
+    new_name = safe_name
 
-    username = request.form.get('username', 'guest').strip()
+    while os.path.exists(os.path.join(folder, new_name)):
+        new_name = f"{name}({counter}){ext}"
+        counter += 1
+
+    return new_name
+
+
+# -------------------- File Upload --------------------
+@app.route("/upload_file", methods=["POST", "OPTIONS"])
+def upload_file():
+    if request.method == "OPTIONS":
+        return "", 200
+
+    if "file" not in request.files:
+        return jsonify({"error": "No files uploaded"}), 400
+
+    files = request.files.getlist("file")
+    if len(files) > MAX_FILES_PER_REQUEST:
+        return jsonify({"error": f"Too many files. Max {MAX_FILES_PER_REQUEST} allowed."}), 400
+
+    username = request.form.get("username", "guest").strip()
     if not username:
-        return jsonify({'error': 'Username required'}), 400
-    user_folder = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(username))
+        return jsonify({"error": "Username required"}), 400
+
+    user_folder = os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(username))
     os.makedirs(user_folder, exist_ok=True)
 
-    uploaded_urls = []
+    uploaded_files = []
+
     for file in files:
-        if file.filename == '':
+        if file.filename == "":
             continue
+
         if not allowed_file(file.filename):
-            return jsonify({'error': f'File type not allowed: {file.filename}'}), 400
+            return jsonify({"error": f"File type not allowed: {file.filename}"}), 400
+
+        # Check file size
         file.seek(0, os.SEEK_END)
         file_size = file.tell()
         file.seek(0)
         if file_size > MAX_FILE_SIZE:
-            return jsonify({'error': f'{file.filename} exceeds 25MB limit.'}), 400
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(user_folder, filename)
+            return jsonify({"error": f"{file.filename} exceeds 25MB limit."}), 400
+
+        original_name = file.filename
+        saved_name = get_unique_filename(user_folder, original_name)  # ✅ auto-increment naming
+        filepath = os.path.join(user_folder, saved_name)
+
         try:
             file.save(filepath)
-            file_url = f'{request.host_url}uploads/{username}/{filename}'
-            uploaded_urls.append(file_url)
+            file_url = f"{request.host_url}uploads/{username}/{saved_name}"
+            uploaded_files.append({
+                "original_name": original_name,
+                "saved_name": saved_name,
+                "url": file_url
+            })
         except Exception as e:
-            logger.error(f'File save error for {filename}: {e}')
-            return jsonify({'error': f'Failed to save {filename}'}), 500
+            return jsonify({"error": f"Failed to save {original_name}", "details": str(e)}), 500
 
-    if not uploaded_urls:
-        return jsonify({'error': 'No valid files uploaded'}), 400
-    return jsonify({'urls': uploaded_urls}), 200
+    return jsonify({"uploads": uploaded_files}), 200
 
+
+# -------------------- Serve Uploaded Files --------------------
+@app.route("/uploads/<username>/<path:filename>", methods=["GET", "OPTIONS"])
+def serve_uploaded_file(username, filename):
+    if request.method == "OPTIONS":
+        return "", 200
+    try:
+        user_folder = os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(username))
+        return send_from_directory(user_folder, filename, as_attachment=True)
+    except FileNotFoundError:
+        return jsonify({"error": "File not found"}), 404
+    except Exception as e:
+        return jsonify({"error": f"Failed to serve file: {str(e)}"}), 500
 
 #---------------------------- Group Section ----------------------------
+
+
 
 
 @app.route("/create_group", methods=["POST"])
@@ -925,7 +960,7 @@ def create_group():
 
         # ✅ Create a folder for this group (use safe folder name)
         safe_group_name = secure_filename(group_name)
-        group_folder = os.path.join(UPLOAD_FOLDER, safe_group_name)
+        group_folder = os.path.join(GROUP_UPLOAD_FOLDER, safe_group_name)
         os.makedirs(group_folder, exist_ok=True)
 
         # ✅ If image is uploaded, save it inside this group's folder
@@ -975,6 +1010,8 @@ def create_group():
         cur.close()
         conn.close()
 
+
+        
 
 @app.route("/groups", methods=["GET"])
 @token_required
