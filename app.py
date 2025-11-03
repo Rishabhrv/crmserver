@@ -16,6 +16,7 @@ from mysql.connector import pooling
 import os
 from werkzeug.utils import secure_filename
 from flask import Flask, send_from_directory
+import json
 
 
 # Custom filter to suppress Werkzeug HTTP request logs
@@ -939,45 +940,55 @@ def serve_uploaded_file(username, filename):
 def create_group():
     created_by = request.user_id
 
-    # ✅ Case 1: JSON (no image)
+    # Case 1: JSON (no image)
     if request.is_json:
         data = request.get_json()
         group_name = data.get("group_name")
         members = data.get("members", [])
         group_image = None
-
-    # ✅ Case 2: FormData (with image)
+    # Case 2: FormData (with image)
     else:
         group_name = request.form.get("group_name")
-        members = request.form.get("members", "[]")
-        import json
-        members = json.loads(members)
+        members_str = request.form.get("members", "[]")
+        try:
+            members = json.loads(members_str)
+            if not isinstance(members, list):
+                return jsonify({"error": "Members must be a list"}), 400
+        except json.JSONDecodeError:
+            return jsonify({"error": "Invalid members JSON format"}), 400
+
         image = request.files.get("group_image")
         group_image = None
 
         if not group_name:
             return jsonify({"error": "Group name required"}), 400
 
-        # ✅ Create a folder for this group (use safe folder name)
+        # Create a folder for this group
         safe_group_name = secure_filename(group_name)
         group_folder = os.path.join(GROUP_UPLOAD_FOLDER, safe_group_name)
-        os.makedirs(group_folder, exist_ok=True)
+        try:
+            os.makedirs(group_folder, exist_ok=True)
+        except OSError as e:
+            return jsonify({"error": f"Failed to create group folder: {str(e)}"}), 500
 
-        # ✅ If image is uploaded, save it inside this group's folder
+        # If image is uploaded, save it
         if image:
             filename = secure_filename(image.filename)
             filepath = os.path.join(group_folder, filename)
-            image.save(filepath)
-            group_image = f"/{group_folder}/{filename}"  # relative path for frontend
+            try:
+                image.save(filepath)
+                group_image = f"/{group_folder}/{filename}"  # relative path
+            except Exception as e:
+                return jsonify({"error": f"Failed to save image: {str(e)}"}), 500
 
     if not group_name:
         return jsonify({"error": "Group name required"}), 400
 
     conn, cur = get_ict_cursor()
     try:
-        # ✅ Insert group (with optional image)
+        # Insert group (with optional image)
         cur.execute(
-            "INSERT INTO groups (group_name, created_by, group_image) VALUES (%s, %s, %s)",
+            "INSERT INTO `groups` (group_name, created_by, group_image) VALUES (%s, %s, %s)",
             (group_name, created_by, group_image),
         )
         group_id = cur.lastrowid
@@ -1000,11 +1011,12 @@ def create_group():
             "success": True,
             "group_id": group_id,
             "group_image": group_image,
-            "folder": f"/{group_folder}"
+            "folder": f"/{group_folder}" if group_image else None
         })
 
     except Exception as e:
         conn.rollback()
+        print(f"🔥 /create_group error: {str(e)}")  # Log error for debugging
         return jsonify({"error": str(e)}), 500
     finally:
         cur.close()
@@ -1021,7 +1033,7 @@ def get_groups():
     try:
         cur.execute("""
             SELECT g.id, g.group_name, g.group_image, g.created_by, g.created_at
-            FROM groups g
+            FROM `groups` g
             JOIN group_members gm ON g.id = gm.group_id
             WHERE gm.user_id = %s
             ORDER BY g.created_at DESC
@@ -1095,4 +1107,4 @@ def send_group_message():
 
 if __name__ == '__main__':
     logger.info("Starting Flask-SocketIO application")
-    socketio.run(app, host='0.0.0.0', port=5001, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5001, debug=False)
