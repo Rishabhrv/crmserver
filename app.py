@@ -17,6 +17,8 @@ from mysql.connector import pooling
 import os
 from werkzeug.utils import secure_filename
 from flask import Flask, send_from_directory
+from urllib.parse import unquote
+from flask import send_file
 
 
 # Custom filter to suppress Werkzeug HTTP request logs
@@ -824,10 +826,27 @@ def serve_uploaded_file(filename):
     if request.method == 'OPTIONS':
         return '', 200
     try:
-        return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
-    except FileNotFoundError:
-        logger.error(f'File not found: {filename}')
-        return jsonify({'error': 'File not found'}), 404
+        # Decode URL-encoded characters (e.g., %20 -> space)
+        from urllib.parse import unquote
+        decoded_filename = unquote(filename)
+        
+        # Construct the full file path
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], decoded_filename)
+        
+        # Security check: ensure the path is within UPLOAD_FOLDER
+        if not os.path.abspath(file_path).startswith(os.path.abspath(app.config['UPLOAD_FOLDER'])):
+            logger.error(f'Path traversal attempt: {filename}')
+            return jsonify({'error': 'Invalid file path'}), 403
+        
+        # Check if file exists
+        if not os.path.exists(file_path):
+            logger.error(f'File not found: {decoded_filename}')
+            return jsonify({'error': 'File not found'}), 404
+        
+        # Serve the file without forcing download (removes as_attachment=True)
+        # This allows browsers to display PDFs/images inline
+        return send_file(file_path)
+        
     except Exception as e:
         logger.error(f'Error serving file {filename}: {e}')
         return jsonify({'error': 'Failed to serve file'}), 500
