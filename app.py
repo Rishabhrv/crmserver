@@ -104,7 +104,7 @@ GROUP_UPLOAD_FOLDER = config.GROUP_UPLOAD_FOLDER
 os.makedirs(GROUP_UPLOAD_FOLDER, exist_ok=True)
 
 # File restrictions
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "csv", "zip", ".pptx"}
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "csv", "zip", "pptx"}
 MAX_FILE_SIZE = 25 * 1024 * 1024  # 10 MB in bytes
 MAX_FILES_PER_REQUEST = 5
 
@@ -509,7 +509,7 @@ def get_messages(conversation_id):
     uid = request.user_id
     conn, cur = get_ict_cursor()
     try:
-        # Fetch all messages in this conversation
+        # 📨 Fetch all messages in this conversation
         cur.execute("""
             SELECT m.*, u.username AS sender_name
             FROM messages m
@@ -521,15 +521,15 @@ def get_messages(conversation_id):
         """, (conversation_id,))
         msgs = cur.fetchall()
 
-        # ✅ For each message that is a reply, fetch reply details separately
+        # 🧩 For each message that is a reply, fetch reply details
         bconn, bcur = get_book_cursor()
         for m in msgs:
+            # ✅ Add reply details
             if m.get("reply_to"):
                 cur.execute("SELECT message, sender_id FROM messages WHERE id = %s", (m["reply_to"],))
                 reply_msg = cur.fetchone()
                 if reply_msg:
                     m["reply_to_text"] = reply_msg["message"]
-                    m
                     bcur.execute("SELECT username FROM userss WHERE id = %s", (reply_msg["sender_id"],))
                     reply_user = bcur.fetchone()
                     m["reply_to_user"] = reply_user["username"] if reply_user else "Unknown"
@@ -539,6 +539,17 @@ def get_messages(conversation_id):
             else:
                 m["reply_to_text"] = None
                 m["reply_to_user"] = None
+
+            # ✅ Fetch reactions for each message
+            cur.execute("""
+                SELECT emoji, COUNT(*) AS count
+                FROM message_reactions
+                WHERE message_id = %s
+                GROUP BY emoji
+            """, (m["id"],))
+            reactions = cur.fetchall()
+            m["reactions"] = reactions or []
+
         bcur.close()
         bconn.close()
 
@@ -550,9 +561,15 @@ def get_messages(conversation_id):
         conn.commit()
 
         return jsonify(msgs or [])
+
+    except Exception as e:
+        print("Error in get_messages:", e)
+        conn.rollback()
+        return jsonify({"error": str(e)}), 500
     finally:
         cur.close()
         conn.close()
+
 
 
 @app.route('/users')
@@ -668,7 +685,11 @@ def delete_message(msg_id):
         return jsonify({"error": "Internal server error"}), 500
     finally:
         ict_cur.close()
-        ict_conn.close()    
+        ict_conn.close()
+
+
+
+        
 
 @app.route('/all_users', methods=['GET'])
 @token_required
@@ -692,6 +713,10 @@ def get_all_users():
     finally:
         ict_cur.close()
         ict_conn.close()
+
+
+        
+
 
 
 # -------------------- SocketIO --------------------
@@ -825,6 +850,8 @@ def socket_send_message(data):
     emit("message_sent", payload_msg, room=request.sid)
 
 
+
+
 @socketio.on("mark_seen")
 def handle_mark_seen(data):
     message_id = data.get("message_id")
@@ -855,6 +882,9 @@ def handle_mark_seen(data):
     )
 
 
+
+
+
 @app.route("/get_conversation_media", methods=["GET"])
 def get_conversation_media():
     conversation_id = request.args.get("conversation_id")
@@ -879,6 +909,155 @@ def get_conversation_media():
         conn.close()
 
     return jsonify(data)
+
+
+
+
+
+#-------------- Message Reaction-------------
+
+@app.route("/add_reaction", methods=["POST"])
+@token_required
+def add_reaction():
+    """Add, update, or remove a single emoji reaction for a message per user."""
+    user_id = request.user_id
+    data = request.get_json()
+    message_id = data.get("message_id")
+    emoji = data.get("emoji")
+
+    if not message_id or not emoji:
+        return jsonify({"error": "message_id and emoji required"}), 400
+
+    conn, cur = get_ict_cursor()
+    try:
+        # 🔍 Check if user already reacted (any emoji)
+        cur.execute("""
+            SELECT id, emoji FROM message_reactions
+            WHERE message_id=%s AND user_id=%s
+        """, (message_id, user_id))
+        existing = cur.fetchone()
+
+        if existing:
+            # ✅ MySQL cursor returns tuple — handle both tuple/dict cases
+            existing_id = existing["id"] if isinstance(existing, dict) else existing[0]
+            existing_emoji = existing["emoji"] if isinstance(existing, dict) else existing[1]
+
+            if existing_emoji == emoji:
+                # ✅ Same emoji → toggle off (remove)
+                cur.execute("DELETE FROM message_reactions WHERE id=%s", (existing_id,))
+                action = "removed"
+            else:
+                # ✅ Different emoji → replace old with new
+                cur.execute("UPDATE message_reactions SET emoji=%s WHERE id=%s", (emoji, existing_id))
+                action = "updated"
+        else:
+            # ✅ First-time reaction
+            cur.execute("""
+                INSERT INTO message_reactions (message_id, user_id, emoji)
+                VALUES (%s, %s, %s)
+            """, (message_id, user_id, emoji))
+            action = "added"
+
+        conn.commit()
+
+        # 🔹 Fetch updated list of reactions
+        cur.execute("""
+            SELECT emoji, COUNT(*) AS count
+            FROM message_reactions
+            WHERE message_id=%s
+            GROUP BY emoji
+        """, (message_id,))
+        reactions = cur.fetchall()
+
+        # 📡 Emit update
+        socketio.emit("reaction_update", {
+            "message_id": message_id,
+            "reactions": reactions
+        }, broadcast=True)
+
+        return jsonify({"success": True, "action": action, "reactions": reactions})
+
+    except Exception as e:
+        conn.rollback()
+        print("Reaction error:", e)
+        return jsonify({"error": str(e)}), 500
+    finally:
+        cur.close()
+        conn.close()
+
+
+
+@socketio.on("send_reaction")
+def handle_reaction(data):
+    """Handle real-time emoji reactions (one per user per message)."""
+    token = data.get("token")
+    message_id = data.get("message_id")
+    emoji = data.get("emoji")
+
+    # 🔐 Validate token
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+        user_id = payload["user_id"]
+    except Exception:
+        emit("auth_error", {"error": "Invalid token"})
+        return
+
+    conn, cur = get_ict_cursor()
+    try:
+        cur.execute("""
+            SELECT id, emoji FROM message_reactions
+            WHERE message_id=%s AND user_id=%s
+        """, (message_id, user_id))
+        existing = cur.fetchone()
+
+        if existing:
+            existing_id = existing["id"] if isinstance(existing, dict) else existing[0]
+            existing_emoji = existing["emoji"] if isinstance(existing, dict) else existing[1]
+
+            if existing_emoji == emoji:
+                # ✅ Same emoji — remove
+                cur.execute("DELETE FROM message_reactions WHERE id=%s", (existing_id,))
+                action = "removed"
+            else:
+                # ✅ Replace with new emoji
+                cur.execute("UPDATE message_reactions SET emoji=%s WHERE id=%s", (emoji, existing_id))
+                action = "updated"
+        else:
+            # ✅ Add new emoji
+            cur.execute("""
+                INSERT INTO message_reactions (message_id, user_id, emoji)
+                VALUES (%s, %s, %s)
+            """, (message_id, user_id, emoji))
+            action = "added"
+
+        conn.commit()
+
+        # Fetch new list
+        cur.execute("""
+            SELECT emoji, COUNT(*) AS count
+            FROM message_reactions
+            WHERE message_id=%s
+            GROUP BY emoji
+        """, (message_id,))
+        reactions = cur.fetchall()
+
+        emit("reaction_update", {
+            "message_id": message_id,
+            "emoji": emoji,
+            "action": action,
+            "reactions": reactions
+        }, broadcast=True)
+
+    except Exception as e:
+        conn.rollback()
+        print("Socket reaction error:", e)
+        emit("error", {"error": str(e)})
+    finally:
+        cur.close()
+        conn.close()
+
+
+
 #---Group---
 
 @socketio.on("join_group")
@@ -937,6 +1116,9 @@ def handle_group_message(data):
         "message_type": message_type,
         "timestamp": datetime.now().isoformat()
     }, room=f"group_{group_id}")
+
+
+
 
 
 # -------------------- Helpers --------------------
@@ -1028,48 +1210,61 @@ def serve_uploaded_file(username, filename):
 
 #---------------------------- Group Section ----------------------------
 
+
+
+
 @app.route("/create_group", methods=["POST"])
 @token_required
 def create_group():
     created_by = request.user_id
 
-    # ✅ Case 1: JSON (no image)
+    # Case 1: JSON (no image)
     if request.is_json:
         data = request.get_json()
         group_name = data.get("group_name")
         members = data.get("members", [])
         group_image = None
-
-    # ✅ Case 2: FormData (with image)
+    # Case 2: FormData (with image)
     else:
         group_name = request.form.get("group_name")
-        members = request.form.get("members", "[]")
-        import json
-        members = json.loads(members)
+        members_str = request.form.get("members", "[]")
+        try:
+            members = json.loads(members_str)
+            if not isinstance(members, list):
+                return jsonify({"error": "Members must be a list"}), 400
+        except json.JSONDecodeError:
+            return jsonify({"error": "Invalid members JSON format"}), 400
+
         image = request.files.get("group_image")
         group_image = None
 
         if not group_name:
             return jsonify({"error": "Group name required"}), 400
 
-        # ✅ Create a folder for this group (use safe folder name)
+        # Create a folder for this group
         safe_group_name = secure_filename(group_name)
         group_folder = os.path.join(GROUP_UPLOAD_FOLDER, safe_group_name)
-        os.makedirs(group_folder, exist_ok=True)
+        try:
+            os.makedirs(group_folder, exist_ok=True)
+        except OSError as e:
+            return jsonify({"error": f"Failed to create group folder: {str(e)}"}), 500
 
-        # ✅ If image is uploaded, save it inside this group's folder
+        # If image is uploaded, save it
         if image:
             filename = secure_filename(image.filename)
             filepath = os.path.join(group_folder, filename)
-            image.save(filepath)
-            group_image = f"/{group_folder}/{filename}"  # relative path for frontend
+            try:
+                image.save(filepath)
+                group_image = f"/{group_folder}/{filename}"  # relative path
+            except Exception as e:
+                return jsonify({"error": f"Failed to save image: {str(e)}"}), 500
 
     if not group_name:
         return jsonify({"error": "Group name required"}), 400
 
     conn, cur = get_ict_cursor()
     try:
-        # ✅ Insert group (with optional image)
+        # Insert group (with optional image)
         cur.execute(
             "INSERT INTO groups (group_name, created_by, group_image) VALUES (%s, %s, %s)",
             (group_name, created_by, group_image),
@@ -1094,16 +1289,19 @@ def create_group():
             "success": True,
             "group_id": group_id,
             "group_image": group_image,
-            "folder": f"/{group_folder}"
+            "folder": f"/{group_folder}" if group_image else None
         })
 
     except Exception as e:
         conn.rollback()
+        print(f"🔥 /create_group error: {str(e)}")  # Log error for debugging
         return jsonify({"error": str(e)}), 500
     finally:
         cur.close()
         conn.close()
- 
+
+
+        
 
 @app.route("/groups", methods=["GET"])
 @token_required
@@ -1137,6 +1335,9 @@ def get_groups():
     finally:
         cur.close()
         conn.close()
+
+
+
 
 
 @app.route("/group_messages/<int:group_id>", methods=["GET"])
