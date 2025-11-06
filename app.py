@@ -1218,12 +1218,14 @@ def serve_uploaded_file(username, filename):
 def create_group():
     created_by = request.user_id
 
+    group_image = None
+    members = []
+
     # Case 1: JSON (no image)
     if request.is_json:
         data = request.get_json()
         group_name = data.get("group_name")
-        members = data.get("members", [])
-        group_image = None
+        members = data.get("members", []) or []
     # Case 2: FormData (with image)
     else:
         group_name = request.form.get("group_name")
@@ -1236,17 +1238,17 @@ def create_group():
             return jsonify({"error": "Invalid members JSON format"}), 400
 
         image = request.files.get("group_image")
-        group_image = None
 
         if not group_name:
             return jsonify({"error": "Group name required"}), 400
 
-        # Create a folder for this group
-        safe_group_name = secure_filename(group_name)
+        # Create a folder for this group inside your static upload folder
+        safe_group_name = secure_filename(group_name) or "group"
         group_folder = os.path.join(GROUP_UPLOAD_FOLDER, safe_group_name)
         try:
             os.makedirs(group_folder, exist_ok=True)
         except OSError as e:
+            app.logger.exception("Failed to create group folder")
             return jsonify({"error": f"Failed to create group folder: {str(e)}"}), 500
 
         # If image is uploaded, save it
@@ -1255,34 +1257,55 @@ def create_group():
             filepath = os.path.join(group_folder, filename)
             try:
                 image.save(filepath)
-                group_image = f"/{group_folder}/{filename}"  # relative path
+                # set a web-accessible path (do not expose server absolute path)
+                group_image = f"/{group_folder}/{filename}"
             except Exception as e:
+                app.logger.exception("Failed to save group image")
                 return jsonify({"error": f"Failed to save image: {str(e)}"}), 500
 
     if not group_name:
         return jsonify({"error": "Group name required"}), 400
 
+    # ensure members is a list of ints (or strings as your DB expects)
+    if not isinstance(members, list):
+        return jsonify({"error": "Members must be a list"}), 400
+
+    # Optionally sanitize/convert member ids
+    sanitized_members = []
+    for uid in members:
+        try:
+            sanitized_members.append(int(uid))
+        except Exception:
+            # ignore invalid ids or respond with error
+            return jsonify({"error": f"Invalid member id: {uid}"}), 400
+
     conn, cur = get_ict_cursor()
     try:
-        # Insert group (with optional image)
+        # Insert group (quote table identifiers)
         cur.execute(
-            "INSERT INTO groups (group_name, created_by, group_image) VALUES (%s, %s, %s)",
+            "INSERT INTO `groups` (group_name, created_by, group_image) VALUES (%s, %s, %s)",
             (group_name, created_by, group_image),
         )
+        # fetch inserted id in a DB-agnostic way
         group_id = cur.lastrowid
 
-        # Add creator as admin
+        # Add creator as admin (use parameterized role)
         cur.execute(
-            "INSERT INTO group_members (group_id, user_id, role) VALUES (%s, %s, 'admin')",
-            (group_id, created_by),
+            "INSERT INTO `group_members` (group_id, user_id, role) VALUES (%s, %s, %s)",
+            (group_id, created_by, "admin"),
         )
 
-        # Add members
-        for uid in members:
-            cur.execute(
-                "INSERT INTO group_members (group_id, user_id, role) VALUES (%s, %s, 'member')",
-                (group_id, uid),
-            )
+        # Bulk insert members (skip if empty)
+        if sanitized_members:
+            # remove creator if included in members to avoid duplicate pk error (if you have unique constraint)
+            member_rows = [
+                (group_id, uid, "member") for uid in sanitized_members if uid != int(created_by)
+            ]
+            if member_rows:
+                cur.executemany(
+                    "INSERT INTO `group_members` (group_id, user_id, role) VALUES (%s, %s, %s)",
+                    member_rows,
+                )
 
         conn.commit()
         return jsonify({
@@ -1294,14 +1317,17 @@ def create_group():
 
     except Exception as e:
         conn.rollback()
-        print(f"🔥 /create_group error: {str(e)}")  # Log error for debugging
+        # log full traceback to server logs for debugging (do NOT send long traces to clients)
+        app.logger.error("🔥 /create_group error: %s", str(e))
         return jsonify({"error": str(e)}), 500
     finally:
-        cur.close()
-        conn.close()
+        try:
+            cur.close()
+            conn.close()
+        except Exception:
+            pass
 
-
-        
+   
 
 @app.route("/groups", methods=["GET"])
 @token_required
