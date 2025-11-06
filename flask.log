@@ -11875,3 +11875,51 @@
 03-11-2025 16:06:14 - INFO - ICT MySQL pool created
 03-11-2025 16:06:14 - INFO - Booktracker MySQL pool created
 03-11-2025 16:06:14 - INFO - Starting Flask-SocketIO application
+04-11-2025 09:58:25 - INFO - ICT MySQL pool created
+04-11-2025 09:58:25 - INFO - Booktracker MySQL pool created
+04-11-2025 09:58:25 - INFO - Starting Flask-SocketIO application
+04-11-2025 09:59:36 - INFO - Trying to login with email: yogishru@gmail.com
+04-11-2025 09:59:36 - INFO - User Yogesh Sharma logged in, role: admin
+04-11-2025 09:59:45 - INFO - Validating token and fetching user details
+04-11-2025 10:21:41 - INFO - Validating token and fetching user details
+04-11-2025 10:21:50 - INFO - Trying to login with email: muskan@agphbooks.com
+04-11-2025 10:21:50 - INFO - User Muskan logged in, role: user
+04-11-2025 10:21:56 - INFO - Validating token and fetching user details
+04-11-2025 10:21:58 - INFO - Validating token and fetching user details
+04-11-2025 10:22:18 - INFO - Validating token and fetching user details
+04-11-2025 10:22:22 - INFO - Validating token and fetching user details
+04-11-2025 10:24:56 - INFO - Validating token and fetching user details
+04-11-2025 10:25:12 - INFO - Validating token and fetching user details
+04-11-2025 10:25:19 - INFO - Validating token and fetching user details
+04-11-2025 10:25:20 - INFO - Validating token and fetching user details
+04-11-2025 10:27:42 - INFO - Validating token and fetching user details
+04-11-2025 10:27:49 - INFO - Validating token and fetching user details
+04-11-2025 10:27:52 - INFO - Validating token and fetching user details
+04-11-2025 10:28:57 - INFO - Trying to login with email: muskan@agphbooks.com
+04-11-2025 10:28:57 - INFO - User Muskan logged in, role: user
+04-11-2025 10:29:01 - INFO - Validating token and fetching user details
+04-11-2025 10:29:06 - INFO - Validating token and fetching user details
+04-11-2025 10:29:21 - INFO - Validating token and fetching user details
+04-11-2025 10:41:57 - INFO - Validating token and fetching user details
+04-11-2025 10:42:03 - INFO - Validating token and fetching user details
+04-11-2025 10:42:42 - INFO - Validating token and fetching user details
+04-11-2025 10:42:47 - INFO - Validating token and fetching user details
+04-11-2025 11:13:45 - INFO - Validating token and fetching user details
+04-11-2025 16:48:42 - INFO - Trying to login with email: yogishru@gmail.com
+04-11-2025 16:48:42 - INFO - User Yogesh Sharma logged in, role: admin
+04-11-2025 16:48:46 - INFO - Validating token and fetching user details
+04-11-2025 16:48:53 - INFO - Validating token and fetching user details
+04-11-2025 16:48:59 - INFO - Validating token and fetching user details
+05-11-2025 09:58:58 - ERROR - MySQL pool error: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+05-11-2025 11:31:40 - INFO - ICT MySQL pool created
+05-11-2025 11:31:40 - INFO - Booktracker MySQL pool created
+05-11-2025 11:31:40 - INFO - Starting Flask-SocketIO application
+06-11-2025 09:51:29 - INFO - ICT MySQL pool created
+06-11-2025 09:51:29 - INFO - Booktracker MySQL pool created
+06-11-2025 09:51:29 - INFO - Starting Flask-SocketIO application
+06-11-2025 12:17:10 - INFO - Trying to login with email: yogishru@gmail.com
+06-11-2025 12:17:11 - INFO - User Yogesh Sharma logged in, role: admin
+06-11-2025 12:17:15 - INFO - Validating token and fetching user details
+06-11-2025 15:29:45 - INFO - ICT MySQL pool created
+06-11-2025 15:29:45 - INFO - Booktracker MySQL pool created
+06-11-2025 15:29:45 - INFO - Starting Flask-SocketIO application

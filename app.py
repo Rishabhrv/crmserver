@@ -41,8 +41,8 @@ app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins=["https://chat.mis.agkit.in", "https://mis.agkit.in"])
 
-# socketio = SocketIO(app, cors_allowed_origins=["http://localhost:8501", "http://localhost:3000", "http://localhost:5001"])
-# CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
+#socketio = SocketIO(app, cors_allowed_origins=["http://localhost:8501", "http://localhost:3000", "http://localhost:5001"])
+#CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
 
 
 # Configure CORS with explicit headers
@@ -104,7 +104,7 @@ GROUP_UPLOAD_FOLDER = config.GROUP_UPLOAD_FOLDER
 os.makedirs(GROUP_UPLOAD_FOLDER, exist_ok=True)
 
 # File restrictions
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "csv", "zip"}
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "csv", "zip", ".pptx"}
 MAX_FILE_SIZE = 25 * 1024 * 1024  # 10 MB in bytes
 MAX_FILES_PER_REQUEST = 5
 
@@ -509,20 +509,51 @@ def get_messages(conversation_id):
     uid = request.user_id
     conn, cur = get_ict_cursor()
     try:
-        cur.execute(
-            "SELECT * FROM messages WHERE conversation_id=%s ORDER BY timestamp ASC",
-            (conversation_id,)
-        )
+        # Fetch all messages in this conversation
+        cur.execute("""
+            SELECT m.*, u.username AS sender_name
+            FROM messages m
+            LEFT JOIN (
+                SELECT id AS uid, username FROM booktracker.userss
+            ) u ON m.sender_id = u.uid
+            WHERE m.conversation_id = %s
+            ORDER BY m.id ASC
+        """, (conversation_id,))
         msgs = cur.fetchall()
 
+        # ✅ For each message that is a reply, fetch reply details separately
+        bconn, bcur = get_book_cursor()
+        for m in msgs:
+            if m.get("reply_to"):
+                cur.execute("SELECT message, sender_id FROM messages WHERE id = %s", (m["reply_to"],))
+                reply_msg = cur.fetchone()
+                if reply_msg:
+                    m["reply_to_text"] = reply_msg["message"]
+                    m
+                    bcur.execute("SELECT username FROM userss WHERE id = %s", (reply_msg["sender_id"],))
+                    reply_user = bcur.fetchone()
+                    m["reply_to_user"] = reply_user["username"] if reply_user else "Unknown"
+                else:
+                    m["reply_to_text"] = None
+                    m["reply_to_user"] = None
+            else:
+                m["reply_to_text"] = None
+                m["reply_to_user"] = None
+        bcur.close()
+        bconn.close()
+
+        # ✅ Mark all messages from others as seen
         cur.execute(
-            "UPDATE messages SET seen=1 WHERE conversation_id=%s AND sender_id!=%s",
+            "UPDATE messages SET seen = 1 WHERE conversation_id=%s AND sender_id!=%s",
             (conversation_id, uid)
         )
+        conn.commit()
+
         return jsonify(msgs or [])
     finally:
         cur.close()
         conn.close()
+
 
 @app.route('/users')
 def search_users():
@@ -637,8 +668,7 @@ def delete_message(msg_id):
         return jsonify({"error": "Internal server error"}), 500
     finally:
         ict_cur.close()
-        ict_conn.close()
-    
+        ict_conn.close()    
 
 @app.route('/all_users', methods=['GET'])
 @token_required
@@ -688,13 +718,14 @@ def socket_send_message(data):
     token = data.get("token")
     conv_id = data.get("conversation_id")
     message_text = data.get("message")
-    message_type = data.get("message_type", "text")  # ✅ default type
+    message_type = data.get("message_type", "text")
+    reply_to = data.get("reply_to")  # ✅ Optional reply message ID
 
     if not token or not conv_id or not message_text:
         emit("error", {"error": "missing fields"})
         return
 
-    # 🔐 Decode JWT using consistent key and payload structure
+    # 🔐 Decode JWT
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
         sender_id = payload["user_id"]
@@ -705,22 +736,53 @@ def socket_send_message(data):
         emit("error", {"error": "invalid token"})
         return
 
-    # 🕒 Use IST time (assuming you have now_ist() helper)
+    # 🕒 Use IST time
     current_time = now_ist()
     formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
 
     try:
-        # ✅ Connect to ICT DB (where messages table exists)
         conn, cur = get_ict_cursor()
-        cur.execute(
-            """
-            INSERT INTO messages (conversation_id, sender_id, message, message_type, timestamp)
-            VALUES (%s, %s, %s, %s, %s)
-            """,
-            (conv_id, sender_id, message_text, message_type, formatted_time)
-        )
+
+        # ✅ Step 1: If replying to a message, fetch its text and sender_id
+        reply_to_text = None
+        reply_to_user = None
+        if reply_to:
+            cur.execute("SELECT message, sender_id FROM messages WHERE id = %s", (reply_to,))
+            reply_msg = cur.fetchone()
+            if reply_msg:
+                reply_to_text = reply_msg["message"]
+                reply_sender_id = reply_msg["sender_id"]
+
+                # ✅ Get username from BOOK database (since userss table is there)
+                try:
+                    bconn, bcur = get_book_cursor()
+                    bcur.execute("SELECT username FROM userss WHERE id = %s", (reply_sender_id,))
+                    buser = bcur.fetchone()
+                    if buser:
+                        reply_to_user = buser["username"]
+                finally:
+                    bcur.close()
+                    bconn.close()
+
+        # ✅ Step 2: Insert the new message into ICT DB
+        cur.execute("""
+            INSERT INTO messages (conversation_id, sender_id, message, message_type, timestamp, reply_to)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """, (conv_id, sender_id, message_text, message_type, formatted_time, reply_to))
         conn.commit()
         message_id = cur.lastrowid
+
+        # ✅ Step 3: Mark previous messages from others as seen
+        cur.execute("""
+            UPDATE messages
+            SET seen = 1
+            WHERE conversation_id = %s
+              AND sender_id != %s
+              AND seen = 0
+              AND id < %s
+        """, (conv_id, sender_id, message_id))
+        conn.commit()
+
     except Exception as e:
         emit("error", {"error": f"DB error: {str(e)}"})
         return
@@ -728,18 +790,18 @@ def socket_send_message(data):
         cur.close()
         conn.close()
 
-    # 🧩 Get sender username from book DB
+    # ✅ Step 4: Get sender username from BOOK DB
     try:
-        book_conn, book_cur = get_book_cursor()
-        book_cur.execute("SELECT username FROM userss WHERE id = %s", (sender_id,))
-        sender_name = (book_cur.fetchone() or {}).get("username", "Unknown")
-    except Exception as e:
+        bconn, bcur = get_book_cursor()
+        bcur.execute("SELECT username FROM userss WHERE id = %s", (sender_id,))
+        sender_name = (bcur.fetchone() or {}).get("username", "Unknown")
+    except Exception:
         sender_name = "Unknown"
     finally:
-        book_cur.close()
-        book_conn.close()
+        bcur.close()
+        bconn.close()
 
-    # 📦 Build message payload
+    # ✅ Step 5: Build payload
     payload_msg = {
         "id": message_id,
         "conversation_id": conv_id,
@@ -747,14 +809,50 @@ def socket_send_message(data):
         "sender_name": sender_name,
         "message": message_text,
         "message_type": message_type,
-        "timestamp": formatted_time
+        "timestamp": formatted_time,
+        "reply_to": reply_to,
+        "reply_to_text": reply_to_text,
+        "reply_to_user": reply_to_user
     }
 
-    # 📡 Broadcast to all users in this conversation room
+    # 📡 Broadcast to all users in the conversation
     emit("new_message", payload_msg, room=f"conv_{conv_id}")
 
-    # 📨 Acknowledge the sender (optional but good UX)
+    # ✅ Notify that previous messages were marked as seen
+    emit("messages_marked_seen", {"conversation_id": conv_id}, room=f"conv_{conv_id}")
+
+    # 📨 Acknowledge sender (optional)
     emit("message_sent", payload_msg, room=request.sid)
+
+
+@socketio.on("mark_seen")
+def handle_mark_seen(data):
+    message_id = data.get("message_id")
+    conversation_id = data.get("conversation_id")
+    token = data.get("token")
+
+    # ✅ Validate token
+    try:
+        user = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+    except Exception as e:
+        emit("auth_error", {"error": "Invalid token"})
+        return
+
+    # ✅ Update database (seen = 1)
+    conn, cur = get_ict_cursor()
+    try:
+        cur.execute("UPDATE messages SET seen = 1 WHERE id = %s", (message_id,))
+        conn.commit()
+    finally:
+        cur.close()
+        conn.close()
+
+    # ✅ Notify everyone in this conversation that a message was seen
+    emit(
+        "message_seen",
+        {"message_id": message_id, "conversation_id": conversation_id},
+        room=f"conv_{conversation_id}",
+    )
 
 
 @app.route("/get_conversation_media", methods=["GET"])
@@ -781,8 +879,6 @@ def get_conversation_media():
         conn.close()
 
     return jsonify(data)
-
-
 #---Group---
 
 @socketio.on("join_group")
@@ -932,63 +1028,50 @@ def serve_uploaded_file(username, filename):
 
 #---------------------------- Group Section ----------------------------
 
-
-
-
 @app.route("/create_group", methods=["POST"])
 @token_required
 def create_group():
     created_by = request.user_id
 
-    # Case 1: JSON (no image)
+    # ✅ Case 1: JSON (no image)
     if request.is_json:
         data = request.get_json()
         group_name = data.get("group_name")
         members = data.get("members", [])
         group_image = None
-    # Case 2: FormData (with image)
+
+    # ✅ Case 2: FormData (with image)
     else:
         group_name = request.form.get("group_name")
-        members_str = request.form.get("members", "[]")
-        try:
-            members = json.loads(members_str)
-            if not isinstance(members, list):
-                return jsonify({"error": "Members must be a list"}), 400
-        except json.JSONDecodeError:
-            return jsonify({"error": "Invalid members JSON format"}), 400
-
+        members = request.form.get("members", "[]")
+        import json
+        members = json.loads(members)
         image = request.files.get("group_image")
         group_image = None
 
         if not group_name:
             return jsonify({"error": "Group name required"}), 400
 
-        # Create a folder for this group
+        # ✅ Create a folder for this group (use safe folder name)
         safe_group_name = secure_filename(group_name)
         group_folder = os.path.join(GROUP_UPLOAD_FOLDER, safe_group_name)
-        try:
-            os.makedirs(group_folder, exist_ok=True)
-        except OSError as e:
-            return jsonify({"error": f"Failed to create group folder: {str(e)}"}), 500
+        os.makedirs(group_folder, exist_ok=True)
 
-        # If image is uploaded, save it
+        # ✅ If image is uploaded, save it inside this group's folder
         if image:
             filename = secure_filename(image.filename)
             filepath = os.path.join(group_folder, filename)
-            try:
-                image.save(filepath)
-                group_image = f"/{group_folder}/{filename}"  # relative path
-            except Exception as e:
-                return jsonify({"error": f"Failed to save image: {str(e)}"}), 500
+            image.save(filepath)
+            group_image = f"/{group_folder}/{filename}"  # relative path for frontend
 
     if not group_name:
         return jsonify({"error": "Group name required"}), 400
 
     conn, cur = get_ict_cursor()
     try:
-        # Insert group (with optional image)
+        # ✅ Insert group (with optional image)
         cur.execute(
-            "INSERT INTO `groups` (group_name, created_by, group_image) VALUES (%s, %s, %s)",
+            "INSERT INTO groups (group_name, created_by, group_image) VALUES (%s, %s, %s)",
             (group_name, created_by, group_image),
         )
         group_id = cur.lastrowid
@@ -1011,19 +1094,16 @@ def create_group():
             "success": True,
             "group_id": group_id,
             "group_image": group_image,
-            "folder": f"/{group_folder}" if group_image else None
+            "folder": f"/{group_folder}"
         })
 
     except Exception as e:
         conn.rollback()
-        print(f"🔥 /create_group error: {str(e)}")  # Log error for debugging
         return jsonify({"error": str(e)}), 500
     finally:
         cur.close()
         conn.close()
-
-
-        
+ 
 
 @app.route("/groups", methods=["GET"])
 @token_required
@@ -1033,7 +1113,7 @@ def get_groups():
     try:
         cur.execute("""
             SELECT g.id, g.group_name, g.group_image, g.created_by, g.created_at
-            FROM `groups` g
+            FROM groups g
             JOIN group_members gm ON g.id = gm.group_id
             WHERE gm.user_id = %s
             ORDER BY g.created_at DESC
