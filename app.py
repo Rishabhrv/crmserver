@@ -1311,8 +1311,8 @@ def get_groups():
     try:
         cur.execute("""
             SELECT g.id, g.group_name, g.group_image, g.created_by, g.created_at
-            FROM groups g
-            JOIN group_members gm ON g.id = gm.group_id
+            FROM `groups` AS g
+            JOIN `group_members` AS gm ON g.id = gm.group_id
             WHERE gm.user_id = %s
             ORDER BY g.created_at DESC
         """, (user_id,))
@@ -1335,8 +1335,6 @@ def get_groups():
     finally:
         cur.close()
         conn.close()
-
-
 
 
 
