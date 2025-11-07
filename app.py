@@ -45,15 +45,6 @@ socketio = SocketIO(app, cors_allowed_origins=["https://chat.mis.agkit.in", "htt
 #CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
 
 
-# Configure CORS with explicit headers
-# CORS(app, resources={
-#     r"/upload_file": {
-#         "origins": ["https://chat.mis.agkit.in", "https://mis.agkit.in"],
-#         "methods": ["GET", "POST", "OPTIONS"],
-#         "allow_headers": ["Content-Type", "Authorization"]
-#     }
-# })
-
 try:
     # Pool for 'ict' database (chat)
     ict_pool = pooling.MySQLConnectionPool(
@@ -433,6 +424,65 @@ def reset_password():
     return render_template('reset_password.html', token=token)
 
 
+# -------------------- Activity Log Helper --------------------
+logged_click_ids = set()  # To avoid duplicate navigation logs
+
+def log_activity(user_id, username, session_id, action, details):
+    conn, cur = get_book_cursor()
+    try:
+        ist_time = now_ist().strftime('%Y-%m-%d %H:%M:%S')
+        cur.execute("""
+            INSERT INTO activity_log (user_id, username, session_id, action, details, timestamp)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """, (user_id, username, session_id, action, details, ist_time))
+        conn.commit()
+    except Exception as e:
+        print("Activity Log Error:", e)
+    finally:
+        cur.close()
+        conn.close()
+
+
+logged_click_ids = set()  # Avoid duplicates
+
+@app.route("/log_navigation", methods=["POST"])
+@token_required
+def log_navigation():
+    data = request.json
+    click_id = data.get("click_id")
+    page = data.get("page")
+    session_id = data.get("session_id")  # ✅ Now received from frontend
+
+    if not click_id or not page or not session_id:
+        return jsonify({"error": "click_id, page and session_id required"}), 400
+
+    # ✅ Avoid duplicate logs
+    if click_id in logged_click_ids:
+        return jsonify({"status": "ignored"}), 200
+
+    logged_click_ids.add(click_id)
+
+    # ✅ Fetch username from DB using request.user_id from token
+    conn, cur = get_book_cursor()
+    cur.execute("SELECT username FROM userss WHERE id=%s", (request.user_id,))
+    user = cur.fetchone()
+    cur.close()
+    conn.close()
+
+    username = user["username"] if user else "Unknown"
+
+    # ✅ Log activity using session_id from frontend
+    log_activity(
+        user_id=request.user_id,
+        username=username,
+        session_id=session_id,
+        action="navigation to page",
+        details=f"Page: {page}"
+    )
+
+    return jsonify({"status": "logged"}), 200
+
+
 
 @app.route("/conversations", methods=["GET"])
 @token_required
@@ -554,10 +604,13 @@ def get_messages(conversation_id):
         bconn.close()
 
         # ✅ Mark all messages from others as seen
-        cur.execute(
-            "UPDATE messages SET seen = 1 WHERE conversation_id=%s AND sender_id!=%s",
-            (conversation_id, uid)
-        )
+        cur.execute("""
+            UPDATE messages 
+            SET seen = 1, seen_time = %s 
+            WHERE conversation_id = %s 
+              AND sender_id != %s 
+              AND seen = 0
+        """, (now_ist().strftime("%Y-%m-%d %H:%M:%S"), conversation_id, uid))
         conn.commit()
 
         return jsonify(msgs or [])
@@ -868,7 +921,12 @@ def handle_mark_seen(data):
     # ✅ Update database (seen = 1)
     conn, cur = get_ict_cursor()
     try:
-        cur.execute("UPDATE messages SET seen = 1 WHERE id = %s", (message_id,))
+        cur.execute("""
+            UPDATE messages 
+            SET seen = 1, seen_time = %s 
+            WHERE id = %s
+        """, (now_ist().strftime("%Y-%m-%d %H:%M:%S"), message_id))
+
         conn.commit()
     finally:
         cur.close()
@@ -1283,7 +1341,7 @@ def create_group():
     try:
         # Insert group (quote table identifiers)
         cur.execute(
-            "INSERT INTO `groups` (group_name, created_by, group_image) VALUES (%s, %s, %s)",
+            "INSERT INTO groups (group_name, created_by, group_image) VALUES (%s, %s, %s)",
             (group_name, created_by, group_image),
         )
         # fetch inserted id in a DB-agnostic way
@@ -1291,7 +1349,7 @@ def create_group():
 
         # Add creator as admin (use parameterized role)
         cur.execute(
-            "INSERT INTO `group_members` (group_id, user_id, role) VALUES (%s, %s, %s)",
+            "INSERT INTO group_members (group_id, user_id, role) VALUES (%s, %s, %s)",
             (group_id, created_by, "admin"),
         )
 
@@ -1303,7 +1361,7 @@ def create_group():
             ]
             if member_rows:
                 cur.executemany(
-                    "INSERT INTO `group_members` (group_id, user_id, role) VALUES (%s, %s, %s)",
+                    "INSERT INTO group_members (group_id, user_id, role) VALUES (%s, %s, %s)",
                     member_rows,
                 )
 
@@ -1326,6 +1384,7 @@ def create_group():
             conn.close()
         except Exception:
             pass
+
 
    
 

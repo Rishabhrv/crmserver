@@ -11923,3 +11923,16 @@
 06-11-2025 15:29:45 - INFO - ICT MySQL pool created
 06-11-2025 15:29:45 - INFO - Booktracker MySQL pool created
 06-11-2025 15:29:45 - INFO - Starting Flask-SocketIO application
+06-11-2025 17:07:08 - INFO - ICT MySQL pool created
+06-11-2025 17:07:08 - INFO - Booktracker MySQL pool created
+06-11-2025 17:07:08 - INFO - Starting Flask-SocketIO application
+07-11-2025 10:33:07 - ERROR - MySQL pool error: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+07-11-2025 10:33:38 - INFO - ICT MySQL pool created
+07-11-2025 10:33:38 - INFO - Booktracker MySQL pool created
+07-11-2025 10:33:38 - INFO - Starting Flask-SocketIO application
+07-11-2025 10:34:54 - INFO - Trying to login with email: yogishru@gmail.com
+07-11-2025 10:34:54 - INFO - User Yogesh Sharma logged in, role: admin
+07-11-2025 10:34:58 - INFO - Validating token and fetching user details
+07-11-2025 11:46:12 - INFO - ICT MySQL pool created
+07-11-2025 11:46:12 - INFO - Booktracker MySQL pool created
+07-11-2025 11:46:12 - INFO - Starting Flask-SocketIO application
