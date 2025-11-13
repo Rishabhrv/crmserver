@@ -1441,10 +1441,21 @@ def create_group():
 
    
 
+def safe_datetime_format(val):
+    if not val:
+        return None
+    if isinstance(val, str):
+        try:
+            val = datetime.strptime(val, "%Y-%m-%d %H:%M:%S")
+        except:
+            return val  # fallback raw string
+    return val.strftime("%Y-%m-%d %H:%M:%S")
+
+
 @app.route("/groups", methods=["GET"])
 @token_required
 def get_groups():
-    user_id = request.user_id  # from token
+    user_id = request.user_id
     conn, cur = get_ict_cursor()
     book_conn, book_cur = get_book_cursor()
 
@@ -1483,21 +1494,24 @@ def get_groups():
 
         for g in groups:
             sender_name = None
+
             if g["last_sender_id"]:
-                # ✅ Fetch sender username from BOOK database
-                book_cur.execute("SELECT username FROM userss WHERE id = %s", (g["last_sender_id"],))
-                sender = book_cur.fetchone()
-                sender_name = sender["username"] if sender else None
+                book_cur.execute(
+                    "SELECT username FROM userss WHERE id=%s",
+                    (g["last_sender_id"],)
+                )
+                s = book_cur.fetchone()
+                sender_name = s["username"] if s else None
 
             result.append({
                 "id": g["id"],
                 "group_name": g["group_name"],
                 "group_image": g["group_image"],
                 "created_by": g["created_by"],
-                "created_at": g["created_at"].strftime("%Y-%m-%d %H:%M:%S") if g["created_at"] else None,
+                "created_at": safe_datetime_format(g["created_at"]),
                 "last_message": g["last_message"],
                 "last_message_type": g["last_message_type"],
-                "last_time": g["last_time"].strftime("%Y-%m-%d %H:%M:%S") if g["last_time"] else None,
+                "last_time": safe_datetime_format(g["last_time"]),
                 "last_sender": sender_name,
                 "type": "group",
                 "hasConversation": True
