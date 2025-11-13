@@ -552,16 +552,14 @@ def get_conversations():
         book_conn.close()
 
 
+
 @app.route("/messages/<int:conversation_id>", methods=["GET"])
 @token_required
 def get_messages(conversation_id):
     uid = request.user_id
-    limit = int(request.args.get("limit", 100))
-    offset = int(request.args.get("offset", 0))
-
     conn, cur = get_ict_cursor()
     try:
-        # 📨 Fetch paginated messages in this conversation
+        # 📨 Fetch all messages in this conversation
         cur.execute("""
             SELECT m.*, u.username AS sender_name
             FROM messages m
@@ -569,17 +567,14 @@ def get_messages(conversation_id):
                 SELECT id AS uid, username FROM booktracker.userss
             ) u ON m.sender_id = u.uid
             WHERE m.conversation_id = %s
-            ORDER BY m.id DESC        -- latest first
-            LIMIT %s OFFSET %s
-        """, (conversation_id, limit, offset))
+            ORDER BY m.id ASC
+        """, (conversation_id,))
         msgs = cur.fetchall()
 
-        # 🔄 Reverse again so UI still shows oldest→newest order
-        msgs.reverse()
-
-        # 🧩 Fetch reply + reaction details
+        # 🧩 For each message that is a reply, fetch reply details
         bconn, bcur = get_book_cursor()
         for m in msgs:
+            # ✅ Add reply details
             if m.get("reply_to"):
                 cur.execute("SELECT message, sender_id FROM messages WHERE id = %s", (m["reply_to"],))
                 reply_msg = cur.fetchone()
@@ -595,19 +590,20 @@ def get_messages(conversation_id):
                 m["reply_to_text"] = None
                 m["reply_to_user"] = None
 
-            # ✅ Fetch reactions
+            # ✅ Fetch reactions for each message
             cur.execute("""
                 SELECT emoji, COUNT(*) AS count
                 FROM message_reactions
                 WHERE message_id = %s
                 GROUP BY emoji
             """, (m["id"],))
-            m["reactions"] = cur.fetchall() or []
+            reactions = cur.fetchall()
+            m["reactions"] = reactions or []
 
         bcur.close()
         bconn.close()
 
-        # ✅ Mark other-user messages as seen
+        # ✅ Mark all messages from others as seen
         cur.execute("""
             UPDATE messages 
             SET seen = 1, seen_time = %s 
@@ -626,6 +622,7 @@ def get_messages(conversation_id):
     finally:
         cur.close()
         conn.close()
+
 
 
 @app.route('/users')
@@ -689,7 +686,6 @@ def create_conversation():
         cur.execute("SELECT * FROM conversations WHERE id=%s", (convo_id,))
         new_convo = cur.fetchone()
 
-        cur.close()
         conn.close()
         return jsonify({
             "success": True,
@@ -897,16 +893,16 @@ def socket_send_message(data):
         "reply_to_user": reply_to_user
     }
 
-
     # 📡 Broadcast to all users in the conversation
     emit("new_message", payload_msg, room=f"conv_{conv_id}")
-
 
     # ✅ Notify that previous messages were marked as seen
     emit("messages_marked_seen", {"conversation_id": conv_id}, room=f"conv_{conv_id}")
 
     # 📨 Acknowledge sender (optional)
     emit("message_sent", payload_msg, room=request.sid)
+
+
 
 
 @socketio.on("mark_seen")
@@ -1141,7 +1137,6 @@ def handle_group_message(data):
     group_id = data.get("group_id")
     message = data.get("message")
     message_type = data.get("message_type", "text")
-    reply_to = data.get("reply_to")
 
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
@@ -1150,85 +1145,35 @@ def handle_group_message(data):
         emit("error", {"error": f"Invalid token: {str(e)}"})
         return
 
-    # ✅ 1. Get sender_name from BOOK DB
-    conn1, cur1 = get_book_cursor()
-    cur1.execute("SELECT username FROM userss WHERE id = %s", (sender_id,))
-    user_row = cur1.fetchone()
+    # ✅ Get sender_name from userss
+    conn, cur = get_book_cursor()
+    cur.execute("SELECT username FROM userss WHERE id = %s", (sender_id,))
+    user_row = cur.fetchone()
     sender_name = user_row["username"] if user_row else "Unknown User"
-    cur1.close()
-    conn1.close()
+    cur.close()
+    conn.close()
 
-    # ✅ 2. Save message in ICT DB
-    conn2, cur2 = get_ict_cursor()
-    cur2.execute(
-        """INSERT INTO group_messages 
-        (group_id, sender_id, message, message_type, reply_to, timestamp) 
-        VALUES (%s, %s, %s, %s, %s, NOW())""",
-        (group_id, sender_id, message, message_type, reply_to)
+    # ✅ Save message
+    conn, cur = get_ict_cursor()
+    cur.execute(
+        "INSERT INTO group_messages (group_id, sender_id, message, message_type, timestamp) VALUES (%s,%s,%s,%s,NOW())",
+        (group_id, sender_id, message, message_type)
     )
-    conn2.commit()
-    message_id = cur2.lastrowid
-    cur2.close()
-    conn2.close()
+    conn.commit()
+    message_id = cur.lastrowid
+    cur.close()
+    conn.close()
 
-    # ✅ 3. Fetch reply message & username (SAME LOGIC AS USER CHAT ✅)
-    reply_to_text = None
-    reply_to_user = None
-
-    if reply_to:
-        try:
-            connR, curR = get_ict_cursor()  # ✅ group_messages is in ICT DB
-            curR.execute("SELECT message, sender_id FROM group_messages WHERE id = %s", (reply_to,))
-            reply_row = curR.fetchone()
-            curR.close()
-            connR.close()
-
-            if reply_row:
-                reply_to_text = reply_row["message"]
-                reply_sender_id = reply_row["sender_id"]
-
-                # ✅ Get reply sender username from BOOK DB
-                bconn, bcur = get_book_cursor()
-                bcur.execute("SELECT username FROM userss WHERE id = %s", (reply_sender_id,))
-                buser = bcur.fetchone()
-                bcur.close()
-                bconn.close()
-
-                if buser:
-                    reply_to_user = buser["username"]
-
-        except Exception as e:
-            print("❌ Reply Fetch Error:", e)
-
-    # ✅ 4. Build response exactly like user chat structure
-    response_data = {
+    # ✅ Include sender_name when emitting
+    emit("new_group_message", {
         "id": message_id,
         "group_id": group_id,
         "sender_id": sender_id,
         "sender_name": sender_name,
         "message": message,
         "message_type": message_type,
-        "timestamp": datetime.now().isoformat(),
-
-        "reply_to": reply_to,
-        "reply_to_text": reply_to_text,     # ✅ ADDED (frontend needs this)
-        "reply_to_user": reply_to_user      # ✅ ADDED (frontend needs this)
-    }
-
-
-    emit("new_group_message", response_data, room=f"group_{group_id}")
-
-
-
-
-@socketio.on("group_typing")
-def handle_group_typing(data):
-    token = data.get("token"); group_id = data.get("group_id"); username = data.get("username"); typing = data.get("typing", False)
-    try:
-        jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
-    except:
-        return
-    emit("group_typing", {"group_id": group_id, "username": username, "typing": typing}, room=f"group_{group_id}", include_self=False)
+        "timestamp": datetime.now().isoformat()
+    }, room=f"group_{group_id}")
 
 
 
@@ -1322,6 +1267,7 @@ def serve_uploaded_file(username, filename):
         return jsonify({"error": f"Failed to serve file: {str(e)}"}), 500
 
 #---------------------------- Group Section ----------------------------
+
 
 
 
@@ -1439,179 +1385,61 @@ def create_group():
         except Exception:
             pass
 
+
    
-
-def safe_datetime_format(val):
-    if not val:
-        return None
-    if isinstance(val, str):
-        try:
-            val = datetime.strptime(val, "%Y-%m-%d %H:%M:%S")
-        except:
-            return val  # fallback raw string
-    return val.strftime("%Y-%m-%d %H:%M:%S")
-
 
 @app.route("/groups", methods=["GET"])
 @token_required
 def get_groups():
-    user_id = request.user_id
+    user_id = request.user_id  # from token
     conn, cur = get_ict_cursor()
-    book_conn, book_cur = get_book_cursor()
-
     try:
         cur.execute("""
-            SELECT 
-                g.id, g.group_name, g.group_image, g.created_by, g.created_at,
-                (
-                    SELECT message FROM group_messages 
-                    WHERE group_id = g.id 
-                    ORDER BY timestamp DESC LIMIT 1
-                ) AS last_message,
-                (
-                    SELECT message_type FROM group_messages 
-                    WHERE group_id = g.id 
-                    ORDER BY timestamp DESC LIMIT 1
-                ) AS last_message_type,
-                (
-                    SELECT timestamp FROM group_messages 
-                    WHERE group_id = g.id 
-                    ORDER BY timestamp DESC LIMIT 1
-                ) AS last_time,
-                (
-                    SELECT sender_id FROM group_messages 
-                    WHERE group_id = g.id 
-                    ORDER BY timestamp DESC LIMIT 1
-                ) AS last_sender_id
-            FROM groups AS g
-            JOIN group_members AS gm ON g.id = gm.group_id
+            SELECT g.id, g.group_name, g.group_image, g.created_by, g.created_at
+            FROM `groups` AS g
+            JOIN `group_members` AS gm ON g.id = gm.group_id
             WHERE gm.user_id = %s
-            ORDER BY last_time DESC, g.created_at DESC
+            ORDER BY g.created_at DESC
         """, (user_id,))
-
         groups = cur.fetchall()
+
         result = []
-
         for g in groups:
-            sender_name = None
-
-            if g["last_sender_id"]:
-                book_cur.execute(
-                    "SELECT username FROM userss WHERE id=%s",
-                    (g["last_sender_id"],)
-                )
-                s = book_cur.fetchone()
-                sender_name = s["username"] if s else None
-
             result.append({
                 "id": g["id"],
                 "group_name": g["group_name"],
                 "group_image": g["group_image"],
                 "created_by": g["created_by"],
-                "created_at": safe_datetime_format(g["created_at"]),
-                "last_message": g["last_message"],
-                "last_message_type": g["last_message_type"],
-                "last_time": safe_datetime_format(g["last_time"]),
-                "last_sender": sender_name,
-                "type": "group",
-                "hasConversation": True
+                "created_at": g["created_at"].strftime("%Y-%m-%d %H:%M:%S") if g["created_at"] else None,
             })
 
         return jsonify(result)
-
     except Exception as e:
         print("🔥 /groups error:", e)
         return jsonify({"error": str(e)}), 500
-
     finally:
         cur.close()
         conn.close()
-        book_cur.close()
-        book_conn.close()
 
 
 
 @app.route("/group_messages/<int:group_id>", methods=["GET"])
 @token_required
 def get_group_messages(group_id):
-
-    # 1) Fetch all group messages + reply reference
     conn, cur = get_ict_cursor()
-    cur.execute("""
-        SELECT gm.*, rm.message AS reply_message, rm.sender_id AS reply_sender_id, rm.id AS reply_to_id
-        FROM group_messages gm
-        LEFT JOIN group_messages rm ON gm.reply_to = rm.id
-        WHERE gm.group_id = %s
-        ORDER BY gm.id ASC;
-    """, (group_id,))
-    messages = cur.fetchall()
-
-    if not messages:
-        cur.close(); conn.close()
-        return jsonify([])
-
-    # 2) Collect message IDs to fetch reactions
-    message_ids = [m["id"] for m in messages]
-
-    # 3) Fetch reactions for these messages
-    format_ids = ",".join(["%s"] * len(message_ids))
-    cur.execute(f"""
-        SELECT * FROM group_message_reactions 
-        WHERE message_id IN ({format_ids})
-    """, tuple(message_ids))
-    reactions = cur.fetchall()
-    cur.close()
-    conn.close()
-
-    # 4) Group reactions by message_id
-    reaction_map = {}
-    for r in reactions:
-        if r["message_id"] not in reaction_map:
-            reaction_map[r["message_id"]] = []
-        reaction_map[r["message_id"]].append({
-            "id": r["id"],
-            "user_id": r["user_id"],
-            "emoji": r["emoji"]
-        })
-
-    # 5) Collect sender ids to map usernames
-    sender_ids = set()
-    for m in messages:
-        if m.get("sender_id"): sender_ids.add(m["sender_id"])
-        if m.get("reply_sender_id"): sender_ids.add(m["reply_sender_id"])
-
-    # 6) Fetch usernames
-    user_map = {}
-    if sender_ids:
-        conn2, cur2 = get_book_cursor()
-        format_users = ",".join(["%s"] * len(sender_ids))
-        cur2.execute(f"SELECT id, username FROM userss WHERE id IN ({format_users})", tuple(sender_ids))
-        for row in cur2.fetchall():
-            user_map[row["id"]] = row["username"]
-        cur2.close()
-        conn2.close()
-
-    # 7) Build response
-    result = []
-    for m in messages:
-        msg = dict(m)
-        msg["sender_name"] = user_map.get(msg.get("sender_id"), "Unknown")
-
-        # reply message structure
-        if msg.get("reply_message"):
-            msg["reply_to_message"] = {
-                "sender_name": user_map.get(msg.get("reply_sender_id"), "Unknown"),
-                "message": msg.get("reply_message")
-            }
-        else:
-            msg["reply_to_message"] = None
-
-        # ✅ Attach reactions
-        msg["reactions"] = reaction_map.get(msg["id"], [])
-
-        result.append(msg)
-
-    return jsonify(result)
+    try:
+        cur.execute("""
+            SELECT gm.id, gm.sender_id, u.username AS sender_name, gm.message, gm.message_type, gm.timestamp
+            FROM group_messages gm
+            JOIN booktracker.userss u ON gm.sender_id = u.id
+            WHERE gm.group_id = %s
+            ORDER BY gm.timestamp ASC
+        """, (group_id,))
+        messages = cur.fetchall()
+        return jsonify(messages)
+    finally:
+        cur.close()
+        conn.close()
 
 
 @app.route("/send_group_message", methods=["POST"])
@@ -1621,7 +1449,6 @@ def send_group_message():
     group_id = data.get("group_id")
     message = data.get("message")
     message_type = data.get("message_type", "text")
-    reply_to = data.get("reply_to")
     sender_id = request.user_id
 
     if not group_id or not message:
@@ -1630,292 +1457,15 @@ def send_group_message():
     conn, cur = get_ict_cursor()
     try:
         cur.execute("""
-            INSERT INTO group_messages (group_id, sender_id, message, message_type, reply_to)
-            VALUES (%s, %s, %s, %s, %s)
-        """, (group_id, sender_id, message, message_type, reply_to))
+            INSERT INTO group_messages (group_id, sender_id, message, message_type)
+            VALUES (%s, %s, %s, %s)
+        """, (group_id, sender_id, message, message_type))
         conn.commit()
         msg_id = cur.lastrowid
         return jsonify({"success": True, "message_id": msg_id})
     finally:
         cur.close()
         conn.close()
-
-
-@socketio.on("send_group_reaction")
-def handle_group_reaction(data):
-    token = data.get("token")
-    message_id = data.get("message_id")
-    emoji = data.get("emoji")
-
-    if not token or not message_id or not emoji:
-        return
-
-    try:
-        payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
-        user_id = payload["user_id"]
-    except:
-        return
-
-    try:
-        conn, cur = get_ict_cursor()
-
-        # Toggle reaction
-        cur.execute("""
-            SELECT * FROM group_message_reactions
-            WHERE message_id = %s AND user_id = %s AND emoji = %s
-        """, (message_id, user_id, emoji))
-        exists = cur.fetchone()
-
-        if exists:
-            cur.execute("""
-                DELETE FROM group_message_reactions
-                WHERE message_id = %s AND user_id = %s AND emoji = %s
-            """, (message_id, user_id, emoji))
-        else:
-            cur.execute("""
-                INSERT INTO group_message_reactions (message_id, user_id, emoji)
-                VALUES (%s, %s, %s)
-            """, (message_id, user_id, emoji))
-
-        conn.commit()
-
-        # Send updated reactions
-        cur.execute("""
-            SELECT emoji, COUNT(*) as count
-            FROM group_message_reactions
-            WHERE message_id = %s
-            GROUP BY emoji
-        """, (message_id,))
-        reactions = cur.fetchall()
-
-        emit("group_reaction_update", {"message_id": message_id, "reactions": reactions}, broadcast=True)
-
-    except Exception as e:
-        print("Group Reaction Error:", e)
-
-    finally:
-        cur.close()
-        conn.close()
-
-
-@app.route("/delete_group_message/<int:msg_id>", methods=["DELETE"])
-@token_required
-def delete_group_message(msg_id):
-    user_id = request.user_id  # ✅ same as working 1-to-1 delete
-    ict_conn, ict_cur = get_ict_cursor()
-
-    try:
-        # 🔹 Check if the message exists and belongs to this user
-        ict_cur.execute(
-            "SELECT sender_id, group_id FROM group_messages WHERE id = %s",
-            (msg_id,),
-        )
-        msg = ict_cur.fetchone()
-        if not msg:
-            return jsonify({"error": "Message not found"}), 404
-
-        if msg["sender_id"] != user_id:
-            return jsonify({"error": "You can only delete your own messages"}), 403
-
-        # 🔹 Delete reactions first
-        ict_cur.execute("DELETE FROM group_message_reactions WHERE message_id = %s", (msg_id,))
-
-        # 🔹 Delete message from DB
-        ict_cur.execute("DELETE FROM group_messages WHERE id = %s", (msg_id,))
-        ict_conn.commit()
-
-        # 🔹 Notify all clients in that group (socket.io)
-        socketio.emit(
-            "delete_group_message",
-            {"id": msg_id, "group_id": msg["group_id"]},
-            room=str(msg["group_id"]),
-        )
-
-        return jsonify({"success": True, "message": "Group message deleted successfully"})
-
-    except Exception as e:
-        ict_conn.rollback()
-        print("Delete group message error:", e)
-        return jsonify({"error": "Internal server error"}), 500
-
-    finally:
-        ict_cur.close()
-        ict_conn.close()
-
-
-@app.route("/get_group_members", methods=["GET"])
-@token_required
-def get_group_members():
-    group_id = request.args.get("group_id")
-
-    if not group_id:
-        return jsonify({"error": "group_id is required"}), 400
-
-    conn, cur = get_ict_cursor()
-    book_conn, book_cur = get_book_cursor()
-
-    try:
-        cur.execute("""
-            SELECT user_id,role FROM group_members
-            WHERE group_id = %s
-        """, (group_id,))
-        members = cur.fetchall()
-
-        result = []
-        for m in members:
-            book_cur.execute("SELECT username FROM userss WHERE id = %s", (m["user_id"],))
-            user = book_cur.fetchone()
-            if user:
-                result.append({
-                    "user_id": m["user_id"],
-                    "username": user["username"],
-                    "role": m["role"]
-                })
-
-        return jsonify(result)
-
-    except Exception as e:
-        print("🔥 get_group_members error:", e)
-        return jsonify({"error": str(e)}), 500
-
-    finally:
-        cur.close()
-        conn.close()
-        book_conn.close()
-        book_cur.close()
-
-
-@app.route("/get_group_media", methods=["GET"])
-@token_required
-def get_group_media():
-    group_id = request.args.get("group_id")
-
-    if not group_id:
-        return jsonify({"error": "group_id is required"}), 400
-
-    conn, cur = get_ict_cursor()
-
-    try:
-        cur.execute("""
-            SELECT message AS file_url, message_type
-            FROM group_messages
-            WHERE group_id = %s 
-            AND message_type IN ('image', 'file')
-            ORDER BY timestamp DESC
-        """, (group_id,))
-
-        files = cur.fetchall()
-
-        return jsonify(files)
-
-    except Exception as e:
-        print("🔥 get_group_media error:", e)
-        return jsonify({"error": str(e)}), 500
-
-    finally:
-        cur.close()
-        conn.close()
-
-
-
-@app.route("/add_group_member", methods=["POST"])
-@token_required
-def add_group_member():
-    data = request.json
-    group_id = data["group_id"]
-    user_id = data["user_id"]
-
-    conn, cur = get_ict_cursor()
-    book_conn, book_cur = get_book_cursor()
-
-    try:
-        cur.execute(
-            "INSERT INTO group_members (group_id, user_id, role) VALUES (%s, %s, 'member')",
-            (group_id, user_id)
-        )
-        conn.commit()
-
-        # Return added user for UI update
-        book_cur.execute("SELECT id AS user_id, username FROM userss WHERE id = %s", (user_id,))
-        user = book_cur.fetchone()
-
-        return jsonify({"success": True, "user": user})
-
-    except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
-
-    finally:
-        cur.close()
-        conn.close()
-        book_cur.close()
-        book_conn.close()
-
-
-
-
-@app.route("/leave_group", methods=["POST"])
-@token_required
-def leave_group():
-    data = request.json
-    group_id = data.get("group_id")
-    user_id = data.get("user_id")
-
-    if not group_id or not user_id:
-        return jsonify({"success": False, "error": "Missing group_id or user_id"}), 400
-
-    conn, cur = get_ict_cursor()
-
-    try:
-        cur.execute("""
-            DELETE FROM group_members
-            WHERE group_id = %s AND user_id = %s
-        """, (group_id, user_id))
-        conn.commit()
-
-        return jsonify({"success": True})
-
-    except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
-
-    finally:
-        cur.close()
-        conn.close()
-
-
-
-
-#-----------------------Notifcation---------------------------
-
-@app.route("/get_notification_setting", methods=["GET"])
-@token_required
-def get_notification_setting():
-    user_id = request.user_id
-
-    conn, cur = get_book_cursor()
-    cur.execute("SELECT allow_notification FROM user_notification_settings WHERE user_id=%s", (user_id,))
-    row = cur.fetchone()
-
-    if not row:
-        return jsonify({"allow_notification": 1})
-    
-    return jsonify(row)
-
-
-@app.route("/update_notification_setting", methods=["POST"])
-@token_required
-def update_notification_setting():
-    data = request.json
-    user_id = request.user_id
-    allow = data.get("allow", 1)
-
-    conn, cur = get_book_cursor()
-    cur.execute(
-                "INSERT INTO user_notification_settings(user_id, allow_notification) VALUES (%s,%s) ON DUPLICATE KEY UPDATE allow_notification=%s",
-        (user_id, allow, allow)
-    )
-    conn.commit()
-
-    return jsonify({"success": True})
 
 
 
