@@ -1403,7 +1403,7 @@ def create_group():
     try:
         # Insert group (quote table identifiers)
         cur.execute(
-            "INSERT INTO groups (group_name, created_by, group_image) VALUES (%s, %s, %s)",
+            "INSERT INTO `groups` (group_name, created_by, group_image) VALUES (%s, %s, %s)",
             (group_name, created_by, group_image),
         )
         # fetch inserted id in a DB-agnostic way
@@ -1411,7 +1411,7 @@ def create_group():
 
         # Add creator as admin (use parameterized role)
         cur.execute(
-            "INSERT INTO group_members (group_id, user_id, role) VALUES (%s, %s, %s)",
+            "INSERT INTO `group_members` (group_id, user_id, role) VALUES (%s, %s, %s)",
             (group_id, created_by, "admin"),
         )
 
@@ -1423,7 +1423,7 @@ def create_group():
             ]
             if member_rows:
                 cur.executemany(
-                    "INSERT INTO group_members (group_id, user_id, role) VALUES (%s, %s, %s)",
+                    "INSERT INTO `group_members` (group_id, user_id, role) VALUES (%s, %s, %s)",
                     member_rows,
                 )
 
