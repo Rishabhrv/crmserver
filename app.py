@@ -1471,7 +1471,7 @@ def get_groups():
         # Base query (safe for old servers)
         cur.execute("""
             SELECT g.id, g.group_name, g.group_image, g.created_by, g.created_at
-            FROM groups g
+            FROM `groups` g
             JOIN group_members gm ON g.id = gm.group_id
             WHERE gm.user_id = %s
             ORDER BY g.created_at DESC
