@@ -1510,8 +1510,6 @@ def get_groups():
                 "created_by": g["created_by"],
                 "last_message": g["last_message"],
                 "last_message_type": g["last_message_type"],
-                "created_at": safe_datetime(g["created_at"]),
-                "last_time": safe_datetime(g["last_time"]),
                 "last_sender": sender_name,
                 "type": "group",
                 "hasConversation": True
