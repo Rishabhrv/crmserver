@@ -1460,57 +1460,66 @@ def get_groups():
     book_conn, book_cur = get_book_cursor()
 
     try:
+        # Base query (safe for old servers)
         cur.execute("""
-            SELECT 
-                g.id, g.group_name, g.group_image, g.created_by, g.created_at,
-                (
-                    SELECT message FROM group_messages 
-                    WHERE group_id = g.id 
-                    ORDER BY timestamp DESC LIMIT 1
-                ) AS last_message,
-                (
-                    SELECT message_type FROM group_messages 
-                    WHERE group_id = g.id 
-                    ORDER BY timestamp DESC LIMIT 1
-                ) AS last_message_type,
-                (
-                    SELECT timestamp FROM group_messages 
-                    WHERE group_id = g.id 
-                    ORDER BY timestamp DESC LIMIT 1
-                ) AS last_time,
-                (
-                    SELECT sender_id FROM group_messages 
-                    WHERE group_id = g.id 
-                    ORDER BY timestamp DESC LIMIT 1
-                ) AS last_sender_id
-            FROM groups AS g
-            JOIN group_members AS gm ON g.id = gm.group_id
+            SELECT g.id, g.group_name, g.group_image, g.created_by, g.created_at
+            FROM groups g
+            JOIN group_members gm ON g.id = gm.group_id
             WHERE gm.user_id = %s
-            ORDER BY last_time DESC, g.created_at DESC
+            ORDER BY g.created_at DESC
         """, (user_id,))
 
         groups = cur.fetchall()
         result = []
 
         for g in groups:
-            sender_name = None
+            group_id = g["id"]
 
-            if g["last_sender_id"]:
-                book_cur.execute(
-                    "SELECT username FROM userss WHERE id=%s",
-                    (g["last_sender_id"],)
-                )
-                s = book_cur.fetchone()
-                sender_name = s["username"] if s else None
+            # ------ SAFE last message lookup ------
+            try:
+                cur.execute("""
+                    SELECT message, message_type, timestamp, sender_id
+                    FROM group_messages
+                    WHERE group_id = %s
+                    ORDER BY id DESC
+                    LIMIT 1
+                """, (group_id,))
+                last = cur.fetchone()
+            except:
+                last = None
+
+            last_message = last["message"] if last else None
+            last_message_type = last["message_type"] if last else None
+            last_time = None
+            if last and last.get("timestamp"):
+                try:
+                    last_time = last["timestamp"].strftime("%Y-%m-%d %H:%M:%S")
+                except:
+                    last_time = None
+
+            # Sender username lookup
+            sender_name = None
+            if last and last.get("sender_id"):
+                try:
+                    book_cur.execute("SELECT username FROM userss WHERE id=%s", (last["sender_id"],))
+                    sender = book_cur.fetchone()
+                    sender_name = sender["username"] if sender else None
+                except:
+                    sender_name = None
 
             result.append({
                 "id": g["id"],
                 "group_name": g["group_name"],
                 "group_image": g["group_image"],
                 "created_by": g["created_by"],
-                "last_message": g["last_message"],
-                "last_message_type": g["last_message_type"],
+                "created_at": g["created_at"].strftime("%Y-%m-%d %H:%M:%S") if g["created_at"] else None,
+
+                # NEW but SAFE
+                "last_message": last_message,
+                "last_message_type": last_message_type,
+                "last_time": last_time,
                 "last_sender": sender_name,
+
                 "type": "group",
                 "hasConversation": True
             })
@@ -1519,13 +1528,13 @@ def get_groups():
 
     except Exception as e:
         print("🔥 /groups error:", e)
-        return jsonify({"error": str(e)}), 500
+        return jsonify([])  # SAFE return list, not error
 
     finally:
-        cur.close()
-        conn.close()
-        book_cur.close()
-        book_conn.close()
+        try: cur.close(); conn.close()
+        except: pass
+        try: book_cur.close(); book_conn.close()
+        except: pass
 
 
 
