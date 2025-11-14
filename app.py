@@ -37,6 +37,14 @@ logger = logging.getLogger(__name__)
 for handler in logging.getLogger().handlers:
     handler.addFilter(NoWerkzeugFilter())
 
+
+
+logging.basicConfig(
+    filename="error.log",
+    level=logging.ERROR,
+    format="%(asctime)s %(levelname)s: %(message)s",
+)
+
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins=["https://chat.mis.agkit.in", "https://mis.agkit.in"])
@@ -1527,8 +1535,12 @@ def get_groups():
         return jsonify(result)
 
     except Exception as e:
-        print("🔥 /groups error:", e)
-        return jsonify([])  # SAFE return list, not error
+        import traceback
+        print("🔥 /groups error:", e)                      # prints error message
+        print(traceback.format_exc())                     # prints full traceback in console / error.log
+        logging.error("🔥 /groups error: %s", str(e))     # logs the error
+        logging.error(traceback.format_exc())             # logs full traceback
+        return jsonify({"error": "Internal server error"}), 500
 
     finally:
         try: cur.close(); conn.close()
