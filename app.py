@@ -4,6 +4,7 @@ import datetime
 import config
 import pytz
 import logging
+import re
 import uuid
 import smtplib
 from email.mime.text import MIMEText
@@ -59,7 +60,7 @@ try:
     # Pool for 'ict' database (chat)
     ict_pool = pooling.MySQLConnectionPool(
         pool_name="ict_pool",
-        pool_size=5,
+        pool_size=20,
         host=config.MYSQL_ICT_HOST,
         user=config.MYSQL_ICT_USER,
         password=config.MYSQL_ICT_PASSWORD,
@@ -71,7 +72,7 @@ try:
     # Pool for 'booktracker' (optional)
     book_pool = pooling.MySQLConnectionPool(
         pool_name="book_pool",
-        pool_size=3,
+        pool_size=20,
         host=config.MYSQL_HOST,
         user=config.MYSQL_USER,
         password=config.MYSQL_PASSWORD,
@@ -447,10 +448,12 @@ def log_activity(user_id, username, session_id, action, details):
         """, (user_id, username, session_id, action, details, ist_time))
         conn.commit()
     except Exception as e:
-        print("Activity Log Error:", e)
+        logging.info("Activity Log Error:", e)
     finally:
         cur.close()
         conn.close()
+
+
 
 
 logged_click_ids = set()  # Avoid duplicates
@@ -553,6 +556,7 @@ def get_conversations():
                 "unread": unread
             })
 
+
         return jsonify(convos)
 
     finally:
@@ -620,19 +624,19 @@ def get_messages(conversation_id):
         bconn.close()
 
         # ✅ Mark other-user messages as seen
-        cur.execute("""
-            UPDATE messages 
-            SET seen = 1, seen_time = %s 
-            WHERE conversation_id = %s 
-              AND sender_id != %s 
-              AND seen = 0
-        """, (now_ist().strftime("%Y-%m-%d %H:%M:%S"), conversation_id, uid))
-        conn.commit()
+        # cur.execute("""
+        #     UPDATE messages 
+        #     SET seen = 1, seen_time = %s 
+        #     WHERE conversation_id = %s 
+        #       AND sender_id != %s 
+        #       AND seen = 0
+        # """, (now_ist().strftime("%Y-%m-%d %H:%M:%S"), conversation_id, uid))
+        # conn.commit()
 
         return jsonify(msgs or [])
 
     except Exception as e:
-        print("Error in get_messages:", e)
+        logging.info("Error in get_messages:", e)
         conn.rollback()
         return jsonify({"error": str(e)}), 500
     finally:
@@ -659,57 +663,272 @@ def search_users():
         conn.close()
 
 
-#--------------------Create New Conversations-----------------
-
 @app.route("/createConversation", methods=["POST"])
 @token_required
 def create_conversation():
     try:
+
         data = request.get_json() or {}
-        user1_id = data.get("user1_id")
-        user2_id = data.get("user2_id")
+        user1_id = data.get("user1_id")      # current user
+        user2_id = data.get("user2_id")      # other user
+        session_id = data.get("session_id")
 
         if not user1_id or not user2_id:
             return jsonify({"success": False, "error": "Both user IDs required"}), 400
 
-        conn, cur = get_ict_cursor()  # ✅ FIXED
+        # Fetch actor username
+        book_conn, book_cur = get_book_cursor()
+        book_cur.execute("SELECT username FROM userss WHERE id=%s", (request.user_id,))
+        actor = book_cur.fetchone()
+        actor_name = actor["username"] if actor else "Unknown"
+        book_cur.close()
+        book_conn.close()
 
-        # ✅ Check if conversation already exists
+        conn, cur = get_ict_cursor()
+
+        # ------------------------------------------------------------
+        #STEP 1 — Checking for existing conversation (soft + normal)
+        # ------------------------------------------------------------
+
         cur.execute("""
-            SELECT id FROM conversations
-            WHERE (user1_id = %s AND user2_id = %s)
-               OR (user1_id = %s AND user2_id = %s)
-        """, (user1_id, user2_id, user2_id, user1_id))
+            SELECT c.id, c.user1_id, c.user2_id
+            FROM conversations c
+            WHERE
+                -- Case 1: Normal match (3,1)
+                (c.user1_id = %s AND c.user2_id = %s)
+        
+                OR
+        
+                -- Case 2: Swapped match (1,3)
+                (c.user1_id = %s AND c.user2_id = %s)
+        
+                OR
+        
+                -- Case 3: Soft delete -> user2_id deleted 
+                -- Original was (user1_id=user1, user2_id=user2)
+                (
+                    c.user1_id = %s
+                    AND c.user2_id IS NULL
+                    AND EXISTS (
+                        SELECT 1 FROM user_delete_data ud
+                        WHERE ud.conversation_id = c.id
+                        AND ud.user_id = %s
+                        AND ud.deleted_column='user2_id'
+                    )
+                )
+        
+                OR
+        
+                -- Case 4: Soft delete (reversed order): 
+                -- Original was (user1_id=user2, user2_id=user1)
+                (
+                    c.user1_id = %s
+                    AND c.user2_id IS NULL
+                    AND EXISTS (
+                        SELECT 1 FROM `user_delete_data` ud
+                        WHERE ud.conversation_id = c.id
+                        AND ud.user_id = %s
+                        AND ud.deleted_column='user2_id'
+                    )
+                )
+
+                OR
+        
+                -- Case 5: Soft delete -> user1_id deleted
+                (
+                    c.user2_id = %s
+                    AND c.user1_id IS NULL
+                    AND EXISTS (
+                        SELECT 1 FROM `user_delete_data` ud
+                        WHERE ud.conversation_id = c.id
+                        AND ud.user_id = %s
+                        AND ud.deleted_column='user1_id'
+                    )
+                )
+        
+                OR
+        
+                -- Case 6: Soft delete (reversed order):
+                (
+                    c.user2_id = %s
+                    AND c.user1_id IS NULL
+                    AND EXISTS (
+                        SELECT 1 FROM `user_delete_data` ud
+                        WHERE ud.conversation_id = c.id
+                        AND ud.user_id = %s
+                        AND ud.deleted_column='user1_id'
+                    )
+                )
+        """, (
+            user1_id, user2_id,      # Case 1
+            user2_id, user1_id,      # Case 2
+            user1_id, user2_id,      # Case 3
+            user2_id, user1_id,      # Case 4
+            user2_id, user1_id,      # Case 5
+            user1_id, user2_id       # Case 6
+        ))
+        
         convo = cur.fetchone()
 
+
+        # STEP 2 — NEW RULE CHECK (Prevent new conversation)
+        # ------------------------------------------------------------
+        if convo:
+            convo_id_check = convo["id"]
+
+            # ALWAYS CHECK DELETE STATE (do not depend on user1_in_convo)
+            cur.execute("""
+                SELECT deleted_column 
+                FROM `user_delete_data`
+                WHERE conversation_id=%s 
+                AND user_id=%s
+                LIMIT 1
+            """, (convo_id_check, user2_id))
+        
+            other_user_delete_row = cur.fetchone()
+        
+            other_user_deleted_this = False
+
+            if other_user_delete_row:
+                deleted_column = other_user_delete_row["deleted_column"]
+        
+                # CASE A — user2_id deleted
+                if deleted_column == "user2_id" and convo["user2_id"] is None:
+                    other_user_deleted_this = True
+        
+                # CASE B — user1_id deleted
+                if deleted_column == "user1_id" and convo["user1_id"] is None:
+                    other_user_deleted_this = True
+        
+        
+            # Block only if OTHER USER deleted and current user is not same
+            if other_user_deleted_this and user2_id != request.user_id:
+                cur.close()
+                conn.close()
+                return jsonify({
+                    "success": False,
+                    "error": "Conversation exists but the other user has deleted it. Cannot create new."
+                }), 409
+
+
+
+        # ------------------------------------------------------------
+        # STEP 3 — Handling EXISTING CONVERSATION cases
+        # ------------------------------------------------------------
         if convo:
             convo_id = convo["id"]
+
+            cur.execute("""
+                SELECT deleted_column 
+                FROM `user_delete_data`
+                WHERE conversation_id=%s AND user_id=%s
+                LIMIT 1
+            """, (convo_id, user1_id))
+            my_delete = cur.fetchone()
+
+            cur.execute("""
+                SELECT deleted_column 
+                FROM `user_delete_data`
+                WHERE conversation_id=%s AND user_id=%s
+                LIMIT 1
+            """, (convo_id, user2_id))
+            other_delete = cur.fetchone()
+
+            # CASE A
+            if other_delete:
+                cur.close()
+                conn.close()
+                return jsonify({
+                    "success": False,
+                    "error": "The other user left this chat. Only they can restore it."
+                }), 403
+
+            # CASE B — Restore
+            if my_delete:
+                deleted_column = my_delete["deleted_column"]
+
+                cur.execute(f"""
+                    UPDATE conversations
+                    SET {deleted_column}=%s
+                    WHERE id=%s
+                """, (user1_id, convo_id))
+                conn.commit()
+
+                cur.execute("""
+                    DELETE FROM `user_delete_data`
+                    WHERE conversation_id=%s AND user_id=%s
+                """, (convo_id, user1_id))
+                conn.commit()
+
+                cur.execute("SELECT * FROM conversations WHERE id=%s", (convo_id,))
+                restored_convo = cur.fetchone()
+
+                log_activity(
+                    user_id=request.user_id,
+                    username=actor_name,
+                    session_id=session_id,
+                    action="Restore Conversation",
+                    details=f"{actor_name} restored conversation with user {user2_id} (ID {convo_id})"
+                )
+
+                cur.close()
+                conn.close()
+
+                return jsonify({
+                    "success": True,
+                    "message": "Conversation restored",
+                    "conversation": restored_convo
+                }), 200
+
+            # CASE C — Normal existing conversation
             cur.execute("SELECT * FROM conversations WHERE id=%s", (convo_id,))
             existing_convo = cur.fetchone()
+
+
+            log_activity(
+                user_id=request.user_id,
+                username=actor_name,
+                session_id=session_id,
+                action="Open Conversation",
+                details=f"{actor_name} opened existing conversation with user {user2_id} (ID {convo_id})"
+            )
+
+            cur.close()
             conn.close()
+
             return jsonify({
                 "success": True,
                 "message": "Conversation already exists",
                 "conversation": existing_convo
             }), 200
-        
-        current_time = now_ist()
-        formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
 
-        # ✅ Create new conversation
+        # ------------------------------------------------------------
+        # STEP 4 — Creating NEW conversation
+        # ------------------------------------------------------------
+        current_time = now_ist().strftime("%Y-%m-%d %H:%M:%S")
+
         cur.execute("""
             INSERT INTO conversations (user1_id, user2_id, created_at)
             VALUES (%s, %s, %s)
-        """, (user1_id, user2_id, formatted_time))
+        """, (user1_id, user2_id, current_time))
         conn.commit()
 
         convo_id = cur.lastrowid
+
         cur.execute("SELECT * FROM conversations WHERE id=%s", (convo_id,))
         new_convo = cur.fetchone()
 
+        log_activity(
+            user_id=request.user_id,
+            username=actor_name,
+            session_id=session_id,
+            action="Create Conversation",
+            details=f"{actor_name} started a new conversation with user {user2_id} (ID {convo_id})"
+        )
 
         cur.close()
         conn.close()
+
         return jsonify({
             "success": True,
             "message": "New conversation created",
@@ -717,9 +936,8 @@ def create_conversation():
         }), 201
 
     except Exception as e:
-        print("Error creating conversation:", str(e))
+        logging.info("\n❌ ERROR in createConversation:", str(e))
         return jsonify({"success": False, "error": str(e)}), 500
-    
 
 
 #-------------------- Msg Delete-----------------------------
@@ -765,7 +983,7 @@ def delete_message(msg_id):
 
 
 
-        
+
 
 @app.route('/all_users', methods=['GET'])
 @token_required
@@ -813,6 +1031,9 @@ def socket_join(data):
 
     join_room(f"conv_{conv_id}")
     emit("system", {"msg": f"user {user_id} joined"}, room=f"conv_{conv_id}")
+
+
+
 
 @socketio.on("send_message")
 def socket_send_message(data):
@@ -1024,7 +1245,7 @@ def get_conversation_media():
         """, (conversation_id,))
         data = cur.fetchall()
     except Exception as e:
-        print("Error fetching media:", e)
+        logging.info("Error fetching media:", e)
         return jsonify({"error": "Database error"}), 500
     finally:
         cur.close()
@@ -1101,7 +1322,7 @@ def add_reaction():
 
     except Exception as e:
         conn.rollback()
-        print("Reaction error:", e)
+        logging.info("Reaction error:", e)
         return jsonify({"error": str(e)}), 500
     finally:
         cur.close()
@@ -1172,11 +1393,299 @@ def handle_reaction(data):
 
     except Exception as e:
         conn.rollback()
-        print("Socket reaction error:", e)
+        logging.info("Socket reaction error:", e)
         emit("error", {"error": str(e)})
     finally:
         cur.close()
         conn.close()
+
+
+
+@app.route("/seen/<int:conversation_id>", methods=["POST"])
+@token_required
+def mark_seen(conversation_id):
+    uid = request.user_id
+    conn, cur = get_ict_cursor()
+    try:
+        # Update messages as seen
+        cur.execute("""
+            UPDATE messages
+            SET seen = 1, seen_time = %s
+            WHERE conversation_id = %s
+              AND sender_id != %s
+              AND seen = 0
+        """, (now_ist().strftime("%Y-%m-%d %H:%M:%S"), conversation_id, uid))
+        conn.commit()
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        cur.close()
+        conn.close()
+
+    # ⭐ EMIT REAL-TIME SEEN EVENT (this is the missing part)
+    socketio.emit(
+        "messages_marked_seen",
+        {"conversation_id": conversation_id},
+        room=f"conv_{conversation_id}"
+    )
+
+    return jsonify({"success": True})
+
+
+
+@app.route("/delete_user_from_conversation", methods=["POST"])
+@token_required
+def delete_user_from_conversation():
+    try:
+        data = request.get_json() or {}
+
+        conversation_id = data.get("conversation_id")
+        user_id_to_remove = data.get("user_id")
+        session_id = data.get("session_id")
+
+        if not conversation_id or not user_id_to_remove:
+            return jsonify({
+                "success": False,
+                "error": "conversation_id and user_id are required"
+            }), 400
+
+        # ---------------------------
+        # Fetch actor (current user)
+        # ---------------------------
+        book_conn, book_cur = get_book_cursor()
+        book_cur.execute("SELECT username FROM userss WHERE id=%s", (request.user_id,))
+        actor = book_cur.fetchone()
+        actor_name = actor["username"] if actor else "Unknown"
+        book_cur.close()
+        book_conn.close()
+
+        conn, cur = get_ict_cursor()
+
+        # 🔹 Fetch conversation row
+        cur.execute(
+            "SELECT user1_id, user2_id FROM conversations WHERE id = %s",
+            (conversation_id,)
+        )
+        convo = cur.fetchone()
+
+        if not convo:
+            cur.close()
+            conn.close()
+            return jsonify({"success": False, "error": "Conversation not found"}), 404
+
+        user1 = convo["user1_id"]
+        user2 = convo["user2_id"]
+
+        deleted_column = None
+
+        # ---------------------------
+        # Find other user's name
+        # ---------------------------
+        other_user_id = user2 if user1 == user_id_to_remove else user1
+
+        book_conn, book_cur = get_book_cursor()
+        book_cur.execute("SELECT username FROM userss WHERE id=%s", (other_user_id,))
+        other_user = book_cur.fetchone()
+        other_user_name = other_user["username"] if other_user else "Unknown"
+        book_cur.close()
+        book_conn.close()
+
+        # ---------------------------
+        # Nullify the correct column
+        # ---------------------------
+        if user1 == user_id_to_remove:
+            deleted_column = "user1_id"
+            cur.execute("UPDATE conversations SET user1_id = NULL WHERE id = %s", (conversation_id,))
+        elif user2 == user_id_to_remove:
+            deleted_column = "user2_id"
+            cur.execute("UPDATE conversations SET user2_id = NULL WHERE id = %s", (conversation_id,))
+        else:
+            cur.close()
+            conn.close()
+            return jsonify({
+                "success": False,
+                "error": "Given user_id is not part of this conversation"
+            }), 400
+
+        # 🔹 Check updated values
+        cur.execute("SELECT user1_id, user2_id FROM conversations WHERE id = %s", (conversation_id,))
+        updated = cur.fetchone()
+        updated_user1 = updated["user1_id"]
+        updated_user2 = updated["user2_id"]
+
+        # ---------------------------
+        # CASE: BOTH users left
+        # ---------------------------
+        if updated_user1 is None and updated_user2 is None:
+
+            # Delete conversation
+            cur.execute("DELETE FROM conversations WHERE id = %s", (conversation_id,))
+
+            # Delete logs for this conversation
+            cur.execute("DELETE FROM `user_delete_data` WHERE conversation_id = %s", (conversation_id,))
+
+            conn.commit()
+
+            cur.close()
+            conn.close()
+
+            return jsonify({
+                "success": True,
+                "message": "Conversation deleted because both users left",
+                "deleted": True
+            }), 200
+
+        # ---------------------------
+        # Normal delete-user scenario
+        # ---------------------------
+        cur.execute("""
+            INSERT INTO `user_delete_data` (conversation_id, user_id, deleted_column, deleted_at)
+            VALUES (%s, %s, %s, %s)
+        """, (
+            conversation_id,
+            user_id_to_remove,
+            deleted_column,
+            now_ist().strftime("%Y-%m-%d %H:%M:%S")
+        ))
+
+        conn.commit()
+
+        # 🔥 Activity log
+        log_activity(
+            user_id=request.user_id,
+            username=actor_name,
+            session_id=session_id,
+            action="Leave Conversation",
+            details=f"{actor_name} de conversation with {other_user_name} (Conversation ID: {conversation_id})"
+        )
+
+        cur.close()
+        conn.close()
+
+        return jsonify({
+            "success": True,
+            "message": f"User {user_id_to_remove} removed from {deleted_column}",
+            "deleted_column": deleted_column,
+            "deleted": False
+        }), 200
+
+    except Exception as e:
+        logging.info("Delete user error:", e)
+        return jsonify({"success": False, "error": str(e)}), 500
+    
+
+
+@app.route("/check_conversation/<int:user1>/<int:user2>", methods=["GET"])
+@token_required
+def check_conversation(user1, user2):
+    conn, cur = get_ict_cursor()
+
+    # STEP 1: Find ANY matching conversation
+    cur.execute("""
+        SELECT id, user1_id, user2_id
+        FROM conversations
+        WHERE 
+            (
+                (user1_id = %s OR user1_id IS NULL)
+             AND user2_id = %s
+            )
+            OR
+            (
+                (user2_id = %s OR user2_id IS NULL)
+             AND user1_id = %s
+            )
+    """, (user1, user2, user1, user2))
+
+    convo = cur.fetchone()
+
+    if not convo:
+        cur.close()
+        conn.close()
+        return jsonify({"exists": False})
+
+    convo_id = convo["id"]
+
+    # STEP 2: Check IF *THIS CURRENT USER* deleted earlier
+    cur.execute("""
+        SELECT deleted_column
+        FROM user_delete_data
+        WHERE conversation_id = %s AND user_id = %s
+        ORDER BY id DESC LIMIT 1
+    """, (convo_id, user1))
+    deleted_self = cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    # ❌ User deleted earlier → treat as "no conversation" (so Connect = Restore)
+    if deleted_self:
+        return jsonify({"exists": False})
+
+    # ✅ Conversation exists normally
+    return jsonify({"exists": True})
+
+
+
+@app.route("/save_feature_info", methods=["POST"])
+@token_required     # if you use token auth
+def save_feature_info():
+    data = request.get_json()
+    user_id = data.get("user_id")
+    popup_id = data.get("popup_id")
+
+    if not user_id or not popup_id:
+        return jsonify({"success": False, "error": "Missing fields"}), 400
+
+    conn, cur = get_ict_cursor()
+
+    # check if exists
+    cur.execute("""
+        SELECT id FROM `feature_info`
+        WHERE user_id=%s AND popup_id=%s
+        LIMIT 1
+    """, (user_id, popup_id))
+
+    exists = cur.fetchone()
+
+    if exists:
+        return jsonify({"success": True, "already_saved": True})
+
+    # insert
+    cur.execute("""
+        INSERT INTO `feature_info` (user_id, popup_id)
+        VALUES (%s, %s)
+    """, (user_id, popup_id))
+
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    return jsonify({"success": True})
+
+
+@app.route("/check_feature_info", methods=["GET"])
+@token_required
+def check_feature_info():
+    user_id = request.args.get("user_id")
+    popup_id = request.args.get("popup_id")
+
+    conn, cur = get_ict_cursor()
+
+    cur.execute("""
+        SELECT id FROM `feature_info`
+        WHERE user_id=%s AND popup_id=%s
+        LIMIT 1
+    """, (user_id, popup_id))
+
+    exists = cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    return jsonify({"exists": bool(exists)})
+
 
 
 
@@ -1282,24 +1791,7 @@ def handle_group_message(data):
 
     emit("new_group_message", response_data, room=f"group_{group_id}")
 
-    # # -----------------------------
-    # # 6️⃣ Event #2 → Unread update (NOT sent to sender)
-    # # -----------------------------
-    # unread_event = {
-    #     "group_id": group_id,
-    #     "message": message,
-    #     "message_type": message_type,
-    #     "sender_id": sender_id,
-    #     "timestamp": datetime.now().isoformat(),
-    # }
 
-    # # 🔴 Sender MUST NOT receive this (prevents unread on your own message)
-    # socketio.emit(
-    #     "receive_group_message",
-    #     unread_event,
-    #     room=f"group_{group_id}",
-    #     include_self=False
-    # )
 
 
 
@@ -1318,23 +1810,38 @@ def handle_group_typing(data):
 
 
 # -------------------- Helpers --------------------
+
+def clean_filename(filename):
+    # Keep name EXACTLY the same — except remove illegal characters
+    filename = os.path.basename(filename)
+
+    # Remove only Windows-invalid characters: < > : " / \ | ? *
+    filename = re.sub(r'[<>:"/\\|?*]', '', filename)
+
+    # Do not touch underscores, spaces, unicode, emojis
+    return filename.strip()
+
+
+
 def allowed_file(filename):
     """Check if the file extension is allowed."""
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 def get_unique_filename(folder, original_filename):
-    """Ensure unique filenames like filename(1).doc, filename(2).doc, etc."""
-    safe_name = secure_filename(original_filename)
+    safe_name = clean_filename(original_filename)   # KEEP EXACT NAME
     name, ext = os.path.splitext(safe_name)
+
     counter = 1
     new_name = safe_name
 
+    # If file exists → auto add (1), (2), (3)
     while os.path.exists(os.path.join(folder, new_name)):
         new_name = f"{name}({counter}){ext}"
         counter += 1
 
     return new_name
+
 
 
 # -------------------- File Upload --------------------
@@ -1354,7 +1861,7 @@ def upload_file():
     if not username:
         return jsonify({"error": "Username required"}), 400
 
-    user_folder = os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(username))
+    user_folder = os.path.join(app.config["UPLOAD_FOLDER"], clean_filename(username))
     os.makedirs(user_folder, exist_ok=True)
 
     uploaded_files = []
@@ -1397,7 +1904,7 @@ def serve_uploaded_file(username, filename):
     if request.method == "OPTIONS":
         return "", 200
     try:
-        user_folder = os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(username))
+        user_folder = os.path.join(app.config["UPLOAD_FOLDER"], clean_filename(username))
         return send_from_directory(user_folder, filename, as_attachment=True)
     except FileNotFoundError:
         return jsonify({"error": "File not found"}), 404
@@ -1412,6 +1919,7 @@ def serve_uploaded_file(username, filename):
 @token_required
 def create_group():
     created_by = request.user_id
+    session_id = None
 
     group_image = None
     members = []
@@ -1421,10 +1929,12 @@ def create_group():
         data = request.get_json()
         group_name = data.get("group_name")
         members = data.get("members", []) or []
+        session_id = data.get("session_id")
     # Case 2: FormData (with image)
     else:
         group_name = request.form.get("group_name")
         members_str = request.form.get("members", "[]")
+        session_id = request.form.get("session_id")
         try:
             members = json.loads(members_str)
             if not isinstance(members, list):
@@ -1503,6 +2013,24 @@ def create_group():
                 )
 
         conn.commit()
+
+        # ✅ Fetch username from DB using request.user_id from token
+        conn, cur = get_book_cursor()
+        cur.execute("SELECT username FROM userss WHERE id=%s", (request.user_id,))
+        user = cur.fetchone()
+        cur.close()
+        conn.close()
+    
+        username = user["username"] if user else "Unknown"
+
+        log_activity(
+            user_id=request.user_id,
+            username=username,
+            session_id=session_id,
+            action="Create Group",
+            details=f"Create a Group {group_name} by {username}"
+        )
+
         return jsonify({
             "success": True,
             "group_id": group_id,
@@ -1511,7 +2039,7 @@ def create_group():
         })
 
     except Exception as e:
-        print("🔥 /groups error:", str(e))
+        logging.info("🔥 /groups error:", str(e))
         logging.error("🔥 /groups DB error: %s", str(e))
     
         return jsonify({"error": str(e)})
@@ -1635,8 +2163,6 @@ def get_groups():
 
     except Exception as e:
         import traceback
-        print("🔥 /groups error:", e)                      # prints error message
-        print(traceback.format_exc())                     # prints full traceback in console / error.log
         logging.info("🔥 /groups error: %s", str(e))     # logs the error
         logging.info(traceback.format_exc())             # logs full traceback
         return jsonify({"error": "Internal server error"}), 500
@@ -1958,56 +2484,119 @@ def get_group_media():
 @app.route("/add_group_member", methods=["POST"])
 @token_required
 def add_group_member():
-    data = request.json
-    group_id = data["group_id"]
-    user_id = data["user_id"]
+    data = request.json or {}
+    group_id = data.get("group_id")
+    user_id = data.get("user_id")      # member to add
+    session_id = data.get("session_id")
 
-    conn, cur = get_ict_cursor()
+    if not group_id or not user_id:
+        return jsonify({"success": False, "error": "group_id and user_id are required"}), 400
+
+    ict_conn, ict_cur = get_ict_cursor()
     book_conn, book_cur = get_book_cursor()
 
     try:
-        cur.execute(
+        # 1️⃣ Insert member into group_members
+        ict_cur.execute(
             "INSERT INTO `group_members` (group_id, user_id, role) VALUES (%s, %s, 'member')",
             (group_id, user_id)
         )
-        conn.commit()
+        ict_conn.commit()
 
-        # Return added user for UI update
-        book_cur.execute("SELECT id AS user_id, username FROM userss WHERE id = %s", (user_id,))
-        user = book_cur.fetchone()
+        # 2️⃣ Fetch added member details (for UI)
+        book_cur.execute(
+            "SELECT id AS user_id, username FROM userss WHERE id = %s",
+            (user_id,)
+        )
+        added_user = book_cur.fetchone()
 
-        return jsonify({"success": True, "user": user})
+        # 3️⃣ Fetch actor (current logged-in user)
+        book_cur.execute(
+            "SELECT username FROM userss WHERE id = %s",
+            (request.user_id,)
+        )
+        actor_row = book_cur.fetchone()
+        actor_name = actor_row["username"] if actor_row else "Unknown"
+
+        # 4️⃣ Fetch group name
+        ict_cur.execute(
+            "SELECT group_name FROM `groups` WHERE id = %s",
+            (group_id,)
+        )
+        group_row = ict_cur.fetchone()
+        group_name = group_row["group_name"] if group_row else "Unknown"
+
+        # 5️⃣ Log activity
+        log_activity(
+            user_id=request.user_id,
+            username=actor_name,
+            session_id=session_id,
+            action="Add Member in Group",
+            details=f"{actor_name} added {added_user['username'] if added_user else 'Unknown user'} to group '{group_name}' (ID: {group_id})"
+        )
+
+        return jsonify({"success": True, "user": added_user})
 
     except Exception as e:
+        logging.info("❌ add_group_member error:", e)
         return jsonify({"success": False, "error": str(e)}), 500
 
     finally:
-        cur.close()
-        conn.close()
-        book_cur.close()
-        book_conn.close()
-
+        try:
+            ict_cur.close()
+            ict_conn.close()
+        except Exception:
+            pass
+        try:
+            book_cur.close()
+            book_conn.close()
+        except Exception:
+            pass
 
 
 
 @app.route("/leave_group", methods=["POST"])
 @token_required
 def leave_group():
-    data = request.json
+    data = request.json or {}
+
     group_id = data.get("group_id")
-    user_id = data.get("user_id")
+    user_id = data.get("user_id")           # user leaving
+    session_id = data.get("session_id")     # for activity log
 
     if not group_id or not user_id:
         return jsonify({"success": False, "error": "Missing group_id or user_id"}), 400
 
-    conn, cur = get_ict_cursor()
+    # DB Connections
+    ict_conn, ict_cur = get_ict_cursor()
+    book_conn, book_cur = get_book_cursor()
 
     try:
-        cur.execute("""
+        # 1️⃣ Delete user from group
+        ict_cur.execute("""
             DELETE FROM group_members
             WHERE group_id = %s AND user_id = %s
         """, (group_id, user_id))
-        conn.commit()
+        ict_conn.commit()
+
+        # 2️⃣ Fetch actor username
+        book_cur.execute("SELECT username FROM userss WHERE id=%s", (request.user_id,))
+        actor = book_cur.fetchone()
+        actor_name = actor["username"] if actor else "Unknown"
+
+        # 3️⃣ Fetch group name
+        ict_cur.execute("SELECT group_name FROM `groups` WHERE id=%s", (group_id,))
+        group = ict_cur.fetchone()
+        group_name = group["group_name"] if group else "Unknown"
+
+        # 4️⃣ Log activity
+        log_activity(
+            user_id=request.user_id,
+            username=actor_name,
+            session_id=session_id,
+            action="Leave Group",
+            details=f"{actor_name} left group '{group_name}' (ID: {group_id})"
+        )
 
         return jsonify({"success": True})
 
@@ -2015,8 +2604,17 @@ def leave_group():
         return jsonify({"success": False, "error": str(e)}), 500
 
     finally:
-        cur.close()
-        conn.close()
+        try:
+            ict_cur.close()
+            ict_conn.close()
+        except:
+            pass
+        try:
+            book_cur.close()
+            book_conn.close()
+        except:
+            pass
+
 
 
 
@@ -2080,7 +2678,6 @@ def mark_group_seen(group_id):
         return jsonify({"success": True})
 
     except Exception as e:
-        print("🔥 /group_seen error:", e)
         return jsonify({"error": "Failed to update seen"}), 500
 
     finally:
@@ -2154,7 +2751,6 @@ def group_message_info(msg_id):
         })
 
     except Exception as e:
-        print("🔥 /group_message_info error:", e)
         return jsonify({"error": "Something went wrong"}), 500
 
     finally:
@@ -2191,7 +2787,7 @@ def delete_old_messages_and_files():
             # Delete physical file (private chat)
             if msg_type in ["image", "file"] and file_path:
                 try:
-                    if file_path.startswith("https"):
+                    if file_path.startswith("http"):
                         # Extract "uploads/<username>/<file>"
                         relative = "/" + "/".join(file_path.split("/", 3)[3:])
                     else:
@@ -2275,8 +2871,6 @@ if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
     scheduler.add_job(delete_old_messages_and_files, IntervalTrigger(days=1))
     scheduler.start()
     logging.info("APScheduler started (daily cleanup enabled)")
-
-
 
 
 if __name__ == '__main__':

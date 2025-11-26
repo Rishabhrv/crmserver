@@ -12356,3 +12356,198 @@
 15-11-2025 17:08:07 - INFO - Validating token and fetching user details
 15-11-2025 17:54:51 - INFO - Validating token and fetching user details
 15-11-2025 17:54:56 - INFO - Validating token and fetching user details
+17-11-2025 11:44:04 - INFO - ICT MySQL pool created
+17-11-2025 11:44:04 - INFO - Booktracker MySQL pool created
+17-11-2025 11:44:04 - INFO - Starting Flask-SocketIO application
+17-11-2025 11:49:49 - INFO - ICT MySQL pool created
+17-11-2025 11:49:49 - INFO - Booktracker MySQL pool created
+17-11-2025 11:49:49 - INFO - Starting Flask-SocketIO application
+17-11-2025 11:54:35 - INFO - Trying to login with email: yogishru@gmail.com
+17-11-2025 11:54:35 - INFO - User Yogesh Sharma logged in, role: admin
+17-11-2025 11:54:39 - INFO - Validating token and fetching user details
+17-11-2025 11:54:52 - INFO - Validating token and fetching user details
+17-11-2025 11:54:57 - INFO - Validating token and fetching user details
+17-11-2025 11:54:58 - INFO - Validating token and fetching user details
+17-11-2025 11:55:36 - INFO - Validating token and fetching user details
+17-11-2025 11:55:46 - INFO - Validating token and fetching user details
+17-11-2025 11:55:59 - INFO - Validating token and fetching user details
+17-11-2025 11:56:01 - INFO - Validating token and fetching user details
+17-11-2025 11:56:30 - INFO - Validating token and fetching user details
+17-11-2025 12:06:07 - INFO - Validating token and fetching user details
+17-11-2025 12:11:56 - INFO - Validating token and fetching user details
+17-11-2025 12:13:23 - INFO - Validating token and fetching user details
+17-11-2025 12:13:30 - INFO - Validating token and fetching user details
+17-11-2025 12:13:42 - INFO - Validating token and fetching user details
+17-11-2025 12:13:47 - INFO - Validating token and fetching user details
+17-11-2025 12:20:45 - INFO - Validating token and fetching user details
+17-11-2025 12:20:57 - INFO - Validating token and fetching user details
+17-11-2025 12:21:32 - INFO - Validating token and fetching user details
+17-11-2025 12:21:38 - INFO - Validating token and fetching user details
+17-11-2025 12:21:58 - INFO - Validating token and fetching user details
+17-11-2025 16:45:06 - INFO - Trying to login with email: yogishru@gmail.com
+17-11-2025 16:45:06 - INFO - User Yogesh Sharma logged in, role: admin
+17-11-2025 16:45:10 - INFO - Validating token and fetching user details
+17-11-2025 16:45:19 - INFO - Validating token and fetching user details
+17-11-2025 16:45:21 - INFO - Validating token and fetching user details
+17-11-2025 17:14:58 - INFO - Validating token and fetching user details
+17-11-2025 17:15:09 - INFO - Validating token and fetching user details
+17-11-2025 17:15:11 - INFO - Validating token and fetching user details
+18-11-2025 10:30:00 - ERROR - MySQL pool error: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+18-11-2025 10:30:24 - INFO - ICT MySQL pool created
+18-11-2025 10:30:24 - INFO - Booktracker MySQL pool created
+18-11-2025 10:30:24 - INFO - Starting Flask-SocketIO application
+18-11-2025 10:31:15 - INFO - Trying to login with email: yogishru@gmail.com
+18-11-2025 10:31:15 - INFO - User Yogesh Sharma logged in, role: admin
+18-11-2025 10:31:18 - INFO - Validating token and fetching user details
+18-11-2025 10:31:27 - INFO - Validating token and fetching user details
+18-11-2025 10:32:37 - INFO - Validating token and fetching user details
+18-11-2025 10:35:00 - INFO - Validating token and fetching user details
+18-11-2025 11:03:47 - INFO - Validating token and fetching user details
+18-11-2025 11:03:49 - INFO - Validating token and fetching user details
+18-11-2025 11:04:33 - INFO - Validating token and fetching user details
+18-11-2025 11:04:45 - INFO - Validating token and fetching user details
+20-11-2025 15:01:00 - INFO - ICT MySQL pool created
+20-11-2025 15:01:00 - INFO - Booktracker MySQL pool created
+20-11-2025 15:01:00 - INFO - Starting Flask-SocketIO application
+20-11-2025 15:01:18 - INFO - Trying to login with email: yogishru@gmail.com
+20-11-2025 15:01:18 - INFO - User Yogesh Sharma logged in, role: admin
+20-11-2025 15:01:27 - INFO - Validating token and fetching user details
+20-11-2025 15:01:40 - INFO - Validating token and fetching user details
+20-11-2025 15:01:42 - INFO - Validating token and fetching user details
+21-11-2025 17:32:14 - INFO - ICT MySQL pool created
+21-11-2025 17:32:14 - INFO - Booktracker MySQL pool created
+21-11-2025 17:32:14 - INFO - Starting Flask-SocketIO application
+21-11-2025 17:33:39 - INFO - Trying to login with email: yogishru@gmail.com
+21-11-2025 17:33:39 - INFO - User Yogesh Sharma logged in, role: admin
+21-11-2025 17:33:43 - INFO - Validating token and fetching user details
+21-11-2025 17:34:00 - INFO - Validating token and fetching user details
+21-11-2025 17:34:12 - INFO - Validating token and fetching user details
+21-11-2025 17:34:17 - INFO - Validating token and fetching user details
+21-11-2025 17:34:19 - INFO - Validating token and fetching user details
+21-11-2025 17:36:40 - INFO - Validating token and fetching user details
+21-11-2025 17:36:45 - INFO - Validating token and fetching user details
+21-11-2025 17:36:47 - INFO - Validating token and fetching user details
+21-11-2025 17:37:18 - INFO - Validating token and fetching user details
+21-11-2025 17:37:23 - INFO - Validating token and fetching user details
+21-11-2025 17:37:25 - INFO - Validating token and fetching user details
+21-11-2025 17:38:42 - INFO - Validating token and fetching user details
+21-11-2025 17:38:46 - INFO - Validating token and fetching user details
+21-11-2025 17:38:48 - INFO - Validating token and fetching user details
+21-11-2025 17:39:04 - INFO - Validating token and fetching user details
+21-11-2025 17:39:08 - INFO - Validating token and fetching user details
+21-11-2025 17:39:11 - INFO - Validating token and fetching user details
+21-11-2025 17:39:48 - INFO - Validating token and fetching user details
+21-11-2025 17:39:50 - INFO - Validating token and fetching user details
+21-11-2025 17:40:11 - INFO - Validating token and fetching user details
+21-11-2025 17:40:16 - INFO - Validating token and fetching user details
+21-11-2025 17:40:19 - INFO - Validating token and fetching user details
+21-11-2025 17:41:16 - INFO - Validating token and fetching user details
+21-11-2025 17:41:20 - INFO - Validating token and fetching user details
+21-11-2025 17:41:22 - INFO - Validating token and fetching user details
+21-11-2025 17:44:20 - INFO - Validating token and fetching user details
+21-11-2025 17:44:27 - INFO - Validating token and fetching user details
+21-11-2025 17:44:32 - INFO - Validating token and fetching user details
+21-11-2025 17:44:34 - INFO - Validating token and fetching user details
+21-11-2025 17:46:42 - INFO - Validating token and fetching user details
+21-11-2025 17:46:51 - INFO - Validating token and fetching user details
+21-11-2025 17:46:55 - INFO - Validating token and fetching user details
+21-11-2025 17:46:57 - INFO - Validating token and fetching user details
+21-11-2025 17:47:27 - INFO - Validating token and fetching user details
+21-11-2025 17:47:31 - INFO - Validating token and fetching user details
+21-11-2025 17:47:34 - INFO - Validating token and fetching user details
+21-11-2025 17:47:44 - INFO - Validating token and fetching user details
+21-11-2025 17:47:49 - INFO - Validating token and fetching user details
+21-11-2025 17:47:51 - INFO - Validating token and fetching user details
+21-11-2025 17:49:20 - INFO - Validating token and fetching user details
+21-11-2025 17:49:23 - INFO - Validating token and fetching user details
+21-11-2025 17:49:25 - INFO - Validating token and fetching user details
+21-11-2025 17:50:18 - INFO - Validating token and fetching user details
+21-11-2025 17:50:21 - INFO - Validating token and fetching user details
+21-11-2025 17:50:23 - INFO - Validating token and fetching user details
+21-11-2025 17:50:49 - INFO - Validating token and fetching user details
+21-11-2025 17:50:53 - INFO - Validating token and fetching user details
+21-11-2025 17:50:55 - INFO - Validating token and fetching user details
+21-11-2025 17:51:13 - INFO - Validating token and fetching user details
+21-11-2025 17:51:18 - INFO - Validating token and fetching user details
+21-11-2025 17:51:20 - INFO - Validating token and fetching user details
+21-11-2025 17:58:20 - INFO - Validating token and fetching user details
+21-11-2025 17:58:22 - INFO - Validating token and fetching user details
+21-11-2025 17:58:35 - INFO - Validating token and fetching user details
+21-11-2025 17:58:39 - INFO - Validating token and fetching user details
+21-11-2025 17:58:41 - INFO - Validating token and fetching user details
+21-11-2025 17:59:46 - INFO - Validating token and fetching user details
+21-11-2025 17:59:49 - INFO - Validating token and fetching user details
+21-11-2025 17:59:51 - INFO - Validating token and fetching user details
+25-11-2025 14:21:18 - INFO - ICT MySQL pool created
+25-11-2025 14:21:18 - INFO - Booktracker MySQL pool created
+25-11-2025 14:21:18 - INFO - Starting Flask-SocketIO application
+25-11-2025 14:22:04 - INFO - Trying to login with email: yogishru@gmail.com
+25-11-2025 14:22:04 - INFO - User Yogesh Sharma logged in, role: admin
+25-11-2025 14:22:14 - INFO - Validating token and fetching user details
+25-11-2025 14:22:31 - INFO - Validating token and fetching user details
+25-11-2025 14:22:33 - INFO - Validating token and fetching user details
+25-11-2025 14:23:08 - INFO - Validating token and fetching user details
+25-11-2025 14:23:41 - INFO - Validating token and fetching user details
+25-11-2025 14:23:51 - INFO - Validating token and fetching user details
+26-11-2025 12:07:32 - INFO - ICT MySQL pool created
+26-11-2025 12:07:32 - INFO - Booktracker MySQL pool created
+26-11-2025 12:07:32 - INFO - Starting Flask-SocketIO application
+26-11-2025 12:28:35 - INFO - Trying to login with email: yogishru@gmail.com
+26-11-2025 12:28:35 - INFO - User Yogesh Sharma logged in, role: admin
+26-11-2025 12:28:39 - INFO - Validating token and fetching user details
+26-11-2025 13:19:01 - INFO - ICT MySQL pool created
+26-11-2025 13:19:01 - INFO - Booktracker MySQL pool created
+26-11-2025 13:19:01 - INFO - Starting Flask-SocketIO application
+26-11-2025 13:20:22 - INFO - Validating token and fetching user details
+26-11-2025 14:19:05 - INFO - Validating token and fetching user details
+26-11-2025 14:28:24 - INFO - Validating token and fetching user details
+26-11-2025 14:28:29 - INFO - Validating token and fetching user details
+26-11-2025 14:28:43 - INFO - Validating token and fetching user details
+26-11-2025 14:29:23 - INFO - Validating token and fetching user details
+26-11-2025 14:33:16 - INFO - Validating token and fetching user details
+26-11-2025 14:35:30 - INFO - Validating token and fetching user details
+26-11-2025 14:35:46 - INFO - Validating token and fetching user details
+26-11-2025 14:37:52 - INFO - Validating token and fetching user details
+26-11-2025 14:40:09 - INFO - Validating token and fetching user details
+26-11-2025 14:44:34 - INFO - Validating token and fetching user details
+26-11-2025 15:13:43 - INFO - Validating token and fetching user details
+26-11-2025 15:13:58 - INFO - Validating token and fetching user details
+26-11-2025 15:14:06 - INFO - Validating token and fetching user details
+26-11-2025 15:14:47 - INFO - Validating token and fetching user details
+26-11-2025 15:14:52 - INFO - Validating token and fetching user details
+26-11-2025 15:15:16 - INFO - Validating token and fetching user details
+26-11-2025 15:15:21 - INFO - Validating token and fetching user details
+26-11-2025 15:16:21 - INFO - Validating token and fetching user details
+26-11-2025 15:16:25 - INFO - Validating token and fetching user details
+26-11-2025 15:16:29 - INFO - Validating token and fetching user details
+26-11-2025 15:16:46 - INFO - Validating token and fetching user details
+26-11-2025 15:16:52 - INFO - Validating token and fetching user details
+26-11-2025 15:19:00 - INFO - Validating token and fetching user details
+26-11-2025 15:19:03 - INFO - Validating token and fetching user details
+26-11-2025 15:20:16 - INFO - Validating token and fetching user details
+26-11-2025 15:26:26 - INFO - Validating token and fetching user details
+26-11-2025 15:26:33 - INFO - Validating token and fetching user details
+26-11-2025 15:26:35 - INFO - Validating token and fetching user details
+26-11-2025 15:26:39 - INFO - Validating token and fetching user details
+26-11-2025 15:26:40 - INFO - Validating token and fetching user details
+26-11-2025 15:26:54 - INFO - Validating token and fetching user details
+26-11-2025 15:33:05 - INFO - Validating token and fetching user details
+26-11-2025 15:34:12 - INFO - Validating token and fetching user details
+26-11-2025 15:35:22 - INFO - Validating token and fetching user details
+26-11-2025 15:35:37 - INFO - Validating token and fetching user details
+26-11-2025 15:36:35 - INFO - Validating token and fetching user details
+26-11-2025 15:36:39 - INFO - Validating token and fetching user details
+26-11-2025 15:37:56 - INFO - Validating token and fetching user details
+26-11-2025 15:45:58 - INFO - Validating token and fetching user details
+26-11-2025 15:46:26 - INFO - Validating token and fetching user details
+26-11-2025 15:46:34 - INFO - Validating token and fetching user details
+26-11-2025 15:46:40 - INFO - Validating token and fetching user details
+26-11-2025 15:46:46 - INFO - Validating token and fetching user details
+26-11-2025 15:47:44 - INFO - Validating token and fetching user details
+26-11-2025 15:47:48 - INFO - Validating token and fetching user details
+26-11-2025 15:48:02 - INFO - Validating token and fetching user details
+26-11-2025 15:48:06 - INFO - Validating token and fetching user details
+26-11-2025 15:48:26 - INFO - Validating token and fetching user details
+26-11-2025 15:48:37 - INFO - Validating token and fetching user details
+26-11-2025 15:50:06 - INFO - Validating token and fetching user details
+26-11-2025 15:51:51 - INFO - Validating token and fetching user details
