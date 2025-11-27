@@ -112,7 +112,7 @@ MAX_FILES_PER_REQUEST = 5
 
 app.static_folder = UPLOAD_FOLDER
 
-#App-based redirect URLs
+# #App-based redirect URLs
 APP_REDIRECTS={"main": "https://mis.agkit.in", 
                "operations": "https://mis.agkit.in/team_dashboard", 
                "admin": "https://mis.agkit.in", 
@@ -448,7 +448,7 @@ def log_activity(user_id, username, session_id, action, details):
         """, (user_id, username, session_id, action, details, ist_time))
         conn.commit()
     except Exception as e:
-        logging.info("Activity Log Error:", e)
+        logger.info("Activity Log Error:", e)
     finally:
         cur.close()
         conn.close()
@@ -636,7 +636,7 @@ def get_messages(conversation_id):
         return jsonify(msgs or [])
 
     except Exception as e:
-        logging.info("Error in get_messages:", e)
+        logger.info("Error in get_messages:", e)
         conn.rollback()
         return jsonify({"error": str(e)}), 500
     finally:
@@ -936,7 +936,7 @@ def create_conversation():
         }), 201
 
     except Exception as e:
-        logging.info("\n❌ ERROR in createConversation:", str(e))
+        logger.info("\n❌ ERROR in createConversation:", str(e))
         return jsonify({"success": False, "error": str(e)}), 500
 
 
@@ -1245,7 +1245,7 @@ def get_conversation_media():
         """, (conversation_id,))
         data = cur.fetchall()
     except Exception as e:
-        logging.info("Error fetching media:", e)
+        logger.info("Error fetching media:", e)
         return jsonify({"error": "Database error"}), 500
     finally:
         cur.close()
@@ -1322,7 +1322,7 @@ def add_reaction():
 
     except Exception as e:
         conn.rollback()
-        logging.info("Reaction error:", e)
+        logger.info("Reaction error:", e)
         return jsonify({"error": str(e)}), 500
     finally:
         cur.close()
@@ -1393,7 +1393,7 @@ def handle_reaction(data):
 
     except Exception as e:
         conn.rollback()
-        logging.info("Socket reaction error:", e)
+        logger.info("Socket reaction error:", e)
         emit("error", {"error": str(e)})
     finally:
         cur.close()
@@ -1572,7 +1572,7 @@ def delete_user_from_conversation():
         }), 200
 
     except Exception as e:
-        logging.info("Delete user error:", e)
+        logger.info("Delete user error:", e)
         return jsonify({"success": False, "error": str(e)}), 500
     
 
@@ -1771,7 +1771,7 @@ def handle_group_message(data):
                     reply_to_user = buser["username"]
 
         except Exception as e:
-            logging.info("❌ Reply Fetch Error:", e)
+            logger.info("❌ Reply Fetch Error:", e)
 
     # ✅ 4. Build response exactly like user chat structure
     response_data = {
@@ -1861,7 +1861,7 @@ def upload_file():
     if not username:
         return jsonify({"error": "Username required"}), 400
 
-    user_folder = os.path.join(app.config["UPLOAD_FOLDER"], clean_filename(username))
+    user_folder = os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(username))
     os.makedirs(user_folder, exist_ok=True)
 
     uploaded_files = []
@@ -1904,7 +1904,7 @@ def serve_uploaded_file(username, filename):
     if request.method == "OPTIONS":
         return "", 200
     try:
-        user_folder = os.path.join(app.config["UPLOAD_FOLDER"], clean_filename(username))
+        user_folder = os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(username))
         return send_from_directory(user_folder, filename, as_attachment=True)
     except FileNotFoundError:
         return jsonify({"error": "File not found"}), 404
@@ -2039,8 +2039,8 @@ def create_group():
         })
 
     except Exception as e:
-        logging.info("🔥 /groups error:", str(e))
-        logging.error("🔥 /groups DB error: %s", str(e))
+        logger.info("🔥 /groups error:", str(e))
+        logger.error("🔥 /groups DB error: %s", str(e))
     
         return jsonify({"error": str(e)})
     finally:
@@ -2163,8 +2163,8 @@ def get_groups():
 
     except Exception as e:
         import traceback
-        logging.info("🔥 /groups error: %s", str(e))     # logs the error
-        logging.info(traceback.format_exc())             # logs full traceback
+        logger.info("🔥 /groups error: %s", str(e))     # logs the error
+        logger.info(traceback.format_exc())             # logs full traceback
         return jsonify({"error": "Internal server error"}), 500
 
     finally:
@@ -2354,7 +2354,7 @@ def handle_group_reaction(data):
         emit("group_reaction_update", {"message_id": message_id, "reactions": reactions}, broadcast=True)
 
     except Exception as e:
-        logging.info("Group Reaction Error:", e)
+        logger.info("Group Reaction Error:", e)
 
     finally:
         cur.close()
@@ -2398,7 +2398,7 @@ def delete_group_message(msg_id):
 
     except Exception as e:
         ict_conn.rollback()
-        logging.info("Delete group message error:", e)
+        logger.info("Delete group message error:", e)
         return jsonify({"error": "Internal server error"}), 500
 
     finally:
@@ -2438,7 +2438,7 @@ def get_group_members():
         return jsonify(result)
 
     except Exception as e:
-        logging.info("🔥 get_group_members error:", e)
+        logger.info("🔥 get_group_members error:", e)
         return jsonify({"error": str(e)}), 500
 
     finally:
@@ -2472,7 +2472,7 @@ def get_group_media():
         return jsonify(files)
 
     except Exception as e:
-        logging.info("🔥 get_group_media error:", e)
+        logger.info("🔥 get_group_media error:", e)
         return jsonify({"error": str(e)}), 500
 
     finally:
@@ -2538,7 +2538,7 @@ def add_group_member():
         return jsonify({"success": True, "user": added_user})
 
     except Exception as e:
-        logging.info("❌ add_group_member error:", e)
+        logger.info("❌ add_group_member error:", e)
         return jsonify({"success": False, "error": str(e)}), 500
 
     finally:
@@ -2763,7 +2763,7 @@ def group_message_info(msg_id):
 
 
 def delete_old_messages_and_files():
-    logging.info("🧹 Running daily cleanup...")
+    logger.info("🧹 Running daily cleanup...")
 
     # -------------------------------
     # 1️⃣ DELETE OLD PRIVATE MESSAGES
@@ -2801,12 +2801,12 @@ def delete_old_messages_and_files():
                         private_files_deleted += 1
 
                 except Exception as e:
-                    logging.info("❌ Private file deletion error:", e)
+                    logger.info("❌ Private file deletion error:", e)
 
             ict_cur.execute("DELETE FROM messages WHERE id = %s", (msg_id,))
 
         ict_conn.commit()
-        logging.info(f"🗑 PRIVATE CHAT → Deleted {len(private_msgs)} msgs, {private_files_deleted} files")
+        logger.info(f"🗑 PRIVATE CHAT → Deleted {len(private_msgs)} msgs, {private_files_deleted} files")
 
     finally:
         ict_cur.close()
@@ -2850,18 +2850,18 @@ def delete_old_messages_and_files():
                         group_files_deleted += 1
 
                 except Exception as e:
-                    logging.info("❌ Group file deletion error:", e)
+                    logger.info("❌ Group file deletion error:", e)
 
             ict_cur2.execute("DELETE FROM group_messages WHERE id = %s", (msg_id,))
 
         ict_conn2.commit()
-        logging.info(f"🗑 GROUP CHAT → Deleted {len(group_msgs)} msgs, {group_files_deleted} files")
+        logger.info(f"🗑 GROUP CHAT → Deleted {len(group_msgs)} msgs, {group_files_deleted} files")
 
     finally:
         ict_cur2.close()
         ict_conn2.close()
 
-    logging.info("🔥 Daily cleanup complete.")
+    logger.info("🔥 Daily cleanup complete.")
 
 # ---------------------------------------------------------
 # ✅ Start APScheduler only once (important for Flask debug)
@@ -2870,7 +2870,7 @@ if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
     scheduler = BackgroundScheduler(timezone=pytz.timezone("Asia/Kolkata"))
     scheduler.add_job(delete_old_messages_and_files, IntervalTrigger(days=1))
     scheduler.start()
-    logging.info("APScheduler started (daily cleanup enabled)")
+    logger.info("APScheduler started (daily cleanup enabled)")
 
 
 if __name__ == '__main__':
