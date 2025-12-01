@@ -1226,8 +1226,6 @@ def handle_mark_seen(data):
 
 
 
-
-
 @app.route("/get_conversation_media", methods=["GET"])
 def get_conversation_media():
     conversation_id = request.args.get("conversation_id")
@@ -1812,11 +1810,14 @@ def handle_group_typing(data):
 # -------------------- Helpers --------------------
 
 def clean_filename(filename):
-    # Keep name EXACTLY the same — except remove illegal characters
+    # Keep name EXACTLY the same — except remove illegal characters + %
     filename = os.path.basename(filename)
 
-    # Remove only Windows-invalid characters: < > : " / \ | ? *
+    # Remove Windows-invalid characters: < > : " / \ | ? *
     filename = re.sub(r'[<>:"/\\|?*]', '', filename)
+
+    # REMOVE % (your new requirement)
+    filename = filename.replace('%', '')
 
     # Do not touch underscores, spaces, unicode, emojis
     return filename.strip()
