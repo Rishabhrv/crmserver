@@ -112,7 +112,7 @@ MAX_FILES_PER_REQUEST = 10
 
 app.static_folder = UPLOAD_FOLDER
 
-# #App-based redirect URLs
+#App-based redirect URLs
 APP_REDIRECTS={"main": "https://mis.agkit.in", 
                "operations": "https://mis.agkit.in/team_dashboard", 
                "admin": "https://mis.agkit.in", 
@@ -442,16 +442,26 @@ def log_activity(user_id, username, session_id, action, details):
     conn, cur = get_book_cursor()
     try:
         ist_time = now_ist().strftime('%Y-%m-%d %H:%M:%S')
+
+        # ✅ FALLBACK session_id
+        if not session_id:
+            session_id = f"auto-{user_id}-{int(datetime.now().timestamp())}"
+
         cur.execute("""
-            INSERT INTO activity_log (user_id, username, session_id, action, details, timestamp)
+            INSERT INTO activity_log 
+            (user_id, username, session_id, action, details, timestamp)
             VALUES (%s, %s, %s, %s, %s, %s)
         """, (user_id, username, session_id, action, details, ist_time))
+
         conn.commit()
-    except Exception as e:
-        logger.info("Activity Log Error:", e)
+
+    except Exception:
+        logger.exception("Activity Log Error")
+
     finally:
         cur.close()
         conn.close()
+
 
 
 
@@ -1309,6 +1319,7 @@ def add_reaction():
             GROUP BY emoji
         """, (message_id,))
         reactions = cur.fetchall()
+        
 
         # 📡 Emit update
         socketio.emit("reaction_update", {
@@ -2180,9 +2191,6 @@ def get_groups():
 @app.route("/group_messages/<int:group_id>", methods=["GET"])
 @token_required
 def get_group_messages(group_id):
-    """Paginated group messages"""
-
-    # Pagination
     try:
         offset = int(request.args.get("offset", 0))
         limit = int(request.args.get("limit", 100))
@@ -2192,10 +2200,10 @@ def get_group_messages(group_id):
 
     conn, cur = get_ict_cursor()
 
-    # 1) Fetch paginated group messages with reply reference
-    cur.execute(f"""
+    # 1️⃣ Fetch messages
+    cur.execute("""
         SELECT gm.*, rm.message AS reply_message, rm.sender_id AS reply_sender_id
-        FROM `group_messages` gm
+        FROM group_messages gm
         LEFT JOIN group_messages rm ON gm.reply_to = rm.id
         WHERE gm.group_id = %s
         ORDER BY gm.id DESC
@@ -2203,61 +2211,68 @@ def get_group_messages(group_id):
     """, (group_id, limit, offset))
 
     rows = cur.fetchall()
-
     if not rows:
         cur.close()
         conn.close()
         return jsonify([])
 
-    # Reverse for correct ASC order (top → bottom)
     messages = list(reversed(rows))
-
-    # 2) Collect message IDs
     message_ids = [m["id"] for m in messages]
 
-    # 3) Fetch reactions
+    # 2️⃣ Fetch reactions
     format_ids = ",".join(["%s"] * len(message_ids))
     cur.execute(f"""
-        SELECT * FROM group_message_reactions
+        SELECT id, message_id, user_id, emoji
+        FROM group_message_reactions
         WHERE message_id IN ({format_ids})
     """, tuple(message_ids))
     reactions = cur.fetchall()
 
-    # 4) Group reactions by message_id
+    # 3️⃣ Group reactions + collect reaction user IDs ✅
     reaction_map = {}
+    reaction_user_ids = set()
+
     for r in reactions:
+        reaction_user_ids.add(r["user_id"])
         reaction_map.setdefault(r["message_id"], []).append({
             "id": r["id"],
             "user_id": r["user_id"],
             "emoji": r["emoji"]
         })
 
-    # 5) Collect sender IDs
+    # 4️⃣ Collect message sender + reply sender IDs
     sender_ids = set()
     for m in messages:
-        if m.get("sender_id"): sender_ids.add(m["sender_id"])
-        if m.get("reply_sender_id"): sender_ids.add(m["reply_sender_id"])
+        if m.get("sender_id"):
+            sender_ids.add(m["sender_id"])
+        if m.get("reply_sender_id"):
+            sender_ids.add(m["reply_sender_id"])
 
-    # 6) Fetch usernames from BOOK DB
+    # 🔥 MERGE all user IDs (senders + reactions)
+    all_user_ids = sender_ids | reaction_user_ids
+
+    # 5️⃣ Fetch usernames from BOOK DB
     user_map = {}
-    if sender_ids:
+    if all_user_ids:
         bconn, bcur = get_book_cursor()
-        format_users = ",".join(["%s"] * len(sender_ids))
-        bcur.execute(f"SELECT id, username FROM userss WHERE id IN ({format_users})",
-                     tuple(sender_ids))
+        format_users = ",".join(["%s"] * len(all_user_ids))
+        bcur.execute(
+            f"SELECT id, username FROM userss WHERE id IN ({format_users})",
+            tuple(all_user_ids)
+        )
         for row in bcur.fetchall():
             user_map[row["id"]] = row["username"]
         bcur.close()
         bconn.close()
 
-    # 7) Build final message list
+    # 6️⃣ Build final response
     result = []
     for m in messages:
         msg = dict(m)
 
         msg["sender_name"] = user_map.get(msg.get("sender_id"), "Unknown")
 
-        # reply structure
+        # Reply block
         if msg.get("reply_message"):
             msg["reply_to_message"] = {
                 "sender_name": user_map.get(msg.get("reply_sender_id"), "Unknown"),
@@ -2266,15 +2281,23 @@ def get_group_messages(group_id):
         else:
             msg["reply_to_message"] = None
 
-        # reactions
-        msg["reactions"] = reaction_map.get(msg["id"], [])
+        # ✅ Attach reactions WITH usernames
+        msg["reactions"] = [
+            {
+                "id": r["id"],
+                "emoji": r["emoji"],
+                "user_id": r["user_id"],
+                "username": user_map.get(r["user_id"], "Unknown")
+            }
+            for r in reaction_map.get(msg["id"], [])
+        ]
 
         result.append(msg)
 
     cur.close()
     conn.close()
-
     return jsonify(result)
+
 
 
 
@@ -2321,45 +2344,89 @@ def handle_group_reaction(data):
         return
 
     try:
+        # ---------- ICT DB ----------
         conn, cur = get_ict_cursor()
 
         # Toggle reaction
         cur.execute("""
-            SELECT * FROM `group_message_reactions`
-            WHERE message_id = %s AND user_id = %s AND emoji = %s
+            SELECT 1 FROM group_message_reactions
+            WHERE message_id=%s AND user_id=%s AND emoji=%s
         """, (message_id, user_id, emoji))
-        exists = cur.fetchone()
 
-        if exists:
+        if cur.fetchone():
             cur.execute("""
-                DELETE FROM `group_message_reactions`
-                WHERE message_id = %s AND user_id = %s AND emoji = %s
+                DELETE FROM group_message_reactions
+                WHERE message_id=%s AND user_id=%s AND emoji=%s
             """, (message_id, user_id, emoji))
         else:
             cur.execute("""
-                INSERT INTO `group_message_reactions` (message_id, user_id, emoji)
+                INSERT INTO group_message_reactions (message_id, user_id, emoji)
                 VALUES (%s, %s, %s)
             """, (message_id, user_id, emoji))
 
         conn.commit()
 
-        # Send updated reactions
+        # Fetch reactions again
         cur.execute("""
-            SELECT emoji, COUNT(*) as count
-            FROM `group_message_reactions`
-            WHERE message_id = %s
-            GROUP BY emoji
+            SELECT emoji, user_id
+            FROM group_message_reactions
+            WHERE message_id=%s
         """, (message_id,))
-        reactions = cur.fetchall()
+        raw_reactions = cur.fetchall()
 
-        emit("group_reaction_update", {"message_id": message_id, "reactions": reactions}, broadcast=True)
-
-    except Exception as e:
-        logger.info("Group Reaction Error:", e)
-
-    finally:
         cur.close()
         conn.close()
+
+        # ---------- BOOKTRACKER DB ----------
+        user_ids = list({r["user_id"] for r in raw_reactions})
+        user_map = {}
+
+        if user_ids:
+            book_conn, book_cur = get_book_cursor()
+            format_ids = ",".join(["%s"] * len(user_ids))
+
+            book_cur.execute(
+                f"SELECT id, username FROM userss WHERE id IN ({format_ids})",
+                tuple(user_ids)
+            )
+
+            for u in book_cur.fetchall():
+                user_map[u["id"]] = u["username"]
+
+            book_cur.close()
+            book_conn.close()
+
+        # ✅ BUILD CLEAN RESPONSE (IMPORTANT)
+                # ✅ BUILD CLEAN RESPONSE
+        reactions = [
+            {
+                "emoji": r["emoji"],
+                "user_id": r["user_id"],
+                "username": user_map.get(r["user_id"], "Unknown")
+            }
+            for r in raw_reactions
+        ]
+
+        # 🔥 DEBUG OUTPUT
+        print("📤 SENDING GROUP REACTION UPDATE")
+        print("Message ID:", message_id)
+        print("Reactions payload:")
+        for r in reactions:
+            print(r)
+
+        emit(
+            "group_reaction_update",
+            {
+                "message_id": message_id,
+                "reactions": reactions
+            },
+            broadcast=True
+        )
+
+
+    except Exception as e:
+        print("❌ Group Reaction Error:", e)
+
 
 
 @app.route("/delete_group_message/<int:msg_id>", methods=["DELETE"])
@@ -2759,6 +2826,112 @@ def group_message_info(msg_id):
         except: pass
         try: book_cur.close(); book_conn.close()
         except: pass
+
+
+
+@app.route("/recent_chats", methods=["GET"])
+@token_required
+def recent_chats():
+    user_id = request.user_id   # ✅ FIXED
+
+    conn, cur = get_ict_cursor()
+
+    # -------------------------
+    # 1️⃣ Recent Direct Chats
+    # -------------------------
+    cur.execute("""
+        SELECT 
+            c.id AS conversation_id,
+            IF(c.user1_id=%s, c.user2_id, c.user1_id) AS other_user_id,
+            MAX(m.timestamp) AS last_time
+        FROM conversations c
+        JOIN messages m ON m.conversation_id = c.id
+        WHERE %s IN (c.user1_id, c.user2_id)
+        GROUP BY c.id
+        ORDER BY last_time DESC
+        LIMIT 10
+    """, (user_id, user_id))
+
+    direct = cur.fetchall()
+
+    # -------------------------
+    # 2️⃣ Recent Group Chats
+    # -------------------------
+    cur.execute("""
+        SELECT 
+            gm.group_id,
+            MAX(gm.timestamp) AS last_time
+        FROM group_messages gm
+        JOIN group_members mem ON mem.group_id = gm.group_id
+        WHERE mem.user_id = %s
+        GROUP BY gm.group_id
+        ORDER BY last_time DESC
+        LIMIT 10
+    """, (user_id,))
+
+    groups = cur.fetchall()
+
+    cur.close()
+    conn.close()
+
+    # -------------------------
+    # 3️⃣ Fetch Names
+    # -------------------------
+    user_ids = {d["other_user_id"] for d in direct}
+    group_ids = {g["group_id"] for g in groups}
+
+    user_map = {}
+    group_map = {}
+
+    if user_ids:
+        bconn, bcur = get_book_cursor()
+        bcur.execute(
+            f"SELECT id, username FROM userss WHERE id IN ({','.join(['%s']*len(user_ids))})",
+            tuple(user_ids)
+        )
+        for u in bcur.fetchall():
+            user_map[u["id"]] = u["username"]
+        bcur.close()
+        bconn.close()
+
+    if group_ids:
+        conn, cur = get_ict_cursor()
+        cur.execute(
+            f"SELECT id, group_name FROM `groups` WHERE id IN ({','.join(['%s']*len(group_ids))})",
+            tuple(group_ids)
+        )
+        for g in cur.fetchall():
+            group_map[g["id"]] = g["group_name"]
+        cur.close()
+        conn.close()
+
+    # -------------------------
+    # 4️⃣ Merge + Sort
+    # -------------------------
+    combined = []
+
+    for d in direct:
+        combined.append({
+            "id": d["other_user_id"],
+            "type": "user",
+            "name": user_map.get(d["other_user_id"], "Unknown"),
+            "time": d["last_time"]
+        })
+
+    for g in groups:
+        combined.append({
+            "id": g["group_id"],
+            "type": "group",
+            "name": group_map.get(g["group_id"], "Group"),
+            "time": g["last_time"]
+        })
+
+    combined.sort(key=lambda x: x["time"], reverse=True)
+
+    for c in combined:
+        c.pop("time", None)
+
+    return jsonify(combined)
 
 
 

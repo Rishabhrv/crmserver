@@ -25,3 +25,8 @@ sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/react
 flask.log
+flask.log
+flask.log
+reactreq.txt
+/uploads
+
