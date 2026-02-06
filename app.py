@@ -1052,6 +1052,8 @@ def socket_send_message(data):
     message_text = data.get("message")
     message_type = data.get("message_type", "text")
     reply_to = data.get("reply_to")  # ✅ Optional reply message ID
+    file_size = data.get("file_size")  
+
 
     if not token or not conv_id or not message_text:
         emit("error", {"error": "missing fields"})
@@ -1098,9 +1100,9 @@ def socket_send_message(data):
 
         # ✅ Step 2: Insert the new message into ICT DB
         cur.execute("""
-            INSERT INTO messages (conversation_id, sender_id, message, message_type, timestamp, reply_to)
-            VALUES (%s, %s, %s, %s, %s, %s)
-        """, (conv_id, sender_id, message_text, message_type, formatted_time, reply_to))
+            INSERT INTO messages (conversation_id, sender_id, message, message_type, file_size, timestamp, reply_to)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """, (conv_id, sender_id, message_text, message_type, file_size, formatted_time, reply_to))
         conn.commit()
         message_id = cur.lastrowid
 
@@ -1141,6 +1143,7 @@ def socket_send_message(data):
         "sender_name": sender_name,
         "message": message_text,
         "message_type": message_type,
+        "file_size": file_size,
         "timestamp": formatted_time,
         "reply_to": reply_to,
         "reply_to_text": reply_to_text,
@@ -1720,6 +1723,7 @@ def handle_group_message(data):
     message = data.get("message")
     message_type = data.get("message_type", "text")
     reply_to = data.get("reply_to")
+    file_size = data.get("file_size")
 
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
@@ -1744,9 +1748,9 @@ def handle_group_message(data):
     conn2, cur2 = get_ict_cursor()
     cur2.execute(
         """INSERT INTO group_messages 
-        (group_id, sender_id, message, message_type, reply_to, timestamp) 
-        VALUES (%s, %s, %s, %s, %s, %s)""",
-        (group_id, sender_id, message, message_type, reply_to, formatted_time)
+        (group_id, sender_id, message, message_type, file_size, reply_to, timestamp) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s)""",
+        (group_id, sender_id, message, message_type, file_size, reply_to, formatted_time)
     )
     conn2.commit()
     message_id = cur2.lastrowid
@@ -1789,6 +1793,7 @@ def handle_group_message(data):
         "sender_id": sender_id,
         "sender_name": sender_name,
         "message": message,
+        "file_size": file_size,
         "message_type": message_type,
         "timestamp": datetime.now(pytz.timezone('Asia/Kolkata')).isoformat(),
 
