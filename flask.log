@@ -12898,3 +12898,564 @@
 29-11-2025 17:42:38 - INFO - Validating token and fetching user details
 29-11-2025 17:43:54 - INFO - Validating token and fetching user details
 29-11-2025 17:58:33 - INFO - Validating token and fetching user details
+05-02-2026 10:39:52 - INFO - ICT MySQL pool created
+05-02-2026 10:39:52 - INFO - Booktracker MySQL pool created
+05-02-2026 10:39:52 - INFO - Starting Flask-SocketIO application
+05-02-2026 10:39:52 - ERROR - http://localhost:3000 is not an accepted origin. (further occurrences of this error will be logged with level INFO)
+05-02-2026 10:49:21 - INFO - ICT MySQL pool created
+05-02-2026 10:49:21 - INFO - Booktracker MySQL pool created
+05-02-2026 10:49:21 - INFO - Starting Flask-SocketIO application
+05-02-2026 11:00:02 - INFO - ICT MySQL pool created
+05-02-2026 11:00:02 - INFO - Booktracker MySQL pool created
+05-02-2026 11:00:02 - INFO - Starting Flask-SocketIO application
+05-02-2026 11:00:16 - INFO - Trying to login with email: priyanshusamanta101@gmail.com
+05-02-2026 11:00:16 - INFO - User priyanshusamanta logged in, role: user
+05-02-2026 11:00:38 - INFO - Trying to login with email: priyanshusamanta101@gmail.com
+05-02-2026 11:00:38 - INFO - User priyanshusamanta logged in, role: user
+05-02-2026 11:00:50 - INFO - Trying to login with email: priyanshusamanta101@gmail.com
+05-02-2026 11:00:50 - INFO - User priyanshusamanta logged in, role: user
+05-02-2026 11:01:04 - INFO - Trying to login with email: priyanshusamanta101@gmail.com
+05-02-2026 11:01:04 - INFO - User priyanshusamanta logged in, role: user
+05-02-2026 11:01:47 - INFO - ICT MySQL pool created
+05-02-2026 11:01:47 - INFO - Booktracker MySQL pool created
+05-02-2026 11:01:47 - INFO - Starting Flask-SocketIO application
+05-02-2026 11:01:51 - INFO - Trying to login with email: priyanshusamanta101@gmail.com
+05-02-2026 11:01:51 - INFO - User priyanshusamanta logged in, role: user
+05-02-2026 11:02:09 - INFO - Trying to login with email: priyanshusamanta101@gmail.com
+05-02-2026 11:02:09 - INFO - User priyanshusamanta logged in, role: user
+05-02-2026 11:03:21 - INFO - Trying to login with email: priyanshusamanta101@gmail.com
+05-02-2026 11:03:21 - INFO - User priyanshusamanta logged in, role: user
+05-02-2026 11:04:37 - INFO - Validating token and fetching user details
+05-02-2026 11:04:37 - INFO - Validating token and fetching user details
+05-02-2026 11:04:40 - INFO - Validating token and fetching user details
+05-02-2026 11:04:40 - INFO - Validating token and fetching user details
+05-02-2026 11:08:54 - INFO - Validating token and fetching user details
+05-02-2026 11:08:54 - INFO - Validating token and fetching user details
+05-02-2026 11:17:55 - INFO - Validating token and fetching user details
+05-02-2026 11:17:55 - INFO - Validating token and fetching user details
+05-02-2026 11:25:40 - INFO - Validating token and fetching user details
+05-02-2026 11:25:40 - INFO - Validating token and fetching user details
+05-02-2026 11:26:27 - INFO - Validating token and fetching user details
+05-02-2026 11:26:27 - INFO - Validating token and fetching user details
+05-02-2026 11:27:46 - INFO - Validating token and fetching user details
+05-02-2026 11:27:46 - INFO - Validating token and fetching user details
+05-02-2026 11:28:46 - INFO - Validating token and fetching user details
+05-02-2026 11:28:46 - INFO - Validating token and fetching user details
+05-02-2026 11:41:12 - INFO - Validating token and fetching user details
+05-02-2026 11:41:12 - INFO - Validating token and fetching user details
+05-02-2026 11:55:14 - INFO - Trying to login with email: admin@admin.com
+05-02-2026 11:55:14 - INFO - User admin logged in, role: user
+05-02-2026 11:55:15 - INFO - Validating token and fetching user details
+05-02-2026 11:55:15 - INFO - Validating token and fetching user details
+05-02-2026 11:55:16 - INFO - Validating token and fetching user details
+05-02-2026 11:55:16 - INFO - Validating token and fetching user details
+05-02-2026 11:57:27 - INFO - Validating token and fetching user details
+05-02-2026 11:57:27 - INFO - Validating token and fetching user details
+05-02-2026 12:17:07 - INFO - Validating token and fetching user details
+05-02-2026 12:17:07 - INFO - Validating token and fetching user details
+05-02-2026 12:18:06 - INFO - Validating token and fetching user details
+05-02-2026 12:18:06 - INFO - Validating token and fetching user details
+05-02-2026 12:19:42 - INFO - Validating token and fetching user details
+05-02-2026 12:19:42 - INFO - Validating token and fetching user details
+05-02-2026 12:26:28 - INFO - Validating token and fetching user details
+05-02-2026 12:26:28 - INFO - Validating token and fetching user details
+05-02-2026 12:27:25 - INFO - Validating token and fetching user details
+05-02-2026 12:27:25 - INFO - Validating token and fetching user details
+05-02-2026 12:27:44 - INFO - Validating token and fetching user details
+05-02-2026 12:27:44 - INFO - Validating token and fetching user details
+05-02-2026 12:28:51 - INFO - Validating token and fetching user details
+05-02-2026 12:28:51 - INFO - Validating token and fetching user details
+05-02-2026 12:29:53 - INFO - Validating token and fetching user details
+05-02-2026 12:29:53 - INFO - Validating token and fetching user details
+05-02-2026 12:31:24 - INFO - Validating token and fetching user details
+05-02-2026 12:31:24 - INFO - Validating token and fetching user details
+05-02-2026 12:31:29 - INFO - Validating token and fetching user details
+05-02-2026 12:31:29 - INFO - Validating token and fetching user details
+05-02-2026 12:31:49 - INFO - Validating token and fetching user details
+05-02-2026 12:31:49 - INFO - Validating token and fetching user details
+05-02-2026 12:38:57 - INFO - Validating token and fetching user details
+05-02-2026 12:38:57 - INFO - Validating token and fetching user details
+05-02-2026 12:40:04 - INFO - Validating token and fetching user details
+05-02-2026 12:40:04 - INFO - Validating token and fetching user details
+05-02-2026 12:40:35 - INFO - Validating token and fetching user details
+05-02-2026 12:40:35 - INFO - Validating token and fetching user details
+05-02-2026 12:40:35 - INFO - Validating token and fetching user details
+05-02-2026 12:40:35 - INFO - Validating token and fetching user details
+05-02-2026 12:40:49 - INFO - Validating token and fetching user details
+05-02-2026 12:40:49 - INFO - Validating token and fetching user details
+05-02-2026 12:41:05 - INFO - Validating token and fetching user details
+05-02-2026 12:41:05 - INFO - Validating token and fetching user details
+05-02-2026 12:44:08 - INFO - Validating token and fetching user details
+05-02-2026 12:44:09 - INFO - Validating token and fetching user details
+05-02-2026 12:44:17 - INFO - Validating token and fetching user details
+05-02-2026 12:44:17 - INFO - Validating token and fetching user details
+05-02-2026 12:47:05 - INFO - Validating token and fetching user details
+05-02-2026 12:47:05 - INFO - Validating token and fetching user details
+05-02-2026 12:47:12 - INFO - Validating token and fetching user details
+05-02-2026 12:47:12 - INFO - Validating token and fetching user details
+05-02-2026 12:50:14 - INFO - Validating token and fetching user details
+05-02-2026 12:50:14 - INFO - Validating token and fetching user details
+05-02-2026 12:50:34 - INFO - Validating token and fetching user details
+05-02-2026 12:50:34 - INFO - Validating token and fetching user details
+05-02-2026 12:50:49 - INFO - Validating token and fetching user details
+05-02-2026 12:50:49 - INFO - Validating token and fetching user details
+05-02-2026 12:51:11 - INFO - Validating token and fetching user details
+05-02-2026 12:51:11 - INFO - Validating token and fetching user details
+05-02-2026 12:54:00 - INFO - Validating token and fetching user details
+05-02-2026 12:54:00 - INFO - Validating token and fetching user details
+05-02-2026 12:55:54 - INFO - Validating token and fetching user details
+05-02-2026 12:55:54 - INFO - Validating token and fetching user details
+05-02-2026 13:02:56 - INFO - ICT MySQL pool created
+05-02-2026 13:02:56 - INFO - Booktracker MySQL pool created
+05-02-2026 13:02:56 - INFO - Starting Flask-SocketIO application
+05-02-2026 13:02:59 - INFO - Validating token and fetching user details
+05-02-2026 13:02:59 - INFO - Validating token and fetching user details
+05-02-2026 13:03:07 - INFO - Validating token and fetching user details
+05-02-2026 13:03:07 - INFO - Validating token and fetching user details
+05-02-2026 13:03:24 - INFO - Validating token and fetching user details
+05-02-2026 13:03:24 - INFO - Validating token and fetching user details
+05-02-2026 13:04:28 - INFO - ICT MySQL pool created
+05-02-2026 13:04:28 - INFO - Booktracker MySQL pool created
+05-02-2026 13:04:28 - INFO - Starting Flask-SocketIO application
+05-02-2026 13:08:29 - INFO - ICT MySQL pool created
+05-02-2026 13:08:29 - INFO - Booktracker MySQL pool created
+05-02-2026 13:08:29 - INFO - Starting Flask-SocketIO application
+05-02-2026 13:08:35 - INFO - Validating token and fetching user details
+05-02-2026 13:08:35 - INFO - Validating token and fetching user details
+05-02-2026 13:16:16 - INFO - ICT MySQL pool created
+05-02-2026 13:16:16 - INFO - Booktracker MySQL pool created
+05-02-2026 13:16:16 - INFO - Starting Flask-SocketIO application
+05-02-2026 13:16:21 - INFO - Validating token and fetching user details
+05-02-2026 13:16:21 - INFO - Validating token and fetching user details
+05-02-2026 13:16:36 - INFO - Validating token and fetching user details
+05-02-2026 13:16:36 - INFO - Validating token and fetching user details
+05-02-2026 13:21:57 - INFO - ICT MySQL pool created
+05-02-2026 13:21:57 - INFO - Booktracker MySQL pool created
+05-02-2026 13:21:57 - INFO - Starting Flask-SocketIO application
+05-02-2026 13:22:01 - INFO - Validating token and fetching user details
+05-02-2026 13:22:01 - INFO - Validating token and fetching user details
+05-02-2026 13:22:40 - INFO - Validating token and fetching user details
+05-02-2026 13:22:40 - INFO - Validating token and fetching user details
+05-02-2026 13:25:09 - INFO - ICT MySQL pool created
+05-02-2026 13:25:09 - INFO - Booktracker MySQL pool created
+05-02-2026 13:25:09 - INFO - Starting Flask-SocketIO application
+05-02-2026 13:25:14 - INFO - Validating token and fetching user details
+05-02-2026 13:25:15 - INFO - Validating token and fetching user details
+05-02-2026 13:26:15 - INFO - Validating token and fetching user details
+05-02-2026 13:26:15 - INFO - Validating token and fetching user details
+05-02-2026 13:26:29 - INFO - Validating token and fetching user details
+05-02-2026 13:26:29 - INFO - Validating token and fetching user details
+05-02-2026 13:26:47 - INFO - Validating token and fetching user details
+05-02-2026 13:26:47 - INFO - Validating token and fetching user details
+05-02-2026 13:27:34 - INFO - Validating token and fetching user details
+05-02-2026 13:27:34 - INFO - Validating token and fetching user details
+05-02-2026 13:30:22 - INFO - ICT MySQL pool created
+05-02-2026 13:30:22 - INFO - Booktracker MySQL pool created
+05-02-2026 13:30:22 - INFO - Starting Flask-SocketIO application
+05-02-2026 13:30:25 - INFO - Validating token and fetching user details
+05-02-2026 13:30:25 - INFO - Validating token and fetching user details
+05-02-2026 13:31:18 - INFO - Validating token and fetching user details
+05-02-2026 13:31:18 - INFO - Validating token and fetching user details
+05-02-2026 14:06:16 - INFO - Validating token and fetching user details
+05-02-2026 14:06:16 - INFO - Validating token and fetching user details
+05-02-2026 14:10:25 - INFO - ICT MySQL pool created
+05-02-2026 14:10:25 - INFO - Booktracker MySQL pool created
+05-02-2026 14:10:25 - INFO - Starting Flask-SocketIO application
+05-02-2026 14:10:26 - INFO - Validating token and fetching user details
+05-02-2026 14:10:39 - INFO - Trying to login with email: admin@admin.com
+05-02-2026 14:10:39 - INFO - User admin logged in, role: user
+05-02-2026 14:10:39 - INFO - Validating token and fetching user details
+05-02-2026 14:10:39 - INFO - Validating token and fetching user details
+05-02-2026 14:10:40 - INFO - Validating token and fetching user details
+05-02-2026 14:10:40 - INFO - Validating token and fetching user details
+05-02-2026 14:11:25 - INFO - Validating token and fetching user details
+05-02-2026 14:11:25 - INFO - Validating token and fetching user details
+05-02-2026 14:21:56 - INFO - Validating token and fetching user details
+05-02-2026 14:21:56 - INFO - Validating token and fetching user details
+05-02-2026 14:22:15 - INFO - Validating token and fetching user details
+05-02-2026 14:22:15 - INFO - Validating token and fetching user details
+05-02-2026 14:22:43 - INFO - Validating token and fetching user details
+05-02-2026 14:22:43 - INFO - Validating token and fetching user details
+05-02-2026 14:24:03 - INFO - ICT MySQL pool created
+05-02-2026 14:24:03 - INFO - Booktracker MySQL pool created
+05-02-2026 14:24:03 - INFO - Starting Flask-SocketIO application
+05-02-2026 14:28:34 - INFO - Validating token and fetching user details
+05-02-2026 14:28:34 - INFO - Validating token and fetching user details
+05-02-2026 14:29:01 - INFO - Validating token and fetching user details
+05-02-2026 14:29:01 - INFO - Validating token and fetching user details
+05-02-2026 14:32:07 - INFO - Validating token and fetching user details
+05-02-2026 14:32:07 - INFO - Validating token and fetching user details
+05-02-2026 14:33:05 - INFO - ICT MySQL pool created
+05-02-2026 14:33:05 - INFO - Booktracker MySQL pool created
+05-02-2026 14:33:05 - INFO - Starting Flask-SocketIO application
+05-02-2026 14:33:10 - INFO - Validating token and fetching user details
+05-02-2026 14:33:10 - INFO - Validating token and fetching user details
+05-02-2026 14:37:15 - INFO - Validating token and fetching user details
+05-02-2026 14:37:15 - INFO - Validating token and fetching user details
+05-02-2026 14:40:24 - INFO - Validating token and fetching user details
+05-02-2026 14:40:25 - INFO - Validating token and fetching user details
+05-02-2026 14:41:45 - INFO - Validating token and fetching user details
+05-02-2026 14:41:45 - INFO - Validating token and fetching user details
+05-02-2026 14:42:17 - INFO - Validating token and fetching user details
+05-02-2026 14:42:17 - INFO - Validating token and fetching user details
+05-02-2026 14:54:28 - INFO - Validating token and fetching user details
+05-02-2026 14:54:28 - INFO - Validating token and fetching user details
+05-02-2026 14:57:38 - INFO - Validating token and fetching user details
+05-02-2026 14:57:38 - INFO - Validating token and fetching user details
+05-02-2026 14:57:38 - INFO - Validating token and fetching user details
+05-02-2026 14:57:38 - INFO - Validating token and fetching user details
+05-02-2026 14:58:57 - INFO - Validating token and fetching user details
+05-02-2026 14:58:57 - INFO - Validating token and fetching user details
+05-02-2026 15:03:45 - INFO - Trying to login with email: admin@admin.com
+05-02-2026 15:03:45 - INFO - User admin logged in, role: user
+05-02-2026 15:03:45 - INFO - Validating token and fetching user details
+05-02-2026 15:03:46 - INFO - Validating token and fetching user details
+05-02-2026 15:03:47 - INFO - Validating token and fetching user details
+05-02-2026 15:03:47 - INFO - Validating token and fetching user details
+05-02-2026 15:04:10 - INFO - Validating token and fetching user details
+05-02-2026 15:04:10 - INFO - Validating token and fetching user details
+05-02-2026 15:04:12 - INFO - Validating token and fetching user details
+05-02-2026 15:04:12 - INFO - Validating token and fetching user details
+05-02-2026 15:04:17 - INFO - Trying to login with email: priyanshusamanta101@gmail.com
+05-02-2026 15:04:17 - INFO - User priyanshusamanta logged in, role: user
+05-02-2026 15:04:18 - INFO - Validating token and fetching user details
+05-02-2026 15:04:18 - INFO - Validating token and fetching user details
+05-02-2026 15:04:19 - INFO - Validating token and fetching user details
+05-02-2026 15:04:19 - INFO - Validating token and fetching user details
+05-02-2026 15:07:39 - INFO - Validating token and fetching user details
+05-02-2026 15:07:39 - INFO - Validating token and fetching user details
+05-02-2026 15:23:01 - INFO - Validating token and fetching user details
+05-02-2026 15:23:01 - INFO - Validating token and fetching user details
+05-02-2026 15:23:18 - INFO - Validating token and fetching user details
+05-02-2026 15:23:18 - INFO - Validating token and fetching user details
+05-02-2026 15:24:23 - INFO - Validating token and fetching user details
+05-02-2026 15:24:23 - INFO - Validating token and fetching user details
+05-02-2026 15:30:03 - INFO - ICT MySQL pool created
+05-02-2026 15:30:03 - INFO - Booktracker MySQL pool created
+05-02-2026 15:30:03 - INFO - Starting Flask-SocketIO application
+05-02-2026 15:30:07 - INFO - Validating token and fetching user details
+05-02-2026 15:30:07 - INFO - Validating token and fetching user details
+05-02-2026 15:40:06 - INFO - ICT MySQL pool created
+05-02-2026 15:40:06 - INFO - Booktracker MySQL pool created
+05-02-2026 15:40:06 - INFO - Starting Flask-SocketIO application
+05-02-2026 15:40:11 - INFO - Validating token and fetching user details
+05-02-2026 15:40:11 - INFO - Validating token and fetching user details
+05-02-2026 15:40:20 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 15:44:02 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 15:44:06 - INFO - Validating token and fetching user details
+05-02-2026 15:44:06 - INFO - Validating token and fetching user details
+05-02-2026 15:44:14 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 15:50:18 - INFO - Validating token and fetching user details
+05-02-2026 15:50:18 - INFO - Validating token and fetching user details
+05-02-2026 15:54:16 - INFO - Validating token and fetching user details
+05-02-2026 15:54:16 - INFO - Validating token and fetching user details
+05-02-2026 15:55:23 - INFO - Validating token and fetching user details
+05-02-2026 15:55:23 - INFO - Validating token and fetching user details
+05-02-2026 15:59:55 - INFO - Validating token and fetching user details
+05-02-2026 15:59:55 - INFO - Validating token and fetching user details
+05-02-2026 16:02:54 - INFO - Validating token and fetching user details
+05-02-2026 16:02:54 - INFO - Validating token and fetching user details
+05-02-2026 16:12:07 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 16:12:08 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 16:12:15 - INFO - Validating token and fetching user details
+05-02-2026 16:12:15 - INFO - Validating token and fetching user details
+05-02-2026 16:12:25 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 16:13:30 - INFO - ICT MySQL pool created
+05-02-2026 16:13:30 - INFO - Booktracker MySQL pool created
+05-02-2026 16:13:30 - INFO - Starting Flask-SocketIO application
+05-02-2026 16:13:32 - INFO - Validating token and fetching user details
+05-02-2026 16:13:32 - INFO - Validating token and fetching user details
+05-02-2026 16:13:39 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 16:15:22 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 16:15:23 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 16:15:25 - INFO - Validating token and fetching user details
+05-02-2026 16:15:26 - INFO - Validating token and fetching user details
+05-02-2026 16:15:33 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 16:16:04 - INFO - Validating token and fetching user details
+05-02-2026 16:16:04 - INFO - Validating token and fetching user details
+05-02-2026 16:16:24 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 16:21:42 - INFO - Validating token and fetching user details
+05-02-2026 16:21:42 - INFO - Validating token and fetching user details
+05-02-2026 16:21:50 - ERROR - Exception on /recent_chats [GET]
+Traceback (most recent call last):
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\rc\Desktop\My Work\ict\crmserver\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 166, in wrapper
+    return f(*args, **kwargs)
+  File "c:\Users\rc\Desktop\My Work\ict\crmserver\app.py", line 2836, in recent_chats
+    user_id = g.user_id  # from token_required
+              ^
+UnboundLocalError: cannot access local variable 'g' where it is not associated with a value
+05-02-2026 16:23:46 - INFO - ICT MySQL pool created
+05-02-2026 16:23:46 - INFO - Booktracker MySQL pool created
+05-02-2026 16:23:46 - INFO - Starting Flask-SocketIO application
+05-02-2026 16:23:54 - INFO - Validating token and fetching user details
+05-02-2026 16:23:54 - INFO - Validating token and fetching user details
+05-02-2026 16:24:43 - INFO - Validating token and fetching user details
+05-02-2026 16:24:43 - INFO - Validating token and fetching user details
+05-02-2026 16:45:28 - INFO - Validating token and fetching user details
+05-02-2026 16:45:28 - INFO - Validating token and fetching user details
+05-02-2026 17:23:20 - INFO - Validating token and fetching user details
+05-02-2026 17:23:20 - INFO - Validating token and fetching user details
+05-02-2026 17:28:22 - INFO - Validating token and fetching user details
+05-02-2026 17:28:22 - INFO - Validating token and fetching user details
+05-02-2026 17:32:31 - INFO - Validating token and fetching user details
+05-02-2026 17:32:31 - INFO - Validating token and fetching user details
+05-02-2026 17:39:57 - INFO - Validating token and fetching user details
+05-02-2026 17:39:57 - INFO - Validating token and fetching user details
+05-02-2026 17:44:58 - INFO - ICT MySQL pool created
+05-02-2026 17:44:58 - INFO - Booktracker MySQL pool created
+05-02-2026 17:44:58 - INFO - Starting Flask-SocketIO application
+05-02-2026 17:45:23 - INFO - ICT MySQL pool created
+05-02-2026 17:45:23 - INFO - Booktracker MySQL pool created
+05-02-2026 17:45:23 - INFO - Starting Flask-SocketIO application
+05-02-2026 17:45:28 - INFO - Validating token and fetching user details
+05-02-2026 17:45:28 - INFO - Validating token and fetching user details
+05-02-2026 17:54:48 - INFO - Validating token and fetching user details
+05-02-2026 17:54:48 - INFO - Validating token and fetching user details
+05-02-2026 17:55:01 - INFO - Validating token and fetching user details
+05-02-2026 17:55:01 - INFO - Validating token and fetching user details
+05-02-2026 17:55:06 - INFO - Trying to login with email: shubam@gmail.com
+05-02-2026 17:55:06 - INFO - User Shubam logged in, role: user
+05-02-2026 17:55:07 - INFO - Validating token and fetching user details
+05-02-2026 17:55:07 - INFO - Validating token and fetching user details
+05-02-2026 17:55:08 - INFO - Validating token and fetching user details
+05-02-2026 17:55:08 - INFO - Validating token and fetching user details
+05-02-2026 17:56:20 - INFO - Validating token and fetching user details
+05-02-2026 17:56:20 - INFO - Validating token and fetching user details
+05-02-2026 17:56:46 - INFO - Validating token and fetching user details
+05-02-2026 17:56:46 - INFO - Validating token and fetching user details
+05-02-2026 17:57:04 - INFO - Validating token and fetching user details
+05-02-2026 17:57:04 - INFO - Validating token and fetching user details
+05-02-2026 17:59:57 - INFO - Validating token and fetching user details
+05-02-2026 17:59:57 - INFO - Validating token and fetching user details
+06-02-2026 09:45:15 - INFO - ICT MySQL pool created
+06-02-2026 09:45:15 - INFO - Booktracker MySQL pool created
+06-02-2026 09:45:15 - INFO - Starting Flask-SocketIO application
+06-02-2026 09:46:05 - INFO - Trying to login with email: shubam@gmail.com
+06-02-2026 09:46:05 - INFO - User Shubam logged in, role: user
+06-02-2026 09:46:14 - INFO - Validating token and fetching user details
+06-02-2026 09:46:14 - INFO - Validating token and fetching user details
+06-02-2026 09:46:15 - INFO - Validating token and fetching user details
+06-02-2026 09:46:15 - INFO - Validating token and fetching user details
+06-02-2026 10:09:49 - INFO - Validating token and fetching user details
+06-02-2026 10:09:49 - INFO - Validating token and fetching user details
