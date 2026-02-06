@@ -20,7 +20,7 @@ from flask import Flask, send_from_directory
 import json
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
-
+from flask_cors import CORS
 
 # Custom filter to suppress Werkzeug HTTP request logs
 class NoWerkzeugFilter(logging.Filter):
@@ -52,8 +52,8 @@ app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins=["https://chat.mis.agkit.in", "https://mis.agkit.in"])
 
-#socketio = SocketIO(app, cors_allowed_origins=["http://localhost:8501", "http://localhost:3000", "http://localhost:5001"])
-#CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
+# socketio = SocketIO(app, cors_allowed_origins=["http://localhost:8501", "http://localhost:3000", "http://localhost:5001"])
+# CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
 
 
 try:
@@ -106,9 +106,9 @@ GROUP_UPLOAD_FOLDER = config.GROUP_UPLOAD_FOLDER
 os.makedirs(GROUP_UPLOAD_FOLDER, exist_ok=True)
 
 # File restrictions
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "csv", "zip", "pptx"}
-MAX_FILE_SIZE = 25 * 1024 * 1024  # 10 MB in bytes
-MAX_FILES_PER_REQUEST = 5
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "csv", "zip", "pptx","rar", "doc"}
+MAX_FILE_SIZE = 100 * 1024 * 1024 
+MAX_FILES_PER_REQUEST = 10
 
 app.static_folder = UPLOAD_FOLDER
 
