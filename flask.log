@@ -13459,3 +13459,52 @@ UnboundLocalError: cannot access local variable 'g' where it is not associated w
 06-02-2026 09:46:15 - INFO - Validating token and fetching user details
 06-02-2026 10:09:49 - INFO - Validating token and fetching user details
 06-02-2026 10:09:49 - INFO - Validating token and fetching user details
+06-02-2026 15:40:03 - INFO - ICT MySQL pool created
+06-02-2026 15:40:04 - INFO - Booktracker MySQL pool created
+06-02-2026 15:40:04 - INFO - Starting Flask-SocketIO application
+06-02-2026 15:41:04 - INFO - Trying to login with email: shubam@gmail.com
+06-02-2026 15:41:04 - INFO - User Shubam logged in, role: user
+06-02-2026 15:41:13 - INFO - Trying to login with email: shubam@gmail.com
+06-02-2026 15:41:13 - INFO - User Shubam logged in, role: user
+06-02-2026 15:41:17 - INFO - Validating token and fetching user details
+06-02-2026 15:41:17 - INFO - Validating token and fetching user details
+06-02-2026 15:41:18 - INFO - Validating token and fetching user details
+06-02-2026 15:41:18 - INFO - Validating token and fetching user details
+06-02-2026 15:42:47 - INFO - Validating token and fetching user details
+06-02-2026 15:42:47 - INFO - Validating token and fetching user details
+06-02-2026 15:43:04 - INFO - Validating token and fetching user details
+06-02-2026 15:43:04 - INFO - Validating token and fetching user details
+06-02-2026 15:43:40 - INFO - Validating token and fetching user details
+06-02-2026 15:43:40 - INFO - Validating token and fetching user details
+06-02-2026 15:45:51 - INFO - Validating token and fetching user details
+06-02-2026 15:45:51 - INFO - Validating token and fetching user details
+06-02-2026 15:46:00 - INFO - Validating token and fetching user details
+06-02-2026 15:46:00 - INFO - Validating token and fetching user details
+06-02-2026 15:46:25 - INFO - Validating token and fetching user details
+06-02-2026 15:46:25 - INFO - Validating token and fetching user details
+06-02-2026 15:55:27 - INFO - Validating token and fetching user details
+06-02-2026 15:55:27 - INFO - Validating token and fetching user details
+06-02-2026 16:04:23 - INFO - Validating token and fetching user details
+06-02-2026 16:04:23 - INFO - Validating token and fetching user details
+06-02-2026 16:25:54 - INFO - Validating token and fetching user details
+06-02-2026 16:25:54 - INFO - Validating token and fetching user details
+06-02-2026 16:37:56 - INFO - Validating token and fetching user details
+06-02-2026 16:37:56 - INFO - Validating token and fetching user details
+06-02-2026 16:40:39 - INFO - ICT MySQL pool created
+06-02-2026 16:40:39 - INFO - Booktracker MySQL pool created
+06-02-2026 16:40:39 - INFO - Starting Flask-SocketIO application
+06-02-2026 16:40:48 - INFO - Validating token and fetching user details
+06-02-2026 16:40:48 - INFO - Validating token and fetching user details
+06-02-2026 16:47:58 - INFO - ICT MySQL pool created
+06-02-2026 16:47:58 - INFO - Booktracker MySQL pool created
+06-02-2026 16:47:58 - INFO - Starting Flask-SocketIO application
+06-02-2026 16:48:04 - INFO - Validating token and fetching user details
+06-02-2026 16:48:04 - INFO - Validating token and fetching user details
+06-02-2026 16:48:23 - INFO - Validating token and fetching user details
+06-02-2026 16:48:23 - INFO - Validating token and fetching user details
+06-02-2026 16:52:44 - INFO - Validating token and fetching user details
+06-02-2026 16:52:44 - INFO - Validating token and fetching user details
+06-02-2026 16:55:05 - INFO - Validating token and fetching user details
+06-02-2026 16:55:05 - INFO - Validating token and fetching user details
+06-02-2026 16:56:17 - INFO - Validating token and fetching user details
+06-02-2026 16:56:17 - INFO - Validating token and fetching user details
