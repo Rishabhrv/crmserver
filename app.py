@@ -106,7 +106,7 @@ GROUP_UPLOAD_FOLDER = config.GROUP_UPLOAD_FOLDER
 os.makedirs(GROUP_UPLOAD_FOLDER, exist_ok=True)
 
 # File restrictions
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "csv", "zip", "pptx","rar", "doc"}
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx", "csv", "zip", "pptx", "rar", "doc"}
 MAX_FILE_SIZE = 100 * 1024 * 1024 
 MAX_FILES_PER_REQUEST = 10
 
@@ -185,7 +185,7 @@ def login():
         user = None
         try:
             cur.execute(
-                "SELECT id, email, password, username, role FROM userss WHERE email = %s",
+                "SELECT id, email, password, username, role, login_time_start, login_time_end, status FROM userss WHERE email = %s",
                 (email,)
             )
             user = cur.fetchone()  # ← This is a DICT
@@ -197,6 +197,12 @@ def login():
         if not user:
             logger.warning(f"User not found: {email}")
             flash('Invalid email or password', 'error')
+            return redirect(url_for('login'))
+
+        # ----- Status Check -----
+        if user.get('status', 'active').lower() != 'active':
+            logger.warning(f"Inactive user attempted login: {email}")
+            flash('Your account is inactive. Please contact the administrator.', 'error')
             return redirect(url_for('login'))
 
         if user['password'] != password:  # ← Use 'password', not [2]
@@ -228,11 +234,38 @@ def login():
         app_name = user_details[0]['app'].lower() if user_details and user_details[0]['app'] else ''
 
         # ----- Time restriction -----
-        if role == 'user':
-            current_hour = datetime.now(pytz.timezone('Asia/Kolkata')).hour
-            if not (9 <= current_hour < 18):
-                flash('Users can only log in between 9 AM and 6 PM IST', 'error')
-                return redirect(url_for('login'))
+        if role != 'admin':
+            login_start = user.get('login_time_start')
+            login_end = user.get('login_time_end')
+
+            if login_start and login_end:
+                now = datetime.now(pytz.timezone('Asia/Kolkata')).time()
+
+                # Helper to convert potential formats (timedelta for MySQL TIME, or string) to time object
+                def parse_time(t):
+                    if isinstance(t, timedelta):
+                        return (datetime.min + t).time()
+                    if isinstance(t, str):
+                        for fmt in ('%H:%M:%S', '%H:%M'):
+                            try:
+                                return datetime.strptime(t, fmt).time()
+                            except ValueError:
+                                continue
+                    return t
+
+                start_t = parse_time(login_start)
+                end_t = parse_time(login_end)
+
+                if start_t and end_t:
+                    if not (start_t <= now <= end_t):
+                        flash(f'Login allowed only between {start_t.strftime("%I:%M %p")} and {end_t.strftime("%I:%M %p")} IST', 'error')
+                        return redirect(url_for('login'))
+            elif role == 'user':
+                # Fallback to default if no dynamic timing is set for 'user' role
+                current_hour = datetime.now(pytz.timezone('Asia/Kolkata')).hour
+                if not (9 <= current_hour < 18):
+                    flash('Users can only log in between 9 AM and 6 PM IST', 'error')
+                    return redirect(url_for('login'))
 
         # ----- JWT -----
         token = jwt.encode({
