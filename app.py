@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
+from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import datetime
 import config
@@ -10,6 +11,7 @@ import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime, timedelta, timezone
 import config
+from config import APP_REDIRECTS, SOCKET_CORS_ORIGINS, FLASK_CORS_ORIGINS
 from flask_socketio import SocketIO, join_room, emit
 from datetime import datetime, timedelta
 from functools import wraps
@@ -50,10 +52,11 @@ logging.basicConfig(
 
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
-socketio = SocketIO(app, cors_allowed_origins=["https://chat.mis.agkit.in", "https://mis.agkit.in"])
+socketio = SocketIO(app, cors_allowed_origins=SOCKET_CORS_ORIGINS)
 
-# socketio = SocketIO(app, cors_allowed_origins=["http://localhost:8501", "http://localhost:3000", "http://localhost:5001"])
-# CORS(app, resources={r"/*": {"origins": ["http://localhost:8501", "http://localhost:3000"]}})
+#local
+# socketio = SocketIO(app, cors_allowed_origins=SOCKET_CORS_ORIGINS)
+# CORS(app, resources={r"/*": {"origins": FLASK_CORS_ORIGINS}})
 
 
 try:
@@ -112,26 +115,6 @@ MAX_FILES_PER_REQUEST = 10
 
 app.static_folder = UPLOAD_FOLDER
 
-#App-based redirect URLs
-APP_REDIRECTS={"main": "https://mis.agkit.in", 
-               "operations": "https://mis.agkit.in/team_dashboard", 
-               "admin": "https://mis.agkit.in", 
-               "tasks": "https://mis.agkit.in/tasks",
-               "ijisem": "https://mis.agkit.in/ijisem",
-                "sales": "https://mis.agkit.in/sales"}
-
-# APP_REDIRECTS={"main": "http://localhost:8501", 
-#                 "operations": "http://localhost:8501/team_dashboard", 
-#                 "admin": "http://localhost:8501", 
-#                 "tasks": "http://localhost:8501/tasks",
-#                 "ijisem": "http://localhost:8501/ijisem",
-#                 "sales": "http://localhost:8501/sales",
-#                 "clone": "http://localhost:3000/clone",
-#                 "ict": "http://localhost:3000/chat"
-#                 }
-
-
-
 TOKEN_BLACKLIST = set()
 PASSWORD_RESET_TOKENS = {}
 
@@ -185,7 +168,7 @@ def login():
         user = None
         try:
             cur.execute(
-                "SELECT id, email, password, username, role, login_time_start, login_time_end, status FROM userss WHERE email = %s",
+                "SELECT id, email, password, password_hash, username, role, login_time_start, login_time_end, status FROM userss WHERE email = %s",
                 (email,)
             )
             user = cur.fetchone()  # ← This is a DICT
@@ -205,7 +188,25 @@ def login():
             flash('Your account is inactive. Please contact the administrator.', 'error')
             return redirect(url_for('login'))
 
-        if user['password'] != password:  # ← Use 'password', not [2]
+        # Check password using hash if available, fallback to plain text if not hashed yet
+        is_password_correct = False
+        if user.get('password_hash'):
+            is_password_correct = check_password_hash(user['password_hash'], password)
+        else:
+            # Fallback for any non-migrated users
+            is_password_correct = (user['password'] == password)
+            if is_password_correct:
+                # Optionally hash it now and save
+                try:
+                    conn, cur = get_book_cursor()
+                    cur.execute("UPDATE userss SET password_hash = %s WHERE id = %s", (generate_password_hash(password), user['id']))
+                    conn.commit()
+                    cur.close()
+                    conn.close()
+                except Exception as e:
+                    logger.error(f"Failed to auto-migrate password for {email}: {e}")
+
+        if not is_password_correct:
             logger.warning(f"Invalid password for: {email}")
             flash('Invalid email or password', 'error')
             return redirect(url_for('login'))
@@ -448,7 +449,8 @@ def reset_password():
                 del PASSWORD_RESET_TOKENS[token]
                 return redirect(url_for('forgot_password'))
 
-            cur.execute("UPDATE userss SET password = %s WHERE id = %s", (new_password, user_id))
+            hashed_password = generate_password_hash(new_password)
+            cur.execute("UPDATE userss SET password = %s, password_hash = %s WHERE id = %s", (new_password, hashed_password, user_id))
             conn.commit()
         finally:
             cur.close()

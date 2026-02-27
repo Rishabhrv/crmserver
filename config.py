@@ -4,6 +4,12 @@ import json
 
 load_dotenv()
 
+def get_list_env(key: str):
+    value = os.getenv(key)
+    if not value:
+        raise ValueError(f"Missing environment variable: {key}")
+    return [item.strip() for item in value.split(",")]
+
 # MySQL Configuration for booktracker database
 MYSQL_HOST = os.getenv("MYSQL_HOST")
 MYSQL_USER = os.getenv("MYSQL_USER")
@@ -31,3 +37,15 @@ APP_REDIRECTS = json.loads(os.getenv("APP_REDIRECTS", "{}"))
 
 UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER")
 GROUP_UPLOAD_FOLDER = os.getenv("GROUP_UPLOAD_FOLDER")
+
+SOCKET_CORS_ORIGINS = get_list_env("SOCKET_CORS_ORIGINS")
+FLASK_CORS_ORIGINS = get_list_env("FLASK_CORS_ORIGINS")
+
+APP_REDIRECTS = {
+    "main": os.getenv("APP_REDIRECT_MAIN"),
+    "operations": os.getenv("APP_REDIRECT_OPERATIONS"),
+    "admin": os.getenv("APP_REDIRECT_ADMIN"),
+    "tasks": os.getenv("APP_REDIRECT_TASKS"),
+    "ijisem": os.getenv("APP_REDIRECT_IJISEM"),
+    "sales": os.getenv("APP_REDIRECT_SALES")
+}
