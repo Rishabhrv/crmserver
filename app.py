@@ -53,7 +53,7 @@ logging.basicConfig(
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins=SOCKET_CORS_ORIGINS)
-CORS(app, resources={r"/*": {"origins": FLASK_CORS_ORIGINS}})
+#CORS(app, resources={r"/*": {"origins": FLASK_CORS_ORIGINS}})
 
 
 try:
