@@ -3187,4 +3187,4 @@ if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
 
 if __name__ == '__main__':
     logger.info("Starting Flask-SocketIO application")
-    socketio.run(app, host='0.0.0.0', port=5001, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5001, debug=False)
