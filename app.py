@@ -53,10 +53,7 @@ logging.basicConfig(
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins=SOCKET_CORS_ORIGINS)
-
-#local
-# socketio = SocketIO(app, cors_allowed_origins=SOCKET_CORS_ORIGINS)
-# CORS(app, resources={r"/*": {"origins": FLASK_CORS_ORIGINS}})
+CORS(app, resources={r"/*": {"origins": FLASK_CORS_ORIGINS}})
 
 
 try:
@@ -113,10 +110,50 @@ ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "pdf", "txt", "docx", "xlsx",
 MAX_FILE_SIZE = 100 * 1024 * 1024 
 MAX_FILES_PER_REQUEST = 10
 
-app.static_folder = UPLOAD_FOLDER
-
 TOKEN_BLACKLIST = set()
 PASSWORD_RESET_TOKENS = {}
+
+# -------------------- Login Rate Limiting --------------------
+# In-memory storage for login attempts
+IP_ATTEMPTS = {}
+EMAIL_ATTEMPTS = {}
+MAX_ATTEMPTS_PER_IP = 15
+MAX_ATTEMPTS_PER_EMAIL = 5
+LOCKOUT_WINDOW_MINUTES = 10
+
+def check_rate_limit(ip, email):
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(minutes=LOCKOUT_WINDOW_MINUTES)
+    
+    # Check IP
+    if ip in IP_ATTEMPTS:
+        IP_ATTEMPTS[ip] = [t for t in IP_ATTEMPTS[ip] if t > cutoff]
+        logger.info(f"IP {ip} has {len(IP_ATTEMPTS[ip])} recent attempts")
+        if len(IP_ATTEMPTS[ip]) >= MAX_ATTEMPTS_PER_IP:
+            return True, f"Too many login attempts from this IP. Please try again in {LOCKOUT_WINDOW_MINUTES} minutes."
+            
+    # Check Email
+    if email in EMAIL_ATTEMPTS:
+        EMAIL_ATTEMPTS[email] = [t for t in EMAIL_ATTEMPTS[email] if t > cutoff]
+        logger.info(f"Email {email} has {len(EMAIL_ATTEMPTS[email])} recent attempts")
+        if len(EMAIL_ATTEMPTS[email]) >= MAX_ATTEMPTS_PER_EMAIL:
+            return True, f"Too many login attempts for this account. Please try again in {LOCKOUT_WINDOW_MINUTES} minutes."
+            
+    return False, ""
+
+def record_login_failure(ip, email):
+    now = datetime.now(timezone.utc)
+    if ip:
+        IP_ATTEMPTS.setdefault(ip, []).append(now)
+    if email:
+        EMAIL_ATTEMPTS.setdefault(email, []).append(now)
+    logger.info(f"Recorded failure for IP: {ip}, Email: {email}. Total failures now: IP={len(IP_ATTEMPTS.get(ip, []))}, Email={len(EMAIL_ATTEMPTS.get(email, []))}")
+
+def reset_login_attempts(ip, email):
+    if ip in IP_ATTEMPTS:
+        del IP_ATTEMPTS[ip]
+    if email in EMAIL_ATTEMPTS:
+        del EMAIL_ATTEMPTS[email]
 
 # -------------------- Helper Functions --------------------
 def now_ist():
@@ -149,6 +186,12 @@ def token_required(f):
     return wrapper
 
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon_black.ico', mimetype='image/vnd.microsoft.icon')
+
+
 @app.route('/')
 def index():
     logger.info(f"User accessed root endpoint, session email: {session.get('email', 'None')}")
@@ -162,8 +205,15 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        logger.info(f"Trying to login with email: {email}")
+        ip = request.remote_addr
+        logger.info(f"Trying to login with email: {email} from IP: {ip}")
 
+        # Ensure a consistent session_id exists for this login attempt sequence
+        if 'temp_session_id' not in session:
+            session['temp_session_id'] = str(uuid.uuid4())
+        session_id = session['temp_session_id']
+
+        # Fetch user first to get accurate username/id for logs
         conn, cur = get_book_cursor()
         user = None
         try:
@@ -171,20 +221,36 @@ def login():
                 "SELECT id, email, password, password_hash, username, role, login_time_start, login_time_end, status FROM userss WHERE email = %s",
                 (email,)
             )
-            user = cur.fetchone()  # ← This is a DICT
+            user = cur.fetchone()
         finally:
             cur.close()
             conn.close()
 
-        # ← NOW use dict keys, NOT numbers!
+        # Determine logging identity
+        log_uid = user['id'] if user else 0
+        log_uname = user['username'] if user else email
+
+        # ----- Rate Limit Check -----
+        is_limited, limit_msg = check_rate_limit(ip, email)
+        if is_limited:
+            logger.warning(f"Rate limit exceeded: IP={ip}, Email={email}")
+            log_activity(log_uid, log_uname, session_id, "Login Blocked", f"Rate limit exceeded from IP: {ip}")
+            flash(limit_msg, 'error')
+            return render_template('login.html'), 429
+
+        # User not found check
         if not user:
             logger.warning(f"User not found: {email}")
+            record_login_failure(ip, email)
+            log_activity(0, email, session_id, "Login Failed", f"User not found for email: {email} from IP: {ip}")
             flash('Invalid email or password', 'error')
             return redirect(url_for('login'))
 
         # ----- Status Check -----
         if user.get('status', 'active').lower() != 'active':
             logger.warning(f"Inactive user attempted login: {email}")
+            record_login_failure(ip, email)
+            log_activity(user['id'], user['username'], session_id, "Login Failed", "Account is inactive")
             flash('Your account is inactive. Please contact the administrator.', 'error')
             return redirect(url_for('login'))
 
@@ -208,13 +274,21 @@ def login():
 
         if not is_password_correct:
             logger.warning(f"Invalid password for: {email}")
+            record_login_failure(ip, email)
+            log_activity(user['id'], user['username'], session_id, "Login Failed", "Incorrect password")
             flash('Invalid email or password', 'error')
             return redirect(url_for('login'))
 
         # ----- SUCCESS -----
+        reset_login_attempts(ip, email)
+        # Finalize the session_id (remove temp prefix in logic, though value remains same)
+        session.pop('temp_session_id', None) 
         session['email'] = user['email']
+        session['session_id'] = session_id
         session['login_time'] = datetime.now(timezone.utc).isoformat()
-        logger.info(f"User {user['username']} logged in, role: {user['role']}")
+        
+        # Pre-authentication log (internal)
+        logger.info(f"User {user['username']} pre-authenticated, session_id: {session_id}")
 
         # ----- Fetch app access -----
         conn, cur = get_book_cursor()
@@ -259,18 +333,25 @@ def login():
 
                 if start_t and end_t:
                     if not (start_t <= now <= end_t):
+                        log_activity(user['id'], user['username'], session_id, "Login Failed", f"Off-hours login attempt at {now.strftime('%I:%M %p')}")
                         flash(f'Login allowed only between {start_t.strftime("%I:%M %p")} and {end_t.strftime("%I:%M %p")} IST', 'error')
                         return redirect(url_for('login'))
             elif role == 'user':
                 # Fallback to default if no dynamic timing is set for 'user' role
                 current_hour = datetime.now(pytz.timezone('Asia/Kolkata')).hour
                 if not (9 <= current_hour < 18):
+                    log_activity(user['id'], user['username'], session_id, "Login Failed", f"Standard user off-hours login attempt at {current_hour}:00")
                     flash('Users can only log in between 9 AM and 6 PM IST', 'error')
                     return redirect(url_for('login'))
+
+        # Final Activity Log after ALL validations
+        log_activity(user['id'], user['username'], session_id, "Login Success", f"User logged in from IP: {ip}")
+        logger.info(f"User {user['username']} logged in successfully, role: {user['role']}")
 
         # ----- JWT -----
         token = jwt.encode({
             'user_id': user['id'],
+            'session_id': session_id,
             'exp': datetime.now(timezone.utc) + timedelta(minutes=240)
         }, JWT_SECRET, algorithm='HS256')
 
@@ -306,6 +387,7 @@ def validate_and_details():
     try:
         decoded = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
         user_id = decoded['user_id']
+        session_id = decoded.get('session_id')
     except jwt.ExpiredSignatureError:
         return jsonify({'valid': False, 'error': 'Token expired'}), 401
     except jwt.InvalidTokenError:
@@ -351,6 +433,7 @@ def validate_and_details():
     return jsonify({
         'valid': True,
         'user_id': user_id,
+        'session_id': session_id,
         'user_details': {
             'username': user['username'],
             'email': user['email'],
@@ -387,7 +470,7 @@ def forgot_password():
             reset_token = str(uuid.uuid4())
             expiration = datetime.now(timezone.utc) + timedelta(hours=1)
             PASSWORD_RESET_TOKENS[reset_token] = {
-                'user_id': user[0],
+                'user_id': user['id'],
                 'expires': expiration
             }
 
@@ -402,18 +485,33 @@ This link expires in 1 hour.
 Thank you,
 AG Publishing House Team
 tech@academicguru24x7.com"""
-            msg = MIMEText(email_body)
-            msg['Subject'] = 'AG Publishing House - Password Reset'
-            msg['From'] = EMAIL_CONFIG['SENDER_EMAIL']
-            msg['To'] = email
 
-            with smtplib.SMTP(EMAIL_CONFIG['SMTP_SERVER'], EMAIL_CONFIG['SMTP_PORT']) as server:
-                server.starttls()
-                server.login(EMAIL_CONFIG['SENDER_EMAIL'], EMAIL_CONFIG['SENDER_PASSWORD'])
-                server.send_message(msg)
+            try:
+                msg = MIMEText(email_body)
+                msg['Subject'] = 'AG Publishing House - Password Reset'
+                msg['From'] = EMAIL_CONFIG['SENDER_EMAIL']
+                msg['To'] = email
 
-            logger.info(f"Password reset email sent to admin: {user[3]}")
-            flash('Password reset link sent to your email', 'success')
+                with smtplib.SMTP(EMAIL_CONFIG['SMTP_SERVER'], EMAIL_CONFIG['SMTP_PORT']) as server:
+                    server.starttls()
+                    server.login(EMAIL_CONFIG['SENDER_EMAIL'], EMAIL_CONFIG['SENDER_PASSWORD'])
+                    server.send_message(msg)
+
+                logger.info(f"Password reset email sent to admin: {user['username']}")
+                flash('Password reset link sent to your email', 'success')
+
+            except smtplib.SMTPAuthenticationError:
+                logger.error("SMTP authentication failed — check EMAIL_CONFIG credentials")
+                flash('Email service is temporarily unavailable. Please contact support.', 'error')
+
+            except smtplib.SMTPException as e:
+                logger.error(f"SMTP error while sending reset email: {e}")
+                flash('Failed to send reset email. Please try again later.', 'error')
+
+            except Exception as e:
+                logger.error(f"Unexpected error sending reset email: {e}")
+                flash('An unexpected error occurred. Please try again later.', 'error')
+
         else:
             logger.warning(f"Password reset attempt for non-admin or unknown email: {email}")
             flash('Only admin users can reset passwords', 'error')
@@ -457,7 +555,7 @@ def reset_password():
             conn.close()
 
         del PASSWORD_RESET_TOKENS[token]
-        logger.info(f"Password reset successful for admin: {user[1]}")
+        logger.info(f"Password reset successful for admin: {user['username']}")
         flash('Password successfully reset. Please login.', 'success')
         return redirect(url_for('login'))
 
@@ -3089,4 +3187,4 @@ if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
 
 if __name__ == '__main__':
     logger.info("Starting Flask-SocketIO application")
-    socketio.run(app, host='0.0.0.0', port=5001, debug=False)
+    socketio.run(app, host='0.0.0.0', port=5001, debug=True)
