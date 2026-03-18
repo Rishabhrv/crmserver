@@ -97,6 +97,7 @@ EMAIL_CONFIG = {
     'SENDER_PASSWORD': config.SENDER_PASSWORD
 }
 
+
 UPLOAD_FOLDER = config.UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
